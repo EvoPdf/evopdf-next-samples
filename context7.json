@@ -7,11 +7,13 @@
     "docs-samples"
   ],
   "excludeFolders": [
-    "demo/EvoPdf.Next.AspNetDemo/wwwroot",
+    "demo/AspNetDemo/wwwroot",
     ".github"
   ],
   "rules": [
-    "Use the EvoPdf.Next namespace; reference one NuGet package per platform",
-    "Set Licensing.LicenseKey once before the first conversion"
+    "Use the EvoPdf.Next namespace; reference one NuGet package per platform (EvoPdf.Next.Windows, EvoPdf.Next.Linux, EvoPdf.Next.MacOS)",
+    "Set Licensing.LicenseKey once, statically, before the first conversion; never invent a key",
+    "Converter instances are not reusable: create a new converter for every conversion",
+    "API rules, migration guidance and skills for coding assistants live in https://github.com/EvoPdf/evopdf-agent-skills; consult that library for how to use the API, and this one for runnable code"
   ]
 }
