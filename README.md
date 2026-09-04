@@ -72,7 +72,7 @@ Every sample runs without arguments: the input documents (`Files/` — the Word,
 | `EvoPdf.Next.Samples.Linux.Arm64.sln` | `EvoPdf.Next.Linux.Arm64` | Linux ARM64 |
 | `EvoPdf.Next.Samples.MacOS.sln` | `EvoPdf.Next.MacOS` | macOS (Apple Silicon) |
 | `EvoPdf.Next.Samples.MultiPlatform.sln` | `EvoPdf.Next` | Windows x64 + Linux x64 |
-| `EvoPdf.Next.Samples.MultiPlatform.Arm64.sln` | `EvoPdf.Next.Arm64` | Windows ARM64 + Linux ARM64 |
+| `EvoPdf.Next.Samples.MultiPlatform.Arm64.sln` | `EvoPdf.Next.Windows.Arm64` + `EvoPdf.Next.Linux.Arm64` | Windows ARM64 + Linux ARM64 |
 
 Each solution holds the quickstarts, the ASP.NET Core demo and the console demo of its platform. The CI builds all seven on Windows, Linux and macOS runners. On Linux install the [system packages](https://www.evopdf.com/help/evopdf-next-dotnet/html/getting-started-on-linux.htm) first.
 

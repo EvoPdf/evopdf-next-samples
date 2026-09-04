@@ -7,7 +7,7 @@ The .NET 10 demo applications from the official download package (`EvoPdf-Next-v
 | `_Windows` / `_Windows.Arm64` | `EvoPdf.Next.Windows` / `.Windows.Arm64` | Windows x64 / ARM64 |
 | `_Linux` / `_Linux.Arm64` | `EvoPdf.Next.Linux` / `.Linux.Arm64` | Linux x64 / ARM64 |
 | `_MacOS` | `EvoPdf.Next.MacOS` | macOS (Apple Silicon) |
-| `_MultiPlatform` / `_MultiPlatform.Arm64` | `EvoPdf.Next` / `.Arm64` | Windows + Linux from one build |
+| `_MultiPlatform` / `_MultiPlatform.Arm64` | `EvoPdf.Next` / `.Windows.Arm64` + `.Linux.Arm64` | Windows + Linux from one build |
 
 ## AspNetDemo
 The ASP.NET Core MVC application that runs at [evopdf.com](https://www.evopdf.com/evopdf-next-aspnet-demo/), with the C# source of every demo page under `Controllers/` (HTML to PDF, HTML to Image, PDF Creator, PDF Editor, Word / Excel / RTF / Markdown to PDF, PDF to Text, Find Text, PDF to Image, Extract PDF Images).

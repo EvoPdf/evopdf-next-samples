@@ -14,7 +14,8 @@
 
   <ItemGroup>
     <!-- Windows ARM64 + Linux ARM64 -->
-    <PackageReference Include="EvoPdf.Next.Arm64" Version="14.36.0" />
+    <PackageReference Include="EvoPdf.Next.Windows.Arm64" Version="14.36.0" />
+    <PackageReference Include="EvoPdf.Next.Linux.Arm64" Version="14.36.0" />
   </ItemGroup>
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk.Web" />
