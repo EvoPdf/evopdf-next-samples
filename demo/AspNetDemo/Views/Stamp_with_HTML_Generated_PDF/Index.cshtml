@@ -1,0 +1,533 @@
+﻿@model EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF.Stamp_with_HTML_Generated_PDF_ViewModel
+@{
+    ViewBag.Title = "Add HTML Stamp to Generated PDF";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function toggleStampSource(convertUrl) {
+        var urlPanel = document.getElementById("stampUrlPanel");
+        var htmlStringPanel = document.getElementById("stampHtmlPanel");
+
+        if (convertUrl && urlPanel.style.display == "none") {
+            urlPanel.style.display = "block";
+            htmlStringPanel.style.display = "none";
+        }
+        else if (!convertUrl && htmlStringPanel.style.display == "none") {
+            urlPanel.style.display = "none";
+            htmlStringPanel.style.display = "block";
+        }
+    }
+
+    TreeView_SelectNode("demoTreeView_Stamp_with_HTML_Generated_PDF");
+</script>
+
+<form asp-action="ConvertHtmlToPdf" asp-controller="Stamp_with_HTML_Generated_PDF" method="post">
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px; padding-top: 5px">
+                                    Add HTML Stamp with Page Numbering to Generated PDF
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+
+                                    <table style="width: 535px; height: 967px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you to add stamps using any valid HTML markup and elements to the generated PDF document.
+                                                                    The HTML can also include the template variables {page_number} and {total_pages} for page numbering.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Page URL or Local File to Convert
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input asp-for="Url" type="text" id="urlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <span style="font-weight:normal;"><input asp-for="StampHtmlSource" id="stampHtmlRadioButton" type="radio" value="Html" onclick="javascript: toggleStampSource(false)"><label for="stampHtmlRadioButton">Stamp with HTML String</label></span>
+                                                                                            </td>
+                                                                                            <td style="width: 50px"></td>
+                                                                                            <td>
+                                                                                                <span style="font-weight:normal;"><input asp-for="StampHtmlSource" id="stampUrlRadioButton" type="radio" value="Url" onclick="javascript: toggleStampSource(true)"><label for="stampUrlRadioButton">Stamp with HTML from URL</label></span>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 15px"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div id="stampHtmlPanel">
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="font-weight: bold">
+                                                                                                    Stamp HTML
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <textarea asp-for="StampHtmlTextBox" rows="2" cols="20" id="stampHtmlTextBox" style="height:200px;width:500px;"></textarea>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 10px"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="font-weight: bold">
+                                                                                                    Base URL
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="StampHtmlBaseUrlTextBox" type="text" id="stampHtmlBaseUrlTextBox" style="width:500px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                                <div id="stampUrlPanel" style="display:none">
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                                    Stamp URL
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="StampUrlTextBox" type="text" id="stampUrlTextBox" style="width:500px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td style="font-weight: bold" colspan="2">
+                                                                                Stamp Options
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 15px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <input asp-for="StampEnabled" id="stampEnabledCheckBox" type="checkbox"><label for="stampEnabledCheckBox">Stamp Enabled</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 20px"></td>
+                                                                                                    <td>
+                                                                                                        Opacity:
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="StampOpacity" type="text" id="stampOpacityTextBox" style="width:35px;">
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        %
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 10px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <input asp-for="ShowStampInFirstPage" id="showStampInFirstPageCheckBox" type="checkbox"><label for="showStampInFirstPageCheckBox">Show in First Page</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 20px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="ShowStampInOddPages" id="showStampInOddPagesCheckBox" type="checkbox"><label for="showStampInOddPagesCheckBox">Show in Odd Pages</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 20px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="ShowStampInEvenPages" id="showStampInEvenPagesCheckBox" type="checkbox"><label for="showStampInEvenPagesCheckBox">Show in Even Pages</label>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 10px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <input asp-for="SkipVariablesParsing" id="skipVariablesParsingCheckBox" type="checkbox"><label for="skipVariablesParsingCheckBox">Skip Variables Parsing</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 20px"></td>
+                                                                                                    <td>
+                                                                                                        Delay:
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="ConversionDelay" type="text" id="conversionDelayTextBox" style="width:15px;">
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        sec
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td style="font-weight: bold" colspan="2">
+                                                                                Stamp Size
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 15px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <input asp-for="AutoSizeStampContentHeight" id="autoSizeStampContentHeightCheckBox" type="checkbox"><label for="autoSizeStampContentHeightCheckBox">Auto Size Content Height</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 15px"></td>
+                                                                                                    <td>
+                                                                                                        Min Height:
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="StampMinContentHeight" type="text" id="stampMinContentHeightTextBox" style="width:35px;">
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        pt
+                                                                                                    </td>
+                                                                                                    <td style="width: 10px"></td>
+                                                                                                    <td>
+                                                                                                        Max Height:
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="StampMaxContentHeight" type="text" id="stampMaxContentHeightTextBox" style="width:35px;">
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        pt
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 10px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tbody>
+                                                                                                    <tr>
+
+                                                                                                        <td>
+                                                                                                            Stamp Width:
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px"></td>
+                                                                                                        <td>
+                                                                                                            <input asp-for="StampWidth" type="text" id="stampWidthTextBox" style="width:35px;">
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px"></td>
+                                                                                                        <td>
+                                                                                                            pt
+                                                                                                        </td>
+                                                                                                        <td style="width: 25px"></td>
+                                                                                                        <td>
+                                                                                                            Stamp Height:
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px"></td>
+                                                                                                        <td>
+                                                                                                            <input asp-for="StampHeight" type="text" id="stampHeightTextBox" style="width:35px;">
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px"></td>
+                                                                                                        <td>
+                                                                                                            pt
+                                                                                                        </td>
+                                                                                                        <td style="width: 25px"></td>
+                                                                                                        <td>
+                                                                                                            <input asp-for="FitStampHeight" id="fitStampHeightCheckBox" type="checkbox"><label for="fitStampHeightCheckBox">Fit Height</label>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td style="font-weight: bold" colspan="2">
+                                                                                Stamp Positioning
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 15px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        X:
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="StampXPosition" type="text" id="stampXPositionTextBox" style="width:35px;">
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        pt
+                                                                                                    </td>
+                                                                                                    <td style="width: 10px"></td>
+                                                                                                    <td>
+                                                                                                        Y:
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="StampYPosition" type="text" id="stampYPositionTextBox" style="width:35px;">
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        pt
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 10px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tbody>
+                                                                                                    <tr>
+                                                                                                        <td>
+                                                                                                            Horizontal Alignment:
+                                                                                                        </td>
+                                                                                                        <td style="width: 10px"></td>
+                                                                                                        <td>
+                                                                                                            <select asp-for="HorizontalAlign" id="horizontalAlignDropDownList">
+                                                                                                                <option value="None">None</option>
+                                                                                                                <option value="Left">Left</option>
+                                                                                                                <option value="Center">Center</option>
+                                                                                                                <option value="Right">Right</option>
+                                                                                                            </select>
+                                                                                                        </td>
+                                                                                                        <td style="width: 20px"></td>
+                                                                                                        <td>
+                                                                                                            Vertical Alignment:
+                                                                                                        </td>
+                                                                                                        <td style="width: 10px"></td>
+                                                                                                        <td>
+                                                                                                            <select asp-for="VerticalAlign" id="verticalAlignDropDownList">
+                                                                                                                <option value="None">None</option>
+                                                                                                                <option value="Top">Top</option>
+                                                                                                                <option value="Center">Center</option>
+                                                                                                                <option value="Bottom">Bottom</option>
+                                                                                                            </select>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td style="font-weight: bold" colspan="2">
+                                                                                Stamp Rotation
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 15px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tbody>
+                                                                                                    <tr>
+                                                                                                        <td>
+                                                                                                            Degrees:
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px"></td>
+                                                                                                        <td>
+                                                                                                            <input asp-for="RotationDegrees" type="text" id="stampRotationDegreesTextBox" style="width:35px;">
+                                                                                                        </td>
+                                                                                                        <td style="width: 20px"></td>
+                                                                                                        <td>
+                                                                                                            Direction:
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px"></td>
+                                                                                                        <td>
+                                                                                                            <select asp-for="RotationDirection" class="form-control">
+                                                                                                                <option value="Clockwise">Clockwise</option>
+                                                                                                                <option value="CounterClockwise">Counter Clockwise</option>
+                                                                                                            </select>
+                                                                                                        </td>
+                                                                                                        <td style="width: 20px"></td>
+                                                                                                        <td>
+                                                                                                            Pivot:
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px"></td>
+                                                                                                        <td>
+                                                                                                            <select asp-for="RotationPivot" class="form-control">
+                                                                                                                <option value="TopLeft">Top Left</option>
+                                                                                                                <option value="TopCenter">Top Center</option>
+                                                                                                                <option value="TopRight">Top Right</option>
+                                                                                                                <option value="LeftCenter">Left Center</option>
+                                                                                                                <option value="Center">Center</option>
+                                                                                                                <option value="RightCenter">Right Center</option>
+                                                                                                                <option value="BottomLeft">Bottom Left</option>
+                                                                                                                <option value="BottomCenter">Bottom Center</option>
+                                                                                                                <option value="BottomRight">Bottom Right</option>
+                                                                                                            </select>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <button type="submit" name="convertToPdfButton" id="convertToPdfButton">Convert HTML to PDF</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

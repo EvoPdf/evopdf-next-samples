@@ -1,0 +1,17 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "EvoPdf Next samples",
+  "description": "Runnable C# samples for EvoPdf Next (.NET PDF library): HTML, Word, Excel, RTF, Markdown to PDF, PDF to text, text search, PDF to image, image extraction, PDF editing, plus the complete ASP.NET Core demo application",
+  "folders": [
+    "quickstarts",
+    "docs-samples"
+  ],
+  "excludeFolders": [
+    "demo/EvoPdf.Next.AspNetDemo/wwwroot",
+    ".github"
+  ],
+  "rules": [
+    "Use the EvoPdf.Next namespace; reference one NuGet package per platform",
+    "Set Licensing.LicenseKey once before the first conversion"
+  ]
+}

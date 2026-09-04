@@ -1,0 +1,31 @@
+<Project>
+  <!-- Several platform projects share this folder: each one keeps its own obj and bin (set before the SDK is imported). -->
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>obj\Linux\</BaseIntermediateOutputPath>
+    <BaseOutputPath>bin\Linux\</BaseOutputPath>
+  </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <!-- the sibling platform projects keep their obj/bin in subfolders of this folder: keep all of them out of the source globs -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);obj/**;bin/**</DefaultItemExcludes>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>EvoPdf.Next.Samples</RootNamespace>
+    <AssemblyName>Quickstarts</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- sample input documents, copied next to the executable -->
+    <None Include="Files\**" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Linux x64 -->
+    <PackageReference Include="EvoPdf.Next.Linux" Version="14.36.0" />
+  </ItemGroup>
+
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+</Project>

@@ -1,0 +1,39 @@
+body {
+  font-family: "Segoe UI", "Liberation Sans", "DejaVu Sans", Arial, sans-serif;
+  font-size: 12pt;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 24pt;
+  color: #0b57d0;
+}
+
+h2 {
+  font-size: 18pt;
+  color: #444;
+}
+
+h3 {
+  font-size: 16pt;
+  color: #444;
+}
+
+h4 {
+  font-size: 14pt;
+  color: #444;
+}
+
+h5 {
+  font-size: 12pt;
+  color: #444;
+}
+
+p {
+  margin: 0.8em 0;
+}
+
+a {
+  color: #0b57d0;
+  text-decoration: none;
+}

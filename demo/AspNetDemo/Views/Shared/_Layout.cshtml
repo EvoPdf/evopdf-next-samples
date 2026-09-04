@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewBag.Title</title>
+    <base href="@Url.Content("~/")" />
+    <link href="img/evo.ico" rel="shortcut icon" />
+    <link href="~/styles/webfonts.css" type="text/css" rel="stylesheet" asp-append-version="true">
+    <link href="~/styles/styles.css" type="text/css" rel="stylesheet" asp-append-version="true">
+    <script>
+        // Demo navigation tree. The demo pages call TreeView_ToggleNode(groupId)
+        // and TreeView_SelectNode(pageId); the current page is also detected from the URL.
+        function TreeView_ToggleNode(groupId) {
+            var group = document.getElementById(groupId);
+            if (!group) return;
+            var open = group.classList.toggle('open');
+            var btn = group.querySelector('.tree-toggle');
+            if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        function TreeView_SelectNode(pageId) {
+            var link = document.getElementById(pageId);
+            if (!link) return;
+            link.classList.add('current');
+            var group = link.closest('.tree-group');
+            if (group && !group.classList.contains('open')) TreeView_ToggleNode(group.id);
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            var page = location.pathname.split('/').pop().toLowerCase();
+            if (!page) return;
+            var links = document.querySelectorAll('#demoTreeView .tree-items a');
+            for (var i = 0; i < links.length; i++) {
+                if (links[i].getAttribute('href').toLowerCase() === page) { TreeView_SelectNode(links[i].id); break; }
+            }
+        });
+    </script>
+</head>
+<body>
+    <header class="demo-top">
+        <a class="brand" href="https://www.evopdf.com" title="EVO PDF Software">
+            <img src="img/evopdf-next-online-demo-logo.png" alt="EvoPdf Next online demo" />
+        </a>
+        <nav class="top-links">
+            <a href="https://www.evopdf.com/help/evopdf-next-dotnet/">Documentation</a>
+            <a href="https://www.evopdf.com/buy">Pricing</a>
+            <a class="back" href="https://www.evopdf.com">evopdf.com</a>
+        </nav>
+    </header>
+
+    <div class="demo-shell">
+        <aside class="demo-nav">
+            <div class="nav-scroll">
+<nav id="demoTreeView" class="tree" aria-label="Demo pages">
+  <div class="tree-group open" id="demoTreeView_HTML_To_PDF_Converter">
+    <button type="button" class="tree-toggle" aria-expanded="true" aria-controls="demoTreeView_HTML_To_PDF_ConverterNodes" onclick="TreeView_ToggleNode('demoTreeView_HTML_To_PDF_Converter')"><span class="sr">Toggle</span></button>
+    <a class="tree-head" href="HTML_to_PDF_Getting_Started" title="EVO HTML to PDF Converter">HTML to PDF Converter</a>
+    <ul class="tree-items" id="demoTreeView_HTML_To_PDF_ConverterNodes">
+      <li><a id="demoTreeView_Getting_Started" href="HTML_to_PDF_Getting_Started" title="Getting Started with EVO HTML to PDF Converter">Getting Started with HTML to PDF</a></li>
+      <li><a id="demoTreeView_Merge_Multiple_HTML" href="Merge_Multiple_HTML_to_PDF" title="Merge Multiple HTML to PDF">Merge Multiple HTML to PDF into a Single PDF</a></li>
+      <li><a id="demoTreeView_Convert_Multiple_HTML_in_Parallel" href="Convert_Multiple_HTML_to_PDF_in_Parallel" title="Convert Multiple HTML to PDF in Parallel">Convert Multiple HTML Pages to PDF in Parallel</a></li>
+      <li><a id="demoTreeView_HTML_in_Header_Footer" href="HTML_in_Header_Footer" title="Add HTML in Header and Footer">Add HTML Header and Footer with Page Numbers</a></li>
+      <li><a id="demoTreeView_HTML_in_Header_Footer_Browser_Mode" href="HTML_in_Header_Footer_Browser_Mode" title="Add HTML in Header and Footer Using Browser Mode">Add HTML Header and Footer Using Browser Mode</a></li>
+      <li><a id="demoTreeView_Header_Footer_on_PDF_from_Multiple_HTML" href="Header_Footer_on_PDF_from_Multiple_HTML" title="Add Header and Footer to PDF from Multiple HTML">Add Header and Footer to PDF from Multiple HTML</a></li>
+      <li><a id="demoTreeView_Select_HTML_Elements_to_Convert_to_PDF" href="Select_HTML_Elements_to_Convert_to_PDF" title="Select HTML Elements to Convert to PDF">Select HTML Elements to Convert to PDF</a></li>
+      <li><a id="demoTreeView_Select_HTML_Elements_to_Exclude_from_PDF" href="Select_HTML_Elements_to_Exclude_from_PDF" title="Select HTML Elements to Exclude from PDF">Select HTML Elements to Exclude from PDF</a></li>
+      <li><a id="demoTreeView_Retrieve_HTML_Element_Positions_in_PDF" href="Retrieve_HTML_Element_Positions_in_PDF" title="Retrieve HTML Element Positions in PDF">Retrieve HTML Element Positions in PDF</a></li>
+      <li><a id="demoTreeView_Stamp_with_HTML_Generated_PDF" href="Stamp_with_HTML_Generated_PDF" title="Add HTML Stamp to Generated PDF">Add HTML Stamp to Generated PDF</a></li>
+      <li><a id="demoTreeView_Add_Attachments_to_Generated_PDF" href="Add_Attachments_to_Generated_PDF" title="Add Attachments to Generated PDF">Add Attachments to Generated PDF</a></li>
+      <li><a id="demoTreeView_Repeat_HTML_Table_Header_Footer" href="Repeat_HTML_Table_Header_Footer" title="Repeat HTML Table Header and Footer in PDF">Repeat HTML Table Header and Footer in PDF</a></li>
+      <li><a id="demoTreeView_Insert_Page_Breaks_Before_After_Using_CSS" href="Insert_Page_Breaks" title="Insert Page Breaks in PDF Using CSS">Insert Page Breaks in PDF Using CSS</a></li>
+      <li><a id="demoTreeView_Avoid_Page_Breaks_Inside_HTML_Elements_Using_CSS" href="Avoid_Page_Breaks_Inside" title="Avoid Page Break Inside Elements Using CSS">Avoid Page Break Inside Elements Using CSS</a></li>
+      <li><a id="demoTreeView_Auto_Create_Bookmarks" href="Auto_Create_Bookmarks" title="Auto Create Hierachical Bookmarks">Auto Create Hierachical Bookmarks</a></li>
+      <li><a id="demoTreeView_Table_of_Contents" href="Table_of_Contents" title="Auto Create Table of Contents">Auto Create Table of Contents</a></li>
+      <li><a id="demoTreeView_Create_PDF_Forms_from_HTML_Forms" href="Create_PDF_Forms_from_HTML_Forms" title="Auto Create PDF Forms from HTML Forms">Auto Create PDF Forms from HTML Forms</a></li>
+      <li><a id="demoTreeView_Create_PdfUa_and_PdfA" href="Create_PdfUa_and_PdfA" title="Create PDF/UA and PDF/A Compliant Documents">Create PDF/UA and PDF/A Compliant Documents</a></li>
+      <li><a id="demoTreeView_Convert_Internal_Links_to_PDF" href="Convert_Internal_Links_to_PDF" title="Convert Internal Links from HTML to PDF">Convert Internal Links from HTML to PDF</a></li>
+      <li><a id="demoTreeView_SVG_to_PDF" href="SVG_to_PDF" title="Convert HTML with SVG to PDF">Convert HTML with SVG to PDF</a></li>
+      <li><a id="demoTreeView_Web_Fonts_to_PDF" href="Web_Fonts_to_PDF" title="Convert HTML with Web Fonts to PDF">Convert HTML with Web Fonts to PDF</a></li>
+      <li><a id="demoTreeView_Conversion_Triggering_Modes" href="Conversion_Triggering_Modes" title="Conversion Triggering Mode">Select Conversion Triggering Mode</a></li>
+      <li><a id="demoTreeView_Select_Screen_or_Print_Media_Type" href="Select_Screen_or_Print_Media_Type" title="Select Media Type for Screen or Print">Select Media Type for Screen or Print</a></li>
+      <li><a id="demoTreeView_Convert_Current_Page" href="Convert_Current_Page" title="Convert the Current HTML Page to PDF">Convert the Current HTML Page to PDF</a></li>
+      <li><a id="demoTreeView_Convert_Page_in_Same_Session" href="Convert_Page_in_Same_Session" title="Convert a HTML Page to PDF in Same Session">Convert a HTML Page to PDF in Same Session</a></li>
+      <li><a id="demoTreeView_Set_Viewer_Preferences" href="PDF_Viewer_Preferences" title="Set PDF Viewer Preferences">Set PDF Viewer Preferences</a></li>
+      <li><a id="demoTreeView_PDF_Security" href="PDF_Security" title="Set PDF Permissions and Password">Set PDF Permissions and Password</a></li>
+      <li><a id="demoTreeView_PDF_Digital_Signatures" href="PDF_Digital_Signatures" title="Digitally Sign the Generated PDF">Digitally Sign the Generated PDF</a></li>
+      <li><a id="demoTreeView_Add_HTTP_Headers_to_Request" href="Add_HTTP_Headers_to_Request" title="Add HTTP Headers to HTML Page Request">Add HTTP Headers to HTML Page Request</a></li>
+      <li><a id="demoTreeView_Add_Cookies_to_Request" href="Add_Cookies_to_Request" title="Add Cookies to HTML Page Request">Add Cookies to HTML Page Request</a></li>
+      <li><a id="demoTreeView_GET_and_POST_HTTP_Methods" href="GET_and_POST_HTTP_Methods" title="Access HTML Pages with GET and POST">Access HTML Pages with GET and POST</a></li>
+    </ul>
+  </div>
+  <div class="tree-group" id="demoTreeView_HTML_to_Image">
+    <button type="button" class="tree-toggle" aria-expanded="false" aria-controls="demoTreeView_HTML_to_ImageNodes" onclick="TreeView_ToggleNode('demoTreeView_HTML_to_Image')"><span class="sr">Toggle</span></button>
+    <a class="tree-head" href="HTML_to_Image/Convert_HTML_to_Image" title="HTML to Image Converter">HTML to Image Converter</a>
+    <ul class="tree-items" id="demoTreeView_HTML_to_ImageNodes">
+      <li><a id="demoTreeView_Convert_HTML_to_Image" href="HTML_to_Image/Convert_HTML_to_Image" title="Convert HTML to a Raster Image">Convert HTML to a Raster Image</a></li>
+      <li><a id="demoTreeView_Select_HTML_Elements_to_Convert_to_Image" href="HTML_to_Image/Select_HTML_Elements_to_Convert_to_Image" title="Select HTML Elements to Convert to Image">Select HTML Elements to Convert to Image</a></li>
+      <li><a id="demoTreeView_Select_HTML_Elements_to_Exclude_from_Image" href="HTML_to_Image/Select_HTML_Elements_to_Exclude_from_Image" title="Select HTML Elements to Exclude from Image">Select HTML Elements to Exclude from Image</a></li>
+    </ul>
+  </div>
+  <div class="tree-group" id="demoTreeView_PDF_Creator">
+    <button type="button" class="tree-toggle" aria-expanded="false" aria-controls="demoTreeView_PDF_CreatorNodes" onclick="TreeView_ToggleNode('demoTreeView_PDF_Creator')"><span class="sr">Toggle</span></button>
+    <a class="tree-head" href="Create_PDF_Documents" title="PDF Creator">PDF Creator</a>
+    <ul class="tree-items" id="demoTreeView_PDF_CreatorNodes">
+      <li><a id="demoTreeView_Create_PDF_Documents" href="Create_PDF_Documents" title="Create PDF Documents">Create PDF Documents</a></li>
+      <li><a id="demoTreeView_Create_PDF_Documents_with_Standards" href="Create_PDF_Documents_with_Standards" title="Create PDF/UA and PDF/A Documents">Create PDF/UA and PDF/A Documents</a></li>
+      <li><a id="demoTreeView_Create_PDF_Documents_with_Text" href="Create_PDF_Documents_with_Text" title="PdfTextElement feature showcase">Create PDF Documents with Text</a></li>
+      <li><a id="demoTreeView_Create_PDF_Documents_with_Images" href="Create_PDF_Documents_with_Images" title="PdfImageElement feature showcase">Create PDF Documents with Images</a></li>
+      <li><a id="demoTreeView_Create_PDF_Documents_with_Shapes" href="Create_PDF_Documents_with_Shapes" title="Geometric shape elements showcase">Create PDF Documents with Shapes</a></li>
+      <li><a id="demoTreeView_Create_PDF_Documents_with_Paths_and_Polygons" href="Create_PDF_Documents_with_Paths_and_Polygons" title="Polyline, Polygon and Path elements showcase">Create PDF Documents with Paths and Polygons</a></li>
+      <li><a id="demoTreeView_Create_PDF_Documents_with_Link_Annotations" href="Create_PDF_Documents_with_Link_Annotations" title="PdfLinkAnnotation feature showcase">Create PDF Documents with Link Annotations</a></li>
+      <li><a id="demoTreeView_Create_PDF_Documents_with_Text_Annotations" href="Create_PDF_Documents_with_Text_Annotations" title="PdfTextAnnotation feature showcase">Create PDF Documents with Text Annotations</a></li>
+      <li><a id="demoTreeView_Create_PDF_Documents_with_File_Attachments" href="Create_PDF_Documents_with_File_Attachments" title="PdfFileAttachment feature showcase">Create PDF Documents with File Attachments</a></li>
+    </ul>
+  </div>
+  <div class="tree-group" id="demoTreeView_PDF_Editor">
+    <button type="button" class="tree-toggle" aria-expanded="false" aria-controls="demoTreeView_PDF_EditorNodes" onclick="TreeView_ToggleNode('demoTreeView_PDF_Editor')"><span class="sr">Toggle</span></button>
+    <a class="tree-head" href="Stamp_with_HTML_Existing_PDF" title="PDF Editor">PDF Editor</a>
+    <ul class="tree-items" id="demoTreeView_PDF_EditorNodes">
+      <li><a id="demoTreeView_Stamp_with_HTML_Existing_PDF" href="Stamp_with_HTML_Existing_PDF" title="Add HTML Stamp to Existing PDF">Add HTML Stamp to Existing PDF</a></li>
+      <li><a id="demoTreeView_Add_Text_to_Existing_PDF" href="Add_Text_to_Existing_PDF" title="Add Text to Existing PDF">Add Text to Existing PDF</a></li>
+      <li><a id="demoTreeView_Add_Images_to_Existing_PDF" href="Add_Images_to_Existing_PDF" title="Add Images to Existing PDF">Add Images to Existing PDF</a></li>
+      <li><a id="demoTreeView_Add_Shapes_to_Existing_PDF" href="Add_Shapes_to_Existing_PDF" title="Add Shapes to Existing PDF">Add Shapes to Existing PDF</a></li>
+      <li><a id="demoTreeView_Add_Paths_and_Polygons_to_Existing_PDF" href="Add_Paths_and_Polygons_to_Existing_PDF" title="Add Paths and Polygons to Existing PDF">Add Paths and Polygons to Existing PDF</a></li>
+      <li><a id="demoTreeView_Add_Link_Annotations_to_Existing_PDF" href="Add_Link_Annotations_to_Existing_PDF" title="Add Link Annotations to Existing PDF">Add Link Annotations to Existing PDF</a></li>
+      <li><a id="demoTreeView_Add_Text_Annotations_to_Existing_PDF" href="Add_Text_Annotations_to_Existing_PDF" title="Add Text Annotations to Existing PDF">Add Text Annotations to Existing PDF</a></li>
+      <li><a id="demoTreeView_Add_File_Attachments_to_Existing_PDF" href="Add_File_Attachments_to_Existing_PDF" title="Add File Attachments to Existing PDF">Add File Attachments to Existing PDF</a></li>
+    </ul>
+  </div>
+  <div class="tree-group" id="demoTreeView_Word_to_PDF">
+    <button type="button" class="tree-toggle" aria-expanded="false" aria-controls="demoTreeView_Word_to_PDFNodes" onclick="TreeView_ToggleNode('demoTreeView_Word_to_PDF')"><span class="sr">Toggle</span></button>
+    <a class="tree-head" href="Word_to_PDF" title="Word to PDF">Word to PDF</a>
+    <ul class="tree-items" id="demoTreeView_Word_to_PDFNodes">
+      <li><a id="demoTreeView_Word_to_PDF_Demo" href="Word_to_PDF" title="Convert Word to PDF">Convert Word DOCX to PDF</a></li>
+    </ul>
+  </div>
+  <div class="tree-group" id="demoTreeView_Excel_to_PDF">
+    <button type="button" class="tree-toggle" aria-expanded="false" aria-controls="demoTreeView_Excel_to_PDFNodes" onclick="TreeView_ToggleNode('demoTreeView_Excel_to_PDF')"><span class="sr">Toggle</span></button>
+    <a class="tree-head" href="Excel_to_PDF" title="Excel to PDF">Excel to PDF</a>
+    <ul class="tree-items" id="demoTreeView_Excel_to_PDFNodes">
+      <li><a id="demoTreeView_Excel_to_PDF_Demo" href="Excel_to_PDF" title="Convert Excel to PDF">Convert Excel XLSX to PDF</a></li>
+    </ul>
+  </div>
+  <div class="tree-group" id="demoTreeView_RTF_to_PDF">
+    <button type="button" class="tree-toggle" aria-expanded="false" aria-controls="demoTreeView_RTF_to_PDFNodes" onclick="TreeView_ToggleNode('demoTreeView_RTF_to_PDF')"><span class="sr">Toggle</span></button>
+    <a class="tree-head" href="RTF_to_PDF" title="RTF to PDF">RTF to PDF</a>
+    <ul class="tree-items" id="demoTreeView_RTF_to_PDFNodes">
+      <li><a id="demoTreeView_RTF_to_PDF_Demo" href="RTF_to_PDF" title="Convert RTF to PDF">Convert RTF to PDF</a></li>
+    </ul>
+  </div>
+  <div class="tree-group" id="demoTreeView_Markdown_to_PDF">
+    <button type="button" class="tree-toggle" aria-expanded="false" aria-controls="demoTreeView_Markdown_to_PDFNodes" onclick="TreeView_ToggleNode('demoTreeView_Markdown_to_PDF')"><span class="sr">Toggle</span></button>
+    <a class="tree-head" href="Markdown_to_PDF" title="Markdown to PDF">Markdown to PDF</a>
+    <ul class="tree-items" id="demoTreeView_Markdown_to_PDFNodes">
+      <li><a id="demoTreeView_Markdown_to_PDF_Demo" href="Markdown_to_PDF" title="Convert Markdown to PDF">Convert Markdown to PDF</a></li>
+    </ul>
+  </div>
+  <div class="tree-group" id="demoTreeView_PDF_to_Text">
+    <button type="button" class="tree-toggle" aria-expanded="false" aria-controls="demoTreeView_PDF_to_TextNodes" onclick="TreeView_ToggleNode('demoTreeView_PDF_to_Text')"><span class="sr">Toggle</span></button>
+    <a class="tree-head" href="PDF_to_Text" title="PDF to Text">PDF to Text</a>
+    <ul class="tree-items" id="demoTreeView_PDF_to_TextNodes">
+      <li><a id="demoTreeView_PDF_to_Text_Demo" href="PDF_to_Text" title="Convert PDF to Text">Convert PDF to Text</a></li>
+    </ul>
+  </div>
+  <div class="tree-group" id="demoTreeView_Find_PDF_Text">
+    <button type="button" class="tree-toggle" aria-expanded="false" aria-controls="demoTreeView_Find_PDF_TextNodes" onclick="TreeView_ToggleNode('demoTreeView_Find_PDF_Text')"><span class="sr">Toggle</span></button>
+    <a class="tree-head" href="Find_PDF_Text" title="Find PDF Text">Find PDF Text</a>
+    <ul class="tree-items" id="demoTreeView_Find_PDF_TextNodes">
+      <li><a id="demoTreeView_Find_PDF_Text_Demo" href="Find_PDF_Text" title="Find and Highlight Text in PDF">Find and Highlight Text in PDF</a></li>
+    </ul>
+  </div>
+  <div class="tree-group" id="demoTreeView_PDF_to_Image">
+    <button type="button" class="tree-toggle" aria-expanded="false" aria-controls="demoTreeView_PDF_to_ImageNodes" onclick="TreeView_ToggleNode('demoTreeView_PDF_to_Image')"><span class="sr">Toggle</span></button>
+    <a class="tree-head" href="PDF_to_Image" title="PDF to Image">PDF to Image</a>
+    <ul class="tree-items" id="demoTreeView_PDF_to_ImageNodes">
+      <li><a id="demoTreeView_PDF_to_Image_Demo" href="PDF_to_Image" title="Convert PDF to Image">Convert PDF to Image</a></li>
+    </ul>
+  </div>
+  <div class="tree-group" id="demoTreeView_Extract_PDF_Images">
+    <button type="button" class="tree-toggle" aria-expanded="false" aria-controls="demoTreeView_Extract_PDF_ImagesNodes" onclick="TreeView_ToggleNode('demoTreeView_Extract_PDF_Images')"><span class="sr">Toggle</span></button>
+    <a class="tree-head" href="Extract_PDF_Images" title="Extract PDF Images">Extract PDF Images</a>
+    <ul class="tree-items" id="demoTreeView_Extract_PDF_ImagesNodes">
+      <li><a id="demoTreeView_Extract_PDF_Images_Demo" href="Extract_PDF_Images" title="Extract Images from PDF">Extract Images from PDF</a></li>
+    </ul>
+  </div>
+</nav>
+            </div>
+        </aside>
+        <main class="demo-main">
+            @RenderBody()
+        </main>
+    </div>
+
+</body>
+</html>

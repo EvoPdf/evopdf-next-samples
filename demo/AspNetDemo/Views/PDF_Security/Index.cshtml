@@ -1,0 +1,297 @@
+﻿@model EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF.PDF_Security_ViewModel
+@{
+    ViewBag.Title = "Set Permissions and Password Protect the Generated PDF Document";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function toggleEditContentEnabledCheckBox() {
+        var editContentEnabledCheckBox = document.getElementById("editContentEnabledCheckBox");
+        var fillFormFieldsEnabledCheckBox = document.getElementById("fillFormFieldsEnabledCheckBox");
+
+        if (editContentEnabledCheckBox.checked)
+            fillFormFieldsEnabledCheckBox.checked = true;
+    }
+
+    function toggleEditAnnotationsEnabledCheckBox() {
+        var editAnnotationsEnabledCheckBox = document.getElementById("editAnnotationsEnabledCheckBox");
+        var fillFormFieldsEnabledCheckBox = document.getElementById("fillFormFieldsEnabledCheckBox");
+
+        if (editAnnotationsEnabledCheckBox.checked)
+            fillFormFieldsEnabledCheckBox.checked = true;
+    }
+
+    function toggleFillFormFieldsEnabledCheckBox() {
+        var fillFormFieldsEnabledCheckBox = document.getElementById("fillFormFieldsEnabledCheckBox");
+        var editContentEnabledCheckBox = document.getElementById("editContentEnabledCheckBox");
+        var editAnnotationsEnabledCheckBox = document.getElementById("editAnnotationsEnabledCheckBox");
+
+        if (!fillFormFieldsEnabledCheckBox.checked) {
+            editContentEnabledCheckBox.checked = false;
+            editAnnotationsEnabledCheckBox.checked = false;
+        }
+    }
+
+    function encryptionTypeChanged() {
+        var rc4RadioButton = document.getElementById("rc4RadioButton");
+        var aesRadioButton = document.getElementById("aesRadioButton");
+
+        var bit40RadioButton = document.getElementById("bit40RadioButton");
+        var bit128RadioButton = document.getElementById("bit128RadioButton");
+        var bit256RadioButton = document.getElementById("bit256RadioButton");
+
+        if (rc4RadioButton.checked) {
+            // RC4 does not support the 256-bit encryption key size
+            bit256RadioButton.disabled = true;
+            bit40RadioButton.disabled = false;
+        }
+        else {
+            // AES does not support the 40-bit encryption key size
+            bit256RadioButton.disabled = false;
+            bit40RadioButton.disabled = true;
+        }
+
+        bit128RadioButton.checked = true;
+        bit40RadioButton.checked = false;
+        bit256RadioButton.checked = false;
+    }
+
+    TreeView_SelectNode("demoTreeView_PDF_Security");
+</script>
+
+<form asp-action="ConvertHtmlToPdf" asp-controller="PDF_Security" method="post">
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px; padding-top: 5px">
+                                    Set PDF Document Permissions and Passwords
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 967px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you set the permissions of generated PDF document
+                                                                    like printing and editing and to password protect the generated PDF document with
+                                                                    separate user and owner passwords.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Page URL or Local File to Convert
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input asp-for="Url" id="urlTextBox" type="text" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    PDF Security Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 15px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    User Password:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="UserPassword" id="userPasswordTextBox" type="text" style="width:100px;">
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    Owner Password:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="OwnerPassword" id="ownerPasswordTextBox" type="text" style="width:100px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 15px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="PrintEnabled" id="printEnabledCheckBox" type="checkbox"><label for="printEnabledCheckBox">Print Enabled</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="FillFormFieldsEnabled" id="fillFormFieldsEnabledCheckBox" type="checkbox" onclick="javascript:toggleFillFormFieldsEnabledCheckBox()"><label for="fillFormFieldsEnabledCheckBox">Fill Form Fields Enabled</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 15px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="EditContentEnabled" id="editContentEnabledCheckBox" type="checkbox" onclick="javascript:toggleEditContentEnabledCheckBox()"><label for="editContentEnabledCheckBox">Edit Content Enabled</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="EditAnnotationsEnabled" id="editAnnotationsEnabledCheckBox" type="checkbox" onclick="javascript:toggleEditAnnotationsEnabledCheckBox()"><label for="editAnnotationsEnabledCheckBox">Edit Annotations Enabled</label>
+                                                                                                </td>                                                                                                
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 15px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="CopyContentEnabled" id="copyContentEnabledCheckBox" type="checkbox"><label for="copyContentEnabledCheckBox">Copy Content Enabled</label>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="CopyAccessibilityContentEnabled" id="copyAccessibilityContentEnabledCheckBox" type="checkbox"><label for="copyAccessibilityContentEnabledCheckBox">Copy Accessibility Content Enabled</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 25px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="width:110px">
+                                                                                                    Encryption Type:
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="EncryptionType" id="rc4RadioButton" type="radio" value="RC4" onclick="javascript:encryptionTypeChanged()"><label for="rc4RadioButton">RC4</label>
+                                                                                                </td>
+                                                                                                <td style="width: 30px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="EncryptionType" id="aesRadioButton" type="radio" value="AES" onclick="javascript:encryptionTypeChanged()"><label for="aesRadioButton">AES</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="width:110px">
+                                                                                                    Encryption Key:
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="EncryptionKey" id="bit40RadioButton" type="radio" value="Bit40"><label for="bit40RadioButton">40 Bits</label>
+                                                                                                </td>
+                                                                                                <td style="width: 30px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="EncryptionKey" id="bit128RadioButton" type="radio" value="Bit128"><label for="bit128RadioButton">128 Bits</label>
+                                                                                                </td>
+                                                                                                <td style="width: 30px"></td>
+                                                                                                <td>
+                                                                                                    <span disabled="disabled"><input asp-for="EncryptionKey" id="bit256RadioButton" type="radio" value="Bit256" disabled="disabled"><label for="bit256RadioButton">256 Bits</label></span>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <button type="submit" name="convertToPdfButton" id="convertToPdfButton">Convert HTML to PDF</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+

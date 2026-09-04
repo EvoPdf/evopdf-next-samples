@@ -1,0 +1,28 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quickstarts_MacOS", "quickstarts\Quickstarts_MacOS.csproj", "{682A1968-5113-4214-B799-DF763EBAF45E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvoPdf_Next_AspNetDemo_MacOS", "demo\AspNetDemo\EvoPdf_Next_AspNetDemo_MacOS.csproj", "{ED0F434C-965C-4634-B601-8A61290CE912}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvoPdf_Next_ConsoleDemo_MacOS", "demo\ConsoleDemo\EvoPdf_Next_ConsoleDemo_MacOS.csproj", "{FDC6FC42-4463-4E88-964B-604BD4970405}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{682A1968-5113-4214-B799-DF763EBAF45E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{682A1968-5113-4214-B799-DF763EBAF45E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{682A1968-5113-4214-B799-DF763EBAF45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{682A1968-5113-4214-B799-DF763EBAF45E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED0F434C-965C-4634-B601-8A61290CE912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED0F434C-965C-4634-B601-8A61290CE912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED0F434C-965C-4634-B601-8A61290CE912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED0F434C-965C-4634-B601-8A61290CE912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDC6FC42-4463-4E88-964B-604BD4970405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDC6FC42-4463-4E88-964B-604BD4970405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDC6FC42-4463-4E88-964B-604BD4970405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDC6FC42-4463-4E88-964B-604BD4970405}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

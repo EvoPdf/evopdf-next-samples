@@ -1,0 +1,30 @@
+﻿@model EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF.Convert_Page_in_Same_Session_ViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <base href="@Url.Content("~/")" />
+    <link href="img/evo.ico" rel="shortcut icon" />
+    <link href="styles/styles.css" type="text/css" rel="stylesheet">
+    <title>Display Session Variables</title>
+</head>
+<body>
+    <div>
+        <b style="font-size: 16px">The session variables</b><br />
+        <br />
+        <b>First Name:</b>&nbsp;<span id="firstNameLabel">@Model.FirstName</span><br />
+        <b>Last Name:</b>&nbsp;<span id="lastNameLabel">@Model.LastName</span><br />
+        <b>Gender:</b>&nbsp;<span id="genderLabel">@((Model.Gender == "Male") ? "Male" : "Female")</span><br />
+        <b>I have a car:</b>&nbsp;<span id="haveCarLabel">@(Model.HaveCar ? "Yes" : "No")</span><br />
+        <div id="carTypePanel" style="display : @(Model.HaveCar ? "inline" : "none")">
+            <b>Car Type:</b>&nbsp;<span id="carTypeLabel">@Model.CarType</span><br />
+        </div>
+        <b>Comments:</b>&nbsp;<span id="commentsLabel">@Model.Comments</span><br />
+    </div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+/* EvoPdf Next demo application stylesheet */
+
+:root{
+  --html:#1E6FB8; --html-deep:#155A98;
+  --pdf:#A33B35; --pdf-deep:#7E2B26;
+  --ink:#0F1B29; --muted:#5A6B7C;
+  --line:#DCE3EA; --bg:#FFFFFF; --bg-alt:#F6F8FA;
+  --sans:'Inter',-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --radius:12px;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg-alt); color:var(--ink);
+  font:14px/1.55 var(--sans);
+}
+img{vertical-align:middle}
+a{color:var(--html)}
+a:hover{color:var(--html-deep)}
+
+/* base resets */
+table{border-spacing:0; font:inherit}
+td{padding:0}
+
+/* ---------- Top bar ---------- */
+.demo-top{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  background:#fff; border-bottom:1px solid var(--line);
+  padding:10px 22px; position:sticky; top:0; z-index:20;
+}
+.demo-top .brand img{height:44px; width:auto; display:block}
+.demo-top .top-links{display:flex; align-items:center; gap:18px; font-size:.86rem}
+.demo-top .top-links a{color:var(--muted); text-decoration:none; font-weight:600}
+.demo-top .top-links a:hover{color:var(--html-deep)}
+.demo-top .top-links a.back{
+  color:#fff; background:var(--html); border-radius:8px; padding:.45rem .8rem;
+}
+.demo-top .top-links a.back:hover{background:var(--html-deep); color:#fff}
+
+/* ---------- Shell: sidebar + content ---------- */
+.demo-shell{
+  display:grid; grid-template-columns:400px minmax(0,1fr); gap:22px;
+  max-width:1280px; margin:0 auto; padding:22px;
+  align-items:start;
+}
+.demo-nav{
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  position:sticky; top:76px; max-height:calc(100vh - 98px); overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.demo-nav .nav-scroll{overflow-y:auto; padding:12px 10px 16px}
+.demo-main{min-width:0}
+
+/* ---------- Navigation tree ---------- */
+.tree{font-size:13px}
+.tree-group{position:relative; padding-left:22px}
+.tree-toggle{
+  position:absolute; left:0; top:2px; width:20px; height:20px;
+  border:0; background:transparent; padding:0; cursor:pointer; color:var(--muted);
+}
+.tree-toggle::before{
+  content:""; display:block; width:7px; height:7px; margin:5px auto 0;
+  border-right:2px solid currentColor; border-bottom:2px solid currentColor;
+  transform:rotate(-45deg); transition:transform .12s ease;
+}
+.tree-group.open>.tree-toggle::before{transform:rotate(45deg); margin-top:3px}
+.tree-head{display:inline-block; padding:3px 6px; border-radius:6px; font-weight:700; color:var(--ink); text-decoration:none}
+.tree-head:hover{background:var(--bg-alt); color:var(--brand-deep, var(--html-deep))}
+.tree-items{display:none; list-style:none; margin:0 0 6px; padding:0 0 0 6px}
+.tree-group.open>.tree-items{display:block}
+.tree-items li{margin:0}
+.tree-items a{
+  display:block; padding:3px 6px; border-radius:6px; white-space:nowrap;
+  color:var(--ink); text-decoration:none; line-height:1.5;
+}
+.tree-items a:hover{background:var(--bg-alt); color:var(--brand-deep, var(--html-deep))}
+.tree-items a.current{background:var(--sel-bg, #E6F0FA); color:var(--brand-deep, var(--html-deep)); font-weight:600}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0)}
+
+/* ---------- Content card ---------- */
+td[style*="solid 1px Black"]{
+  border:1px solid var(--line) !important;
+  background:#fff;
+  border-radius:var(--radius);
+  padding:20px !important;
+}
+/* demo page titles */
+td[style*="font-size: 16px"]{
+  font-size:1.2rem !important; font-weight:700 !important;
+  letter-spacing:-.01em; color:var(--ink);
+}
+
+/* ---------- Forms ---------- */
+input[type="text"], input[type="number"], input[type="password"], select, textarea{
+  font:13px/1.4 var(--sans); color:var(--ink);
+  background:#fff; border:1px solid var(--line); border-radius:8px;
+  padding:.45rem .6rem; outline:none;
+}
+input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus{
+  border-color:var(--html); box-shadow:0 0 0 3px rgba(30,111,184,.15);
+}
+textarea{width:100%}
+input[type="checkbox"], input[type="radio"]{accent-color:var(--html); margin:0 4px 0 0}
+label{cursor:pointer}
+
+input[type="submit"], button, input[type="button"]{
+  font:600 13.5px var(--sans); color:#fff; cursor:pointer;
+  background:var(--pdf); border:1px solid var(--pdf-deep); border-radius:8px;
+  padding:.55rem 1.05rem;
+}
+input[type="submit"]:hover, button:hover, input[type="button"]:hover{background:var(--pdf-deep)}
+input[type="submit"]:active, button:active{transform:translateY(1px)}
+
+/* secondary actions (Clear, Reset…) stay quiet next to the primary Convert button */
+input[type="button"]{color:var(--ink); background:#fff; border-color:var(--line)}
+input[type="button"]:hover{background:var(--bg-alt); color:var(--ink)}
+
+/* file inputs */
+input[type="file"]{font:13px var(--sans)}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 980px){
+  .demo-shell{grid-template-columns:1fr}
+  .demo-nav{position:static; max-height:340px}
+}
+
+/* ---------- Overrides for the inline styles used by the demo pages ---------- */
+/* the demo pages use a fixed-size inner table; make it fluid */
+table[style*="width: 535px"]{width:100% !important}
+table[style*="height: 967px"]{height:auto !important}
+/* small inline-width inputs need room for their values; min-width overrides the inline width */
+input[type="text"]{min-width:54px; padding:.4rem .45rem}

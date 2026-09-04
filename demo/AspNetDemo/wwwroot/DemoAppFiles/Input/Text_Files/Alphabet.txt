@@ -1,0 +1,59 @@
+English:
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+
+Deutsch:
+A Ä B C D E F G H I J K L M N O Ö P Q R S ß T U Ü V W X Y Z
+a ä b c d e f g h i j k l m n o ö p q r s ß t u ü v w x y z
+
+Español:
+A B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z
+a b c d e f g h i j k l m n ñ o p q r s t u v w x y z
+
+Português:
+A Á Â Ã B C Ç D E É Ê F G H I Í J K L M N O Ó Ô Õ P Q R S T U Ú V W X Y Z
+a á â ã b c ç d e é ê f g h i í j k l m n o ó ô õ p q r s t u ú v w x y z
+
+Français :
+A Â Æ B C Ç D E É È Ê Ë F G H I Î Ï J K L M N O Ô Œ P Q R S T U Û Ü V W X Y Z
+a â æ b c ç d e é è ê ë f g h i î ï j k l m n o ô œ p q r s t u û ü v w x y z
+
+Türkçe:
+A B C Ç D E F G Ğ H I İ J K L M N O Ö P R S Ş T U Ü V Y Z
+a b c ç d e f g ğ h ı i j k l m n o ö p r s ş t u ü v y z
+
+Čeština / Slovenčina:
+A Á B C Č D Ď E É Ě F G H I Í J K L M N Ň O Ó P Q R Ř S Š T Ť U Ú Ů V W X Y Z Ž
+a á b c č d ď e é ě f g h i í j k l m n ň o ó p q r ř s š t ť u ú ů v w x y z ž
+
+Ελληνικά:
+Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω
+α β γ δ ε ζ η θ ι κ λ μ ν ξ ο π ρ σ ς τ υ φ χ ψ ω
+
+Русский:
+А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я
+а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я
+
+Română:
+AĂÂBCDEFGHIÎJKLMNOPQRSȘTȚUVWXYZ
+aăâbcdefghiîjklmnopqrsștțuvwxyz
+
+Magyar:
+A Á B C D E É F G H I Í J K L M N O Ó Ö Ő P Q R S T U Ú Ü Ű V W X Y Z
+a á b c d e é f g h i í j k l m n o ó ö ő p q r s t u ú ü ű v w x y z
+
+Nederlands:
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+a b c d e f g h i j k l m n o p q r s t u v w x y z
+
+Dansk:
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z Æ Ø Å
+a b c d e f g h i j k l m n o p q r s t u v w x y z æ ø å
+
+Norsk:
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z Æ Ø Å
+a b c d e f g h i j k l m n o p q r s t u v w x y z æ ø å
+
+Svenska:
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z Å Ä Ö
+a b c d e f g h i j k l m n o p q r s t u v w x y z å ä ö

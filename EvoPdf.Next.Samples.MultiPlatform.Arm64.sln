@@ -1,0 +1,28 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quickstarts_MultiPlatform.Arm64", "quickstarts\Quickstarts_MultiPlatform.Arm64.csproj", "{243E1E18-57D7-48D0-B14E-569F179A08C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvoPdf_Next_AspNetDemo_MultiPlatform.Arm64", "demo\AspNetDemo\EvoPdf_Next_AspNetDemo_MultiPlatform.Arm64.csproj", "{811EE38E-B2F7-449C-BE84-D50BC3F0311F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvoPdf_Next_ConsoleDemo_MultiPlatform.Arm64", "demo\ConsoleDemo\EvoPdf_Next_ConsoleDemo_MultiPlatform.Arm64.csproj", "{B857307B-5BFE-448C-84C1-BA5361FFA54A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{243E1E18-57D7-48D0-B14E-569F179A08C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{243E1E18-57D7-48D0-B14E-569F179A08C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{243E1E18-57D7-48D0-B14E-569F179A08C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{243E1E18-57D7-48D0-B14E-569F179A08C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{811EE38E-B2F7-449C-BE84-D50BC3F0311F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{811EE38E-B2F7-449C-BE84-D50BC3F0311F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{811EE38E-B2F7-449C-BE84-D50BC3F0311F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{811EE38E-B2F7-449C-BE84-D50BC3F0311F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B857307B-5BFE-448C-84C1-BA5361FFA54A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B857307B-5BFE-448C-84C1-BA5361FFA54A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B857307B-5BFE-448C-84C1-BA5361FFA54A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B857307B-5BFE-448C-84C1-BA5361FFA54A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

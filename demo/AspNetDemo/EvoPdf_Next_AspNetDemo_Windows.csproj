@@ -1,0 +1,21 @@
+<Project>
+  <!-- Several platform projects share this folder: each one keeps its own obj and bin (set before the SDK is imported). -->
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>obj\Windows\</BaseIntermediateOutputPath>
+    <BaseOutputPath>bin\Windows\</BaseOutputPath>
+  </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk.Web" />
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <!-- the sibling platform projects keep their obj/bin in subfolders of this folder: keep all of them out of the source globs -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);obj/**;bin/**</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Windows x64 -->
+    <PackageReference Include="EvoPdf.Next.Windows" Version="14.36.0" />
+  </ItemGroup>
+
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk.Web" />
+</Project>

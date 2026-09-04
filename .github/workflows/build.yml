@@ -1,0 +1,25 @@
+name: build
+on: [push, pull_request]
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            solutions: "Windows Windows.Arm64 MultiPlatform MultiPlatform.Arm64"
+          - os: ubuntu-latest
+            solutions: "Linux Linux.Arm64"
+          - os: macos-latest
+            solutions: "MacOS"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Build the platform solutions
+        shell: bash
+        run: |
+          for s in ${{ matrix.solutions }}; do
+            echo "== EvoPdf.Next.Samples.$s.sln"; dotnet build "EvoPdf.Next.Samples.$s.sln" -c Release --nologo || exit 1
+          done

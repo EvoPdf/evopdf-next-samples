@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+.DS_Store
+Thumbs.db
+*.pdf
+*.png
+*.txt
+!docs-samples/**/*.txt

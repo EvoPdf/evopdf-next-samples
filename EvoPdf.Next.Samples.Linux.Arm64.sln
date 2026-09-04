@@ -1,0 +1,28 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quickstarts_Linux.Arm64", "quickstarts\Quickstarts_Linux.Arm64.csproj", "{74128665-3E9E-4FC0-AEC0-CB5AC58BCA43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvoPdf_Next_AspNetDemo_Linux.Arm64", "demo\AspNetDemo\EvoPdf_Next_AspNetDemo_Linux.Arm64.csproj", "{77E95C6A-A449-4079-817C-6857CA8AB847}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvoPdf_Next_ConsoleDemo_Linux.Arm64", "demo\ConsoleDemo\EvoPdf_Next_ConsoleDemo_Linux.Arm64.csproj", "{0672393A-D1F0-4C87-9B80-8E3FF2AC3A8A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74128665-3E9E-4FC0-AEC0-CB5AC58BCA43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74128665-3E9E-4FC0-AEC0-CB5AC58BCA43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74128665-3E9E-4FC0-AEC0-CB5AC58BCA43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74128665-3E9E-4FC0-AEC0-CB5AC58BCA43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77E95C6A-A449-4079-817C-6857CA8AB847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77E95C6A-A449-4079-817C-6857CA8AB847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77E95C6A-A449-4079-817C-6857CA8AB847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77E95C6A-A449-4079-817C-6857CA8AB847}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0672393A-D1F0-4C87-9B80-8E3FF2AC3A8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0672393A-D1F0-4C87-9B80-8E3FF2AC3A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0672393A-D1F0-4C87-9B80-8E3FF2AC3A8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0672393A-D1F0-4C87-9B80-8E3FF2AC3A8A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

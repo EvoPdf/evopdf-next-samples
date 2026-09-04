@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retrive HTML Element Positions Demo</title>
+    <link href="styles/webfonts.css" type="text/css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            font-size: 16px;
+            margin: 25px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        img {
+            width: 100px;
+            margin: 10px;
+        }
+
+        .highlight {
+            background-color: #f9f9f9;
+        }
+
+        .note {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Retrive HTML Element Positions Demo</h1>
+    <p>
+        This is an introductory paragraph with a
+        <span class="highlight">highlighted span</span> and a
+        link to <a href="http://www.evopdf.com">EvoPdf</a>.
+    </p>
+
+    <div class="section">
+        <h2>Section Two</h2>
+        <h3>Subsection A</h3>
+        <p>
+            Below is an image wrapped in a link to
+            <a href="http://www.evopdf.com">EvoPdf</a>:
+        </p>
+        <a href="http://www.evopdf.com">
+            <img src="img/small_logo.png" alt="Linked Image">
+        </a>
+
+        <h3>Subsection B</h3>
+        <p>
+            This paragraph contains a <strong>bold tag</strong>,
+            some <i>inline code</i>, and a
+            <a href="http://www.evopdf.com">documentation link</a>.
+        </p>
+
+        <div style="padding: 10px; background-color: #eee;">
+            <h4>Nested Heading (h4)</h4>
+            <p>Even deeper nested content with <em>emphasis</em>.</p>
+        </div>
+    </div>
+
+    <br /><br />
+
+    <div class="section">
+        <h2>Section One</h2>
+        <p>This section contains some text and a basic image element.</p>
+        <img src="img/small_logo.png" alt="Image 1">
+        <p class="note">Note: This image is not clickable.</p>
+    </div>
+
+    <div class="section">
+        <h2>Section Three</h2>
+        <p>This section has another image wrapped in a clickable link.</p>
+        <a href="http://www.evopdf.com">
+            <img src="img/small_logo.png" alt="Image 3 Linked">
+        </a>
+        <p>Additional paragraph with a reference to <a href="http://www.evopdf.com">EvoPdf tools</a>.</p>
+    </div>
+
+</body>
+</html>

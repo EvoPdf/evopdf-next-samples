@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auto Create Bookmarks</title>
+    <link href="styles/webfonts.css" type="text/css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <br />
+    <h1>Contents</h1>
+    <a href="#Chapter1">Go To Chapter 1</a>
+    <br />
+    <a href="#Chapter2">Go To Chapter 2</a>
+    <br />
+    <a href="#Chapter3">Go To Chapter 3</a>
+    <br />
+    <a href="#CustomBookmarks">Go To Custom Bookmarks</a>
+    <br />
+    <h2 style="page-break-before: always" id="Chapter1">Chapter 1</h2>
+    This is the chapter 1 content.
+    <h2 style="page-break-before: always" id="Chapter2">Chapter 2</h2>
+    This is the chapter 2 content.
+    <h2 style="page-break-before: always" id="Chapter3">Chapter 3</h2>
+    This is the chapter 3 content.
+
+    <!-- Custom bookmarks created with the data-heading attribute.
+     Any element (not only H1-H6) becomes a bookmark when it has a data-heading
+     attribute with a valid level (1 to 6). -->
+    <h2 style="page-break-before: always" id="CustomBookmarks">Custom Bookmarks Example</h2>
+    These bookmarks are created from ordinary elements using the data-heading attribute.
+    <div data-heading="3">Custom Bookmark - Level 3</div>
+    This section was bookmarked using a custom &lt;div&gt; element with data-heading="3".
+    <div data-heading="3" data-heading-text="Custom Bookmark With Explicit Title">This visible text is ignored for the bookmark</div>
+    This section uses data-heading-text to set the bookmark title independently of the element text.
+    <h3 data-heading="false">Excluded Heading (data-heading="false")</h3>
+    This is a real H3 heading, but it is excluded from the bookmarks because of data-heading="false".
+
+    <p><i>Note: The custom data-heading attribute is enabled only when the custom bookmark mode is used.</i></p>
+</body>
+</html>

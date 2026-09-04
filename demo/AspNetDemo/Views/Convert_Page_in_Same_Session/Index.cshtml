@@ -1,0 +1,189 @@
+﻿@model EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF.Convert_Page_in_Same_Session_ViewModel
+@{
+    ViewBag.Title = "Convert a HTML Page to PDF in Same Session";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_SelectNode("demoTreeView_Convert_Page_in_Same_Session");
+</script>
+
+<form asp-action="ConvertPageInSameSessionToPdf" asp-controller="Convert_Page_in_Same_Session" method="post">
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px; padding-top: 5px">
+                                    Convert a HTML Page to PDF in Same Session
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 967px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    In this demo you can convert another HTML page of this application using the 
+                                                                    data entered in this page. The values you  fill in HTML form are transferred 
+                                                                    and used by the other HTML page when it is converted to PDF.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td style="font-weight: bold" colspan="2">
+                                                                                Fill the HTML Form Values to Capture in PDF
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 20px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            First Name:
+                                                                                        </td>
+                                                                                        <td style="width: 5px"></td>
+                                                                                        <td>
+                                                                                            <input asp-for="FirstName" id="firstNameTextBox" style="width: 70px;" />
+                                                                                        </td>
+                                                                                        <td style="width: 50px"></td>
+                                                                                        <td>
+                                                                                            Last Name:
+                                                                                        </td>
+                                                                                        <td style="width: 5px"></td>
+                                                                                        <td>
+                                                                                            <input asp-for="LastName" id="lastNameTextBox" style="width: 70px;" />
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 10px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            Gender:
+                                                                                        </td>
+                                                                                        <td style="width: 15px"></td>
+                                                                                        <td>
+                                                                                            <input asp-for="Gender" type="radio" id="maleRadioButton" value="Male" />
+                                                                                            <label for="maleRadioButton">Male</label>
+                                                                                        </td>
+                                                                                        <td style="width: 10px"></td>
+                                                                                        <td>
+                                                                                            <input asp-for="Gender" type="radio" id="femaleRadioButton" value="Female" />
+                                                                                            <label for="femaleRadioButton">Female</label>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 10px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr style="height: 30px">
+                                                                                        <td>
+                                                                                            <script type="text/javascript">
+                                                                                                function setCarTypePanelVisible(visible) {
+                                                                                                    document.getElementById("selectCarTypePanel").style.visibility = visible ? "visible" : "hidden";
+                                                                                                }
+                                                                                            </script>
+                                                                                            <input asp-for="HaveCar" type="checkbox" id="haveCarCheckBox" onclick="setCarTypePanelVisible(this.checked);" />
+                                                                                            <label for="haveCarCheckBox">I have a car</label>
+                                                                                        </td>
+                                                                                        <td style="width: 15px"></td>
+                                                                                        <td>
+                                                                                            <div id="selectCarTypePanel" style="visibility : @(Model.HaveCar ? "visible" : "hidden")">
+                                                                                                <table>
+                                                                                                    <tr>
+                                                                                                        <td>
+                                                                                                            Car Type:
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px">
+                                                                                                            <select asp-for="CarType" id="carTypeDropDownList">
+                                                                                                                <option value="Volvo">Volvo</option>
+                                                                                                                <option value="Saab">Saab</option>
+                                                                                                                <option value="Audi">Audi</option>
+                                                                                                                <option value="Opel">Opel</option>
+                                                                                                            </select>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 10px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            Comments:
+                                                                                        </td>
+                                                                                        <td style="width: 15px"></td>
+                                                                                        <td>
+                                                                                            <textarea asp-for="Comments" id="commentsTextBox" style="height: 75px; width: 253px;"></textarea>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <button type="submit" name="convertToPdfButton" id="convertToPdfButton">Convert a HTML Page to PDF in Same Session</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+

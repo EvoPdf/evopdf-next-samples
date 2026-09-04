@@ -1,0 +1,24 @@
+<Project>
+  <!-- Several platform projects share this folder: each one keeps its own obj and bin (set before the SDK is imported). -->
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>obj\MacOS\</BaseIntermediateOutputPath>
+    <BaseOutputPath>bin\MacOS\</BaseOutputPath>
+  </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <!-- the sibling platform projects keep their obj/bin in subfolders of this folder: keep all of them out of the source globs -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);obj/**;bin/**</DefaultItemExcludes>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- macOS (Apple Silicon) -->
+    <PackageReference Include="EvoPdf.Next.MacOS" Version="14.36.0" />
+  </ItemGroup>
+
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+</Project>

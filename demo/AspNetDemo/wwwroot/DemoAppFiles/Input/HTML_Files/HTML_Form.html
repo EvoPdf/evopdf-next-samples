@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF Form Fields Conversion Test</title>
+    <link href="styles/webfonts.css" type="text/css" rel="stylesheet">
+    <style>
+        body {
+            margin: 32px;
+            font-family: Verdana, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #1f2937;
+            background-color: #ffffff;
+        }
+
+        .page {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin: 0 0 6px 0;
+            font-size: 28px;
+            color: #0f172a;
+        }
+
+        .subtitle {
+            margin: 0 0 24px 0;
+            color: #475569;
+        }
+
+        .card {
+            border: 1px solid #dbe2ea;
+            padding: 20px 22px;
+            margin-bottom: 18px;
+            background: #fafcff;
+        }
+
+            .card h2 {
+                margin: 0 0 14px 0;
+                font-size: 18px;
+                color: #0f172a;
+            }
+
+        .grid {
+            display: table;
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 12px;
+        }
+
+        .row {
+            display: table-row;
+        }
+
+        .label-cell,
+        .value-cell {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        .label-cell {
+            width: 210px;
+            padding-right: 16px;
+            font-weight: bold;
+            color: #334155;
+            padding-top: 8px;
+        }
+
+        .hint {
+            display: block;
+            margin-top: 3px;
+            font-size: 12px;
+            font-weight: normal;
+            color: #64748b;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        textarea,
+        select {
+            width: 320px;
+            box-sizing: border-box;
+            border: 1px solid #94a3b8;
+            padding: 8px 10px;
+            font-size: 14px;
+            color: #0f172a;
+            background: #ffffff;
+        }
+
+        textarea {
+            height: 96px;
+            resize: none;
+        }
+
+        select[multiple] {
+            height: 110px;
+        }
+
+        .option-group label {
+            display: inline-block;
+            margin: 4px 18px 4px 0;
+            font-weight: normal;
+            color: #1f2937;
+        }
+
+        .button-bar {
+            margin-top: 6px;
+        }
+
+            .button-bar input {
+                min-width: 120px;
+                margin-right: 10px;
+                padding: 9px 16px;
+                border: 1px solid #64748b;
+                font-size: 14px;
+                cursor: pointer;
+            }
+
+                .button-bar input[type="submit"] {
+                    background: #2563eb;
+                    color: #ffffff;
+                    border-color: #2563eb;
+                }
+
+                .button-bar input[type="reset"] {
+                    background: #f8fafc;
+                    color: #0f172a;
+                }
+
+        .footer-note {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>Customer Information Form</h1>
+        <p class="subtitle">
+            Test document for converting HTML form controls to interactive PDF form fields
+        </p>
+
+        <form name="customerInfoForm" action="http://www.evopdf.com/pdf_forms_submit/" method="post">
+            <div class="card">
+                <h2>Contact Details</h2>
+                <div class="grid">
+                    <div class="row">
+                        <div class="label-cell">
+                            Full Name
+                            <span class="hint">Standard text input</span>
+                        </div>
+                        <div class="value-cell">
+                            <input type="text" name="fullName" value="John Doe" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label-cell">
+                            Account ID
+                            <span class="hint">Excluded from PDF form conversion</span>
+                        </div>
+                        <div class="value-cell">
+                            <input data-pdf-form-field="false" type="text" name="accountId" value="TMP-2026-001" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label-cell">
+                            Password
+                            <span class="hint">Password input</span>
+                        </div>
+                        <div class="value-cell">
+                            <input type="password" name="password" value="secret123" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label-cell">
+                            Notes
+                            <span class="hint">Multiline textarea</span>
+                        </div>
+                        <div class="value-cell">
+                            <textarea name="notes">Preferred contact hours: 09:00 - 17:00
+Customer requested product documentation and onboarding details.</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Preferences</h2>
+                <div class="grid">
+                    <div class="row">
+                        <div class="label-cell">
+                            Preferred Contact Method
+                            <span class="hint">Radio button group</span>
+                        </div>
+                        <div class="value-cell option-group">
+                            <label><input type="radio" name="contactMethod" value="email" checked="checked" /> Email</label>
+                            <label><input type="radio" name="contactMethod" value="phone" /> Phone</label>
+                            <label><input type="radio" name="contactMethod" value="chat" /> Chat</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label-cell">
+                            Subscription Options
+                            <span class="hint">Checkbox controls</span>
+                        </div>
+                        <div class="value-cell option-group">
+                            <label><input type="checkbox" name="newsletter" value="true" checked="checked" /> Newsletter</label>
+                            <label><input type="checkbox" name="productUpdates" value="true" checked="checked" /> Product Updates</label>
+                            <label><input type="checkbox" name="events" value="true" /> Events</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label-cell">
+                            Region
+                            <span class="hint">Dropdown list</span>
+                        </div>
+                        <div class="value-cell">
+                            <select name="region">
+                                <option value="na">North America</option>
+                                <option value="eu" selected="selected">Europe</option>
+                                <option value="apac">Asia Pacific</option>
+                                <option value="latam">Latin America</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label-cell">
+                            Product Interests
+                            <span class="hint">List box with multiple selection</span>
+                        </div>
+                        <div class="value-cell">
+                            <select name="productInterests" multiple="multiple" size="5">
+                                <option value="html-to-pdf" selected="selected">HTML to PDF Converter</option>
+                                <option value="pdf-editor">PDF Editor</option>
+                                <option value="pdf-signing" selected="selected">Digital Signing</option>
+                                <option value="pdf-redaction">Redaction</option>
+                                <option value="pdf-forms">PDF Forms</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Form Actions</h2>
+                <div class="button-bar">
+                    <input type="submit" name="submitButton" value="Submit Form" />
+                    <input type="reset" name="resetButton" value="Reset Form" />
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,572 @@
+﻿@model EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF.Header_Footer_on_PDF_from_Multiple_HTML_ViewModel
+@{
+    ViewBag.Title = "Add HTML in Header and Footer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function toggleHeaderSource(convertUrl) {
+        var urlPanel = document.getElementById("headerUrlPanel");
+        var htmlStringPanel = document.getElementById("headerHtmlPanel");
+
+        if (convertUrl && urlPanel.style.display == "none") {
+            urlPanel.style.display = "block";
+            htmlStringPanel.style.display = "none";
+        }
+        else if (!convertUrl && htmlStringPanel.style.display == "none") {
+            urlPanel.style.display = "none";
+            htmlStringPanel.style.display = "block";
+        }
+    }
+
+    function toggleFooterSource(convertUrl) {
+        var urlPanel = document.getElementById("footerUrlPanel");
+        var htmlStringPanel = document.getElementById("footerHtmlPanel");
+
+        if (convertUrl && urlPanel.style.display == "none") {
+            urlPanel.style.display = "block";
+            htmlStringPanel.style.display = "none";
+        }
+        else if (!convertUrl && htmlStringPanel.style.display == "none") {
+            urlPanel.style.display = "none";
+            htmlStringPanel.style.display = "block";
+        }
+    }
+
+    TreeView_SelectNode("demoTreeView_Header_Footer_on_PDF_from_Multiple_HTML");
+</script>
+
+<form asp-action="MergePdf" asp-controller="Header_Footer_on_PDF_from_Multiple_HTML" method="post">
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px; padding-top: 5px">
+                                    Add Header and Footer to PDF from Multiple HTML
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 967px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    In this demo, you can apply a header and a footer to a PDF document generated from multiple HTML documents.
+                                                                    The header and footer HTML templates can contain any valid HTML markup, either from a string or from a URL.
+                                                                    By using the template variables {page_number} and {total_pages}, you can add page numbering.
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    First HTML Page URL
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input asp-for="FirstUrl" type="text" id="firstUrlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    Second HTML Page URL
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input asp-for="SecondUrl" type="text" id="secondUrlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td style="font-weight: bold" colspan="2">
+                                                                                HTML Header Options
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 15px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tbody>
+                                                                                                    <tr>
+                                                                                                        <td>
+                                                                                                            <span style="font-weight:normal;"><input asp-for="HeaderHtmlSource" id="headerUrlRadioButton" type="radio" value="Url" checked="checked" onclick="javascript: toggleHeaderSource(true)"><label for="headerUrlRadioButton">Header URL</label></span>
+                                                                                                        </td>
+                                                                                                        <td style="width: 50px"></td>
+                                                                                                        <td>
+                                                                                                            <span style="font-weight:normal;"><input asp-for="HeaderHtmlSource" id="headerHtmlRadioButton" type="radio" value="Html" onclick="javascript: toggleHeaderSource(false)"><label for="headerHtmlRadioButton">Header HTML String</label></span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 15px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <div id="headerHtmlPanel" style="display:none">
+                                                                                                <table>
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td style="font-weight: bold">
+                                                                                                                Header HTML
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>
+                                                                                                                <textarea asp-for="HeaderHtmlTextBox" rows="2" cols="20" id="headerHtmlTextBox" style="height:200px;width:500px;"></textarea>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td style="height: 10px"></td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td style="font-weight: bold">
+                                                                                                                Base URL
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>
+                                                                                                                <input asp-for="HeaderHtmlBaseUrlTextBox" type="text" id="headerHtmlBaseUrlTextBox" style="width:500px;">
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                            <div id="headerUrlPanel">
+                                                                                                <table>
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                                                Header URL
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>
+                                                                                                                <input asp-for="HeaderUrlTextBox" type="text" id="headerUrlTextBox" style="width:500px;">
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 10px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <input asp-for="HeaderEnabled" id="headerEnabledCheckBox" type="checkbox" checked="checked"><label for="headerEnabledCheckBox">Header Enabled</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 20px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="AutoSizeHeaderContentHeight" id="autoSizeHeaderContentHeightCheckBox" type="checkbox" checked="checked"><label for="autoSizeHeaderContentHeightCheckBox">Auto Size Height</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 10px"></td>
+                                                                                                    <td>
+                                                                                                        Min:
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="HeaderMinContentHeight" name="headerMinContentHeightTextBox" type="text" id="headerMinContentHeightTextBox" style="width:35px;">
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        pt
+                                                                                                    </td>
+                                                                                                    <td style="width: 10px"></td>
+                                                                                                    <td>
+                                                                                                        Max:
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="HeaderMaxContentHeight" name="headerMaxContentHeightTextBox" type="text" id="headerMaxContentHeightTextBox" style="width:35px;">
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        pt
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 10px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tbody>
+                                                                                                    <tr>
+                                                                                                        <td>
+                                                                                                            <input asp-for="FitHeaderHeight" id="fitHeaderHeightCheckBox" type="checkbox" checked="checked"><label for="fitHeaderHeightCheckBox">Fit Height</label>
+                                                                                                        </td>
+                                                                                                        <td style="width: 25px"></td>
+                                                                                                        <td>
+                                                                                                            Header Height:
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px"></td>
+                                                                                                        <td>
+                                                                                                            <input asp-for="HeaderHeight" name="headerHeightTextBox" type="text" id="headerHeightTextBox" style="width:35px;">
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px"></td>
+                                                                                                        <td>
+                                                                                                            pt
+                                                                                                        </td>
+                                                                                                        <td style="width: 25px"></td>
+                                                                                                        <td>
+                                                                                                            <input asp-for="SkipHeaderVariablesParsing" id="skipHeaderVariablesParsingCheckBox" type="checkbox"><label for="skipHeaderVariablesParsingCheckBox">Skip Variables Parsing</label>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 10px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <input asp-for="ShowHeaderInFirstPage" id="showHeaderInFirstPageCheckBox" type="checkbox" checked="checked"><label for="showHeaderInFirstPageCheckBox">Show in First Page</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 20px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="ShowHeaderInOddPages" id="showHeaderInOddPagesCheckBox" type="checkbox" checked="checked"><label for="showHeaderInOddPagesCheckBox">Show in Odd Pages</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 20px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="ShowHeaderInEvenPages" id="showHeaderInEvenPagesCheckBox" type="checkbox" checked="checked"><label for="showHeaderInEvenPagesCheckBox">Show in Even Pages</label>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 10px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <input asp-for="AutoResizeTopMargin" id="autoResizeTopMarginCheckBox" type="checkbox" checked="checked"><label for="autoResizeTopMarginCheckBox">Auto Resize Margin</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 15px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="ReserveHeaderSpace" id="reserveHeaderSpaceCheckBox" type="checkbox" checked="checked"><label for="reserveHeaderSpaceCheckBox">Reserve Space when Hidden</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 20px"></td>
+                                                                                                    <td>
+                                                                                                        Delay:
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="HeaderConversionDelay" name="headerConversionDelayTextBox" type="text" id="headerConversionDelayTextBox" style="width:15px;">
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        sec
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td style="height: 15px"></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td style="font-weight: bold" colspan="2">
+                                                                                HTML Footer Options
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 15px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tbody>
+                                                                                                    <tr>
+                                                                                                        <td>
+                                                                                                            <span style="font-weight:normal;"><input asp-for="FooterHtmlSource" id="footerUrlRadioButton" type="radio" value="Url" checked="checked" onclick="javascript: toggleFooterSource(true)"><label for="footerUrlRadioButton">Footer URL</label></span>
+                                                                                                        </td>
+                                                                                                        <td style="width: 50px"></td>
+                                                                                                        <td>
+                                                                                                            <span style="font-weight:normal;"><input asp-for="FooterHtmlSource" id="footerHtmlRadioButton" type="radio" value="Html" onclick="javascript: toggleFooterSource(false)"><label for="footerHtmlRadioButton">Footer HTML String</label></span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 15px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <div id="footerHtmlPanel" style="display:none">
+                                                                                                <table>
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td style="font-weight: bold">
+                                                                                                                Footer HTML
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>
+                                                                                                                <textarea asp-for="FooterHtmlTextBox" rows="2" cols="20" id="footerHtmlTextBox" style="height:200px;width:500px;"></textarea>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td style="height: 10px"></td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td style="font-weight: bold">
+                                                                                                                Base URL
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>
+                                                                                                                <input asp-for="FooterHtmlBaseUrlTextBox" type="text" id="footerHtmlBaseUrlTextBox" style="width:500px;">
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                            <div id="footerUrlPanel">
+                                                                                                <table>
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                                                Footer URL
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>
+                                                                                                                <input asp-for="FooterUrlTextBox" type="text" id="footerUrlTextBox" style="width:500px;">
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 10px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <input asp-for="FooterEnabled" id="footerEnabledCheckBox" type="checkbox" checked="checked"><label for="footerEnabledCheckBox">Footer Enabled</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 20px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="AutoSizeFooterContentHeight" id="autoSizeFooterContentHeightCheckBox" type="checkbox" checked="checked"><label for="autoSizeFooterContentHeightCheckBox">Auto Size Height</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 10px"></td>
+                                                                                                    <td>
+                                                                                                        Min:
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="FooterMinContentHeight" name="footerMinContentHeightTextBox" type="text" id="footerMinContentHeightTextBox" style="width:35px;">
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        pt
+                                                                                                    </td>
+                                                                                                    <td style="width: 10px"></td>
+                                                                                                    <td>
+                                                                                                        Max:
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="FooterMaxContentHeight" name="footerMaxContentHeightTextBox" type="text" id="footerMaxContentHeightTextBox" style="width:35px;">
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        pt
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 10px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tbody>
+                                                                                                    <tr>
+                                                                                                        <td>
+                                                                                                            <input asp-for="FitFooterHeight" id="fitFooterHeightCheckBox" type="checkbox" checked="checked"><label for="fitFooterHeightCheckBox">Fit Height</label>
+                                                                                                        </td>
+                                                                                                        <td style="width: 25px"></td>
+                                                                                                        <td>
+                                                                                                            Footer Height:
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px"></td>
+                                                                                                        <td>
+                                                                                                            <input asp-for="FooterHeight" name="footerHeightTextBox" type="text" id="footerHeightTextBox" style="width:35px;">
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px"></td>
+                                                                                                        <td>
+                                                                                                            pt
+                                                                                                        </td>
+                                                                                                        <td style="width: 25px"></td>
+                                                                                                        <td>
+                                                                                                            <input asp-for="SkipFooterVariablesParsing" id="skipFooterVariablesParsingCheckBox" type="checkbox"><label for="skipFooterVariablesParsingCheckBox">Skip Variables Parsing</label>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 10px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <input asp-for="ShowFooterInFirstPage" id="showFooterInFirstPageCheckBox" type="checkbox" checked="checked"><label for="showFooterInFirstPageCheckBox">Show in First Page</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 20px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="ShowFooterInOddPages" id="showFooterInOddPagesCheckBox" type="checkbox" checked="checked"><label for="showFooterInOddPagesCheckBox">Show in Odd Pages</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 20px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="ShowFooterInEvenPages" id="showFooterInEvenPagesCheckBox" type="checkbox" checked="checked"><label for="showFooterInEvenPagesCheckBox">Show in Even Pages</label>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="height: 10px"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <table>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <input asp-for="AutoResizeBottomMargin" id="autoResizeBottomMarginCheckBox" type="checkbox" checked="checked"><label for="autoResizeBottomMarginCheckBox">Auto Resize Margin</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 15px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="ReserveFooterSpace" id="reserveFooterSpaceCheckBox" type="checkbox" checked="checked"><label for="reserveFooterSpaceCheckBox">Reserve Space when Hidden</label>
+                                                                                                    </td>
+                                                                                                    <td style="width: 20px"></td>
+                                                                                                    <td>
+                                                                                                        Delay:
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        <input asp-for="FooterConversionDelay" name="footerConversionDelayTextBox" type="text" id="footerConversionDelayTextBox" style="width:15px;">
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        sec
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <button type="submit" name="convertToPdfButton" id="convertToPdfButton">Convert HTML to PDF</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
