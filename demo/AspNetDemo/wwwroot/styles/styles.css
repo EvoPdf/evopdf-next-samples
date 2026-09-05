@@ -121,6 +121,7 @@ input[type="file"]{font:13px var(--sans)}
 
 /* ---------- Small screens ---------- */
 @media (max-width: 980px){
+  body{min-width:600px}
   .demo-shell{grid-template-columns:1fr}
   .demo-nav{position:static; max-height:340px}
 }
