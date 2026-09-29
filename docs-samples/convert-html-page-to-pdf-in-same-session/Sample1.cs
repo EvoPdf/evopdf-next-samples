@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-html-page-to-pdf-in-same-session.htm
-// Documentation page: Convert a HTML Page to PDF in Same Session
-
 using System;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
@@ -49,9 +46,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the converter in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             ViewDataDictionary viewData = new ViewDataDictionary(ViewData);
             viewData.Clear();

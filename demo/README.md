@@ -1,6 +1,6 @@
 # EvoPdf Next demo applications
 
-The .NET 10 demo applications from the official download package (`EvoPdf-Next-v14.36.0.zip`): one source tree each, with a project file per target platform in the same folder (each project keeps its own `obj`/`bin`, so they build side by side).
+The .NET 10 demo applications from the official download package (`EvoPdf-Next-v14.81.0.zip`): one source tree each, with a project file per target platform in the same folder (each project keeps its own `obj`/`bin`, so they build side by side).
 
 | Project suffix | Package | Runs on |
 |---|---|---|
@@ -10,9 +10,9 @@ The .NET 10 demo applications from the official download package (`EvoPdf-Next-v
 | `_MultiPlatform` / `_MultiPlatform.Arm64` | `EvoPdf.Next` / `.Windows.Arm64` + `.Linux.Arm64` | Windows + Linux from one build |
 
 ## AspNetDemo
-The ASP.NET Core MVC application that runs at [evopdf.com](https://www.evopdf.com/evopdf-next-aspnet-demo/), with the C# source of every demo page under `Controllers/` (HTML to PDF, HTML to Image, PDF Creator, PDF Editor, Word / Excel / RTF / Markdown to PDF, PDF to Text, Find Text, PDF to Image, Extract PDF Images).
+The ASP.NET Core MVC application that runs at [evopdf.com](https://www.evopdf.com/evopdf-next-aspnet-demo/), with the C# source of every demo page under `Controllers/` (HTML to PDF, HTML to Image, PDF Creator, PDF Editor, Word / Excel / RTF / Markdown to PDF, PDF to Text, Find Text, PDF to Image, Extract PDF Images). Global Settings sets the license key, the HTML rendering mode and the maximum parallel conversions for the whole application; Persistent Renderer Process shows the state of the renderer process and its replacements; HTML to PDF Benchmark converts the same document on several threads and reports the throughput and the latency.
 
-`wwwroot` (styles, images, the demo input files) is not copied to `bin` by a build — ASP.NET Core serves it from the project folder at development time — so run the application in one of these ways, not by starting the executable from `bin`:
+`wwwroot` (styles, images, the demo input files) is not copied to `bin` by a build; ASP.NET Core serves it from the project folder at development time; so run the application in one of these ways, not by starting the executable from `bin`:
 - **Visual Studio**: open the platform solution from the repository root (`EvoPdf.Next.Samples.<Platform>.sln`), set `EvoPdf_Next_AspNetDemo_<Platform>` as the startup project, F5.
 - **.NET CLI**, from this folder: `dotnet run --project EvoPdf_Next_AspNetDemo_Windows.csproj` (pick your platform), then open the URL printed by Kestrel.
 - **Published**: `dotnet publish EvoPdf_Next_AspNetDemo_Linux.csproj -c Release -o publish` copies `wwwroot` next to the executable; the application then runs from the `publish` folder on any machine, under IIS or in a container.

@@ -1,0 +1,67 @@
+@model EvoPdf_Next_AspNetDemo.Models.SettingsViewModel
+
+@{
+    ViewBag.Title = "Persistent Renderer Process";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_SelectNode("demoTreeView_Renderer");
+</script>
+
+<div class="card settings">
+    <h1>Persistent Renderer Process</h1>
+    <p class="lead">
+        This page applies to the persistent process rendering mode only: the state of the renderer process kept by the application,
+        its controls and the replacements since the application started. With a process per conversion there is no such process
+        and the controls are disabled. The mode is set on the <a href="Settings">Global Settings</a> page.
+    </p>
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="notice ok">@Model.Message</div>
+    }
+    @if (!string.IsNullOrEmpty(Model.Error))
+    {
+        <div class="notice error">@Model.Error</div>
+    }
+
+    <h2>Status</h2>
+    <table class="status">
+        <tr><th>Rendering mode</th><td>@Model.HtmlRendererMode</td></tr>
+        <tr><th>Running</th><td>@(Model.Status.IsRunning ? "yes" : "no")</td></tr>
+        <tr><th>Process id</th><td>@(Model.Status.IsRunning ? Model.Status.ProcessId.ToString() : "-")</td></tr>
+        <tr><th>Started at</th><td>@(Model.Status.IsRunning ? Model.Status.StartedAt.ToString("yyyy-MM-dd HH:mm:ss") : "-")</td></tr>
+        <tr><th>Conversions sent</th><td>@Model.Status.ConversionsSent</td></tr>
+        <tr><th>Conversions in flight</th><td>@Model.Status.ConversionsInFlight</td></tr>
+        <tr><th>Process replacements</th><td>@Model.Status.Restarts</td></tr>
+        <tr><th>Last replacement reason</th><td>@Model.Status.LastRestartReason</td></tr>
+        <tr><th>Last start error</th><td>@(string.IsNullOrEmpty(Model.Status.LastError) ? "-" : Model.Status.LastError)</td></tr>
+    </table>
+
+    <div class="actions inline">
+        <form asp-action="Start" asp-controller="Settings" method="post"><input type="submit" value="Start (warm up)" disabled="@(Model.HtmlRendererMode != "PersistentProcess")" title="Starts the persistent renderer process now, so that the first conversion does not pay the engine startup" /></form>
+        <form asp-action="Stop" asp-controller="Settings" method="post"><input type="submit" value="Stop" disabled="@(Model.HtmlRendererMode != "PersistentProcess")" title="Stops the persistent renderer process after the conversions in progress finish" /></form>
+        <form asp-action="Renderer" asp-controller="Settings" method="get"><input type="submit" value="Refresh" /></form>
+    </div>
+    <p class="help">
+        Start requires the persistent process mode and does nothing if the process already runs. Stop waits for the conversions
+        in progress and the next conversion starts a new process.
+    </p>
+
+    <h2>Replacements</h2>
+    <p class="help">A running process replaced by a new one: after an unexpected exit, a change of the process settings or a recycle rule. Starts and stops, the idle stop included, are not counted.</p>
+    @if (Model.RestartEvents.Count == 0)
+    {
+        <p class="help">None since the application started.</p>
+    }
+    else
+    {
+        <ul class="events">
+            @foreach (var e in Model.RestartEvents)
+            {
+                <li>@e</li>
+            }
+        </ul>
+    }
+</div>

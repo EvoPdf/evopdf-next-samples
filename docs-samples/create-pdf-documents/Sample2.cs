@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-documents.htm
-// Documentation page: Create PDF Documents
-
 PdfDocumentCreateSettings pdfCreateSettings = new PdfDocumentCreateSettings()
 {
   PageSize = PdfPageSize.A4,

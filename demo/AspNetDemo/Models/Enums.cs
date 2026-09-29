@@ -1,4 +1,4 @@
-﻿namespace EvoPdf_Next_AspNetDemo.Models
+namespace EvoPdf_Next_AspNetDemo.Models
 {
     public enum RotationDirection
     {

@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/select-html-elements-to-convert-to-pdf.htm
-// Documentation page: Select HTML Elements to Convert to PDF
-
 using System;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
@@ -38,9 +35,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the converter in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             // Create a HTML to PDF converter object with default settings
             HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
@@ -57,8 +53,6 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
 
                 // Automatically resizes the PDF page height to match the selected HTML content height
                 htmlToPdfConverter.PdfDocumentOptions.AutoResizePdfPageHeight = model.AutoResizePdfPageHeight;
-                if (htmlToPdfConverter.PdfDocumentOptions.AutoResizePdfPageHeight)
-                    htmlToPdfConverter.HtmlViewerHeight = 1;
             }
 
             byte[] outPdfBuffer = null;

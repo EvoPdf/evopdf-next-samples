@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/retrieve-html-element-positions-in-pdf.htm
-// Documentation page: Retrieve HTML Element Positions in PDF
-
 using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Hosting;
@@ -38,9 +35,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the converter in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             // Create a HTML to PDF converter object with default settings
             HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();

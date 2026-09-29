@@ -1,7 +1,11 @@
 # Add Attachments to Generated PDF
 
-Code samples from the documentation page [Add Attachments to Generated PDF](https://www.evopdf.com/help/evopdf-next-dotnet/html/add-attachments-to-generated-pdf.htm). Each file is the sample as published; the surrounding explanation is on the page.
+EVO HTML to PDF Converter can embed arbitrary files directly into the generated PDF as document-level attachments. The attached files appear in the Attachments panel of the viewer and travel with the document. The receiver does not need access to the original source files.
 
-- [Sample1.cs](Sample1.cs)
-- [Sample2.cs](Sample2.cs)
-- [Sample3.cs](Sample3.cs)
+Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/add-attachments-to-generated-pdf.htm
+
+| File | Section | Lines |
+| --- | --- | --- |
+| `Sample1.cs` | Embed In-Memory Data with FromBytes | 7 |
+| `Sample2.cs` | Embed a File from Disk with FromFile | 6 |
+| `Sample3.cs` | Code Sample - Add Attachments to Generated PDF from HTML | 144 |

@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-documents-with-images.htm
-// Documentation page: Create PDF Documents with Images
-
 string imagesPath = GetDemoImagesPath();
 
 // Add a transparent PNG image with a custom width

@@ -1,0 +1,82 @@
+@model EvoPdf_Next_AspNetDemo.Models.BenchmarkViewModel
+
+@{
+    ViewBag.Title = "HTML to PDF Benchmark";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_SelectNode("demoTreeView_Benchmark");
+</script>
+
+<div class="card settings">
+    <h1>HTML to PDF Benchmark</h1>
+    <p class="lead">
+        Converts the same document repeatedly on several threads and reports the throughput and the latency. The run uses the
+        rendering mode and the maximum parallel conversions from <a href="Settings">Global Settings</a>. Change them there to compare.
+        The page blocks until the run completes.
+    </p>
+    <p class="lead"><strong>Current rendering mode:</strong> @Model.CurrentMode, maximum parallel conversions @Model.CurrentMaxParallelConversions.</p>
+
+    @if (!string.IsNullOrEmpty(Model.Error))
+    {
+        <div class="notice error">@Model.Error</div>
+    }
+
+    <form asp-action="Run" asp-controller="Benchmark" method="post">
+        <div class="grid2">
+            <div class="field">
+                <label for="Threads">Threads</label>
+                <input asp-for="Threads" type="number" min="1" max="32" />
+                <p class="help">Conversions started at the same time. Starts at the current Maximum parallel conversions. Above it the extra ones wait for a slot.</p>
+            </div>
+            <div class="field">
+                <label for="ConversionsPerThread">Conversions per thread</label>
+                <input asp-for="ConversionsPerThread" type="number" min="1" max="100" />
+                <p class="help">Each thread converts this many times, one after another.</p>
+            </div>
+        </div>
+        <div class="field">
+            <label for="Url">Page to convert (optional)</label>
+            <input asp-for="Url" type="text" class="wide" placeholder="Empty: a two page document generated in memory, without network access" />
+            <p class="help">A URL makes the run depend on the network. Leave it empty to measure the engine alone.</p>
+        </div>
+        <div class="field check">
+            <label><input asp-for="LoadLazyImages" type="checkbox" /> Load lazy images</label>
+            <p class="help">Off by default here: the wait for lazily loaded images adds time on pages that have them. The library default is on.</p>
+        </div>
+        <div class="actions">
+            <input type="submit" value="Run Benchmark" />
+        </div>
+    </form>
+
+    @if (Model.Report != null)
+    {
+        var r = Model.Report;
+        <h2>Report</h2>
+        <table class="status">
+            <tr><th>Rendering mode</th><td>@r.Mode</td></tr>
+            <tr><th>First conversion (includes engine startup)</th><td>@r.FirstMs ms, @r.PdfBytes.ToString("N0") bytes, @r.PdfPages pages</td></tr>
+            <tr><th>Threads</th><td>@r.Threads</td></tr>
+            <tr><th>Conversions</th><td>@r.Conversions (@r.Failures failed)</td></tr>
+            <tr><th>Total time</th><td>@r.TotalMs.ToString("N0") ms</td></tr>
+            <tr><th>Throughput</th><td>@r.ConversionsPerSecond conversions/s</td></tr>
+            <tr><th>Latency (median / p95 / min / max)</th><td>@r.MedianMs / @r.P95Ms / @r.MinMs / @r.MaxMs ms</td></tr>
+            <tr><th>Renderer process replacements during the run</th><td>@r.ProcessRestarts</td></tr>
+        </table>
+        @if (r.Errors.Count > 0)
+        {
+            <h3>Errors (first @r.Errors.Count)</h3>
+            <ul class="events">
+                @foreach (var e in r.Errors)
+                {
+                    <li>@e</li>
+                }
+            </ul>
+        }
+        <p class="help">
+            Latency is measured per conversion including the wait for a free slot. With more threads than slots the median grows while the
+            throughput stays. Run the same configuration in both rendering modes for the comparison that matters.
+        </p>
+    }
+</div>

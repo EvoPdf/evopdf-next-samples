@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-documents-with-file-attachments.htm
-// Documentation page: Create PDF Documents with File Attachments
-
 using System.IO;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
@@ -38,7 +35,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
                 throw new ValidationException(errorMessage);
             }
 
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             PdfDocumentCreateSettings pdfCreateSettings = new PdfDocumentCreateSettings()
             {
@@ -113,7 +111,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             crtYPos = AddBulletItem(pdfDocument, codeFont, bodyFont,
                 code: "PdfFileAttachment.FromBytes(invoiceXmlBytes, \"invoice.xml\")",
                 description: "Embeds an in-memory byte buffer as an attached file. " +
-                             "The PDF remains portable  -  the data travels with the document",
+                             "The PDF remains portable — the data travels with the document",
                 x: xLeft, y: crtYPos, width: 540);
             crtYPos += ySeparator;
 
@@ -213,7 +211,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
 
             // Caption next to the icon explains what the file is.
             PdfTextElement fileLabel = new PdfTextElement(
-                "Alphabet.txt  -  read from disk and embedded in the PDF. " +
+                "Alphabet.txt — read from disk and embedded in the PDF. " +
                 "The file travels with the document, so the receiver does not " +
                 "need access to the original location",
                 bodyFont)
@@ -230,12 +228,12 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
                 xLeft, crtYPos, ySeparator);
 
             crtYPos = AddCaption(pdfDocument, bodyFont,
-                "PDF/A-3 and PDF/A-4f require a relationship metadata entry on every embedded " +
+                "PDF/A-3 and PDF/A-4f require an /AFRelationship entry on every embedded " +
                 "file, declaring how the attachment relates to the host document. The " +
                 "PdfAttachmentRelationship enum covers the five standard values: Source, " +
                 "Data, Alternative, Supplement, EncryptedPayload. The invoice.xml from " +
-                "section 1 is tagged with Relationship = Source. This is the typical " +
-                "pattern for archival invoices. The library ignores the property for " +
+                "section 1 is tagged with Relationship = Source, the typical ZUGFeRD / " +
+                "Factur-X e-invoicing pattern. The library ignores the property for " +
                 "non-PDF/A-3 standards",
                 xLeft, crtYPos, 540) + ySeparator;
 
@@ -282,7 +280,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             string code, string description,
             int x, int y, int width)
         {
-            PdfTextElement codeLine = new PdfTextElement("* " + code, codeFont)
+            PdfTextElement codeLine = new PdfTextElement("• " + code, codeFont)
             {
                 X = x, Y = y, Width = width
             };

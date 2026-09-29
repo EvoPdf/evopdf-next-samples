@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Hosting;
@@ -36,9 +36,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the converter in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             // Create a HTML to PDF converter object with default settings
             HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
@@ -72,34 +71,43 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             // A default style is applied by the library if this property is not set
             htmlToPdfConverter.PdfDocumentOptions.TableOfContents.Style = model.TocStyleTextBox;
 
-            // Set HTML Viewer width in pixels which is the equivalent in converter of the browser window width
-            htmlToPdfConverter.HtmlViewerWidth = model.HtmlViewerWidth;
-
             // Set the initial HTML viewer height in pixels
             if (model.HtmlViewerHeight.HasValue)
                 htmlToPdfConverter.HtmlViewerHeight = model.HtmlViewerHeight.Value;
-
-            // Set the HTML content zoom percentage similar to zoom level in a browser
-            htmlToPdfConverter.HtmlViewerZoom = model.HtmlViewerZoom;
-
-            // Automatically resize the PDF page width to match the HtmlViewerWidth property
-            // The default value is true
-            htmlToPdfConverter.PdfDocumentOptions.AutoResizePdfPageWidth = model.AutoResizePdfPageWidth;
-
-            // Set the PDF page size, which can be a predefined size like A4 or a custom size in points
-            // The default is A4
-            // Important Note: The PDF page width is automatically determined from the HTML viewer width
-            // when the AutoResizePdfPageWidth property is true
-            htmlToPdfConverter.PdfDocumentOptions.PdfPageSize = SelectedPdfPageSize(model.PdfPageSize);
-
-            // Set the PDF page orientation to Portrait or Landscape. The default is Portrait
-            htmlToPdfConverter.PdfDocumentOptions.PdfPageOrientation = SelectedPdfPageOrientation(model.PdfPageOrientation);
 
             // Set the PDF page margins in points. The default is 0
             htmlToPdfConverter.PdfDocumentOptions.LeftMargin = model.LeftMargin;
             htmlToPdfConverter.PdfDocumentOptions.RightMargin = model.RightMargin;
             htmlToPdfConverter.PdfDocumentOptions.TopMargin = model.TopMargin;
             htmlToPdfConverter.PdfDocumentOptions.BottomMargin = model.BottomMargin;
+
+            // Set the page layout: how the width at which the HTML is laid out relates to the PDF page width
+            PdfPageSize pageSize = SelectedPdfPageSize(model.PdfPageSize);
+            PdfPageOrientation pageOrientation = SelectedPdfPageOrientation(model.PdfPageOrientation);
+
+            switch (model.PageLayout)
+            {
+                case "FitBrowserWindowToPage":
+                    // Fixed page size: the HTML is laid out as in a browser window of the given width and the result
+                    // is scaled to the content width of the page, so a responsive site keeps its desktop layout.
+                    // This is the default layout of the converter, with an A4 page and a 1024 pixel window
+                    htmlToPdfConverter.FitBrowserWindowToPage(pageSize, pageOrientation, windowWidth: model.HtmlViewerWidth);
+                    break;
+
+                case "LayoutAtPageWidth":
+                    // Fixed page size: the HTML is laid out at the content width of the page, one CSS pixel
+                    // being 0.75 points. For HTML templates designed for the paper size
+                    htmlToPdfConverter.LayoutAtPageWidth(pageSize, pageOrientation);
+                    break;
+
+                default:
+                    // The PDF page width follows the browser window width and the HTML is drawn 1:1;
+                    // the page height comes from the page size and the orientation
+                    htmlToPdfConverter.PageWidthFromBrowserWindow(model.HtmlViewerWidth, singlePage: false, zoom: model.HtmlViewerZoom);
+                    htmlToPdfConverter.PdfDocumentOptions.PdfPageSize = pageSize;
+                    htmlToPdfConverter.PdfDocumentOptions.PdfPageOrientation = pageOrientation;
+                    break;
+            }
 
             // Set the maximum time in seconds to wait for HTML page to be loaded 
             // Leave it not set for a default 120 seconds maximum wait time

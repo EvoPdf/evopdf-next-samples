@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
@@ -38,8 +38,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Images_Extractor
             }
 
             // Set license key received after purchase to use the extractor in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             // Create the PDF Images Extractor instance with default options
             PdfImagesExtractor pdfImagesExtractor = new PdfImagesExtractor();

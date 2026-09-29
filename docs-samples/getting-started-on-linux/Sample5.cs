@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/getting-started-on-linux.htm
-// Documentation page: Getting Started with EvoPdf Next for .NET on Linux
-
 // create the converter object where you want to perform the conversion
 HtmlToPdfConverter converter = new HtmlToPdfConverter();
 

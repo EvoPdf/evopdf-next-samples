@@ -1,5 +1,9 @@
 # Create PDF/UA and PDF/A Compliant Documents
 
-Code samples from the documentation page [Create PDF/UA and PDF/A Compliant Documents](https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdfua-and-pdfa-documents.htm). Each file is the sample as published; the surrounding explanation is on the page.
+EVO HTML to PDF Converter can be configured to automatically generate PDF documents compliant with accessibility and archival standards by setting the `PdfDocumentOptions.PdfStandard` property. An object of `PdfDocumentOptions` type is exposed by the `HtmlToPdfConverter.PdfDocumentOptions` property
 
-- [Sample1.cs](Sample1.cs)
+Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdfua-and-pdfa-documents.htm
+
+| File | Section | Lines |
+| --- | --- | --- |
+| `Sample1.cs` | Code Sample - Auto Create PDF/UA and PDF/A | 95 |

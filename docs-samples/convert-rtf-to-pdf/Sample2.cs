@@ -1,4 +1,6 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-rtf-to-pdf.htm
-// Documentation page: Convert RTF to PDF
-
-byte[] outPdfBuffer = rtfToPdfConverter.ConvertToPdf(rtfBytes);
+rtfToPdfConverter.PdfDocumentOptions.PdfPageSize = PdfPageSize.A4;
+rtfToPdfConverter.PdfDocumentOptions.PdfPageOrientation = PdfPageOrientation.Landscape;
+rtfToPdfConverter.PdfDocumentOptions.LeftMargin = 20;
+rtfToPdfConverter.PdfDocumentOptions.RightMargin = 20;
+rtfToPdfConverter.PdfDocumentOptions.TopMargin = 30;
+rtfToPdfConverter.PdfDocumentOptions.BottomMargin = 30;

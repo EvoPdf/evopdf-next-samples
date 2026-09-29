@@ -1,6 +1,6 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-markdown-to-pdf.htm
-// Documentation page: Convert Markdown to PDF
-
-byte[] inputMarkdownBytes = System.IO.File.ReadAllBytes(markdownFilePath);
-string markdownString = Encoding.UTF8.GetString(inputMarkdownBytes);
-string baseUrl = "file://" + markdownFilePath;
+markdownToPdfConverter.PdfDocumentOptions.StyleSheet = @"
+h1 { 
+    font-size: 24pt;
+    color: #0b57d0;
+}
+";

@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-documents-with-link-annotations.htm
-// Documentation page: Create PDF Documents with Link Annotations
-
 using System;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
@@ -38,9 +35,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the converter in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             PdfDocumentCreateSettings pdfCreateSettings = new PdfDocumentCreateSettings()
             {
@@ -166,7 +162,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             // top of the viewport
             crtYPos = AddPageLocationLink(pdfDocument, linkFont, labelFont,
                 visibleText: "PdfLinkPageLocation.FitWidth(top = 400)",
-                description: "Fit page width, scroll so y=400 is at top (fit width and scroll vertically)",
+                description: "Fit page width, scroll so y=400 is at top (/FitH destination)",
                 location: PdfLinkPageLocation.FitWidth(top: 400f),
                 captionText: "Fits the page WIDTH, scrolled so y=400 from page top is at the top of the viewport",
                 x: xLeft, y: crtYPos,
@@ -178,7 +174,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             // the left of the viewport
             crtYPos = AddPageLocationLink(pdfDocument, linkFont, labelFont,
                 visibleText: "PdfLinkPageLocation.FitHeight(left = 200)",
-                description: "Fit page height, scroll so x=200 is at left (fit height and scroll horizontally)",
+                description: "Fit page height, scroll so x=200 is at left (/FitV destination)",
                 location: PdfLinkPageLocation.FitHeight(left: 200f),
                 captionText: "Fits the page HEIGHT, scrolled so x=200 from page left is at the left of the viewport",
                 x: xLeft, y: crtYPos,
@@ -191,7 +187,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             // viewer applies a 150% zoom
             crtYPos = AddPageLocationLink(pdfDocument, linkFont, labelFont,
                 visibleText: "PdfLinkPageLocation.AtCoordinates(50, 300, zoom = 1.5)",
-                description: "Position (50,300) at viewport top-left with 150% zoom (explicit position with optional zoom)",
+                description: "Position (50,300) at viewport top-left with 150% zoom (/XYZ destination)",
                 location: PdfLinkPageLocation.AtCoordinates(left: 50f, top: 300f, zoom: 1.5f),
                 captionText: "Positions (50,300) at the top-left of the viewport with explicit zoom = 1.5 (150%)",
                 x: xLeft, y: crtYPos,
@@ -202,7 +198,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             pdfDocument.AddPage();
 
             PdfTextElement targetTitle = new PdfTextElement(
-                "Target Page  -  landing points for intra-document links", titleFont)
+                "Target Page — landing points for intra-document links", titleFont)
             {
                 X = xLeft, Y = 0,
                 Alignment = PdfTextAlignment.Center,

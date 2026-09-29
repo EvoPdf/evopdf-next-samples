@@ -1,4 +1,2 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-excel-xlsx-to-pdf.htm
-// Documentation page: Convert Excel XLSX to PDF
-
-byte[] outPdfBuffer = excelToPdfConverter.ConvertToPdf(excelBytes);
+excelToPdfConverter.PdfDocumentOptions.UsePageSettingsFromExcel = true;
+excelToPdfConverter.PdfDocumentOptions.UseFirstWorksheetPageSettings = true;

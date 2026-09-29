@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/header-and-footer-on-pdf-from-multiple-html.htm
-// Documentation page: Add Header and Footer to PDF from Multiple HTML
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -39,9 +36,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the converter in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             // Create the first HTML to PDF converter instance
             HtmlToPdfConverter firstHtmlToPdfConverter = new HtmlToPdfConverter();
@@ -67,7 +63,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             using PdfMerge pdfMerge = new PdfMerge();
 
             // Set merge options including header and footer dimensions
-            SetPdfMergeOptions(pdfMerge, headerSize, footerSize, model);
+            SetPdfMergeOptions(pdfMerge, headerSize, footerSize, firstHtmlToPdfConverter.HtmlViewerZoom, model);
 
             // Add the first PDF to the merger
             int firstPdfPageCount = pdfMerge.AddPdf(firstPdfBytes);
@@ -280,7 +276,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             }
         }
 
-        private void SetPdfMergeOptions(PdfMerge pdfMerge, System.Drawing.Size headerSize, System.Drawing.Size footerSize, Header_Footer_on_PDF_from_Multiple_HTML_ViewModel model)
+        private void SetPdfMergeOptions(PdfMerge pdfMerge, System.Drawing.Size headerSize, System.Drawing.Size footerSize, double documentZoom, Header_Footer_on_PDF_from_Multiple_HTML_ViewModel model)
         {
             bool headerEnabled = model.HeaderEnabled;
             if (headerEnabled)
@@ -312,6 +308,9 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 // Set minimum and maximum content height when AutoSizeContentHeight is enabled
                 pdfHeaderTemplate.MinContentHeight = model.HeaderMinContentHeight;
                 pdfHeaderTemplate.MaxContentHeight = model.HeaderMaxContentHeight;
+
+                // The template is drawn at the zoom of the merged pages, like the header of the first document
+                pdfHeaderTemplate.Zoom = documentZoom;
 
                 // Set a fixed header height when AutoResizeHeight is disabled
                 if (model.HeaderHeight.HasValue)
@@ -366,6 +365,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 // Set minimum and maximum content height when AutoSizeContentHeight is enabled
                 pdfFooterTemplate.MinContentHeight = model.FooterMinContentHeight;
                 pdfFooterTemplate.MaxContentHeight = model.FooterMaxContentHeight;
+
+                pdfFooterTemplate.Zoom = documentZoom;
 
                 // Set a fixed footer height when AutoResizeHeight is disabled
                 if (model.FooterHeight.HasValue)

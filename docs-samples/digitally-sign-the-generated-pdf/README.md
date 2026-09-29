@@ -1,5 +1,9 @@
 # Add a Digital Signature to Generated PDF Document
 
-Code samples from the documentation page [Add a Digital Signature to Generated PDF Document](https://www.evopdf.com/help/evopdf-next-dotnet/html/digitally-sign-the-generated-pdf.htm). Each file is the sample as published; the surrounding explanation is on the page.
+EVO HTML to PDF Converter allows you to add digital signatures to the generated PDF document. In order to add digital signatures you need a certificate with private and public keys. These certificates are usually stored in a .pfx or a .p12 file in PKCS#12 format and they can be password protected. A digital signature is represented by a `PdfDigitalSignature` object. An object of this type is exposed by the `HtmlToPdfConverter.DigitalSignature` property of the HTML to PDF Converter class.
 
-- [Sample1.cs](Sample1.cs)
+Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/digitally-sign-the-generated-pdf.htm
+
+| File | Section | Lines |
+| --- | --- | --- |
+| `Sample1.cs` | Code Sample - Add A Digital Signature to Generated PDF Document | 153 |

@@ -9,7 +9,7 @@
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <!-- the sibling platform projects keep their obj/bin in subfolders of this folder: keep all of them out of the source globs -->
-    <DefaultItemExcludes>$(DefaultItemExcludes);obj/**;bin/**</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);obj/**;bin/**;publish/**</DefaultItemExcludes>
     <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <!-- Linux x64 -->
-    <PackageReference Include="EvoPdf.Next.Linux" Version="14.36.0" />
+    <PackageReference Include="EvoPdf.Next.Linux" Version="14.81.0" />
   </ItemGroup>
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />

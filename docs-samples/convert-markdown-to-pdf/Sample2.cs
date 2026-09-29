@@ -1,4 +1,6 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-markdown-to-pdf.htm
-// Documentation page: Convert Markdown to PDF
-
-byte[] outPdfBuffer = markdownToPdfConverter.ConvertStringToPdf(markdownString, baseUrl);
+markdownToPdfConverter.PdfDocumentOptions.PdfPageSize = PdfPageSize.A4;
+markdownToPdfConverter.PdfDocumentOptions.PdfPageOrientation = PdfPageOrientation.Landscape;
+markdownToPdfConverter.PdfDocumentOptions.LeftMargin = 20;
+markdownToPdfConverter.PdfDocumentOptions.RightMargin = 20;
+markdownToPdfConverter.PdfDocumentOptions.TopMargin = 30;
+markdownToPdfConverter.PdfDocumentOptions.BottomMargin = 30;

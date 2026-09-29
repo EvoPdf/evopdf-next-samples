@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/add-paths-and-polygons-to-existing-pdf.htm
-// Documentation page: Add Polylines, Polygons and Paths to Existing PDF
-
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -46,9 +43,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the converter in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             byte[] inputPdfBytes = null;
 

@@ -1,4 +1,4 @@
-﻿@model EvoPdf_Next_AspNetDemo.Models.PDF_Editor.Stamp_with_HTML_Existing_PDF_ViewModel
+@model EvoPdf_Next_AspNetDemo.Models.PDF_Editor.Stamp_with_HTML_Existing_PDF_ViewModel
 @{
     ViewBag.Title = "Add HTML Stamp to Existing PDF";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,8 +19,6 @@
         }
     }
 
-    TreeView_ToggleNode("demoTreeView_HTML_To_PDF_Converter");
-    TreeView_ToggleNode("demoTreeView_PDF_Editor");
     TreeView_SelectNode("demoTreeView_Stamp_with_HTML_Existing_PDF");
 </script>
 
@@ -32,7 +30,7 @@
                     <table style="width: 100%; height: 100%">
                         <tbody>
                             <tr>
-                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px; padding-top: 5px">
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 8px; padding-top: 5px">
                                     Add HTML Stamp with Page Numbering to Existing PDF
                                 </td>
                             </tr>
@@ -223,7 +221,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -234,7 +232,7 @@
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td style="height: 15px" colspan="2"></td>
+                                                                            <td style="height: 8px" colspan="2"></td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td style="width: 20px"></td>
@@ -318,7 +316,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -329,7 +327,7 @@
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td style="height: 15px" colspan="2"></td>
+                                                                            <td style="height: 8px" colspan="2"></td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td style="width: 20px"></td>
@@ -406,6 +404,18 @@
                                                                                                         <td>
                                                                                                             <input asp-for="FitStampHeight" type="checkbox" id="fitStampHeightCheckBox"><label for="fitStampHeightCheckBox">Fit Height</label>
                                                                                                         </td>
+                                                                                                        <td style="width: 25px"></td>
+                                                                                                        <td>
+                                                                                                            Zoom:
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px"></td>
+                                                                                                        <td>
+                                                                                                            <input asp-for="StampZoom" type="text" id="stampZoomTextBox" style="width:35px;">
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px"></td>
+                                                                                                        <td>
+                                                                                                            %
+                                                                                                        </td>
                                                                                                     </tr>
                                                                                                 </tbody>
                                                                                             </table>
@@ -419,7 +429,7 @@
                                                             </tr>
 
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -430,7 +440,7 @@
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td style="height: 15px" colspan="2"></td>
+                                                                            <td style="height: 8px" colspan="2"></td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td style="width: 20px"></td>
@@ -512,7 +522,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -523,7 +533,7 @@
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td style="height: 15px" colspan="2"></td>
+                                                                            <td style="height: 8px" colspan="2"></td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td style="width: 20px"></td>
@@ -582,7 +592,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>

@@ -112,7 +112,7 @@ input[type="submit"], button, input[type="button"]{
 input[type="submit"]:hover, button:hover, input[type="button"]:hover{background:var(--pdf-deep)}
 input[type="submit"]:active, button:active{transform:translateY(1px)}
 
-/* secondary actions (Clear, Reset…) stay quiet next to the primary Convert button */
+/* secondary actions (Clear, Reset...) stay quiet next to the primary Convert button */
 input[type="button"]{color:var(--ink); background:#fff; border-color:var(--line)}
 input[type="button"]:hover{background:var(--bg-alt); color:var(--ink)}
 
@@ -132,3 +132,33 @@ table[style*="width: 535px"]{width:100% !important}
 table[style*="height: 967px"]{height:auto !important}
 /* small inline-width inputs need room for their values; min-width overrides the inline width */
 input[type="text"]{min-width:54px; padding:.4rem .45rem}
+
+/* ---------- Settings and Benchmark pages ---------- */
+.card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px}
+.card h1{font-size:1.2rem; font-weight:700; letter-spacing:-.01em; margin:0 0 12px}
+.card h2{font-size:1rem; font-weight:700; margin:22px 0 10px; padding-top:14px; border-top:1px solid var(--line)}
+.card h3{font-size:.92rem; font-weight:700; margin:16px 0 6px}
+.card .lead{margin:0 0 14px; color:var(--muted)}
+.settings .field{margin:0 0 12px}
+.settings .field label{display:block; font-weight:600; margin-bottom:4px}
+.settings .field.check label, .settings .checks label{display:flex; align-items:center; gap:6px; font-weight:500}
+.settings .help{margin:4px 0 0; color:var(--muted); font-size:.86rem; line-height:1.45}
+.settings .wide{width:100%; max-width:560px}
+.settings .grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px 24px}
+.settings .checks{margin:8px 0 4px}
+.settings .actions{margin:16px 0 4px}
+.settings .actions.inline{display:flex; gap:10px; flex-wrap:wrap}
+.settings .actions.inline form{margin:0}
+.settings input[type="submit"][disabled]{opacity:.45; cursor:default}
+.settings table.status{border-collapse:collapse; margin:4px 0 12px}
+.settings table.status th{text-align:left; font-weight:600; padding:5px 18px 5px 0; color:var(--muted); white-space:nowrap}
+.settings table.status td{padding:5px 0}
+.settings .events{margin:6px 0 0; padding-left:18px; font-family:Consolas,Menlo,monospace; font-size:.84rem}
+.notice{border-radius:8px; padding:10px 12px; margin:0 0 14px}
+.notice.ok{background:#E9F6EC; color:#1F5E2E; border:1px solid #BFE3C8}
+.notice.error{background:#FBECEB; color:#7E2B26; border:1px solid #F0C4C0}
+
+/* ---------- Demo pages ---------- */
+td[style*="width:110px"], td[style*="width: 110px"]{white-space:nowrap}
+td[style*="solid 1px Black"]{height:auto !important}
+td[style*="solid 1px Black"] > table[style*="height: 100%"]{height:auto !important}

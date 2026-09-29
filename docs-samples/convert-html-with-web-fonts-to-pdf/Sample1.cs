@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-html-with-web-fonts-to-pdf.htm
-// Documentation page: Convert HTML with Web Fonts to PDF
-
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using EvoPdf_Next_AspNetDemo.Models;
@@ -29,16 +26,11 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the converter in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             // Create a HTML to PDF converter object with default settings
             HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
-
-            // Set an adddional delay in seconds to wait for JavaScript or AJAX calls after page load completed
-            // Set this property to 0 if you don't need to wait for such asynchcronous operations to finish
-            htmlToPdfConverter.ConversionDelay = 2;
 
             // Convert the HTML page with Web Fonts to a PDF document in a memory buffer
             byte[] outPdfBuffer = htmlToPdfConverter.ConvertUrl(model.Url);

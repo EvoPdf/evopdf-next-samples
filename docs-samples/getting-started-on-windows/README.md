@@ -1,9 +1,13 @@
 # Getting Started with EvoPdf Next for .NET on Windows
 
-Code samples from the documentation page [Getting Started with EvoPdf Next for .NET on Windows](https://www.evopdf.com/help/evopdf-next-dotnet/html/getting-started-on-windows.htm). Each file is the sample as published; the surrounding explanation is on the page.
+EvoPdf Next for .NET is a library that can be integrated into any type of .NET application to create and process PDF documents.
 
-- [Sample1.cs](Sample1.cs)
-- [Sample2.cs](Sample2.cs)
-- [Sample3.cs](Sample3.cs)
-- [Sample4.cs](Sample4.cs)
-- [Sample5.cs](Sample5.cs)
+Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/getting-started-on-windows.htm
+
+| File | Section | Lines |
+| --- | --- | --- |
+| `Sample1.cs` | Include EvoPdf.Next Namespace | 2 |
+| `Sample2.cs` | Convert an HTML string to PDF | 8 |
+| `Sample3.cs` | Convert a URL to PDF | 9 |
+| `Sample4.cs` | Convert an HTML string to PDF in ASP.NET | 9 |
+| `Sample5.cs` | Convert a URL to PDF in ASP.NET | 10 |

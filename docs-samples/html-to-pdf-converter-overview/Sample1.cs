@@ -1,6 +1,4 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/html-to-pdf-converter-overview.htm
-// Documentation page: HTML to PDF Converter Overview
-
+using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using EvoPdf_Next_AspNetDemo.Models;
@@ -29,22 +27,15 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the converter in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             // Create a HTML to PDF converter object with default settings
             HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
 
-            // Set HTML Viewer width in pixels which is the equivalent in converter of the browser window width
-            htmlToPdfConverter.HtmlViewerWidth = model.HtmlViewerWidth;
-
             // Set the initial HTML viewer height in pixels
             if (model.HtmlViewerHeight.HasValue)
                 htmlToPdfConverter.HtmlViewerHeight = model.HtmlViewerHeight.Value;
-
-            // Set the HTML content zoom percentage similar to zoom level in a browser
-            htmlToPdfConverter.HtmlViewerZoom = model.HtmlViewerZoom;
 
             // Optionally load the lazy images
             htmlToPdfConverter.LoadLazyImages = model.LoadLazyImages;
@@ -53,27 +44,60 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             htmlToPdfConverter.LazyImagesLoadMode = model.LazyImagesLoadMode == "Browser" ?
                 LazyImagesLoadMode.Browser : LazyImagesLoadMode.Custom;
 
-            // Set the media type used in @media rules when rendering HTML to PDF
-            htmlToPdfConverter.MediaType = model.MediaType == "Print" ? "print" : "screen";
+            // JavaScript in the converted page; some options of the converter turn it on when they need it
 
-            // Automatically resize the PDF page width to match the HtmlViewerWidth property
-            // The default value is true
-            htmlToPdfConverter.PdfDocumentOptions.AutoResizePdfPageWidth = model.AutoResizePdfPageWidth;
+            htmlToPdfConverter.JavaScriptEnabled = model.JavaScriptEnabled;
 
-            // Set the PDF page size, which can be a predefined size like A4 or a custom size in points
-            // The default is A4
-            // Important Note: The PDF page width is automatically determined from the HTML viewer width
-            // when the AutoResizePdfPageWidth property is true
-            htmlToPdfConverter.PdfDocumentOptions.PdfPageSize = SelectedPdfPageSize(model.PdfPageSize);
+            // Set the page layout: how the width at which the HTML is laid out relates to the PDF page width
+            PdfPageSize pageSize = SelectedPdfPageSize(model.PdfPageSize);
+            PdfPageOrientation pageOrientation = SelectedPdfPageOrientation(model.PdfPageOrientation);
 
-            // Set the PDF page orientation to Portrait or Landscape. The default is Portrait
-            htmlToPdfConverter.PdfDocumentOptions.PdfPageOrientation = SelectedPdfPageOrientation(model.PdfPageOrientation);
+            switch (model.PageLayout)
+            {
+                case "FitBrowserWindowToPage":
+                    // Fixed page size: the HTML is laid out as in a browser window of the given width and the result
+                    // is scaled to the content width of the page, so a responsive site keeps its desktop layout.
+                    // This is the default layout of the converter, with an A4 page and a 1024 pixel window
+                    htmlToPdfConverter.FitBrowserWindowToPage(pageSize, pageOrientation, windowWidth: model.HtmlViewerWidth, singlePage: model.SinglePage);
+                    break;
 
-            // Set the PDF page margins in points. The default is 0
+                case "LayoutAtPageWidth":
+                    // Fixed page size: the HTML is laid out at the content width of the page, one CSS pixel
+                    // being 0.75 points. For HTML templates designed for the paper size
+                    htmlToPdfConverter.LayoutAtPageWidth(pageSize, pageOrientation, zoom: model.HtmlViewerZoom, singlePage: model.SinglePage);
+                    break;
+
+                case "PrintLikeChrome":
+                    // The output of the Save as PDF command of Chrome: the print media type, 1 cm margins, no
+                    // background colors or images, drawn at the zoom; the margins and the backgrounds set below
+                    // replace the ones of Chrome when they were changed in the form
+                    htmlToPdfConverter.PrintLikeChrome(pageSize, pageOrientation, zoom: model.HtmlViewerZoom, singlePage: model.SinglePage);
+                    break;
+
+                default:
+                    // The PDF page width follows the browser window width and the HTML is drawn at the zoom, 1:1 at 100;
+                    // the page height comes from the page size and the orientation
+                    htmlToPdfConverter.PageWidthFromBrowserWindow(model.HtmlViewerWidth, singlePage: model.SinglePage, zoom: model.HtmlViewerZoom);
+                    htmlToPdfConverter.PdfDocumentOptions.PdfPageSize = pageSize;
+                    htmlToPdfConverter.PdfDocumentOptions.PdfPageOrientation = pageOrientation;
+                    break;
+            }
+
+            // The page margins in points, after the layout, so that they replace the ones a layout sets. The default is 0
+
             htmlToPdfConverter.PdfDocumentOptions.LeftMargin = model.LeftMargin;
+
             htmlToPdfConverter.PdfDocumentOptions.RightMargin = model.RightMargin;
+
             htmlToPdfConverter.PdfDocumentOptions.TopMargin = model.TopMargin;
+
             htmlToPdfConverter.PdfDocumentOptions.BottomMargin = model.BottomMargin;
+
+            // The background colors and images of the HTML, printed or not
+            htmlToPdfConverter.PdfDocumentOptions.PrintBackgrounds = model.PrintBackgrounds;
+
+            // The media type used in @media rules, after the layout, so that it replaces the one a layout sets
+            htmlToPdfConverter.MediaType = model.MediaType == "Print" ? "print" : "screen";
 
             // Sets the PDF standard for the generated document
             // Leave as None to generate a plain PDF without an accessibility structure tree or archival metadata
@@ -108,11 +132,15 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             }
 
             // Send the PDF file to browser
+            // The zoom the HTML was drawn at, read from the PDF: the zoom of the layout, lower when the browser window
+            // grew to the content; in the name of the file
+            string printZoom = htmlToPdfConverter.ConversionInfo.PrintZoom.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture);
+
             FileResult fileResult = new FileContentResult(outPdfBuffer, "application/pdf");
             if (!model.OpenInline)
             {
                 // send as attachment
-                fileResult.FileDownloadName = "HTML_to_PDF_Getting_Started.pdf";
+                fileResult.FileDownloadName = "HTML_to_PDF_Getting_Started_zoom_" + printZoom + ".pdf";
             }
 
             return fileResult;

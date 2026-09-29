@@ -1,4 +1,7 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-word-docx-to-pdf.htm
-// Documentation page: Convert Word DOCX to PDF
-
-byte[] outPdfBuffer = wordToPdfConverter.ConvertToPdf(wordBytes);
+wordToPdfConverter.PdfDocumentOptions.UsePageSettingsFromWord = false;
+wordToPdfConverter.PdfDocumentOptions.PdfPageSize = PdfPageSize.A4;
+wordToPdfConverter.PdfDocumentOptions.PdfPageOrientation = PdfPageOrientation.Landscape;
+wordToPdfConverter.PdfDocumentOptions.LeftMargin = 20;
+wordToPdfConverter.PdfDocumentOptions.RightMargin = 20;
+wordToPdfConverter.PdfDocumentOptions.TopMargin = 30;
+wordToPdfConverter.PdfDocumentOptions.BottomMargin = 30;

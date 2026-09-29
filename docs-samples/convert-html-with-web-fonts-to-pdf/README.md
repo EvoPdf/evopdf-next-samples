@@ -1,5 +1,9 @@
 # Convert HTML with Web Fonts to PDF
 
-Code samples from the documentation page [Convert HTML with Web Fonts to PDF](https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-html-with-web-fonts-to-pdf.htm). Each file is the sample as published; the surrounding explanation is on the page.
+EVO HTML to PDF Converter offers full support for web fonts. The web fonts are referenced in a HTML page using @font-face rules and they don't have to be installed on the computer were the converter runs. The converter will automatically download the fonts and use them in the generated PDF document.
 
-- [Sample1.cs](Sample1.cs)
+Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-html-with-web-fonts-to-pdf.htm
+
+| File | Section | Lines |
+| --- | --- | --- |
+| `Sample1.cs` | Code Sample - Convert HTML with Web Fonts to PDF | 51 |

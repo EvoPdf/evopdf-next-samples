@@ -1,4 +1,4 @@
-﻿@model EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF.HTML_to_PDF_Getting_Started_ViewModel
+@model EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF.HTML_to_PDF_Getting_Started_ViewModel
 
 @{
     ViewBag.Title = "Getting Started with EVO HTML to PDF Converter";
@@ -20,7 +20,96 @@
         }
     }
 
+    // Enables the viewer width and the zoom for the layouts that use them and selects the media type of the layout;
+    // the values the layout computes are left to the converter
+    function applyPageLayout(userChange) {
+        var viewerWidth = document.getElementById("htmlViewerWidthTextBox");
+        var zoom = document.getElementById("htmlViewerZoomTextBox");
+        var info = document.getElementById("pageLayoutInfo");
+        var layout = document.getElementById("pageLayoutDropDownList").value;
+        var fitBrowserWindow = layout == "FitBrowserWindowToPage";
+        var layoutAtPageWidth = layout == "LayoutAtPageWidth" || layout == "PrintLikeChrome";
+        var printLikeChrome = layout == "PrintLikeChrome";
+
+        if (fitBrowserWindow) {
+            setField(zoom, "auto");
+            setField(viewerWidth, null, 1024);
+        }
+        else if (layoutAtPageWidth) {
+            setField(zoom, null, 100);
+            setField(viewerWidth, "auto");
+        }
+        else {
+            setField(zoom, null, 100);
+            setField(viewerWidth, null, 1024);
+        }
+
+        if (fitBrowserWindow) {
+            info.innerHTML = "The browser window is scaled to the page width; the zoom is set at conversion";
+        }
+        else if (layoutAtPageWidth) {
+            info.innerHTML = printLikeChrome ? "The output of Save as PDF in Chrome: print media type, 1 cm margins, no backgrounds" : "The HTML is laid out at the page width, 1:1; the viewer width is set at conversion";
+        }
+        else {
+            info.innerHTML = "The page width follows the browser window width, one pixel is 0.75 points";
+        }
+
+        // PrintLikeChrome starts from the settings of the Chrome print dialog, all of them editable: 1 cm margins, no
+        // backgrounds, the print media type; the values before are restored when another layout is picked
+        var layoutList = document.getElementById("pageLayoutDropDownList");
+        var wasPrintLikeChrome = layoutList.dataset.printLikeChrome == "1";
+        var margins = ["leftMarginTextBox", "rightMarginTextBox", "topMarginTextBox", "bottomMarginTextBox"];
+        var backgrounds = document.getElementById("printBackgroundsCheckBox");
+        var printRadio = document.getElementById("printMediaTypeRadioButton");
+        var screenRadio = document.getElementById("screenMediaTypeRadioButton");
+        if (userChange && printLikeChrome && !wasPrintLikeChrome) {
+            var saved = [];
+            for (var i = 0; i < margins.length; i++) {
+                saved.push(document.getElementById(margins[i]).value);
+                document.getElementById(margins[i]).value = "28";
+            }
+            layoutList.dataset.savedMargins = saved.join(",");
+            layoutList.dataset.savedBackgrounds = backgrounds.checked ? "1" : "0";
+            layoutList.dataset.savedPrintMedia = printRadio.checked ? "1" : "0";
+            backgrounds.checked = false;
+            printRadio.checked = true;
+            screenRadio.checked = false;
+        }
+        else if (userChange && !printLikeChrome && wasPrintLikeChrome) {
+            var restored = (layoutList.dataset.savedMargins || "").split(",");
+            for (var i = 0; i < margins.length; i++)
+                document.getElementById(margins[i]).value = restored[i] || "0";
+            backgrounds.checked = layoutList.dataset.savedBackgrounds != "0";
+            printRadio.checked = layoutList.dataset.savedPrintMedia == "1";
+            screenRadio.checked = !printRadio.checked;
+        }
+        layoutList.dataset.printLikeChrome = printLikeChrome ? "1" : "0";
+    }
+
+    // The lazy image controls follow the JavaScript option
+    function applyJavaScript() {
+        var enabled = document.getElementById("javaScriptEnabledCheckBox").checked;
+        document.getElementById("loadLazyImagesCheckBox").disabled = !enabled;
+        document.getElementById("lazyImgesLoadModeDropDownList").disabled = !enabled;
+    }
+
+    // A field the layout decides is disabled and shows the value or "auto"; an editable one gets its own value back
+    function setField(field, shown, defaultValue) {
+        if (shown !== null) {
+            if (!field.disabled) field.dataset.userValue = field.value;
+            field.disabled = true;
+            field.value = shown == "auto" ? "" : shown;
+            field.placeholder = shown == "auto" ? "auto" : "";
+        }
+        else if (field.disabled) {
+            field.disabled = false;
+            field.placeholder = "";
+            field.value = field.dataset.userValue || defaultValue;
+        }
+    }
+
     TreeView_SelectNode("demoTreeView_Getting_Started");
+    window.addEventListener("load", function () { applyPageLayout(false); applyJavaScript(); });
 </script>
 
 <form asp-action="ConvertHtmlToPdf" asp-controller="HTML_to_PDF_Getting_Started" method="post">
@@ -31,7 +120,7 @@
                     <table style="width: 100%; height: 100%">
                         <tbody>
                             <tr>
-                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px; padding-top: 5px">
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 8px; padding-top: 5px">
                                     Getting Started with EVO HTML to PDF Converter
                                 </td>
                             </tr>
@@ -46,15 +135,12 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>
-                                                                    Convert an HTML page from a URL or an HTML string to PDF using the basic options
-                                                                    of the EVO HTML to PDF Converter.<br>
-                                                                    <br>
-                                                                    You can automatically generate PDF documents compliant with PDF/UA standards for accessibility
-                                                                    and PDF/A standards for archiving, or even a combination of both.
+                                                                    Convert an HTML page from a URL or an HTML string to PDF with the basic options of the converter,
+                                                                    including PDF/UA and PDF/A compliant output.
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -74,7 +160,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -128,7 +214,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -189,7 +275,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td style="height: 15px" colspan="2"></td>
+                                                                                <td style="height: 8px" colspan="2"></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="width: 20px"></td>
@@ -198,18 +284,26 @@
                                                                                         <tbody>
                                                                                             <tr>
                                                                                                 <td>
-                                                                                                    <input asp-for="LoadLazyImages" type="checkbox" id="loadLazyImagesCheckBox"><label for="loadLazyImagesCheckBox">Load Lazy Images</label>
+                                                                                                    <input asp-for="LoadLazyImages" type="checkbox" id="loadLazyImagesCheckBox"><label for="loadLazyImagesCheckBox">Lazy Images</label>
                                                                                                 </td>
                                                                                                 <td style="width: 20px"></td>
                                                                                                 <td>
                                                                                                     Load Mode:
                                                                                                 </td>
-                                                                                                <td style="width: 10px"></td>
+                                                                                                <td style="width: 5px"></td>
                                                                                                 <td>
                                                                                                     <select asp-for="LazyImagesLoadMode" id="lazyImgesLoadModeDropDownList">
-                                                                                                        <option value="Browser">Browser</option>
-                                                                                                        <option value="Custom">Custom</option>
+                                                                                                    <option value="Browser">Browser</option>
+                                                                                                    <option value="Custom">Custom</option>
                                                                                                     </select>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="JavaScriptEnabled" type="checkbox" id="javaScriptEnabledCheckBox" onchange="applyJavaScript()"><label for="javaScriptEnabledCheckBox">JavaScript</label>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="PrintBackgrounds" type="checkbox" id="printBackgroundsCheckBox"><label for="printBackgroundsCheckBox">Backgrounds</label>
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>
@@ -217,7 +311,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td style="height: 15px" colspan="2"></td>
+                                                                                <td style="height: 8px" colspan="2"></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="width: 20px"></td>
@@ -246,7 +340,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -255,6 +349,38 @@
                                                                             <tr>
                                                                                 <td style="font-weight: bold" colspan="2">
                                                                                     PDF Page Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>Layout:</td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="PageLayout" id="pageLayoutDropDownList" onchange="applyPageLayout(true)">
+                                                                                                        <option value="FitBrowserWindowToPage">FitBrowserWindowToPage</option>
+                                                                                                        <option value="LayoutAtPageWidth">LayoutAtPageWidth</option>
+                                                                                                        <option value="PrintLikeChrome">PrintLikeChrome</option>
+                                                                                                        <option value="PageWidthFromBrowserWindow">PageWidthFromBrowserWindow</option>
+                                                                                                    </select>
+                                                                                                    &nbsp;&nbsp;<span style="font-weight:normal;"><input asp-for="SinglePage" type="checkbox" id="singlePageCheckBox"><label for="singlePageCheckBox">Single page, as tall as the content</label></span>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td></td>
+                                                                                                <td></td>
+                                                                                                <td>
+                                                                                                    <span id="pageLayoutInfo" style="font-size: 11px; color: #555"></span>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -303,13 +429,11 @@
                                                                                                         <option value="Note">Note</option>
                                                                                                     </select>
                                                                                                 </td>
-                                                                                                <td>
-                                                                                                    <input asp-for="AutoResizePdfPageWidth" type="checkbox" id="autoResizePdfPageWidthCheckBox"><label for="autoResizePdfPageWidthCheckBox">Auto Width</label>
-                                                                                                </td>
                                                                                                 <td style="width: 20px"></td>
                                                                                                 <td>
                                                                                                     Orientation:
                                                                                                 </td>
+                                                                                                <td style="width: 5px"></td>
                                                                                                 <td>
                                                                                                     <select asp-for="PdfPageOrientation" id="pdfPageOrientationDropDownList">
                                                                                                         <option value="Portrait">Portrait</option>
@@ -323,7 +447,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td style="height: 15px" colspan="2"></td>
+                                                                                <td style="height: 8px" colspan="2"></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="width: 20px"></td>
@@ -392,7 +516,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -462,7 +586,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -515,7 +639,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>

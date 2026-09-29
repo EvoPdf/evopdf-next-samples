@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/select-conversion-triggering-mode.htm
-// Documentation page: Select Conversion Triggering Mode
-
 using System;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
@@ -40,9 +37,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the converter in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             // Create a HTML to PDF converter object with default settings
             HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
@@ -59,7 +55,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             else if (model.TriggeringMode == "Manual")
             {
                 // Set manual triggering mode
-                // The conversion starts when the evoPdfConverter.startConversion() is called 
+                // The conversion starts when the evoPdfConverter_startConversion() function is called 
                 // in JavaScript code of the converted HTML page
                 htmlToPdfConverter.TriggeringMode = TriggeringMode.Manual;
             }

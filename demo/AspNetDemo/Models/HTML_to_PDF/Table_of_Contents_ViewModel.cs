@@ -20,11 +20,11 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
 
         public int HtmlViewerWidth { get; set; } = 1024;
         public int? HtmlViewerHeight { get; set; } = 2048;
-        public int HtmlViewerZoom { get; set; } = 100;
+        public double HtmlViewerZoom { get; set; } = 100;
 
         public string PdfPageSize { get; set; } = "A4";
         public string PdfPageOrientation { get; set; } = "Portrait";
-        public bool AutoResizePdfPageWidth { get; set; } = true;
+        public string PageLayout { get; set; } = "FitBrowserWindowToPage";
 
         public int LeftMargin { get; set; } = 0;
         public int RightMargin { get; set; } = 0;

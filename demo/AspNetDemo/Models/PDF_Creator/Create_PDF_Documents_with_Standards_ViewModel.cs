@@ -1,4 +1,4 @@
-﻿using EvoPdf.Next;
+using EvoPdf.Next;
 
 namespace EvoPdf_Next_AspNetDemo.Models.PDF_Creator
 {

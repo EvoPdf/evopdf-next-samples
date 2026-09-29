@@ -1,9 +1,14 @@
 # Convert Markdown to PDF
 
-Code samples from the documentation page [Convert Markdown to PDF](https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-markdown-to-pdf.htm). Each file is the sample as published; the surrounding explanation is on the page.
+The Markdown to PDF Converter component allows you to convert Markdown documents to PDF.
 
-- [Sample1.cs](Sample1.cs)
-- [Sample2.cs](Sample2.cs)
-- [Sample3.cs](Sample3.cs)
-- [Sample4.cs](Sample4.cs)
-- [Sample5.cs](Sample5.cs)
+Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-markdown-to-pdf.htm
+
+| File | Section | Lines |
+| --- | --- | --- |
+| `Sample1.cs` | Create the Markdown to PDF Converter | 2 |
+| `Sample2.cs` | Configure the PDF Page Settings | 6 |
+| `Sample3.cs` | Apply a Custom Style Sheet | 6 |
+| `Sample4.cs` | Convert Markdown to PDF | 3 |
+| `Sample5.cs` | Convert Markdown to PDF | 2 |
+| `Sample6.cs` | Code Sample - Convert Markdown to PDF | 357 |

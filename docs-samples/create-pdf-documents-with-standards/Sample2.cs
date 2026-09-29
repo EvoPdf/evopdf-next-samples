@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-documents-with-standards.htm
-// Documentation page: Create PDF/UA and PDF/A Documents
-
 using System.IO;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Hosting;
@@ -38,8 +35,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             }
 
             // Set license key received after purchase to use the library in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             PdfDocumentCreateSettings pdfCreateSettings = new PdfDocumentCreateSettings()
             {

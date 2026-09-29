@@ -1,14 +1,11 @@
 # Convert RTF to PDF
 
-Code samples from the documentation page [Convert RTF to PDF](https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-rtf-to-pdf.htm). Each file is the sample as published; the surrounding explanation is on the page.
+The RTF to PDF Converter component allows you to convert RTF documents to PDF.
 
-- [Sample1.cs](Sample1.cs)
-- [Sample2.cs](Sample2.cs)
-- [Sample3.cs](Sample3.cs)
-- [Sample4.cs](Sample4.cs)
-- [Sample5.cs](Sample5.cs)
-- [Sample6.cs](Sample6.cs)
-- [Sample7.cs](Sample7.cs)
-- [Sample8.cs](Sample8.cs)
-- [Sample9.cs](Sample9.cs)
-- [Sample10.cs](Sample10.cs)
+Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-rtf-to-pdf.htm
+
+| File | Section | Lines |
+| --- | --- | --- |
+| `Sample1.cs` | Create the RTF to PDF Converter | 2 |
+| `Sample2.cs` | Configure the PDF Page Settings | 6 |
+| `Sample3.cs` | Code Sample - Convert RTF to PDF | 353 |

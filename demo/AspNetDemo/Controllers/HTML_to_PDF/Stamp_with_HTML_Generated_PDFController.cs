@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
@@ -36,9 +36,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the converter in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             // Create an HTML to PDF converter object with default settings
             HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
@@ -124,6 +123,9 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 // Set Min and Max content height used when the AutoSizeContentHeight property is true
                 stamp.MinContentHeight = model.StampMinContentHeight;
                 stamp.MaxContentHeight = model.StampMaxContentHeight;
+
+                // The zoom at which the stamp HTML is laid out and drawn, at the same stamp width
+                stamp.Zoom = model.StampZoom;
 
                 // Set stamp visibility in PDF for the first page, odd pages, and even pages
                 stamp.ShowInFirstPage = model.ShowStampInFirstPage;

@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-html-pages-with-authentication.htm
-// Documentation page: Convert HTML Pages with Authentication
-
 // Create the HTML to PDF converter
 HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
 // Set authentication options

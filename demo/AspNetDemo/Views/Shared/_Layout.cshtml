@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,15 +10,25 @@
     <link href="~/styles/webfonts.css" type="text/css" rel="stylesheet" asp-append-version="true">
     <link href="~/styles/styles.css" type="text/css" rel="stylesheet" asp-append-version="true">
     <script>
-        // Demo navigation tree. The demo pages call TreeView_ToggleNode(groupId)
-        // and TreeView_SelectNode(pageId); the current page is also detected from the URL.
-        function TreeView_ToggleNode(groupId) {
-            var group = document.getElementById(groupId);
-            if (!group) return;
-            var open = group.classList.toggle('open');
+        // Demo navigation tree. The demo pages call TreeView_SelectNode(pageId); the current page
+        // is also detected from the URL. Only one group stays open at a time.
+        function TreeView_SetGroupOpen(group, open) {
+            group.classList.toggle('open', open);
             var btn = group.querySelector('.tree-toggle');
             if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
         }
+
+        function TreeView_ToggleNode(groupId) {
+            var group = document.getElementById(groupId);
+            if (!group) return;
+            var open = !group.classList.contains('open');
+            var groups = document.querySelectorAll('#demoTreeView .tree-group');
+            for (var i = 0; i < groups.length; i++) {
+                if (groups[i] !== group) TreeView_SetGroupOpen(groups[i], false);
+            }
+            TreeView_SetGroupOpen(group, open);
+        }
+
         function TreeView_SelectNode(pageId) {
             var link = document.getElementById(pageId);
             if (!link) return;
@@ -26,13 +36,34 @@
             var group = link.closest('.tree-group');
             if (group && !group.classList.contains('open')) TreeView_ToggleNode(group.id);
         }
+
+        // The scroll position of the tree panel is kept across page loads, so the tree stays where
+        // the user left it when a page is opened
+        function TreeView_RestoreScroll() {
+            var panel = document.querySelector('.demo-nav .nav-scroll');
+            if (!panel) return;
+            var saved = null;
+            try { saved = sessionStorage.getItem('demoTreeViewScroll'); } catch (e) { }
+            if (saved !== null) panel.scrollTop = parseInt(saved, 10) || 0;
+            var current = panel.querySelector('a.current');
+            if (current) {
+                var panelRect = panel.getBoundingClientRect();
+                var linkRect = current.getBoundingClientRect();
+                if (saved === null || linkRect.top < panelRect.top || linkRect.bottom > panelRect.bottom)
+                    current.scrollIntoView({ block: 'nearest' });
+            }
+            panel.addEventListener('scroll', function () {
+                try { sessionStorage.setItem('demoTreeViewScroll', panel.scrollTop); } catch (e) { }
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             var page = location.pathname.split('/').pop().toLowerCase();
-            if (!page) return;
-            var links = document.querySelectorAll('#demoTreeView .tree-items a');
+            var links = document.querySelectorAll('#demoTreeView a[href]');
             for (var i = 0; i < links.length; i++) {
-                if (links[i].getAttribute('href').toLowerCase() === page) { TreeView_SelectNode(links[i].id); break; }
+                if (links[i].id && links[i].getAttribute('href').toLowerCase() === page) { TreeView_SelectNode(links[i].id); break; }
             }
+            TreeView_RestoreScroll();
         });
     </script>
 </head>
@@ -52,6 +83,14 @@
         <aside class="demo-nav">
             <div class="nav-scroll">
 <nav id="demoTreeView" class="tree" aria-label="Demo pages">
+  <div class="tree-group" id="demoTreeView_Library">
+    <button type="button" class="tree-toggle" aria-expanded="false" aria-controls="demoTreeView_LibraryNodes" onclick="TreeView_ToggleNode('demoTreeView_Library')"><span class="sr">Toggle</span></button>
+    <a class="tree-head" href="Settings" title="Library configuration">Library Configuration</a>
+    <ul class="tree-items" id="demoTreeView_LibraryNodes">
+      <li><a id="demoTreeView_Settings" href="Settings" title="License, rendering mode, parallel conversions, persistent renderer process settings">Global Settings</a></li>
+      <li><a id="demoTreeView_Renderer" href="Settings/Renderer" title="Status and control of the persistent renderer process">Persistent Renderer Process</a></li>
+    </ul>
+  </div>
   <div class="tree-group open" id="demoTreeView_HTML_To_PDF_Converter">
     <button type="button" class="tree-toggle" aria-expanded="true" aria-controls="demoTreeView_HTML_To_PDF_ConverterNodes" onclick="TreeView_ToggleNode('demoTreeView_HTML_To_PDF_Converter')"><span class="sr">Toggle</span></button>
     <a class="tree-head" href="HTML_to_PDF_Getting_Started" title="EVO HTML to PDF Converter">HTML to PDF Converter</a>
@@ -87,6 +126,7 @@
       <li><a id="demoTreeView_Add_HTTP_Headers_to_Request" href="Add_HTTP_Headers_to_Request" title="Add HTTP Headers to HTML Page Request">Add HTTP Headers to HTML Page Request</a></li>
       <li><a id="demoTreeView_Add_Cookies_to_Request" href="Add_Cookies_to_Request" title="Add Cookies to HTML Page Request">Add Cookies to HTML Page Request</a></li>
       <li><a id="demoTreeView_GET_and_POST_HTTP_Methods" href="GET_and_POST_HTTP_Methods" title="Access HTML Pages with GET and POST">Access HTML Pages with GET and POST</a></li>
+      <li><a id="demoTreeView_Benchmark" href="Benchmark" title="HTML to PDF Benchmark">HTML to PDF Benchmark</a></li>
     </ul>
   </div>
   <div class="tree-group" id="demoTreeView_HTML_to_Image">

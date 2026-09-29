@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-documents-with-link-annotations.htm
-// Documentation page: Create PDF Documents with Link Annotations
-
 PdfTextElement t = new PdfTextElement("Visit evopdf.com", linkFont) { X = 0, Y = crtYPos };
 var info = pdfDocument.AddText(t);
 var b = info.LastPageRectangle.Bounds;

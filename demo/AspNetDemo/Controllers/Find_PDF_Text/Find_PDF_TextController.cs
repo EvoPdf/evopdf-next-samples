@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
@@ -37,9 +37,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_to_Text
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the converter in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             // Create the PDF to Text converter instance with default options
             PdfToTextConverter pdfToTextConverter = new PdfToTextConverter();

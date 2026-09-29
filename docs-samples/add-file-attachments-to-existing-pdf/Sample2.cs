@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/add-file-attachments-to-existing-pdf.htm
-// Documentation page: Add File Attachments to Existing PDF
-
 byte[] csvBytes = Encoding.UTF8.GetBytes(BuildSampleCsv());
 var ann = PdfFileAttachmentAnnotation.FromBytes(
     csvBytes, "inventory.csv", pageNumber: 1, x: 30, y: 200);

@@ -1,5 +1,9 @@
 # Set Permissions and Password of the Generated PDF Document
 
-Code samples from the documentation page [Set Permissions and Password of the Generated PDF Document](https://www.evopdf.com/help/evopdf-next-dotnet/html/set-pdf-permissions-and-password.htm). Each file is the sample as published; the surrounding explanation is on the page.
+EVO HTML to PDF Converter allows you set the permissions of generated PDF document like printing and editing and to password protect the generated PDF document with separate user and owner passwords.
 
-- [Sample1.cs](Sample1.cs)
+Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/set-pdf-permissions-and-password.htm
+
+| File | Section | Lines |
+| --- | --- | --- |
+| `Sample1.cs` | Code Sample - Set Permissions and Password of the Generated PDF Document | 90 |

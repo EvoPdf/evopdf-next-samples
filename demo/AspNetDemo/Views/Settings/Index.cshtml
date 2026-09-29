@@ -1,0 +1,107 @@
+@model EvoPdf_Next_AspNetDemo.Models.SettingsViewModel
+
+@{
+    ViewBag.Title = "Global Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_SelectNode("demoTreeView_Settings");
+    function Settings_ModeChanged(mode) {
+        document.getElementById("persistentPanel").style.display = mode === "PersistentProcess" ? "" : "none";
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        Settings_ModeChanged(document.getElementById("HtmlRendererMode").value);
+    });
+</script>
+
+<div class="card settings">
+    <h1>Global Settings</h1>
+    <p class="lead">
+        The settings of the GlobalSettings class of the library, applied to every conversion started after they are saved and kept
+        for the lifetime of the application process. The state of the persistent renderer process is on its own page.
+    </p>
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="notice ok">@Model.Message</div>
+    }
+    @if (!string.IsNullOrEmpty(Model.Error))
+    {
+        <div class="notice error">@Model.Error</div>
+    }
+
+    <form asp-action="Save" asp-controller="Settings" method="post">
+        <h2>License</h2>
+        <div class="field">
+            <label for="LicenseKey">License key</label>
+            <input asp-for="LicenseKey" type="text" class="wide" placeholder="Leave empty for demo mode" />
+            <p class="help">Applied before each conversion. Empty runs the library in demo mode, with the stamp on the output.</p>
+        </div>
+
+        <h2>HTML rendering engine</h2>
+        <div class="grid2">
+            <div class="field">
+                <label for="HtmlRendererMode">Rendering mode</label>
+                <select asp-for="HtmlRendererMode" onchange="Settings_ModeChanged(this.value)">
+                    <option value="PersistentProcess">Persistent process (default)</option>
+                    <option value="ProcessPerConversion">Process per conversion</option>
+                </select>
+                <p class="help">
+                    Persistent: one renderer process kept for the application, each conversion in its own browser inside it.
+                    Per conversion: a process started and stopped for every conversion, nothing resident. Switching away from
+                    the persistent process leaves the running one to the idle timeout or to Stop.
+                </p>
+            </div>
+            <div class="field">
+                <label for="MaxParallelConversions">Maximum parallel conversions</label>
+                <input asp-for="MaxParallelConversions" type="number" min="1" max="64" />
+                <p class="help">
+                    Conversions above it wait for a slot. Each one in flight needs about 150-200 MB. The default, the number of
+                    logical processors, gives the highest throughput. The physical core count gives the lowest latency. Can be set only before the first conversion of the application.
+                </p>
+            </div>
+        </div>
+
+        <div id="persistentPanel">
+        <h2>Persistent renderer process</h2>
+        <div class="grid2">
+            <div class="field">
+                <label for="StartTimeoutSeconds">Start timeout (seconds)</label>
+                <input asp-for="StartTimeoutSeconds" type="number" min="5" />
+                <p class="help">How long a conversion waits for the process to start. The first start on a machine reads the engine from disk and can take a minute on a slow disk. Applies to the next start.</p>
+            </div>
+            <div class="field">
+                <label for="IdleTimeoutSeconds">Idle timeout (seconds)</label>
+                <input asp-for="IdleTimeoutSeconds" type="number" min="0" />
+                <p class="help">Stops the process after this long without conversions. 0 keeps it running. Applies immediately.</p>
+            </div>
+            <div class="field">
+                <label for="MaxConversions">Recycle after conversions</label>
+                <input asp-for="MaxConversions" type="number" min="0" />
+                <p class="help">A new process after this many conversions. The old one finishes its jobs. 0 disables. Applies immediately.</p>
+            </div>
+            <div class="field">
+                <label for="MaxLifetimeMinutes">Recycle after minutes</label>
+                <input asp-for="MaxLifetimeMinutes" type="number" min="0" />
+                <p class="help">Same, by the age of the process. 0 disables. Applies immediately.</p>
+            </div>
+        </div>
+
+        <h3>Process settings</h3>
+        <p class="help">Given to the renderer process at start. A change replaces the running process at the next conversion.</p>
+        <div class="grid2 checks">
+            <label><input asp-for="GpuRenderingEnabled" type="checkbox" /> GPU rendering</label>
+            <label><input asp-for="GpuCompositingEnabled" type="checkbox" /> GPU compositing</label>
+            <label><input asp-for="EnableSoftwareGpuRendering" type="checkbox" /> Software GPU rendering</label>
+            <label><input asp-for="DisableWebSecurity" type="checkbox" /> Disable web security</label>
+            <label><input asp-for="AllowInsecureContent" type="checkbox" /> Allow insecure content</label>
+            <label><input asp-for="IgnoreCertificateErrors" type="checkbox" /> Ignore certificate errors</label>
+        </div>
+        </div>
+
+        <div class="actions">
+            <input type="submit" value="Save Configuration" />
+        </div>
+    </form>
+</div>

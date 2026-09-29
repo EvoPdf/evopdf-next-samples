@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <!-- macOS (Apple Silicon) -->
-    <PackageReference Include="EvoPdf.Next.MacOS" Version="14.36.0" />
+    <PackageReference Include="EvoPdf.Next.MacOS" Version="14.81.0" />
   </ItemGroup>
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />

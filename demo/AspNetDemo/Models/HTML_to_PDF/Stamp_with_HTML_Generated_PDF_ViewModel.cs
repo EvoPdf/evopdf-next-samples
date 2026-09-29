@@ -28,6 +28,7 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public int StampWidth { get; set; } = 500;
         public int? StampHeight { get; set; } = 500;
         public bool FitStampHeight { get; set; } = true;
+        public double StampZoom { get; set; } = 100;
 
         public int StampXPosition { get; set; } = 0;
         public int StampYPosition { get; set; } = 0;

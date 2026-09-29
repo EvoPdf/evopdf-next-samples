@@ -1,6 +1,3 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-documents-with-standards.htm
-// Documentation page: Create PDF/UA and PDF/A Documents
-
 PdfDocumentCreateSettings settings = new PdfDocumentCreateSettings
 {
     PageSize = PdfPageSize.A4,

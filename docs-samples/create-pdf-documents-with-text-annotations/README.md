@@ -1,5 +1,10 @@
 # Create PDF Documents with Text Annotations
 
-Code samples from the documentation page [Create PDF Documents with Text Annotations](https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-documents-with-text-annotations.htm). Each file is the sample as published; the surrounding explanation is on the page.
+Text annotations (also known as sticky notes) are small markers placed on a PDF page. When clicked they open a popup containing a text comment. They are the standard mechanism for review feedback, in-document comments and collaborative annotations.
 
-- [Sample1.cs](Sample1.cs)
+Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-documents-with-text-annotations.htm
+
+| File | Section | Lines |
+| --- | --- | --- |
+| `Sample1.cs` | Author Identification and Initial Popup State | 7 |
+| `Sample2.cs` | Code Sample - Create PDF Documents with Sticky Note Text Annotations | 268 |

@@ -1,4 +1,7 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-excel-xlsx-to-pdf.htm
-// Documentation page: Convert Excel XLSX to PDF
-
-byte[] outPdfBuffer = excelToPdfConverter.ConvertToPdf(excelFilePath);
+excelToPdfConverter.PdfDocumentOptions.UsePageSettingsFromExcel = false;
+excelToPdfConverter.PdfDocumentOptions.PdfPageSize = PdfPageSize.A4;
+excelToPdfConverter.PdfDocumentOptions.PdfPageOrientation = PdfPageOrientation.Landscape;
+excelToPdfConverter.PdfDocumentOptions.LeftMargin = 20;
+excelToPdfConverter.PdfDocumentOptions.RightMargin = 20;
+excelToPdfConverter.PdfDocumentOptions.TopMargin = 30;
+excelToPdfConverter.PdfDocumentOptions.BottomMargin = 30;

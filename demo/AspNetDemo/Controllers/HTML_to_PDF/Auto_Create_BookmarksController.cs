@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Hosting;
@@ -36,9 +36,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the converter in licensed mode
-            // Leave it not set to use the library in demo mode
-            Licensing.LicenseKey = "3FJDU0ZDU0NTQkddQ1NAQl1CQV1KSkpKU0M=";
+            // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
+            // Licensing.LicenseKey = "your-license-key";
 
             // Create a HTML to PDF converter object with default settings
             HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
@@ -48,8 +47,6 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             {
                 // Enable the creation of a hierarchy of bookmarks from H1 to H6 tags
                 htmlToPdfConverter.PdfDocumentOptions.GenerateDocumentOutline = model.GenerateDocumentOutline;
-
-                htmlToPdfConverter.ConversionDelay = 2;
 
                 // Optionally, enable the outline mode to utilize browser capabilities. By default, a custom algorithm is used
                 htmlToPdfConverter.PdfDocumentOptions.UseBrowserOutlineMode = model.UseBrowserOutlineMode;

@@ -1,5 +1,9 @@
 # Set PDF Viewer Preferences for the Generated PDF Document
 
-Code samples from the documentation page [Set PDF Viewer Preferences for the Generated PDF Document](https://www.evopdf.com/help/evopdf-next-dotnet/html/set-pdf-viewer-preferences.htm). Each file is the sample as published; the surrounding explanation is on the page.
+EVO HTML to PDF Converter allows you to set various PDF viewer preferences to be used when the generated PDF document is displayed in a PDF viewer. You can hide the viewer menu and toolbar, you can instruct the viewer to initially display the bookmarks, thumbnails or attachments and you can select the page layout to one or two columns.
 
-- [Sample1.cs](Sample1.cs)
+Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/set-pdf-viewer-preferences.htm
+
+| File | Section | Lines |
+| --- | --- | --- |
+| `Sample1.cs` | Code Sample - Set PDF Viewer Preferences for the Generated PDF Document | 99 |

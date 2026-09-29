@@ -1,5 +1,9 @@
 # Add Cookies to HTML Page Request
 
-Code samples from the documentation page [Add Cookies to HTML Page Request](https://www.evopdf.com/help/evopdf-next-dotnet/html/add-cookies-to-html-page-request.htm). Each file is the sample as published; the surrounding explanation is on the page.
+EVO HTML to PDF Converter allows you to add HTTP cookies when you request the HTML page. The HTTP cookies to be used when the HTML page to convert is requested can be added to `HtmlToPdfConverter.HttpRequestCookies` collection.
 
-- [Sample1.cs](Sample1.cs)
+Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/add-cookies-to-html-page-request.htm
+
+| File | Section | Lines |
+| --- | --- | --- |
+| `Sample1.cs` | Code Sample - Add Cookies to HTML Page Request | 62 |

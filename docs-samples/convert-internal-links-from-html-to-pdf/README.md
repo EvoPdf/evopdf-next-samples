@@ -1,5 +1,9 @@
 # Convert Internal Links from HTML to PDF
 
-Code samples from the documentation page [Convert Internal Links from HTML to PDF](https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-internal-links-from-html-to-pdf.htm). Each file is the sample as published; the surrounding explanation is on the page.
+EVO HTML to PDF Converter automatically converts all the internal links from HTML to internal links in PDF.
 
-- [Sample1.cs](Sample1.cs)
+Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-internal-links-from-html-to-pdf.htm
+
+| File | Section | Lines |
+| --- | --- | --- |
+| `Sample1.cs` | Code Sample - Convert Internal Links from HTML to PDF | 45 |

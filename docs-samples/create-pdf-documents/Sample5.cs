@@ -1,4 +1,4 @@
-// Source: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-documents.htm
-// Documentation page: Create PDF Documents
+string outputPath = Path.Combine(outputDir, "GeneratedDocument.pdf");
 
-byte[] pdfBytes = await pdfDocument.SaveAsync();
+// Save the document to disk
+pdfDocument.SaveToFile(outputPath);

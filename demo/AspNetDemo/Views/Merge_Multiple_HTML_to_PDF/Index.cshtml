@@ -1,4 +1,4 @@
-﻿@model EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF.Merge_Multiple_HTML_to_PDF_ViewModel
+@model EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF.Merge_Multiple_HTML_to_PDF_ViewModel
 @{
     ViewBag.Title = "Merge Multiple HTML Pages to a Single PDF";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -56,7 +56,57 @@
         bit256RadioButton.checked = false;
     }
 
+    // Enables the viewer width and the zoom for the layouts that use them and selects the media type of the layout;
+    // the values the layout computes are left to the converter
+    function applyPageLayout() {
+        var viewerWidth = document.getElementById("htmlViewerWidthTextBox");
+        var zoom = document.getElementById("htmlViewerZoomTextBox");
+        var info = document.getElementById("pageLayoutInfo");
+        var layout = document.getElementById("pageLayoutDropDownList").value;
+        var fitBrowserWindow = layout == "FitBrowserWindowToPage";
+        var layoutAtPageWidth = layout == "LayoutAtPageWidth";
+
+        if (fitBrowserWindow) {
+            setField(zoom, "auto");
+            setField(viewerWidth, null, 1024);
+        }
+        else if (layoutAtPageWidth) {
+            setField(zoom, "100");
+            setField(viewerWidth, "auto");
+        }
+        else {
+            setField(zoom, null, 100);
+            setField(viewerWidth, null, 1024);
+        }
+
+        if (fitBrowserWindow) {
+            info.innerHTML = "The browser window is scaled to the page width; the zoom is set at conversion";
+        }
+        else if (layoutAtPageWidth) {
+            info.innerHTML = "The HTML is laid out at the page width, 1:1; the viewer width is set at conversion";
+        }
+        else {
+            info.innerHTML = "The page width follows the browser window width, one pixel is 0.75 points";
+        }
+    }
+
+    // A field the layout decides is disabled and shows the value or "auto"; an editable one gets its own value back
+    function setField(field, shown, defaultValue) {
+        if (shown !== null) {
+            if (!field.disabled) field.dataset.userValue = field.value;
+            field.disabled = true;
+            field.value = shown == "auto" ? "" : shown;
+            field.placeholder = shown == "auto" ? "auto" : "";
+        }
+        else if (field.disabled) {
+            field.disabled = false;
+            field.placeholder = "";
+            field.value = field.dataset.userValue || defaultValue;
+        }
+    }
+
     TreeView_SelectNode("demoTreeView_Merge_Multiple_HTML");
+    window.addEventListener("load", applyPageLayout);
 </script>
 
 <form asp-action="MergePdf" asp-controller="Merge_Multiple_HTML_to_PDF" method="post">
@@ -67,7 +117,7 @@
                     <table style="width: 100%; height: 100%">
                         <tbody>
                             <tr>
-                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px; padding-top: 5px">
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 8px; padding-top: 5px">
                                     Merge Multiple HTML Pages into a Single PDF
                                 </td>
                             </tr>
@@ -85,7 +135,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -106,7 +156,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -127,7 +177,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -192,7 +242,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -203,6 +253,36 @@
                                                                                     PDF Document Options
                                                                                 </td>
                                                                             </tr>                                                                            
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+<tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>Layout:</td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="PageLayout" id="pageLayoutDropDownList" onchange="applyPageLayout()">
+                                                                                                        <option value="FitBrowserWindowToPage">FitBrowserWindowToPage</option>
+                                                                                                        <option value="LayoutAtPageWidth">LayoutAtPageWidth</option>
+                                                                                                        <option value="PageWidthFromBrowserWindow">PageWidthFromBrowserWindow</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td></td>
+                                                                                                <td></td>
+                                                                                                <td>
+                                                                                                    <span id="pageLayoutInfo" style="font-size: 11px; color: #555"></span>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
                                                                             <tr>
                                                                                 <td style="height: 10px" colspan="2"></td>
                                                                             </tr>
@@ -248,14 +328,11 @@
                                                                                                         <option value="Letter11x17">Letter11x17</option>
                                                                                                         <option value="Note">Note</option>
                                                                                                     </select>
-                                                                                                </td>
-                                                                                                <td>
-                                                                                                    <input asp-for="AutoResizePdfPageWidth" type="checkbox" id="autoResizePdfPageWidthCheckBox"><label for="autoResizePdfPageWidthCheckBox">Auto Width</label>
-                                                                                                </td>
-                                                                                                <td style="width: 20px"></td>
+                                                                                                </td>                                                                                                <td style="width: 20px"></td>
                                                                                                 <td>
                                                                                                     Orientation:
                                                                                                 </td>
+                                                                                                <td style="width: 5px"></td>
                                                                                                 <td>
                                                                                                     <select asp-for="PdfPageOrientation" id="pdfPageOrientationDropDownList">
                                                                                                         <option value="Portrait">Portrait</option>
@@ -268,7 +345,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td style="height: 15px" colspan="2"></td>
+                                                                                <td style="height: 8px" colspan="2"></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="width: 20px"></td>
@@ -333,7 +410,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td style="height: 15px" colspan="2"></td>
+                                                                                <td style="height: 8px" colspan="2"></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="width: 20px"></td>
@@ -358,7 +435,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -411,7 +488,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -423,7 +500,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td style="height: 15px" colspan="2"></td>
+                                                                                <td style="height: 8px" colspan="2"></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="width: 20px"></td>
@@ -452,7 +529,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td style="height: 15px" colspan="2"></td>
+                                                                                <td style="height: 8px" colspan="2"></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="width: 20px"></td>
@@ -473,7 +550,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td style="height: 15px" colspan="2"></td>
+                                                                                <td style="height: 8px" colspan="2"></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="width: 20px"></td>
@@ -494,7 +571,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td style="height: 15px" colspan="2"></td>
+                                                                                <td style="height: 8px" colspan="2"></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="width: 20px"></td>
@@ -574,10 +651,10 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="height: 20px"></td>
+                                                                <td style="height: 12px"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
