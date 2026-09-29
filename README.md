@@ -61,7 +61,7 @@ Every sample runs without arguments: the input documents (`Files/`: the Word, Ex
 ## Running the demo applications
 
 - **ASP.NET Core demo**: run it from Visual Studio (open the platform solution, set `EvoPdf_Next_AspNetDemo_<Platform>` as startup project, F5) or from the CLI in its project folder (`dotnet run --project EvoPdf_Next_AspNetDemo_<Platform>.csproj`), or publish it (`dotnet publish -c Release -o publish`) and run from the `publish` folder. Starting the executable from `bin` does not work: a build does not copy `wwwroot` there, so styles, images and the demo input files are not found. Details in [`demo/README.md`](demo/README.md).
-- **Console demo**: runs straight from the build output; `EvoPdf_Next_ConsoleDemo_<Platform> https://www.evopdf.com output.pdf`.
+- **Console demo**: runs straight from the build output; `EvoPdf_Next_ConsoleDemo_<Platform> /outFileName:output.pdf https://www.evopdf.com`. Run it without arguments to see all the options.
 - **Quickstarts**: `Quickstarts.exe <SampleName> [input]` from the build output (`quickstarts/bin/<Platform>/...`), or `dotnet run --project Quickstarts_<Platform>.csproj -- <SampleName>`; the input documents ship with the build.
 
 ## Solutions, one per platform

@@ -5,8 +5,10 @@ internal class HtmlToPdfDemo
     static string urlToConvert = null;
     static string outFileName = "output.pdf";
 
+    static string pageLayout = "FitBrowserWindowToPage";
     static int htmlViewerWidth = 1024;
-    static bool autoResizePdfPageWidth = true;
+    static double zoom = 100;
+    static bool singlePage = false;
     static PdfPageSize pageSize = PdfPageSize.A4;
     static PdfPageOrientation pageOrientation = PdfPageOrientation.Portrait;
     static int conversionDelaySeconds = 0;
@@ -33,21 +35,36 @@ internal class HtmlToPdfDemo
             // The default value is 0
             htmlToPdfConverter.ConversionDelay = conversionDelaySeconds;
 
-            // Set HTML Viewer width in pixels which is the equivalent in converter of the browser window width
-            htmlToPdfConverter.HtmlViewerWidth = htmlViewerWidth;
+            // Select the page layout. The page size can be a predefined size like A4 or a custom size in points
+            switch (pageLayout)
+            {
+                case "LayoutAtPageWidth":
+                    // Fixed page size: the HTML is laid out at the content width of the page, one CSS pixel
+                    // being 0.75 points at zoom 100. For HTML templates designed for the paper size
+                    htmlToPdfConverter.LayoutAtPageWidth(pageSize, pageOrientation, zoom: zoom, singlePage: singlePage);
+                    break;
 
-            // Automatically resize the PDF page width to match the HtmlViewerWidth property
-            // The default value is true
-            htmlToPdfConverter.PdfDocumentOptions.AutoResizePdfPageWidth = autoResizePdfPageWidth;
+                case "PrintLikeChrome":
+                    // The output of the Save as PDF command of Chrome: the print media type, 1 cm margins,
+                    // no background colors or images, drawn at the zoom
+                    htmlToPdfConverter.PrintLikeChrome(pageSize, pageOrientation, zoom: zoom, singlePage: singlePage);
+                    break;
 
-            // Set the PDF page size, which can be a predefined size like A4 or a custom size in points
-            // The default is A4
-            // Important Note: The PDF page width is automatically determined from the HTML viewer width
-            // when the AutoResizePdfPageWidth property is true
-            htmlToPdfConverter.PdfDocumentOptions.PdfPageSize = pageSize;
+                case "PageWidthFromBrowserWindow":
+                    // The PDF page width follows the browser window width and the HTML is drawn at the zoom,
+                    // 1:1 at 100; the page height comes from the page size and the orientation
+                    htmlToPdfConverter.PageWidthFromBrowserWindow(htmlViewerWidth, singlePage: singlePage, zoom: zoom);
+                    htmlToPdfConverter.PdfDocumentOptions.PdfPageSize = pageSize;
+                    htmlToPdfConverter.PdfDocumentOptions.PdfPageOrientation = pageOrientation;
+                    break;
 
-            // Set the PDF page orientation to Portrait or Landscape. The default is Portrait
-            htmlToPdfConverter.PdfDocumentOptions.PdfPageOrientation = pageOrientation;
+                default:
+                    // Fixed page size: the HTML is laid out as in a browser window of the given width and the result
+                    // is scaled to the content width of the page, so a responsive site keeps its desktop layout.
+                    // This is the default layout of the converter, with an A4 page and a 1024 pixel window
+                    htmlToPdfConverter.FitBrowserWindowToPage(pageSize, pageOrientation, windowWidth: htmlViewerWidth, singlePage: singlePage);
+                    break;
+            }
 
             // Convert the HTML page given by an URL to a PDF document in a memory buffer
             byte[] pdfBytes = htmlToPdfConverter.ConvertUrl(urlToConvert);
@@ -72,8 +89,10 @@ internal class HtmlToPdfDemo
         const string pageSizePrefix = "/pageSize:";
         const string orientationPrefix = "/orientation:";
         const string delayPrefix = "/delay:";
+        const string layoutPrefix = "/layout:";
         const string htmlViewerWidthPrefix = "/htmlViewerWidth:";
-        const string autoResizePdfPageWidthPrefix = "/autoResizePdfPageWidth:";
+        const string zoomPrefix = "/zoom:";
+        const string singlePagePrefix = "/singlePage:";
 
         urlToConvert = null;
 
@@ -121,12 +140,32 @@ internal class HtmlToPdfDemo
                     return false;
                 }
             }
-            else if (argument.StartsWith(autoResizePdfPageWidthPrefix, StringComparison.OrdinalIgnoreCase))
+            else if (argument.StartsWith(layoutPrefix, StringComparison.OrdinalIgnoreCase))
             {
-                string autoResizeText = RemoveQuotes(argument.Substring(autoResizePdfPageWidthPrefix.Length));
-                if (!bool.TryParse(autoResizeText, out autoResizePdfPageWidth))
+                string layoutText = RemoveQuotes(argument.Substring(layoutPrefix.Length));
+                string[] layouts = { "FitBrowserWindowToPage", "LayoutAtPageWidth", "PrintLikeChrome", "PageWidthFromBrowserWindow" };
+                pageLayout = Array.Find(layouts, l => string.Equals(l, layoutText, StringComparison.OrdinalIgnoreCase));
+                if (pageLayout == null)
                 {
-                    Console.WriteLine("Invalid autoResizePdfPageWidth (must be true or false): " + autoResizeText);
+                    Console.WriteLine("Invalid layout: " + layoutText);
+                    return false;
+                }
+            }
+            else if (argument.StartsWith(zoomPrefix, StringComparison.OrdinalIgnoreCase))
+            {
+                string zoomText = RemoveQuotes(argument.Substring(zoomPrefix.Length));
+                if (!double.TryParse(zoomText, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out zoom) || zoom <= 0)
+                {
+                    Console.WriteLine("Invalid zoom (must be a positive number): " + zoomText);
+                    return false;
+                }
+            }
+            else if (argument.StartsWith(singlePagePrefix, StringComparison.OrdinalIgnoreCase))
+            {
+                string singlePageText = RemoveQuotes(argument.Substring(singlePagePrefix.Length));
+                if (!bool.TryParse(singlePageText, out singlePage))
+                {
+                    Console.WriteLine("Invalid singlePage (must be true or false): " + singlePageText);
                     return false;
                 }
             }
@@ -216,14 +255,20 @@ internal class HtmlToPdfDemo
         Console.WriteLine("  /pageSize:<A4|A3|Letter|Legal>         PDF page size (default: A4)");
         Console.WriteLine("  /orientation:<Portrait|Landscape>      PDF page orientation (default: Portrait)");
         Console.WriteLine("  /delay:<seconds>                       Conversion delay in seconds (default: 0)");
-        Console.WriteLine("  /htmlViewerWidth:<pixels>              HTML viewer width in pixels (default: 1024)");
-        Console.WriteLine("  /autoResizePdfPageWidth:<true|false>   Automatically resize PDF page width (default: true)");
+        Console.WriteLine("  /layout:<name>                         Page layout (default: FitBrowserWindowToPage):");
+        Console.WriteLine("                                           FitBrowserWindowToPage, LayoutAtPageWidth,");
+        Console.WriteLine("                                           PrintLikeChrome, PageWidthFromBrowserWindow");
+        Console.WriteLine("  /htmlViewerWidth:<pixels>              Browser window width in pixels, used by FitBrowserWindowToPage");
+        Console.WriteLine("                                           and PageWidthFromBrowserWindow (default: 1024)");
+        Console.WriteLine("  /zoom:<percent>                        Zoom of the HTML content, used by LayoutAtPageWidth,");
+        Console.WriteLine("                                           PrintLikeChrome and PageWidthFromBrowserWindow (default: 100)");
+        Console.WriteLine("  /singlePage:<true|false>               All the content on one page (default: false)");
         Console.WriteLine();
 
         Console.WriteLine("Examples:");
         Console.WriteLine("  dotnet <ConsoleAppName>.dll /outFileName:out.pdf /delay:2 \"https://www.evopdf.com\"");
         Console.WriteLine("  <ConsoleAppNameExe> /outFileName:out.pdf /delay:2 \"https://www.evopdf.com\"");
-        Console.WriteLine("  dotnet <ConsoleAppName>.dll /outFileName:out.pdf /pageSize:A4 /orientation:Landscape /delay:2 /autoResizePdfPageWidth:false \"https://www.evopdf.com\"");
+        Console.WriteLine("  dotnet <ConsoleAppName>.dll /outFileName:out.pdf /pageSize:A4 /orientation:Landscape /delay:2 /layout:LayoutAtPageWidth \"https://www.evopdf.com\"");
         Console.WriteLine();
     }
 }
