@@ -23,7 +23,7 @@
 | [`docs-samples/`](docs-samples) | The 260 code samples of 73 documentation topics, verbatim, each file in its own language (C#, shell, Dockerfile, HTML, XML) and linked to its topic | Copy into your project; read the topic for the explanation |
 | [`demo/`](demo) | The demo applications from the official download package: the ASP.NET Core demo that runs at [evopdf.com](https://www.evopdf.com/evopdf-next-aspnet-demo/) with the source of every demo page, plus the console demo; one source tree each, a project per platform | open the platform solution and run |
 
-All samples use the current API (`EvoPdf.Next` namespace, version 14.81) and read the license key from the `EVOPDF_LICENSE_KEY` environment variable; without it they run in demo mode (watermarked output).
+All samples use the current API (`EvoPdf.Next` namespace, version 14.84) and read the license key from the `EVOPDF_LICENSE_KEY` environment variable; without it they run in demo mode (watermarked output).
 
 ## Quickstarts
 

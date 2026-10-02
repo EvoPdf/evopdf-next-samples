@@ -40,6 +40,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers
                 p.GpuRenderingEnabled = model.GpuRenderingEnabled;
                 p.GpuCompositingEnabled = model.GpuCompositingEnabled;
                 p.EnableSoftwareGpuRendering = model.EnableSoftwareGpuRendering;
+                p.DisableSiteIsolation = model.DisableSiteIsolation;
                 p.DisableWebSecurity = model.DisableWebSecurity;
                 p.AllowInsecureContent = model.AllowInsecureContent;
                 p.IgnoreCertificateErrors = model.IgnoreCertificateErrors;

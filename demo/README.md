@@ -1,6 +1,6 @@
 # EvoPdf Next demo applications
 
-The .NET 10 demo applications from the official download package (`EvoPdf-Next-v14.81.0.zip`): one source tree each, with a project file per target platform in the same folder (each project keeps its own `obj`/`bin`, so they build side by side).
+The .NET 10 demo applications from the official download package (`EvoPdf-Next-v14.84.0.zip`): one source tree each, with a project file per target platform in the same folder (each project keeps its own `obj`/`bin`, so they build side by side).
 
 | Project suffix | Package | Runs on |
 |---|---|---|

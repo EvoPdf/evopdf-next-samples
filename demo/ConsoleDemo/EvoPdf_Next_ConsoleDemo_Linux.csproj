@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <!-- Linux x64 -->
-    <PackageReference Include="EvoPdf.Next.Linux" Version="14.81.0" />
+    <PackageReference Include="EvoPdf.Next.Linux" Version="14.84.0" />
   </ItemGroup>
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
