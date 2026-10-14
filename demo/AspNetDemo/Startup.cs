@@ -24,14 +24,8 @@ namespace EvoPdf_Next_AspNetDemo
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            // The errors of the conversions are shown with their message only
+            app.UseExceptionHandler("/Error");
 
             app.UseStaticFiles();
 

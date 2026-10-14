@@ -22,7 +22,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_Image
             // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
             // Licensing.LicenseKey = "your-license-key";
 
-            // Create a HTML to Image converter object with default settings    
+            // Create a HTML to Image converter object with default settings
             HtmlToImageConverter htmlToImageConverter = new HtmlToImageConverter();
 
             bool enableElementsSelector = model.EnableElementsSelector;

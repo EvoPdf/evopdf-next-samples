@@ -289,7 +289,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 {
                     string headerUrl = model.HeaderUrlTextBox;
 
-                    pdfHeaderTemplate = pdfMerge.AddHtmlTemplate(0, 0, headerSize.Width, headerSize.Height, 
+                    pdfHeaderTemplate = pdfMerge.AddHtmlTemplate(0, 0, headerSize.Width, headerSize.Height,
                             PdfTemplateHorizontalAlign.Left, PdfTemplateVerticalAlign.Top, headerUrl);
                 }
                 else
@@ -297,7 +297,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                     string headerHtml = model.HeaderHtmlTextBox;
                     string headerHtmlBaseUrl = model.HeaderHtmlBaseUrlTextBox;
 
-                    pdfHeaderTemplate = pdfMerge.AddHtmlTemplate(0, 0, headerSize.Width, headerSize.Height, 
+                    pdfHeaderTemplate = pdfMerge.AddHtmlTemplate(0, 0, headerSize.Width, headerSize.Height,
                             PdfTemplateHorizontalAlign.Left, PdfTemplateVerticalAlign.Top, headerHtml, headerHtmlBaseUrl);
                 }
 
@@ -346,7 +346,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 if (footerHtmlFromUrl)
                 {
                     string footerUrl = model.FooterUrlTextBox;
-                    pdfFooterTemplate = pdfMerge.AddHtmlTemplate(0, 0, footerSize.Width, footerSize.Height, 
+                    pdfFooterTemplate = pdfMerge.AddHtmlTemplate(0, 0, footerSize.Width, footerSize.Height,
                             PdfTemplateHorizontalAlign.Left, PdfTemplateVerticalAlign.Bottom, footerUrl);
                 }
                 else
@@ -354,7 +354,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                     string footerHtml = model.FooterHtmlTextBox;
                     string footerHtmlBaseUrl = model.FooterHtmlBaseUrlTextBox;
 
-                    pdfFooterTemplate = pdfMerge.AddHtmlTemplate(0, 0, footerSize.Width, footerSize.Height, 
+                    pdfFooterTemplate = pdfMerge.AddHtmlTemplate(0, 0, footerSize.Width, footerSize.Height,
                             PdfTemplateHorizontalAlign.Left, PdfTemplateVerticalAlign.Bottom, footerHtml, footerHtmlBaseUrl);
                 }
 

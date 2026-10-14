@@ -1,22 +1,14 @@
 HtmlToPdfConverter converter = new HtmlToPdfConverter();
 
-// Margins in points; a @page rule in the template overrides them
-converter.PdfDocumentOptions.LeftMargin = 36;
-converter.PdfDocumentOptions.RightMargin = 36;
-converter.PdfDocumentOptions.TopMargin = 36;
-converter.PdfDocumentOptions.BottomMargin = 36;
+// A4 portrait page, the 1024 pixel browser window scaled to it
+converter.FitBrowserWindowToPage(PdfPageSize.A4);
 
-// The exact page size, the template laid out at the page width with its print style sheet;
-// preferCssPageSize lets a @page { size } rule in the template decide the page size
-converter.LayoutAtPageWidth(PdfPageSize.A4, PdfPageOrientation.Portrait, preferCssPageSize: true, mediaType: "print");
-
-byte[] pdf = converter.ConvertHtml(invoiceHtml, baseUrl);
+byte[] pdf = converter.ConvertUrl("https://www.evopdf.com");
 
 // The same settings made one by one
 converter.PdfDocumentOptions.AutoResizePdfPageWidth = false;
-converter.PdfDocumentOptions.AutoResizePdfPageHeight = false;
 converter.PdfDocumentOptions.PdfPageSize = PdfPageSize.A4;
-converter.MediaType = "print";
-// Viewer width equal to the content width: (595 - 72) * 4 / 3 = 697 pixels
-converter.HtmlViewerWidth = 697;
-converter.PdfDocumentOptions.PreferCssPageSize = true;
+converter.PdfDocumentOptions.PdfPageOrientation = PdfPageOrientation.Portrait;
+// Lay the page out at 793 / 0.7747 = 1024 pixels and draw it at 77.47 percent
+converter.HtmlViewerZoom = 77.47;
+converter.HtmlViewerWidth = 1024;

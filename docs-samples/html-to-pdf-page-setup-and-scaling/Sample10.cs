@@ -1,9 +1,13 @@
 HtmlToPdfConverter converter = new HtmlToPdfConverter();
 
-// A4 landscape, the HTML laid out at its 1123 pixel content width
-converter.LayoutAtPageWidth(PdfPageSize.A4, PdfPageOrientation.Landscape);
+// The page width follows a 1000 pixel window: 1000 * 0.75 = 750 points
+converter.PageWidthFromBrowserWindow(1000);
 
-// A table built for 1280 pixels: a 1280 pixel window scaled to the page, zoom 87.73
-// converter.FitBrowserWindowToPage(PdfPageSize.A4, PdfPageOrientation.Landscape, 1280);
+// A4 height for each page; PageWidthFromBrowserWindow(1000, singlePage: true) gives one page instead
+converter.PdfDocumentOptions.PdfPageSize = PdfPageSize.A4;
 
 byte[] pdf = converter.ConvertUrl(url);
+
+// The same settings made one by one
+converter.PdfDocumentOptions.AutoResizePdfPageWidth = true;
+converter.HtmlViewerWidth = 1000;

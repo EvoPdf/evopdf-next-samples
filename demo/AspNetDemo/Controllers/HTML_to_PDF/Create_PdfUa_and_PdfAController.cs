@@ -45,6 +45,17 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             // Leave as None to generate a plain PDF without an accessibility structure tree or archival metadata
             htmlToPdfConverter.PdfDocumentOptions.PdfStandard = model.PdfStandard;
 
+            // PDF/A-4f is the PDF/A-4 variant for documents with embedded files and requires at least one
+            if (model.PdfStandard == PdfStandard.PdfA4f || model.PdfStandard == PdfStandard.PdfUa2PdfA4f
+                || model.PdfStandard == PdfStandard.Wtpdf1PdfA4f)
+            {
+                var textAttachment = PdfFileAttachment.FromFile(Path.Combine(m_hostingEnvironment.ContentRootPath,
+                    "wwwroot", "DemoAppFiles", "Input", "Text_Files", "Alphabet.txt"));
+                textAttachment.MimeType = "text/plain";
+                textAttachment.Description = "Sample text file";
+                htmlToPdfConverter.PdfDocumentOptions.AddFileAttachment(textAttachment);
+            }
+
             byte[] outPdfBuffer = null;
 
             if (model.HtmlPageSource == "Url")
@@ -84,7 +95,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             uriBuilder.Query = request.QueryString.ToString();
 
             string currentPageUrl = uriBuilder.Uri.AbsoluteUri;
-            string rootUrl = currentPageUrl.Substring(0, currentPageUrl.Length - "PDF_Standards".Length);
+            string rootUrl = currentPageUrl.Substring(0, currentPageUrl.Length - "Create_PdfUa_and_PdfA".Length);
 
             model.HtmlString = System.IO.File.ReadAllText(Path.Combine(contentRootPath, "DemoAppFiles/Input/HTML_Files/PDF_Standards.html"));
             model.BaseUrl = rootUrl + "DemoAppFiles/Input/HTML_Files/";

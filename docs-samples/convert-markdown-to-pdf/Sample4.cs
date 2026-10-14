@@ -1,3 +1,6 @@
-byte[] inputMarkdownBytes = System.IO.File.ReadAllBytes(markdownFilePath);
-string markdownString = Encoding.UTF8.GetString(inputMarkdownBytes);
-string baseUrl = "file://" + markdownFilePath;
+markdownToPdfConverter.PdfDocumentOptions.StyleSheet = @"
+h1 {
+    font-size: 24pt;
+    color: #0b57d0;
+}
+";

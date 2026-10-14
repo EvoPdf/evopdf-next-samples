@@ -1,2 +1,1 @@
-PdfPageImage[] pdfPageImages = await pdfToImageConverter.ConvertToImagesAsync(inputPdfStream);
-PdfPageImage[] pdfPageImages = await pdfToImageConverter.ConvertToImagesAsync(inputPdfFile);
+PdfPageImage[] pdfPageImages = pdfToImageConverter.ConvertToImages(inputPdfBytes, startPageNumber);

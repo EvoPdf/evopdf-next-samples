@@ -6,4 +6,4 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/digitally-sign
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | Code Sample - Add A Digital Signature to Generated PDF Document | 153 |
+| `Sample1.cs` | Code Sample - Add A Digital Signature to Generated PDF Document | 225 |

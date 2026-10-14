@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
 
 # Install EvoPdf dependencies
 RUN apt-get update && \
@@ -13,13 +13,13 @@ RUN apt-get update && \
 WORKDIR /app
 
 # Copy the published ASP.NET Core app files from the publish folder into the image
-COPY publish/linux-x64-net8.0/ .
+COPY publish/linux-arm64-net10.0/ .
 
 # Ensure execute permissions for EvoPdf HTML to PDF runtime
-RUN chmod +x /app/evopdf_runtimes/linux-x64/native/evopdf_loadhtml
+RUN chmod +x /app/evopdf_runtimes/linux-arm64/native/evopdf_loadhtml
 
 # Ensure execute permissions for EvoPdf PDF Processor runtime
-RUN chmod +x /app/evopdf_runtimes/linux-x64/native/evopdf_pdfprocessor
+RUN chmod +x /app/evopdf_runtimes/linux-arm64/native/evopdf_pdfprocessor
 
 # Expose the port used by the app
 EXPOSE 27101
@@ -28,4 +28,4 @@ EXPOSE 27101
 ENV ASPNETCORE_URLS=http://+:27101
 
 # Start the application
-ENTRYPOINT ["dotnet", "EvoPdf_Next_AspNetDemo_Linux_net8.0.dll"]
+ENTRYPOINT ["dotnet", "EvoPdf_Next_AspNetDemo_Linux.Arm64_net10.0.dll"]

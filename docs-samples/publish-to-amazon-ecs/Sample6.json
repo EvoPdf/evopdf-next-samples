@@ -1,0 +1,17 @@
+{
+  "family": "pdf-app",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "2048",
+  "memory": "4096",
+  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+  "runtimePlatform": { "cpuArchitecture": "X86_64", "operatingSystemFamily": "LINUX" },
+  "containerDefinitions": [{
+    "name": "pdf-app",
+    "image": "123456789012.dkr.ecr.us-east-1.amazonaws.com/pdf-app:1",
+    "essential": true,
+    "portMappings": [{ "containerPort": 8080 }],
+    "logConfiguration": { "logDriver": "awslogs", "options": {
+      "awslogs-group": "/ecs/pdf-app", "awslogs-region": "us-east-1", "awslogs-stream-prefix": "pdf" } }
+  }]
+}

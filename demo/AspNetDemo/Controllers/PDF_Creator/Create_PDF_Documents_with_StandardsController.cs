@@ -51,6 +51,16 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
 
             pdfDocument.PdfDocumentInfo.Title = "Standards Compliance Demo";
 
+            // PDF/A-4f is the PDF/A-4 variant for documents with embedded files and requires at least one
+            if (model.PdfStandard == PdfStandard.PdfA4f || model.PdfStandard == PdfStandard.PdfUa2PdfA4f
+                || model.PdfStandard == PdfStandard.Wtpdf1PdfA4f)
+            {
+                var textAttachment = PdfFileAttachment.FromFile(Path.Combine(GetDemoTextsPath(), "Alphabet.txt"));
+                textAttachment.MimeType = "text/plain";
+                textAttachment.Description = "Sample text file";
+                pdfDocument.AddFileAttachment(textAttachment);
+            }
+
             const int xLeft = 0;
             const int ySeparator = 15;
             int crtYPos = 0;

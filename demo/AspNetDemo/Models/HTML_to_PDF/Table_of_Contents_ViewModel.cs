@@ -32,6 +32,6 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public int BottomMargin { get; set; } = 0;
 
         public int NavigationTimeout { get; set; } = 120;
-        public int? ConversionDelay { get; set; } = 2;
+        public int? ConversionDelay { get; set; } = 0;
     }
 }

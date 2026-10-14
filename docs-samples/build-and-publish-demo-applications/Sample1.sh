@@ -1,2 +1,1 @@
-cd publish/windows-x64-net10.0
-dotnet EvoPdf_Next_AspNetDemo_Windows_net10.0.dll
+dotnet build -c Release -r win-x64 EvoPdf_Next_AspNetDemo_Windows_net10.0.csproj

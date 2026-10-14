@@ -1,5 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
@@ -41,7 +43,28 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
 
             string certificateFilePath = m_hostingEnvironment.ContentRootPath + "/wwwroot" + "/DemoAppFiles/Input/Certificates/evopdf.pfx";
-            htmlToPdfConverter.DigitalSignature = new PdfDigitalSignature(certificateFilePath, "evopdf");
+
+            if (model.KeySource == "Certificate")
+            {
+                // An X509Certificate2 with access to its private key: a certificate from the Windows certificate
+                // store, a smartcard or a USB token. The private key stays in its store and the certificate
+                // chain is built from the system stores. The sample loads the PFX as a certificate object
+                X509Certificate2 certificate = LoadCertificate(certificateFilePath, "evopdf");
+                htmlToPdfConverter.DigitalSignature = new PdfDigitalSignature(certificate);
+            }
+            else if (model.KeySource == "External")
+            {
+                // External signing: the library prepares the signature and asks an IExternalDigitalSignature
+                // implementation for the signature value, so the private key can stay in a hardware security
+                // module or a cloud key service. The signer certificate chain is given separately.
+                // This sample implementation signs with the key of the PFX certificate to show the interface
+                X509Certificate2 certificate = LoadCertificate(certificateFilePath, "evopdf");
+                htmlToPdfConverter.DigitalSignature = new PdfDigitalSignature(new CertificateKeySignature(certificate), new[] { certificate.RawData });
+            }
+            else
+            {
+                htmlToPdfConverter.DigitalSignature = new PdfDigitalSignature(certificateFilePath, "evopdf");
+            }
 
             // optionally set digital signature field name in PDF document
             htmlToPdfConverter.DigitalSignature.FieldName = "EvoPdf Signature Field";
@@ -52,8 +75,17 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             htmlToPdfConverter.DigitalSignature.Location = model.SignatureLocation;
             htmlToPdfConverter.DigitalSignature.ContactInfo = model.SignatureContact;
 
-            // Uncomment the line below to optionally set a timestamp from a certified timestamp server
-            //htmlToPdfConverter.DigitalSignature.TimestampServerUrl = "http://tsa.belgium.be/connect";
+            // The PAdES signature level. Auto produces PAdES B-T when a timestamp server is set and
+            // PAdES B-B otherwise
+            htmlToPdfConverter.DigitalSignature.Profile = model.Profile;
+
+            // An approval signature by default; a certification signature declares the
+            // changes the document accepts after signing: none, form filling and signing, or also annotations
+            htmlToPdfConverter.DigitalSignature.CertificationLevel = model.CertificationLevel;
+
+            // The timestamp server, for example http://timestamp.digicert.com
+            if (!string.IsNullOrWhiteSpace(model.TimestampServerUrl))
+                htmlToPdfConverter.DigitalSignature.TimestampServerUrl = model.TimestampServerUrl.Trim();
 
             // enable signature appearance in PDF page
             htmlToPdfConverter.DigitalSignature.AppearanceEnabled = model.EnableAppearance;
@@ -116,6 +148,20 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             return fileResult;
         }
 
+        // Loads the sample PFX as a certificate object. On Windows the private key goes to the machine key
+        // store, which needs no user profile, so the code runs in IIS application pools and in Azure App Service;
+        // macOS does not support in-memory keys and uses its default key storage
+        private static X509Certificate2 LoadCertificate(string certificateFilePath, string password)
+        {
+            X509KeyStorageFlags keyStorageFlags = OperatingSystem.IsWindows() ? X509KeyStorageFlags.MachineKeySet :
+                OperatingSystem.IsMacOS() ? X509KeyStorageFlags.DefaultKeySet : X509KeyStorageFlags.EphemeralKeySet;
+#if NET9_0_OR_GREATER
+            return X509CertificateLoader.LoadPkcs12FromFile(certificateFilePath, password, keyStorageFlags);
+#else
+            return new X509Certificate2(certificateFilePath, password, keyStorageFlags);
+#endif
+        }
+
         private PDF_Digital_Signatures_ViewModel SetViewModel()
         {
             var model = new PDF_Digital_Signatures_ViewModel();
@@ -148,6 +194,32 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             model.AddSignatureImage = true;
 
             return model;
+        }
+    }
+
+    // Sample IExternalDigitalSignature implementation: produces the RSA signature value with the
+    // private key of an X509Certificate2. A production implementation forwards the message to the device or
+    // service that holds the key and returns the signature value it produces
+    public class CertificateKeySignature : IExternalDigitalSignature
+    {
+        private readonly X509Certificate2 m_certificate;
+
+        public CertificateKeySignature(X509Certificate2 certificate)
+        {
+            m_certificate = certificate;
+        }
+
+        public string GetSignatureAlgorithmName()
+        {
+            return "RSA";
+        }
+
+        public byte[] Sign(byte[] message)
+        {
+            using (RSA rsa = m_certificate.GetRSAPrivateKey())
+            {
+                return rsa.SignData(message, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+            }
         }
     }
 }

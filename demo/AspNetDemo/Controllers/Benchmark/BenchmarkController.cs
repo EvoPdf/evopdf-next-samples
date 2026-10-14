@@ -103,7 +103,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers
             var converter = new HtmlToPdfConverter();
             converter.LoadLazyImages = loadLazyImages;
             converter.NavigationTimeout = 60;
-            return html != null ? converter.ConvertHtml(html, "http://localhost/") : converter.ConvertUrl(url);
+            return html != null ? converter.ConvertHtml(html, null) : converter.ConvertUrl(url);
         }
 
         // Counts the page objects of the PDF

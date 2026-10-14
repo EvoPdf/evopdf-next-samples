@@ -22,7 +22,7 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public bool AutoBookmarks { get; set; } = false;
 
         public int NavigationTimeout { get; set; } = 120;
-        public int? ConversionDelay { get; set; } = 2;
+        public int? ConversionDelay { get; set; } = 0;
 
         public string UserPassword { get; set; } = string.Empty;
         public string OwnerPassword { get; set; } = string.Empty;

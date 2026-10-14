@@ -47,7 +47,7 @@
                                                                 <td>
                                                                     EVO HTML to PDF Converter can embed external files directly into the generated PDF as document-level attachments.
                                                                     The attached files appear in the viewer's Attachments panel (opened using the paperclip icon in Acrobat's left sidebar) and travel with the document. They do not have a visible marker on any page.
-                                                                    PDF/UA-1, PDF/UA-2, PDF/A-3, and PDF/A-4f allow arbitrary attachments.
+                                                                    PDF/UA-1, PDF/UA-2, PDF/A-3 and PDF/A-4f allow arbitrary attachments.
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -153,33 +153,19 @@
                                                                                                     <select asp-for="PdfStandard" id="pdfStandardDropDownList">
                                                                                                         <option value="None">None</option>
 
-                                                                                                        <optgroup label="PDF/UA (allows arbitrary attachments)">
+                                                                                                        <optgroup label="PDF/UA">
                                                                                                             <option value="PdfUa1">PDF/UA-1</option>
                                                                                                             <option value="PdfUa2">PDF/UA-2</option>
                                                                                                         </optgroup>
 
-                                                                                                        <optgroup label="PDF/A-2 (no arbitrary attachments)">
-                                                                                                            <option value="PdfA2b">PDF/A-2b</option>
-                                                                                                            <option value="PdfA2a">PDF/A-2a</option>
-                                                                                                            <option value="PdfUa1PdfA2b">PDF/UA-1 + PDF/A-2b</option>
-                                                                                                            <option value="PdfUa1PdfA2a">PDF/UA-1 + PDF/A-2a</option>
-                                                                                                            <option value="PdfUa2PdfA2b">PDF/UA-2 + PDF/A-2b</option>
-                                                                                                            <option value="PdfUa2PdfA2a">PDF/UA-2 + PDF/A-2a</option>
-                                                                                                        </optgroup>
-
-                                                                                                        <optgroup label="PDF/A-3 (allows arbitrary attachments)">
+                                                                                                        <optgroup label="PDF/A-3">
                                                                                                             <option value="PdfA3b">PDF/A-3b</option>
                                                                                                             <option value="PdfA3u">PDF/A-3u</option>
                                                                                                             <option value="PdfA3a">PDF/A-3a</option>
                                                                                                             <option value="PdfUa1PdfA3a">PDF/UA-1 + PDF/A-3a</option>
                                                                                                         </optgroup>
 
-                                                                                                        <optgroup label="PDF/A-4 (PDF 2.0 base, no arbitrary attachments)">
-                                                                                                            <option value="PdfA4">PDF/A-4</option>
-                                                                                                            <option value="PdfUa2PdfA4">PDF/UA-2 + PDF/A-4</option>
-                                                                                                        </optgroup>
-
-                                                                                                        <optgroup label="PDF/A-4f (PDF 2.0, allows arbitrary attachments)">
+                                                                                                        <optgroup label="PDF/A-4f">
                                                                                                             <option value="PdfA4f">PDF/A-4f</option>
                                                                                                             <option value="PdfUa2PdfA4f">PDF/UA-2 + PDF/A-4f</option>
                                                                                                         </optgroup>

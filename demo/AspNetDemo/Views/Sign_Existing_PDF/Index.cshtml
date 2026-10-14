@@ -1,0 +1,350 @@
+@model EvoPdf_Next_AspNetDemo.Models.PDF_Editor.Sign_Existing_PDF_ViewModel
+@{
+    ViewBag.Title = "Digitally Sign Existing PDF";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_SelectNode("demoTreeView_Sign_Existing_PDF");
+</script>
+
+<form asp-action="EditPdf" asp-controller="Sign_Existing_PDF" method="post" enctype="multipart/form-data">
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 8px; padding-top: 5px">
+                                    Digitally Sign Existing PDF
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    Add a digital signature to an existing PDF document. A document that already carries digital signatures receives the new signature as an incremental update that keeps the existing signatures valid. PdfEditor keeps the standard (PDF/A, PDF/UA etc.) of the source PDF
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 15px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    Enter PDF File URL
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input asp-for="PdfFileUrl" type="text" id="pdfFileUrlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 15px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                Upload PDF File
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <span style="display:inline-block; border:1px solid #C0C0C0; padding:1px 1px; vertical-align:middle;">
+                                                                                    <input asp-for="PdfFile" type="file" id="PdfFileInput"
+                                                                                           accept=".pdf"
+                                                                                           style="width:250px; vertical-align:middle;">
+                                                                                </span>
+                                                                                <button type="button"
+                                                                                        onclick="document.getElementById('PdfFileInput').value='';"
+                                                                                        style="margin-left:5px; vertical-align:middle;">
+                                                                                    Clear File
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 15px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Open Password
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    User Password:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="UserPassword" id="userPasswordTextBox" type="text" style="width:100px;">
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    Owner Password:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="OwnerPassword" id="ownerPasswordTextBox" type="text" style="width:100px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Digital Signature Information
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Reason:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="SignatureReason" id="signatureReasonTextBox" type="text" style="width:200px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 10px" colspan="3"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Location:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="SignatureLocation" id="signatureLocationTextBox" type="text" style="width:200px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 10px" colspan="3"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Contact:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="SignatureContact" id="signatureContactTextBox" type="text" style="width:200px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    PAdES Profile and Timestamp
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Profile:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="Profile" id="profileDropDownList">
+                                                                                                        <option value="Auto">Auto (B-T with a timestamp server, B-B otherwise)</option>
+                                                                                                        <option value="PadesBaselineB">PAdES B-B (basic signature)</option>
+                                                                                                        <option value="PadesBaselineT">PAdES B-T (signature timestamp)</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 10px" colspan="3"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Certification:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="CertificationLevel" id="certificationLevelDropDownList">
+                                                                                                        <option value="NotCertified">Approval signature (not certified)</option>
+                                                                                                        <option value="NoChanges">Certify: no changes allowed</option>
+                                                                                                        <option value="FormFillingAndSigning">Certify: form filling and signing allowed</option>
+                                                                                                        <option value="FormFillingSigningAndAnnotations">Certify: form filling, signing and annotations allowed</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 10px" colspan="3"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Timestamp server:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="TimestampServerUrl" id="timestampServerUrlTextBox" type="text" placeholder="http://timestamp.digicert.com" style="width:300px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 10px" colspan="3"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Signature field:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="SignatureFieldName" id="signatureFieldNameTextBox" type="text" placeholder="empty signature field of the document, or blank for a new field" style="width:300px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 6px" colspan="3"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td colspan="3" style="color: #555">
+                                                                                                    The sample agreement is already signed by the client and the signature goes into its empty ManagerSignature
+                                                                                                    field, so the result carries two signatures and the first one stays valid. When the document has no field with
+                                                                                                    the given name, or the name is left blank, a new signature field is added at the bottom of the first page. The sample
+                                                                                                    form <a href="DemoAppFiles/Input/PDF_Files/Form_With_Signature_Fields.pdf">Form_With_Signature_Fields.pdf</a> has both signature fields empty.
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Digital Signature Appearance Settings
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="EnableAppearance" id="enableAppearanceCheckBox" type="checkbox"><label for="enableAppearanceCheckBox">Enable Appearance</label>
+                                                                                                </td>
+                                                                                                <td style="width: 15px"></td>
+                                                                                                <td>
+                                                                                                    Signature Text:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="SignatureText" id="textBoxSignatureText" type="text" style="width:200px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <button type="submit" name="convertToPdfButton" id="convertToPdfButton">Sign PDF</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 5px"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

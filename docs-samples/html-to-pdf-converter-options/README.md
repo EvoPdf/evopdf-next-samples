@@ -6,4 +6,4 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/html-to-pdf-co
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | Code Sample - HTML Content Destination and Scaling in PDF | 221 |
+| `Sample1.cs` | Code Sample - HTML Content Destination and Scaling in PDF | 217 |

@@ -1,2 +1,1 @@
-cd publish/multiplatform-linux-x64-net10.0
-dotnet EvoPdf_Next_AspNetDemo_MultiPlatform_net10.0.dll
+dotnet build -c Release -r linux-arm64 EvoPdf_Next_AspNetDemo_Linux.Arm64_net10.0.csproj

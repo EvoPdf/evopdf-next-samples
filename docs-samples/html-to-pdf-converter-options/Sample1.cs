@@ -44,7 +44,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             htmlToPdfConverter.LazyImagesLoadMode = model.LazyImagesLoadMode == "Browser" ?
                 LazyImagesLoadMode.Browser : LazyImagesLoadMode.Custom;
 
-            // JavaScript in the converted page; some options of the converter turn it on when they need it
+            // JavaScript in the converted page
 
             htmlToPdfConverter.JavaScriptEnabled = model.JavaScriptEnabled;
 
@@ -75,7 +75,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                     break;
 
                 default:
-                    // The PDF page width follows the browser window width and the HTML is drawn at the zoom, 1:1 at 100;
+                    // The PDF page width follows the browser window width and the HTML is drawn 1:1;
                     // the page height comes from the page size and the orientation
                     htmlToPdfConverter.PageWidthFromBrowserWindow(model.HtmlViewerWidth, singlePage: model.SinglePage, zoom: model.HtmlViewerZoom);
                     htmlToPdfConverter.PdfDocumentOptions.PdfPageSize = pageSize;
@@ -132,15 +132,11 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             }
 
             // Send the PDF file to browser
-            // The zoom the HTML was drawn at, read from the PDF: the zoom of the layout, lower when the browser window
-            // grew to the content; in the name of the file
-            string printZoom = htmlToPdfConverter.ConversionInfo.PrintZoom.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture);
-
             FileResult fileResult = new FileContentResult(outPdfBuffer, "application/pdf");
             if (!model.OpenInline)
             {
                 // send as attachment
-                fileResult.FileDownloadName = "HTML_to_PDF_Getting_Started_zoom_" + printZoom + ".pdf";
+                fileResult.FileDownloadName = "HTML_to_PDF_Getting_Started.pdf";
             }
 
             return fileResult;

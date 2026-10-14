@@ -6,4 +6,4 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdfua-a
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | Code Sample - Auto Create PDF/UA and PDF/A | 95 |
+| `Sample1.cs` | Code Sample - Auto Create PDF/UA and PDF/A | 106 |

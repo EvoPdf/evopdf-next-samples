@@ -1,0 +1,1 @@
+excelToPdfConverter.PdfDocumentOptions.DisplayWorksheetTitle = true;

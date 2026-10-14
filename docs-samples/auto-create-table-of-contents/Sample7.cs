@@ -90,7 +90,7 @@
     color: #111111;
 }
 
-/* Style for space between entry text and page number */ 
+/* Style for space between entry text and page number */
 #html-to-pdf-toc li::after {
     flex-grow: 1;
     order: 2;
@@ -101,7 +101,7 @@
 }
 
 #html-to-pdf-toc ul {
-    list-style-type: none; 
+    list-style-type: none;
     padding: 0px;
 }
 
@@ -115,9 +115,9 @@
 
 /* Level specific style for TOC entries */
 
-#html-to-pdf-toc ul li.level-1 {    
+#html-to-pdf-toc ul li.level-1 {
     margin-bottom: 10px;
-    margin-inline-start: 0px;    
+    margin-inline-start: 0px;
 }
 
 #html-to-pdf-toc ul li.level-2 {

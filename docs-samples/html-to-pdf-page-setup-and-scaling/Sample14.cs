@@ -1,9 +1,18 @@
-// A4 landscape in the default layout, with margins set after the call:
-// the zoom is computed for the landscape page and the margins
-converter.FitBrowserWindowToPage(PdfPageSize.A4);
-converter.PdfDocumentOptions.PdfPageOrientation = PdfPageOrientation.Landscape;
-converter.PdfDocumentOptions.LeftMargin = 36;
-converter.PdfDocumentOptions.RightMargin = 36;
+HtmlToPdfConverter converter = new HtmlToPdfConverter();
 
-// Setting the zoom ends the automatic layout: the page is laid out for zoom 90, whatever its size
-converter.HtmlViewerZoom = 90;
+// One page 227 points (80 mm) wide with 14 point (5 mm) margins, as tall as the content
+converter.SinglePageOfWidth(227, 14);
+
+byte[] pdf = converter.ConvertHtml(receiptHtml, baseUrl);
+
+// The same settings made one by one: 5 mm margins are 14 points
+converter.PdfDocumentOptions.LeftMargin = 14;
+converter.PdfDocumentOptions.RightMargin = 14;
+converter.PdfDocumentOptions.TopMargin = 14;
+converter.PdfDocumentOptions.BottomMargin = 14;
+converter.PdfDocumentOptions.PdfPageSize = new PdfPageSize(227, 227);
+converter.PdfDocumentOptions.AutoResizePdfPageWidth = false;
+converter.PdfDocumentOptions.AutoResizePdfPageHeight = true;
+// the content width in pixels: (227 - 2 * 14) * 4 / 3, rounded down
+converter.HtmlViewerWidth = 265;
+converter.HtmlViewerZoom = 100;

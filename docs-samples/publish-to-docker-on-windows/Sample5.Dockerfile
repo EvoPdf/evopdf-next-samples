@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-windowsservercore-ltsc2022
+FROM mcr.microsoft.com/dotnet/aspnet:10.0-windowsservercore-ltsc2025
 
 SHELL ["powershell", "-Command"]
 
@@ -18,7 +18,7 @@ RUN $ErrorActionPreference = 'Stop'; \
 WORKDIR C:/app
 
 # Copy the published ASP.NET Core app files from the publish folder into the image
-COPY publish/windows-x64-net8.0/ .
+COPY publish/windows-x64-net10.0/ .
 
 # Expose the application port
 EXPOSE 27102
@@ -27,4 +27,4 @@ EXPOSE 27102
 ENV ASPNETCORE_URLS=http://+:27102
 
 # Run the application
-ENTRYPOINT ["dotnet", "C:\\app\\EvoPdf_Next_AspNetDemo_Windows_net8.0.dll"]
+ENTRYPOINT ["powershell", "-Command", "Start-Sleep -Seconds 3; dotnet C:\\app\\EvoPdf_Next_AspNetDemo_Windows_net10.0.dll"]

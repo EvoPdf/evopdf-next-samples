@@ -1,3 +1,1 @@
-PdfDocument pdfDocument = new PdfDocument();
-byte[] buffer = pdfDocument.Save();
-pdfDocument.Dispose();
+byte[] pdfBytes = await pdfDocument.SaveAsync();

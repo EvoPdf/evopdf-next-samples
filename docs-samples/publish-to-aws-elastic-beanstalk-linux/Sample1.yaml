@@ -1,0 +1,26 @@
+packages:
+  yum:
+    nss: []
+    at-spi2-atk: []
+    cairo: []
+    pango: []
+    dejavu-sans-fonts: []
+    dejavu-serif-fonts: []
+    dejavu-sans-mono-fonts: []
+files:
+  "/etc/fonts/local.conf":
+    mode: "000644"
+    owner: root
+    group: root
+    content: |
+      <fontconfig>
+        <alias>
+          <family>sans-serif</family>
+          <prefer><family>DejaVu Sans</family></prefer>
+        </alias>
+      </fontconfig>
+container_commands:
+  01_evopdf_loadhtml:
+    command: "chmod +x evopdf_runtimes/linux-x64/native/evopdf_loadhtml"
+  02_evopdf_pdfprocessor:
+    command: "chmod +x evopdf_runtimes/linux-x64/native/evopdf_pdfprocessor"

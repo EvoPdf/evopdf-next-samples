@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
-using EvoPdf_Next_AspNetDemo.Models; 
+using EvoPdf_Next_AspNetDemo.Models;
 using EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF;
 
 // Use EVO PDF Namespace

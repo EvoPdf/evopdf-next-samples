@@ -31,7 +31,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             // Create a HTML to PDF converter object with default settings
             HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
 
-            // Set the persistent HTTP Headers option to control the inclusion of headers 
+            // Set the persistent HTTP Headers option to control the inclusion of headers
             // for each requested resource in the HTML document
             htmlToPdfConverter.PersistentHttpRequestHeaders = model.PersistentHttpHeaders;
 

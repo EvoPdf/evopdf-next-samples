@@ -1,2 +1,1 @@
-pdfToImageConverter.UserPassword = userPasswordString;
-pdfToImageConverter.OwnerPassword = ownerPasswordString;
+pdfToImageConverter.ColorSpace = PdfPageImageColorSpace.RGB;

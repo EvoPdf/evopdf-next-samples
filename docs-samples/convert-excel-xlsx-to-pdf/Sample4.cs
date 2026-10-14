@@ -1,2 +1,1 @@
-excelToPdfConverter.PdfDocumentOptions.ConvertOnlyFirstWorksheet = false;
-excelToPdfConverter.PdfDocumentOptions.PageBreakBetweenWorksheets = true;
+excelToPdfConverter.KeepColumnWidths = true;

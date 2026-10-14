@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Credit note GS-2026-0007</title>
+    <link href="styles/webfonts.css" type="text/css" rel="stylesheet">
+    <style>
+        body { font-family: Verdana, sans-serif; font-size: 12px; color: #222; margin: 40px; }
+        h1 { font-size: 24px; margin: 0 0 4px 0; }
+        .meta { color: #555; margin-bottom: 28px; }
+        section.party { display: inline-block; vertical-align: top; width: 45%; margin: 0 0 28px 0; }
+        section.party h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: #777; margin: 0 0 6px 0; }
+        address { font-style: normal; line-height: 1.5; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        caption { text-align: left; font-weight: bold; margin-bottom: 6px; }
+        th, td { border-bottom: 1px solid #ddd; padding: 8px 6px; text-align: left; }
+        th { background: #f3f3f3; }
+        td.num, th.num { text-align: right; }
+        tfoot th, tfoot td { border-bottom: none; }
+        tfoot tr.total th, tfoot tr.total td { font-size: 14px; border-top: 2px solid #222; }
+        .payment { margin-top: 24px; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <h1>Credit note GS-2026-0007</h1>
+    <p class="meta">Issue date: 15 September 2026. Credit note for invoice RE-2026-0042 of 15 September 2026. Buyer reference: 04011000-12345-03</p>
+
+    <section class="party">
+            <h2>Seller</h2>
+            <address>
+                Muster Software GmbH<br>
+                Musterstrasse 1<br>
+                10115 Berlin, Germany<br>
+                VAT ID DE123456789<br>
+                billing@muster-software.example
+            </address>
+    </section><section class="party">
+            <h2>Buyer</h2>
+            <address>
+                Beispiel Kunde AG<br>
+                Kundenweg 7<br>
+                80331 Muenchen, Germany<br>
+                invoices@beispiel-kunde.example
+            </address>
+    </section>
+
+    <table>
+        <caption>Credited lines</caption>
+        <thead>
+            <tr>
+                <th scope="col">Pos.</th>
+                <th scope="col">Description</th>
+                <th scope="col" class="num">Quantity</th>
+                <th scope="col" class="num">Unit price</th>
+                <th scope="col" class="num">VAT</th>
+                <th scope="col" class="num">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Priority support, 12 months (cancelled)</td>
+                <td class="num">2</td>
+                <td class="num">150.00 EUR</td>
+                <td class="num">19 %</td>
+                <td class="num">300.00 EUR</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th scope="row" colspan="5">Net amount</th>
+                <td class="num">300.00 EUR</td>
+            </tr>
+            <tr>
+                <th scope="row" colspan="5">VAT 19 %</th>
+                <td class="num">57.00 EUR</td>
+            </tr>
+            <tr class="total">
+                <th scope="row" colspan="5">Total credited</th>
+                <td class="num">357.00 EUR</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <p class="payment">
+        The amount is refunded within 14 days to the account of the buyer, reference GS-2026-0007.
+    </p>
+    <p>The priority support ordered with invoice RE-2026-0042 was cancelled before it started.</p>
+</body>
+</html>

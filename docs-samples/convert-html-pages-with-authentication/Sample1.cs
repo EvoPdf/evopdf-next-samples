@@ -2,7 +2,7 @@
 HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
 // Set authentication options
 htmlToPdfConverter.AuthenticationOptions.Username = username;
-htmlToPdfConverter.AuthenticationOptions.Password = password;            
+htmlToPdfConverter.AuthenticationOptions.Password = password;
 
 // Create the HTML to Image converter
 HtmlToImageConverter htmlToImageConverter = new HtmlToImageConverter();

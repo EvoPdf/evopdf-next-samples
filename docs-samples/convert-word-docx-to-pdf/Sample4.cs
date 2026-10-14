@@ -1,0 +1,1 @@
+wordToPdfConverter.PdfDocumentOptions.GenerateTableOfContents = true;

@@ -9,7 +9,7 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/migrate-html-t
 | `Sample1.cs` | The Classic Default: 1024 Pixel Layout Fitted to an A4 Page | 10 |
 | `Sample2.cs` | The Classic Default: 1024 Pixel Layout Fitted to an A4 Page | 15 |
 | `Sample3.cs` | A Page with a Fixed Width Larger Than the Viewer | 7 |
-| `Sample4.cs` | AutoSizePdfPage and SinglePage | 7 |
+| `Sample4.cs` | AutoSizePdfPage and SinglePage | 8 |
 | `Sample5.cs` | StretchToFit | 6 |
 | `Sample6.cs` | A Header with HTML and Page Numbers | 23 |
 | `Sample7.cs` | A Header with HTML and Page Numbers | 12 |

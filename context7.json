@@ -1,7 +1,7 @@
 {
   "$schema": "https://context7.com/schema/context7.json",
   "projectTitle": "EvoPdf Next Samples",
-  "description": "Runnable C# samples for EvoPdf Next (.NET PDF library): HTML, Word, Excel, RTF and Markdown to PDF, PDF to text, text search, PDF to image, image extraction and PDF editing",
+  "description": "Runnable C# samples for EvoPdf Next (.NET PDF library): HTML, Word, Excel, RTF and Markdown to PDF, e-invoices, digital signatures, PDF to text and image, PDF editing, cloud deployment",
   "folders": [
     "quickstarts",
     "docs-samples"

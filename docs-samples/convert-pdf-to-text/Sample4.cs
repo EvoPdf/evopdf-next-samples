@@ -1,2 +1,2 @@
-string extractedText = pdfToTextConverter.ConvertToText(inputPdfStream, startPageNumber);
-string extractedText = pdfToTextConverter.ConvertToText(inputPdfFile, startPageNumber);
+pdfToTextConverter.UserPassword = userPasswordString;
+pdfToTextConverter.OwnerPassword = ownerPasswordString;

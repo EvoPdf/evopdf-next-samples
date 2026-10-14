@@ -19,11 +19,11 @@
 
 | Folder | What it is | How to use it |
 |---|---|---|
-| [`quickstarts/`](quickstarts) | 18 minimal samples, one feature each, shared by one .NET 10 console project per platform | `dotnet run --project Quickstarts_<Platform>.csproj -- <SampleName>`: the fastest way to see a feature work |
-| [`docs-samples/`](docs-samples) | The 260 code samples of 73 documentation topics, verbatim, each file in its own language (C#, shell, Dockerfile, HTML, XML) and linked to its topic | Copy into your project; read the topic for the explanation |
+| [`quickstarts/`](quickstarts) | 21 minimal samples, one feature each, shared by one .NET 10 console project per platform | `dotnet run --project Quickstarts_<Platform>.csproj -- <SampleName>`: the fastest way to see a feature work |
+| [`docs-samples/`](docs-samples) | The 451 code samples of 85 documentation topics, verbatim, each file in its own language (C#, shell, Dockerfile, HTML, XML, YAML, JSON) and linked to its topic | Copy into your project; read the topic for the explanation |
 | [`demo/`](demo) | The demo applications from the official download package: the ASP.NET Core demo that runs at [evopdf.com](https://www.evopdf.com/evopdf-next-aspnet-demo/) with the source of every demo page, plus the console demo; one source tree each, a project per platform | open the platform solution and run |
 
-All samples use the current API (`EvoPdf.Next` namespace, version 14.84) and read the license key from the `EVOPDF_LICENSE_KEY` environment variable; without it they run in demo mode (watermarked output).
+All samples use the current API (`EvoPdf.Next` namespace, version 14.86) and read the license key from the `EVOPDF_LICENSE_KEY` environment variable; without it they run in demo mode (watermarked output).
 
 ## Quickstarts
 
@@ -35,7 +35,7 @@ dotnet run --project Quickstarts_Windows.csproj                                 
 ```
 The samples (`quickstarts/Samples/<Name>.cs`) are shared by seven platform projects in the same folder (`Quickstarts_<Platform>.csproj`), one per NuGet package, each with its own `obj`/`bin`: the same layout as the demo applications. One project per platform keeps the build small: the package copies the native rendering runtimes into the output folder of every project that references it. Each sample file is self-contained; copy `Run` into your own project.
 
-Every sample runs without arguments: the input documents (`Files/`: the Word, Excel, RTF, Markdown and PDF documents of the demo application) are copied next to the executable, and results are written to an `output` folder there. Pass your own file or URL as the argument to convert something else: `Quickstarts.exe WordToPdf C:\docs\report.docx`.
+Every sample runs without arguments: the input documents (`Files/`: the Word, Excel, RTF, Markdown and PDF documents of the demo application, a Factur-X invoice with its HTML page, the signature fields page and the sample certificate of the demo) are copied next to the executable, and results are written to an `output` folder there. Pass your own file or URL as the argument to convert something else: `Quickstarts.exe WordToPdf C:\docs\report.docx`.
 
 | Project | Shows |
 |---|---|
@@ -47,6 +47,8 @@ Every sample runs without arguments: the input documents (`Files/`: the Word, Ex
 | [`HtmlToPdf.Parallel`](quickstarts/Samples/HtmlToPdf.Parallel.cs) | Convert several URLs in parallel and merge them into one PDF |
 | [`HtmlToPdf.Standards`](quickstarts/Samples/HtmlToPdf.Standards.cs) | PDF/UA and PDF/A output |
 | [`HtmlToPdf.Security`](quickstarts/Samples/HtmlToPdf.Security.cs) | Passwords, permissions and document metadata |
+| [`HtmlToPdf.DigitalSignature`](quickstarts/Samples/HtmlToPdf.DigitalSignature.cs) | PAdES digital signature with a visible appearance; B-B, or B-T with a timestamp server URL as second argument |
+| [`HtmlToPdf.ElectronicInvoice`](quickstarts/Samples/HtmlToPdf.ElectronicInvoice.cs) | Factur-X / ZUGFeRD electronic invoice: the invoice page from HTML with the invoice XML embedded, PDF/A-3 and PDF/UA-1 |
 | [`HtmlToImage`](quickstarts/Samples/HtmlToImage.cs) | HTML page to PNG screenshot |
 | [`WordToPdf`](quickstarts/Samples/WordToPdf.cs) | Word DOCX to PDF |
 | [`ExcelToPdf`](quickstarts/Samples/ExcelToPdf.cs) | Excel XLSX to PDF |
@@ -57,6 +59,7 @@ Every sample runs without arguments: the input documents (`Files/`: the Word, Ex
 | [`PdfProcessor.PdfToImage`](quickstarts/Samples/PdfProcessor.PdfToImage.cs) | Render PDF pages to PNG images |
 | [`PdfProcessor.ExtractImages`](quickstarts/Samples/PdfProcessor.ExtractImages.cs) | Extract the images embedded in a PDF |
 | [`PdfEditor.Stamp`](quickstarts/Samples/PdfEditor.Stamp.cs) | Stamp an existing PDF with an HTML template |
+| [`PdfEditor.SignatureFields`](quickstarts/Samples/PdfEditor.SignatureFields.cs) | Signature fields where the HTML page marks each signer, then the first field signed |
 
 ## Running the demo applications
 

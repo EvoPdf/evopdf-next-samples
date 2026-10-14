@@ -8,16 +8,25 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/extract-images
 | --- | --- | --- |
 | `Sample1.cs` | Create the PDF Images Extractor | 2 |
 | `Sample2.cs` | Open Password Protected PDFs | 2 |
-| `Sample3.cs` | Extract Images from PDF | 2 |
-| `Sample4.cs` | Extract Images from PDF | 2 |
-| `Sample5.cs` | Extract Images from PDF | 2 |
-| `Sample6.cs` | Extract Images from PDF | 3 |
-| `Sample7.cs` | Extract Images from PDF | 3 |
-| `Sample8.cs` | Extract Images from PDF | 3 |
-| `Sample9.cs` | Asynchronous Methods to Extract Images from PDF | 2 |
-| `Sample10.cs` | Asynchronous Methods to Extract Images from PDF | 2 |
-| `Sample11.cs` | Asynchronous Methods to Extract Images from PDF | 2 |
-| `Sample12.cs` | Asynchronous Methods to Extract Images from PDF | 3 |
-| `Sample13.cs` | Asynchronous Methods to Extract Images from PDF | 3 |
-| `Sample14.cs` | Asynchronous Methods to Extract Images from PDF | 3 |
-| `Sample15.cs` | Code Sample - Extract Images from PDF Pages | 206 |
+| `Sample3.cs` | Extracted Page Range Limit | 1 |
+| `Sample4.cs` | Extracted Page Range Limit | 1 |
+| `Sample5.cs` | Extract Images from PDF | 1 |
+| `Sample6.cs` | Extract Images from PDF | 1 |
+| `Sample7.cs` | Extract Images from PDF | 1 |
+| `Sample8.cs` | Extract Images from PDF | 2 |
+| `Sample9.cs` | Extract Images from PDF | 2 |
+| `Sample10.cs` | Extract Images from PDF | 2 |
+| `Sample11.cs` | Extract Images from PDF | 3 |
+| `Sample12.cs` | Extract Images from PDF | 3 |
+| `Sample13.cs` | Extract Images from PDF | 3 |
+| `Sample14.cs` | Asynchronous Methods to Extract Images from PDF | 1 |
+| `Sample15.cs` | Asynchronous Methods to Extract Images from PDF | 1 |
+| `Sample16.cs` | Asynchronous Methods to Extract Images from PDF | 1 |
+| `Sample17.cs` | Asynchronous Methods to Extract Images from PDF | 2 |
+| `Sample18.cs` | Asynchronous Methods to Extract Images from PDF | 2 |
+| `Sample19.cs` | Asynchronous Methods to Extract Images from PDF | 2 |
+| `Sample20.cs` | Asynchronous Methods to Extract Images from PDF | 3 |
+| `Sample21.cs` | Asynchronous Methods to Extract Images from PDF | 3 |
+| `Sample22.cs` | Asynchronous Methods to Extract Images from PDF | 3 |
+| `Sample23.cs` | Extraction Info | 1 |
+| `Sample24.cs` | Code Sample - Extract Images from PDF Pages | 206 |

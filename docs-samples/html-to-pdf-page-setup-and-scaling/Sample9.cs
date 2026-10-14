@@ -1,13 +1,22 @@
 HtmlToPdfConverter converter = new HtmlToPdfConverter();
 
-// The page width follows a 1000 pixel window: 1000 * 0.75 = 750 points
-converter.PageWidthFromBrowserWindow(1000);
+// Margins in points; a @page rule in the template overrides them
+converter.PdfDocumentOptions.LeftMargin = 36;
+converter.PdfDocumentOptions.RightMargin = 36;
+converter.PdfDocumentOptions.TopMargin = 36;
+converter.PdfDocumentOptions.BottomMargin = 36;
 
-// A4 height for each page; PageWidthFromBrowserWindow(1000, singlePage: true) gives one page instead
-converter.PdfDocumentOptions.PdfPageSize = PdfPageSize.A4;
+// The exact page size, the template laid out at the page width with its print style sheet;
+// preferCssPageSize lets a @page { size } rule in the template decide the page size
+converter.LayoutAtPageWidth(PdfPageSize.A4, PdfPageOrientation.Portrait, preferCssPageSize: true, mediaType: "print");
 
-byte[] pdf = converter.ConvertUrl(url);
+byte[] pdf = converter.ConvertHtml(invoiceHtml, baseUrl);
 
 // The same settings made one by one
-converter.PdfDocumentOptions.AutoResizePdfPageWidth = true;
-converter.HtmlViewerWidth = 1000;
+converter.PdfDocumentOptions.AutoResizePdfPageWidth = false;
+converter.PdfDocumentOptions.AutoResizePdfPageHeight = false;
+converter.PdfDocumentOptions.PdfPageSize = PdfPageSize.A4;
+converter.MediaType = "print";
+// Viewer width equal to the content width: (595 - 72) * 4 / 3 = 697 pixels
+converter.HtmlViewerWidth = 697;
+converter.PdfDocumentOptions.PreferCssPageSize = true;

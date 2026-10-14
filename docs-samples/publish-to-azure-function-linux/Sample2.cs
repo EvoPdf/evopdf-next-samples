@@ -1,0 +1,1 @@
+PdfProcessorInstallation.ConfigureRuntime(true, null);

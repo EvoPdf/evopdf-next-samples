@@ -132,15 +132,11 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             }
 
             // Send the PDF file to browser
-            // The zoom the HTML was drawn at, read from the PDF: the zoom of the layout, lower when the browser window
-            // grew to the content; in the name of the file
-            string printZoom = htmlToPdfConverter.ConversionInfo.PrintZoom.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture);
-
             FileResult fileResult = new FileContentResult(outPdfBuffer, "application/pdf");
             if (!model.OpenInline)
             {
                 // send as attachment
-                fileResult.FileDownloadName = "HTML_to_PDF_Getting_Started_zoom_" + printZoom + ".pdf";
+                fileResult.FileDownloadName = "HTML_to_PDF_Getting_Started.pdf";
             }
 
             return fileResult;

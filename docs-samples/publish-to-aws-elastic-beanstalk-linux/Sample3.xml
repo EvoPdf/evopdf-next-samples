@@ -1,0 +1,4 @@
+<ItemGroup>
+  <None Include=".ebextensions\**" CopyToPublishDirectory="PreserveNewest" />
+  <None Include=".platform\**" CopyToPublishDirectory="PreserveNewest" />
+</ItemGroup>

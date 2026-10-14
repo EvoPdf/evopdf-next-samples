@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Agreement</title>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            font-size: 14px;
+            color: #222;
+            margin: 40px;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin: 0 0 6px 0;
+        }
+
+        .subtitle {
+            color: #666;
+            margin: 0 0 28px 0;
+        }
+
+        h2 {
+            font-size: 16px;
+            margin: 24px 0 8px 0;
+        }
+
+        p {
+            line-height: 1.5;
+            margin: 0 0 10px 0;
+        }
+
+        table.terms {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px 0 20px 0;
+        }
+
+        table.terms td {
+            border: 1px solid #ccc;
+            padding: 6px 10px;
+        }
+
+        table.terms td:first-child {
+            width: 180px;
+            color: #666;
+        }
+
+        .signer {
+            margin-top: 30px;
+        }
+
+        .signer .role {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .signature-field {
+            display: inline-block;
+            width: 260px;
+            height: 90px;
+            border: 1px dashed #999;
+            background-color: #fafafa;
+            vertical-align: top;
+        }
+
+        .signer .hint {
+            display: inline-block;
+            width: 220px;
+            margin-left: 16px;
+            color: #666;
+            font-size: 12px;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+
+        .manager {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Service Agreement</h1>
+    <p class="subtitle">Agreement no. SA-2026-0117 between Northwind Consulting and Contoso Retail</p>
+
+    <h2>1. Scope</h2>
+    <p>
+        Northwind Consulting provides the implementation and the first year of support for the inventory
+        platform described in the technical proposal of 14 September 2026. The work is delivered in three
+        phases: design, implementation and acceptance.
+    </p>
+
+    <h2>2. Terms</h2>
+    <table class="terms">
+        <tr>
+            <td>Start date</td>
+            <td>2 November 2026</td>
+        </tr>
+        <tr>
+            <td>Acceptance deadline</td>
+            <td>30 April 2027</td>
+        </tr>
+        <tr>
+            <td>Support period</td>
+            <td>12 months from acceptance</td>
+        </tr>
+        <tr>
+            <td>Payment</td>
+            <td>30% at start, 40% after implementation, 30% at acceptance</td>
+        </tr>
+    </table>
+
+    <h2>3. Approval</h2>
+    <p>
+        The agreement enters into force when both parties have signed it. The client signs first and the
+        account manager countersigns on the next page.
+    </p>
+
+    <div class="signer">
+        <div class="role">Client</div>
+        <span class="signature-field" id="ClientSignature"></span>
+        <span class="hint">Signed on behalf of Contoso Retail by its authorized representative</span>
+    </div>
+
+    <div class="manager">
+        <h2>4. Countersignature</h2>
+        <p>
+            The account manager confirms that the terms above match the accepted proposal and that the
+            resources for the start date are allocated.
+        </p>
+
+        <div class="signer">
+            <div class="role">Account manager</div>
+            <span class="signature-field" id="ManagerSignature"></span>
+            <span class="hint">Signed on behalf of Northwind Consulting after the client signature</span>
+        </div>
+    </div>
+
+</body>
+</html>

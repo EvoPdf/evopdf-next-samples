@@ -1,3 +1,4 @@
+using EvoPdf.Next;
 namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
 {
     public class PDF_Digital_Signatures_ViewModel
@@ -10,6 +11,18 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public string SignatureReason { get; set; } = "My Signature Reason";
         public string SignatureLocation { get; set; } = "My Signature Location";
         public string SignatureContact { get; set; } = "My Contact Information";
+
+        // PAdES baseline profile; the long-term profiles need the timestamp server
+        public PdfDigitalSignatureProfile Profile { get; set; } = PdfDigitalSignatureProfile.Auto;
+
+        // Approval signature or certification signature with the changes allowed after signing
+        public PdfCertificationLevel CertificationLevel { get; set; } = PdfCertificationLevel.NotCertified;
+
+        public string TimestampServerUrl { get; set; } = string.Empty;
+
+        // Where the signing key comes from: the PFX file, an X509Certificate2 object or an
+        // IExternalDigitalSignature implementation
+        public string KeySource { get; set; } = "Pfx";
 
         public bool EnableAppearance { get; set; } = true;
         public bool DisplayOnLastPage { get; set; } = false;

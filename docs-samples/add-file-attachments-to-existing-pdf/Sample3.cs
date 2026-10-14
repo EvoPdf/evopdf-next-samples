@@ -296,7 +296,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
         // plus a bold caption beneath identifying the icon name.  Used by
         // Section 2 to show all four PdfAttachmentIcon values in a row.
         // iconSize is used only for caption placement -- the annotation
-        // itself takes the library's default size 
+        // itself takes the library's default size
         private void AddIconSample(PdfEditor editor, ref int currentPage, PdfFont captionFont,
             byte[] data, string fileName, string mimeType,
             string tooltip, string description,

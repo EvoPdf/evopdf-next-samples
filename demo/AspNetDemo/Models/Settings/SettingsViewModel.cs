@@ -17,7 +17,7 @@ namespace EvoPdf_Next_AspNetDemo.Models
         public bool GpuRenderingEnabled { get; set; }
         public bool GpuCompositingEnabled { get; set; }
         public bool EnableSoftwareGpuRendering { get; set; }
-        public bool DisableSiteIsolation { get; set; }
+        public bool EnableSiteIsolation { get; set; }
         public bool DisableWebSecurity { get; set; }
         public bool AllowInsecureContent { get; set; }
         public bool IgnoreCertificateErrors { get; set; }
@@ -42,7 +42,7 @@ namespace EvoPdf_Next_AspNetDemo.Models
                 GpuRenderingEnabled = p.GpuRenderingEnabled,
                 GpuCompositingEnabled = p.GpuCompositingEnabled,
                 EnableSoftwareGpuRendering = p.EnableSoftwareGpuRendering,
-                DisableSiteIsolation = p.DisableSiteIsolation,
+                EnableSiteIsolation = p.EnableSiteIsolation,
                 DisableWebSecurity = p.DisableWebSecurity,
                 AllowInsecureContent = p.AllowInsecureContent,
                 IgnoreCertificateErrors = p.IgnoreCertificateErrors,

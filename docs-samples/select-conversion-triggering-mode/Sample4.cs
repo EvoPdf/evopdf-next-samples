@@ -55,7 +55,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             else if (model.TriggeringMode == "Manual")
             {
                 // Set manual triggering mode
-                // The conversion starts when the evoPdfConverter_startConversion() function is called 
+                // The conversion starts when the evoPdfConverter_startConversion() function is called
                 // in JavaScript code of the converted HTML page
                 htmlToPdfConverter.TriggeringMode = TriggeringMode.Manual;
             }

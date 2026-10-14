@@ -1,11 +1,5 @@
-HtmlToPdfConverter converter = new HtmlToPdfConverter();
+// A 768 point wide page (1024 pixels), the content drawn 1:1, paginated at the A4 height
+converter.PageWidthFromBrowserWindow();
 
-// The page width follows the viewer width, the page height follows the content
+// The whole page on one PDF page
 converter.PageWidthFromBrowserWindow(1024, singlePage: true);
-
-byte[] pdf = converter.ConvertUrl(url);
-
-// The same settings made one by one
-converter.HtmlViewerWidth = 1024;
-converter.PdfDocumentOptions.AutoResizePdfPageWidth = true;
-converter.PdfDocumentOptions.AutoResizePdfPageHeight = true;

@@ -1,18 +1,13 @@
 HtmlToPdfConverter converter = new HtmlToPdfConverter();
 
-// One page 227 points (80 mm) wide with 14 point (5 mm) margins, as tall as the content
-converter.SinglePageOfWidth(227, 14);
+// A phone window of 412 pixels enlarged to an A4 page
+converter.FitBrowserWindowToPage(PdfPageSize.A4, PdfPageOrientation.Portrait, 412);
 
-byte[] pdf = converter.ConvertHtml(receiptHtml, baseUrl);
+byte[] pdf = converter.ConvertUrl(url);
 
-// The same settings made one by one: 5 mm margins are 14 points
-converter.PdfDocumentOptions.LeftMargin = 14;
-converter.PdfDocumentOptions.RightMargin = 14;
-converter.PdfDocumentOptions.TopMargin = 14;
-converter.PdfDocumentOptions.BottomMargin = 14;
-converter.PdfDocumentOptions.PdfPageSize = new PdfPageSize(227, 227);
+// The same settings made one by one
 converter.PdfDocumentOptions.AutoResizePdfPageWidth = false;
-converter.PdfDocumentOptions.AutoResizePdfPageHeight = true;
-// the content width in pixels: (227 - 2 * 14) * 4 / 3, rounded down
-converter.HtmlViewerWidth = 265;
-converter.HtmlViewerZoom = 100;
+converter.PdfDocumentOptions.PdfPageSize = PdfPageSize.A4;
+// Lay the page out at 793 / 1.9256 = 412 pixels and draw it at 192.56 percent
+converter.HtmlViewerZoom = 192.56;
+converter.HtmlViewerWidth = 412;

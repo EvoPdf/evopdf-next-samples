@@ -1,2 +1,2 @@
-FindTextLocation[] findTextLocations = await pdfToTextConverter.FindTextAsync(inputPdfStream, textToFindString, startPageNumber, endPageNumber, caseSensitive, wholeWord);
-FindTextLocation[] findTextLocations = await pdfToTextConverter.FindTextAsync(inputPdfFile, textToFindString, startPageNumber, endPageNumber, caseSensitive, wholeWord);
+FindTextLocation[] findTextLocations = pdfToTextConverter.FindText(inputPdfStream, textToFindString, caseSensitive, wholeWord);
+FindTextLocation[] findTextLocations = pdfToTextConverter.FindText(inputPdfFile, textToFindString, caseSensitive, wholeWord);

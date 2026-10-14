@@ -46,7 +46,9 @@
                                                             <tr>
                                                                 <td>
                                                                     EVO HTML to PDF Converter allows you to digitally sign the generated PDF document
-                                                                    with a certificate from a PFX file. The digital signature can have an interactive
+                                                                    with a certificate from a PFX file, or with a key held in a smartcard, a hardware security
+                                                                    module or a cloud key service through the IExternalDigitalSignature interface. The signature
+                                                                    is a PAdES signature at the B-B or B-T level and can have an interactive
                                                                     appearance displayed in a PDF page.
                                                                 </td>
                                                             </tr>
@@ -179,6 +181,101 @@
                                                                                     </table>
                                                                                 </td>
                                                                             </tr>                                                                            
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    PAdES Profile and Timestamp
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Profile:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="Profile" id="profileDropDownList">
+                                                                                                        <option value="Auto">Auto (B-T with a timestamp server, B-B otherwise)</option>
+                                                                                                        <option value="PadesBaselineB">PAdES B-B (basic signature)</option>
+                                                                                                        <option value="PadesBaselineT">PAdES B-T (signature timestamp)</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 10px" colspan="3"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Certification:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="CertificationLevel" id="certificationLevelDropDownList">
+                                                                                                        <option value="NotCertified">Approval signature (not certified)</option>
+                                                                                                        <option value="NoChanges">Certify: no changes allowed</option>
+                                                                                                        <option value="FormFillingAndSigning">Certify: form filling and signing allowed</option>
+                                                                                                        <option value="FormFillingSigningAndAnnotations">Certify: form filling, signing and annotations allowed</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 10px" colspan="3"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Timestamp server:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="TimestampServerUrl" id="timestampServerUrlTextBox" type="text" placeholder="http://timestamp.digicert.com" style="width:300px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 10px" colspan="3"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Signing key:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="KeySource" id="keySourceDropDownList">
+                                                                                                        <option value="Pfx">PFX file with the certificate and the private key</option>
+                                                                                                        <option value="Certificate">X509Certificate2 object (certificate store, smartcard or USB token)</option>
+                                                                                                        <option value="External">IExternalDigitalSignature implementation (HSM or cloud key service)</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 6px" colspan="3"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td colspan="3" style="color: #555">
+                                                                                                    The X509Certificate2 and
+                                                                                                    IExternalDigitalSignature options load the sample certificate as a certificate object to show the API.
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
                                                                         </tbody>
                                                                     </table>
                                                                 </td>

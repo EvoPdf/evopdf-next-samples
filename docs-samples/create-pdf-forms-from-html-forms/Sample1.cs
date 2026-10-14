@@ -54,7 +54,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
 
                 // Convert a HTML string with a base URL to a PDF document in a memory buffer
                 outPdfBuffer = htmlToPdfConverter.ConvertHtml(htmlString, baseUrl);
-            }            
+            }
             else
             {
                 string url = model.Url;

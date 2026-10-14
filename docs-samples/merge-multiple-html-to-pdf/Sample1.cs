@@ -15,7 +15,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
         {
             var model = new Merge_Multiple_HTML_to_PDF_ViewModel();
             return View(model);
-        }        
+        }
 
         [HttpPost]
         public ActionResult MergePdf(Merge_Multiple_HTML_to_PDF_ViewModel model)
@@ -36,8 +36,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             SetPdfMergeOptions(pdfMerge, model);
 
             // Create the list of URLs to convert
-            List<string> urlsToConvert = new List<string>() { 
-                model.FirstUrl, 
+            List<string> urlsToConvert = new List<string>() {
+                model.FirstUrl,
                 model.SecondUrl
             };
 
@@ -104,7 +104,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                     break;
 
                 default:
-                    // The PDF page width follows the browser window width and the HTML is drawn at the zoom, 1:1 at 100;
+                    // The PDF page width follows the browser window width and the HTML is drawn 1:1;
                     // the page height comes from the page size and the orientation
                     htmlToPdfConverter.PageWidthFromBrowserWindow(model.HtmlViewerWidth, singlePage: false, zoom: model.HtmlViewerZoom);
                     htmlToPdfConverter.PdfDocumentOptions.PdfPageSize = pageSize;
@@ -118,7 +118,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             // Enable or disable the automatic creation of a table of contents in the PDF document based on H1 to H6 HTML tags
             htmlToPdfConverter.PdfDocumentOptions.GenerateTableOfContents = model.GenerateToc;
 
-            // Set the maximum time in seconds to wait for HTML page to be loaded 
+            // Set the maximum time in seconds to wait for HTML page to be loaded
             // Leave it not set for a default 120 seconds maximum wait time
             htmlToPdfConverter.NavigationTimeout = model.NavigationTimeout;
 

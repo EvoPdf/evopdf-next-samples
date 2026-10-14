@@ -1,2 +1,1 @@
-// Save will dispose the document automatically
-byte[] buffer = pdfDocument.Save();
+await pdfDocument.SaveToFileAsync(outputPath);

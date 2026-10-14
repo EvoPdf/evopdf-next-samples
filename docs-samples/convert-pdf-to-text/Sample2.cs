@@ -1,2 +1,1 @@
-pdfToTextConverter.UserPassword = userPasswordString;
-pdfToTextConverter.OwnerPassword = ownerPasswordString;
+pdfToTextConverter.TextLayout = PdfToTextLayout.Original;

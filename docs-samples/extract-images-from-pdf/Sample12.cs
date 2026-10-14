@@ -1,3 +1,3 @@
-await pdfImagesExtractor.ExtractImagesToFileAsync(inputPdfBytes, outputDirectory, imageFileName);
-await pdfImagesExtractor.ExtractImagesToFileAsync(inputPdfStream, outputDirectory, imageFileName);
-await pdfImagesExtractor.ExtractImagesToFileAsync(inputPdfFile, outputDirectory, imageFileName);
+pdfImagesExtractor.ExtractImagesToFile(inputPdfBytes, startPageNumber, outputDirectory, imageFileName);
+pdfImagesExtractor.ExtractImagesToFile(inputPdfStream, startPageNumber, outputDirectory, imageFileName);
+pdfImagesExtractor.ExtractImagesToFile(inputPdfFile, startPageNumber, outputDirectory, imageFileName);

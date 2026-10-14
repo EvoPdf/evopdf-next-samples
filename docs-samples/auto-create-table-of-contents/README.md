@@ -10,5 +10,7 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/auto-create-ta
 | `Sample2.html` | Custom Table of Contents Entries Using the data-heading Attribute | 44 |
 | `Sample3.cs` | Table Title | 2 |
 | `Sample4.cs` | Inline Table of Contents | 2 |
-| `Sample5.cs` | Table of Contents Style | 147 |
-| `Sample6.cs` | Code Sample - Auto Create Table of Contents | 244 |
+| `Sample5.html` | Inline Table of Contents | 1 |
+| `Sample6.cs` | Table of Contents Mode | 1 |
+| `Sample7.cs` | Table of Contents Style | 147 |
+| `Sample8.cs` | Code Sample - Auto Create Table of Contents | 244 |

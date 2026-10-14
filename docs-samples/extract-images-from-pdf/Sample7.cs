@@ -1,3 +1,1 @@
-pdfImagesExtractor.ExtractImagesToFile(inputPdfBytes, startPageNumber, outputDirectory, imageFileName);
-pdfImagesExtractor.ExtractImagesToFile(inputPdfStream, startPageNumber, outputDirectory, imageFileName);
-pdfImagesExtractor.ExtractImagesToFile(inputPdfFile, startPageNumber, outputDirectory, imageFileName);
+ExtractedImage[][] extractedImages = pdfImagesExtractor.ExtractImages(inputPdfBytes, startPageNumber, endPageNumber);

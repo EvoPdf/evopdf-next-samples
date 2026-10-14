@@ -1,0 +1,231 @@
+@model EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF.Create_Electronic_Invoice_PDF_ViewModel
+@{
+    ViewBag.Title = "Create Electronic Invoices (ZUGFeRD and Factur-X)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_SelectNode("demoTreeView_Create_Electronic_Invoice_PDF");
+
+    // Shows the HTML page that matches the selected sample: the invoice, the credit note or the order
+    function loadSamplePage(dropDownList) {
+        var page = dropDownList.options[dropDownList.selectedIndex].getAttribute("data-page");
+        var baseUrl = document.getElementById("baseUrlTextBox").value;
+        fetch(baseUrl + page).then(function (response) { return response.text(); }).then(function (html) {
+            document.getElementById("htmlStringTextBox").value = html;
+        });
+    }
+</script>
+
+<form asp-action="ConvertHtmlToPdf" asp-controller="Create_Electronic_Invoice_PDF" method="post" enctype="multipart/form-data">
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 8px; padding-top: 5px">
+                                    Create Electronic Invoices (ZUGFeRD and Factur-X)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    A hybrid electronic invoice carries the invoice twice in one PDF: the page a person reads and the XML an accounting system reads.
+                                                                    ZUGFeRD (Germany) and Factur-X (France) are the same standard under two names, with the MINIMUM, BASIC WL, BASIC, EN 16931,
+                                                                    EXTENDED and XRECHNUNG profiles; credit notes and the other invoice types are carried the same way and purchase orders use Order-X.
+                                                                    The profile is read from the XML and the PDF/A-3 document receives the embedded file and the metadata the standard prescribes.
+                                                                    With PDF/UA-1 + PDF/A-3a the invoice is also accessible, as the European Accessibility Act requires for the invoices sent to consumers.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    Invoice HTML to Convert
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <textarea asp-for="HtmlString" rows="2" cols="20" id="htmlStringTextBox" style="height:200px;width:500px;"></textarea>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold">
+                                                                                    Base URL
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input asp-for="BaseUrl" type="text" id="baseUrlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Invoice XML
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Sample invoice:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="SampleInvoice" id="sampleInvoiceDropDownList" onchange="loadSamplePage(this)">
+                                                                                                        <option value="Invoice_MINIMUM.xml" data-page="Electronic_Invoice.html">MINIMUM (header data only)</option>
+                                                                                                        <option value="Invoice_BASIC_WL.xml" data-page="Electronic_Invoice.html">BASIC WL (header data, no invoice lines)</option>
+                                                                                                        <option value="Invoice_BASIC.xml" data-page="Electronic_Invoice.html">BASIC (invoice lines, core elements)</option>
+                                                                                                        <option value="Invoice_EN_16931.xml" data-page="Electronic_Invoice.html">EN 16931 (the full European standard)</option>
+                                                                                                        <option value="Invoice_EXTENDED.xml" data-page="Electronic_Invoice.html">EXTENDED (EN 16931 plus extensions)</option>
+                                                                                                        <option value="Invoice_XRECHNUNG.xml" data-page="Electronic_Invoice.html">XRECHNUNG (German public sector)</option>
+                                                                                                        <option value="Invoice_CREDIT_NOTE.xml" data-page="Electronic_Credit_Note.html">EN 16931 credit note</option>
+                                                                                                        <option value="Order_COMFORT.xml" data-page="Electronic_Order.html">Order-X COMFORT (purchase order)</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px" colspan="3"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Or upload your XML:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <span style="display:inline-block; border:1px solid #C0C0C0; padding:1px 1px; vertical-align:middle;">
+                                                                                                        <input asp-for="InvoiceXmlFile" type="file" id="invoiceXmlFileInput"
+                                                                                                               accept=".xml"
+                                                                                                               style="width:250px; vertical-align:middle;">
+                                                                                                    </span>
+                                                                                                    <button type="button"
+                                                                                                            onclick="document.getElementById('invoiceXmlFileInput').value='';"
+                                                                                                            style="margin-left:5px; vertical-align:middle;">
+                                                                                                        Clear File
+                                                                                                    </button>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px" colspan="3"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Relationship to the page:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="Relationship" id="relationshipDropDownList">
+                                                                                                        <option value="Alternative">Alternative (the XML and the page carry the same invoice)</option>
+                                                                                                        <option value="Data">Data (the page shows more than the XML)</option>
+                                                                                                        <option value="Source">Source (the page was generated from the XML)</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    PDF Compliance
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Standard:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="PdfStandard" id="pdfStandardDropDownList">
+                                                                                                        <option value="PdfA3b">PDF/A-3b</option>
+                                                                                                        <option value="PdfA3u">PDF/A-3u</option>
+                                                                                                        <option value="PdfA3a">PDF/A-3a</option>
+                                                                                                        <option value="PdfUa1PdfA3a">PDF/UA-1 + PDF/A-3a (accessible invoice)</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <button type="submit" name="convertToPdfButton" id="convertToPdfButton">Create Electronic Invoice</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

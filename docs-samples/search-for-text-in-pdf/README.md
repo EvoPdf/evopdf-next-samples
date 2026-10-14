@@ -8,10 +8,19 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/search-for-tex
 | --- | --- | --- |
 | `Sample1.cs` | Create the PDF to Text Converter | 2 |
 | `Sample2.cs` | Open Password Protected PDFs | 2 |
-| `Sample3.cs` | Find Text in PDF | 2 |
-| `Sample4.cs` | Find Text in PDF | 2 |
-| `Sample5.cs` | Find Text in PDF | 2 |
-| `Sample6.cs` | Asynchronous Methods to Find Text in PDF | 2 |
-| `Sample7.cs` | Asynchronous Methods to Find Text in PDF | 2 |
-| `Sample8.cs` | Asynchronous Methods to Find Text in PDF | 2 |
-| `Sample9.cs` | Code Sample - Find Text in PDF | 156 |
+| `Sample3.cs` | Searched Page Range Limit | 1 |
+| `Sample4.cs` | Searched Page Range Limit | 1 |
+| `Sample5.cs` | Find Text in PDF | 1 |
+| `Sample6.cs` | Find Text in PDF | 1 |
+| `Sample7.cs` | Find Text in PDF | 1 |
+| `Sample8.cs` | Find Text in PDF | 2 |
+| `Sample9.cs` | Find Text in PDF | 2 |
+| `Sample10.cs` | Find Text in PDF | 2 |
+| `Sample11.cs` | Asynchronous Methods to Find Text in PDF | 1 |
+| `Sample12.cs` | Asynchronous Methods to Find Text in PDF | 1 |
+| `Sample13.cs` | Asynchronous Methods to Find Text in PDF | 1 |
+| `Sample14.cs` | Asynchronous Methods to Find Text in PDF | 2 |
+| `Sample15.cs` | Asynchronous Methods to Find Text in PDF | 2 |
+| `Sample16.cs` | Asynchronous Methods to Find Text in PDF | 2 |
+| `Sample17.cs` | Conversion Info | 1 |
+| `Sample18.cs` | Code Sample - Find Text in PDF | 156 |

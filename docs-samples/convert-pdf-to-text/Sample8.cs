@@ -1,2 +1,1 @@
-string extractedText = await pdfToTextConverter.ConvertToTextAsync(inputPdfStream, startPageNumber, endPageNumber);
-string extractedText = await pdfToTextConverter.ConvertToTextAsync(inputPdfFile, startPageNumber, endPageNumber);
+string extractedText = pdfToTextConverter.ConvertToText(inputPdfBytes, startPageNumber);

@@ -12,6 +12,8 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-doc
 | `Sample4.cs` | Add New PDF Pages | 8 |
 | `Sample5.cs` | Save the PDF Document | 4 |
 | `Sample6.cs` | Save the PDF Document | 2 |
-| `Sample7.cs` | Dispose the PdfDocument | 2 |
-| `Sample8.cs` | Dispose the PdfDocument | 3 |
-| `Sample9.cs` | Code Sample - Create PDF Documents with Text and Images | 243 |
+| `Sample7.cs` | Save the PDF Document | 1 |
+| `Sample8.cs` | Save the PDF Document | 1 |
+| `Sample9.cs` | Dispose the PdfDocument | 2 |
+| `Sample10.cs` | Dispose the PdfDocument | 3 |
+| `Sample11.cs` | Code Sample - Create PDF Documents with Text and Images | 243 |
