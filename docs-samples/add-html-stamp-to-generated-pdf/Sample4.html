@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML Stamp with Page Numbers</title>
+    <link href="styles/webfonts.css" type="text/css" rel="stylesheet">
+</head>
+<!-- Use background-color: rgba(r, g, b, a) to apply background opacity (a = 0 transparent, 1 opaque) -->
+<body style="background-color: rgba(255, 255, 255, 0.9); font-family: Verdana, sans-serif; font-size: 16px; margin: 5px">
+    <table style="width: 100%; border: 3px solid royalblue">
+        <tr>
+            <td>
+                <a href="http://www.evopdf.com">
+                    <img alt="Logo Image" src="img/small_logo.png" />
+                </a>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td style="font-size: 24px; font-weight: bold; color: #BE1200">
+                            HTML Stamp with Page Numbers
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="font-size: 16px">Page <span style="color:blue">{page_number}</span> of <span style="color:green">{total_pages}</span> pages</span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

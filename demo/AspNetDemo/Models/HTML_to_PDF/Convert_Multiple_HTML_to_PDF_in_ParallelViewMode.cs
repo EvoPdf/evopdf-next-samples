@@ -7,6 +7,12 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
 
         public bool AsyncParallelConversionEnabled { get; set; } = true;
 
+        // The header and the footer of the merged document, rendered once the conversions are merged
+        public bool HeaderEnabled { get; set; } = true;
+        public string HeaderHtml { get; set; } = "<div style=\"font-family: Verdana, sans-serif; font-size: 14px; color: navy; padding: 10px 20px; border-bottom: 1px solid navy\">Converted in parallel, merged into one document</div>";
+        public bool FooterEnabled { get; set; } = true;
+        public string FooterHtml { get; set; } = "<div style=\"font-family: Verdana, sans-serif; font-size: 14px; text-align: center; padding: 10px\">Page {page_number} of {total_pages}</div>";
+
         public int HtmlViewerWidth { get; set; } = 1024;
         public int? HtmlViewerHeight { get; set; } = 2048;
         public double HtmlViewerZoom { get; set; } = 100;

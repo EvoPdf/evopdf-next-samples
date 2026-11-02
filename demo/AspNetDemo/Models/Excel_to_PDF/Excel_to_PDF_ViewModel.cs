@@ -16,6 +16,7 @@ namespace EvoPdf_Next_AspNetDemo.Models.Excel_to_PDF
         public bool ConvertOnlyFirstWorksheet { get; set; } = false;
         public bool PageBreakBetweenWorksheets { get; set; } = true;
         public bool DisplayWorksheetTitle { get; set; } = true;
+        public bool FitWideContentToPage { get; set; } = true;
 
         public string PdfPageSize { get; set; } = "A4";
         public string PdfPageOrientation { get; set; } = "Portrait";
@@ -61,5 +62,7 @@ namespace EvoPdf_Next_AspNetDemo.Models.Excel_to_PDF
         public bool AutoResizeBottomMargin { get; set; } = true;
         public bool ReserveFooterSpace { get; set; } = true;
         public int? FooterConversionDelay { get; set; } = 0;
+
+        public bool AddConversionInfoPage { get; set; } = false;
     }
 }

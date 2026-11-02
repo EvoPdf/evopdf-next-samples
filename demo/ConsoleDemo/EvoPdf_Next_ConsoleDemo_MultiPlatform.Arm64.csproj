@@ -17,8 +17,8 @@
 
   <ItemGroup>
     <!-- Windows ARM64 + Linux ARM64 -->
-    <PackageReference Include="EvoPdf.Next.Windows.Arm64" Version="14.86.1" />
-    <PackageReference Include="EvoPdf.Next.Linux.Arm64" Version="14.86.1" />
+    <PackageReference Include="EvoPdf.Next.Windows.Arm64" Version="15.0.3" />
+    <PackageReference Include="EvoPdf.Next.Linux.Arm64" Version="15.0.3" />
   </ItemGroup>
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />

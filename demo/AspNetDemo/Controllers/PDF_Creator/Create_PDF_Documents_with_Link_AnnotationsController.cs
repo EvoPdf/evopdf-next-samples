@@ -14,6 +14,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
     public class Create_PDF_Documents_with_Link_AnnotationsController : Controller
     {
         private readonly IWebHostEnvironment m_hostingEnvironment;
+        private PdfLinkHighlightMode m_highlightMode;
 
         public Create_PDF_Documents_with_Link_AnnotationsController(IWebHostEnvironment hostingEnvironment)
         {
@@ -82,6 +83,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             };
             titleElement.Accessibility.StructureType = PdfStructureType.Heading1;
             crtYPos = (int)pdfDocument.AddText(titleElement).LastPageRectangle.Bounds.Bottom + ySeparator * 2;
+
+            m_highlightMode = model.HighlightMode;
 
             // ===== Section 1: PdfLinkAnnotation.FromUrl =====
             crtYPos = AddSectionLabel(pdfDocument, sectionFont,
@@ -295,6 +298,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
                 x: tb.X, y: tb.Y, width: tb.Width, height: tb.Height);
             link.Description = description;
             link.BorderStyle = borderStyle;
+            // The visual effect of the viewer when the link is clicked
+            link.HighlightMode = m_highlightMode;
             doc.AddLinkAnnotation(link);
 
             int capBottom = AddCaption(doc, labelFont, captionText,
@@ -329,6 +334,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
 
             PdfLinkAnnotation link = linkFactory(x, y, linkW, linkH);
             link.Description = description;
+            link.HighlightMode = m_highlightMode;
             doc.AddLinkAnnotation(link);
 
             int capBottom = AddCaption(doc, labelFont, captionText,

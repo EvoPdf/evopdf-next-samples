@@ -1,4 +1,5 @@
 using System.IO;
+using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Hosting;
@@ -35,7 +36,6 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the library in licensed mode
             // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
             // Licensing.LicenseKey = "your-license-key";
 
@@ -89,9 +89,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             crtYPos = (int)pdfDocument.AddText(sectionLabel1).LastPageRectangle.Bounds.Bottom + ySeparator;
 
             PdfTextElement highlighted = new PdfTextElement(
-                "This paragraph has a yellow highlight background drawn behind the text as an " +
-                "Artifact (it does not appear in the structure tree). The background covers the " +
-                "full column width and the actual used height.",
+                "This paragraph has a yellow highlight background drawn behind the text. The background " +
+                "covers the full column width and the height used by the text.",
                 bodyFont)
             {
                 X = xLeft,
@@ -112,9 +111,9 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             PdfTextElement decoratedText = new PdfTextElement(
                 "Below text is drawn an under-layer rectangle in the OnBeforePageRender callback, " +
                 "while the OnAfterPageRender callback adds a thin border around the rendered area. " +
-                "Both callbacks receive the same PdfTextPageRenderInfo type but the rectangle in " +
-                "OnBeforePageRender is the predicted column area while in OnAfterPageRender it is " +
-                "the actual rendered area.",
+                "Both callbacks receive the same PdfTextPageRenderInfo type: the rectangle in " +
+                "OnBeforePageRender is the area the text is about to use and in OnAfterPageRender " +
+                "it is the area the text used.",
                 bodyFont)
             {
                 X = xLeft,
@@ -214,8 +213,18 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
                 Alignment = PdfTextAlignment.Left,
                 ContinueOnNextPage = true,
                 BackgroundColor = PdfColor.WhiteSmoke,
-                BackgroundOpacity = 1f
+                BackgroundOpacity = 1f,
+                // The line spacing as a multiple of the font size; 0 uses the default of 1.2
+                Leading = model.Leading
             };
+
+            // The pages and the rectangles reported by the OnPageRendered callback after each page is rendered
+            List<string> renderedPages = new List<string>();
+            if (model.ReportRenderedPages)
+            {
+                multipage.OnPageRendered = (pageNumber, bounds) =>
+                    renderedPages.Add(string.Format("page {0}: ({1:F0}, {2:F0}, {3:F0}x{4:F0})", pageNumber, bounds.X, bounds.Y, bounds.Width, bounds.Height));
+            }
 
             // Per-page hook: draw a small page-number badge using OnAfterPageRender
             multipage.OnAfterPageRender = info =>
@@ -275,6 +284,37 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
                 EnsureSpaceOnPage(ref crtYPos, 30, pdfDocument);
             }
 
+            if (model.ReportRenderedPages)
+            {
+                crtYPos += ySeparator;
+                PdfTextElement renderedPagesElement = new PdfTextElement(
+                    "Pages reported by OnPageRendered for the multi-page text: " + string.Join("; ", renderedPages), smallFont)
+                {
+                    X = xLeft,
+                    Y = crtYPos,
+                    Width = pdfDocument.ContentWidth
+                };
+                pdfDocument.AddText(renderedPagesElement);
+            }
+
+            if (model.AddPageNumbers)
+            {
+                // A template repeated in all the pages with a text element whose {page_number} and {total_pages}
+                // placeholders are replaced in each page, with the given offsets added to the numbers
+                PdfTemplate footerTemplate = pdfDocument.AddPdfTemplate(0, pdfDocument.PageSize.Height - 30, pdfDocument.PageSize.Width, 20);
+                PdfTextElement pageNumbersElement = new PdfTextElement("Page {page_number} of {total_pages}", smallFont)
+                {
+                    X = 0,
+                    Y = 0,
+                    Width = pdfDocument.PageSize.Width,
+                    Alignment = PdfTextAlignment.Center,
+                    PageNumberOffset = model.PageNumberOffset,
+                    TotalPagesOffset = model.TotalPagesOffset
+                };
+                pageNumbersElement.Accessibility.StructureType = PdfStructureType.Artifact;
+                footerTemplate.AddText(pageNumbersElement);
+            }
+
             byte[] outPdfBuffer = pdfDocument.Save();
             FileResult fileResult = new FileContentResult(outPdfBuffer, "application/pdf");
             fileResult.FileDownloadName = "PdfTextDemo.pdf";
@@ -285,14 +325,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
         {
             string textsPath = GetDemoTextsPath();
             string alphabetFilePath = Path.Combine(textsPath, "Alphabet.txt");
-            if (System.IO.File.Exists(alphabetFilePath))
-                return System.IO.File.ReadAllText(alphabetFilePath);
-
-            // Fallback so the demo runs even without the alphabet file.
-            return "The quick brown fox jumps over the lazy dog. " +
-                   "Pack my box with five dozen liquor jugs. " +
-                   "Sphinx of black quartz, judge my vow. " +
-                   "How vexingly quick daft zebras jump. ";
+            return System.IO.File.ReadAllText(alphabetFilePath);
         }
 
         private void EnsureSpaceOnPage(ref int crtYPos, int requestedHeight, PdfDocument pdfDocument)

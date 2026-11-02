@@ -246,6 +246,10 @@
                                                                                                 <td>
                                                                                                     <input asp-for="CountTocPages" id="countTocPagesCheckBox" type="checkbox" onclick="toggleUseBrowserVisibility()"><label for="countTocPagesCheckBox">Count TOC Pages</label>
                                                                                                 </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="CountStartPages" id="countStartPagesCheckBox" type="checkbox"><label for="countStartPagesCheckBox">Count Start Pages</label>
+                                                                                                </td>
                                                                                                 <td style="width: 30px"></td>
                                                                                                 <td>
                                                                                                     Page Numbers Offset:
@@ -269,11 +273,54 @@
                                                                                         <tbody>
                                                                                             <tr>
                                                                                                 <td>
+                                                                                                    <input asp-for="AddStartPdf" id="addStartPdfCheckBox" type="checkbox"><label for="addStartPdfCheckBox">PDF Document before the Table of Contents</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="UsePageNumbersFont" id="usePageNumbersFontCheckBox" type="checkbox"><label for="usePageNumbersFontCheckBox">DejaVu Serif Font for the Page Numbers</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 8px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
                                                                                                     Title:
                                                                                                 </td>
                                                                                                 <td style="width: 5px"></td>
                                                                                                 <td>
                                                                                                     <input asp-for="TocTitle" type="text" id="tocTitleTextBox" style="width:460px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 8px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="font-weight: bold">
+                                                                                                    Entry Selectors (one CSS selector per line, the first line for level 1; empty to use the H1 to H6 tags)
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <textarea asp-for="TocSelectors" rows="2" cols="20" id="tocSelectorsTextBox" style="height:60px;width:500px;"></textarea>
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>

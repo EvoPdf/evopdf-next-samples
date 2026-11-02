@@ -97,7 +97,9 @@
                                                                     The converter can keep the column widths and row heights from Excel, insert PDF page breaks between worksheet content 
                                                                     and display or hide the worksheet title.<br /><br />
                                                                     You can either enter a Excel file URL (which can also be a local URL using the file:// prefix when running the demo on your machine),
-                                                                    or upload a Excel file directly from your computer.
+                                                                    or upload a Excel file directly from your computer.<br /><br />
+                                                                    The worksheets take the width of the page and an element wider than the page, such as a picture, is scaled down to the
+                                                                    width of the page. Clear Fit Wide Content to Page to keep the content at its size, with the part beyond the right margin cut off.
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -215,6 +217,10 @@
                                                                                             <tr>
                                                                                                 <td>
                                                                                                     <input asp-for="DisplayWorksheetTitle" id="displayWorksheetTitleCheckBox" type="checkbox"><label for="displayWorksheetTitleCheckBox">Display Worksheet Title</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="FitWideContentToPage" id="fitWideContentToPageCheckBox" type="checkbox"><label for="fitWideContentToPageCheckBox">Fit Wide Content to Page</label>
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>
@@ -897,6 +903,39 @@
                                                                             </tr>
                                                                         </table>
                                                                     </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Conversion Information
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="AddConversionInfoPage" id="addConversionInfoPageCheckBox" type="checkbox"><label for="addConversionInfoPageCheckBox">Add a Page with the Conversion Information at the End of the Document</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
                                                                 </td>
                                                             </tr>
                                                             <tr>

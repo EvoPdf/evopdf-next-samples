@@ -9,5 +9,7 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public string HtmlString { get; set; }
         public string BaseUrl { get; set; } = string.Empty;
         public PdfStandard PdfStandard { get; set; } = PdfStandard.PdfUa1;
+
+        public string DocumentLanguage { get; set; } = string.Empty;
     }
 }

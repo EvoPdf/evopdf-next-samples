@@ -1,0 +1,3 @@
+htmlToPdfConverter.PdfDocumentOptions.TableOfContents.CountTocPages = true;
+htmlToPdfConverter.PdfDocumentOptions.TableOfContents.CountStartPages = false;
+htmlToPdfConverter.PdfDocumentOptions.TableOfContents.PageNumbersFont = PdfFontManager.CreateBaseFont(fontFilePath);

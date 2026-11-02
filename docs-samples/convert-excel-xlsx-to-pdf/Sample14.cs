@@ -1,1 +1,1 @@
-byte[] outPdfBuffer = await excelToPdfConverter.ConvertToPdfAsync(excelFilePath);
+byte[] outPdfBuffer = await excelToPdfConverter.ConvertToPdfAsync(excelBytes);

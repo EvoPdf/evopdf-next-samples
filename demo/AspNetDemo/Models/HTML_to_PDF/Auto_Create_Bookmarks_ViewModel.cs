@@ -9,5 +9,6 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
 
         public bool GenerateDocumentOutline { get; set; } = true;
         public bool UseBrowserOutlineMode { get; set; } = false;
+        public string OutlineSelectors { get; set; } = "";
     }
 }

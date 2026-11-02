@@ -1,19 +1,21 @@
 {
   "$schema": "https://context7.com/schema/context7.json",
   "projectTitle": "EvoPdf Next Samples",
-  "description": "Runnable C# samples for EvoPdf Next (.NET PDF library): HTML, Word, Excel, RTF and Markdown to PDF, e-invoices, digital signatures, PDF to text and image, PDF editing, cloud deployment",
+  "description": "Runnable C# samples for EvoPdf Next (.NET PDF library): HTML, Word, Excel, RTF and Markdown to PDF, e-invoices, digital signatures, PDF to text and image, PDF creation, editing, forms, merge, split and redaction, the Classic API on the Next engine, cloud deployment",
   "folders": [
     "quickstarts",
     "docs-samples"
   ],
   "excludeFolders": [
     "demo/AspNetDemo/wwwroot",
+    "classic-demo/AspNetDemo/wwwroot",
     ".github"
   ],
   "rules": [
     "Use the EvoPdf.Next namespace; reference one NuGet package per platform (EvoPdf.Next.Windows, EvoPdf.Next.Linux, EvoPdf.Next.MacOS)",
     "Set Licensing.LicenseKey once, statically, before the first conversion; never invent a key",
     "Converter instances are not reusable: create a new converter for every conversion",
+    "EvoPdf Classic code (EvoPdf namespace) runs unchanged on the Next engine with the EvoPdf.HtmlToPdf.Windows, .Linux and .MacOS packages, as the classic-demo folder shows",
     "API rules, migration guidance and skills for coding assistants live in https://github.com/EvoPdf/evopdf-agent-skills; consult that library for how to use the API, and this one for runnable code"
   ]
 }

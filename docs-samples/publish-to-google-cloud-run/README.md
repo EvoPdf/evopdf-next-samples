@@ -7,7 +7,7 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/publish-to-goo
 | File | Section | Lines |
 | --- | --- | --- |
 | `Sample1.sh` | Build the Container Image | 1 |
-| `Sample2.Dockerfile` | Build the Container Image | 29 |
+| `Sample2.Dockerfile` | Dockerfile | 29 |
 | `Sample3.sh` | Build the Container Image | 1 |
 | `Sample4.sh` | Push the Image to Artifact Registry | 3 |
 | `Sample5.sh` | Push the Image to Artifact Registry | 3 |

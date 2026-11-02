@@ -5,9 +5,11 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public string FirstUrl { get; set; } = "http://www.evopdf.com";
         public string SecondUrl { get; set; } = "http://www.evopdf.com/DemoAppFiles/HTML_Files/Structured_HTML.html";
 
+        // Continue: the second document starts where the first one ends; NewPage: it starts on a new page
+        public string SecondDocumentStart { get; set; } = "NewPage";
+
         public int HtmlViewerWidth { get; set; } = 1024;
         public int? HtmlViewerHeight { get; set; } = 2048;
-        public double HtmlViewerZoom { get; set; } = 100;
 
         public string PdfPageSize { get; set; } = "A4";
         public string PdfPageOrientation { get; set; } = "Portrait";
@@ -18,7 +20,11 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public int TopMargin { get; set; } = 0;
         public int BottomMargin { get; set; } = 0;
 
-        public bool GenerateToc { get; set; } = false;
+        // None, Document (one table of contents for the whole document) or EachDocument (one for each HTML document)
+        public string TableOfContents { get; set; } = "None";
+        // Inline (at the start of each document) or SeparatePages (on its own pages before each document, when the
+        // document starts on a new page)
+        public string TocPlacement { get; set; } = "Inline";
         public bool AutoBookmarks { get; set; } = false;
 
         public int NavigationTimeout { get; set; } = 120;

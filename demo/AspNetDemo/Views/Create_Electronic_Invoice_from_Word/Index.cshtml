@@ -1,0 +1,253 @@
+@model EvoPdf_Next_AspNetDemo.Models.Word_to_PDF.Create_Electronic_Invoice_from_Word_ViewModel
+@{
+    ViewBag.Title = "Create Electronic Invoices from Word";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_SelectNode("demoTreeView_Create_Electronic_Invoice_from_Word");
+</script>
+
+<form asp-action="ConvertWordToPdf" asp-controller="Create_Electronic_Invoice_from_Word" method="post" enctype="multipart/form-data">
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 8px; padding-top: 5px">
+                                    Create Electronic Invoices from Word
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 967px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    The Word to PDF converter can embed a Factur-X / ZUGFeRD electronic invoice in the generated PDF document: the invoice XML is
+                                                                    attached under the file name the standard prescribes, with the relationship of its profile and the identification metadata
+                                                                    is written in the document. The document is generated as PDF/A-3, the carrier the standard requires. The Excel, RTF and
+                                                                    Markdown to PDF converters embed an electronic invoice the same way.<br /><br />
+                                                                    The sample Word document shows the invoice carried by the sample XML files.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    Enter Word .DOCX File URL
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input asp-for="WordFileUrl" type="text" id="wordFileUrlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    Upload Word .DOCX File
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <span style="display:inline-block; border:1px solid #C0C0C0; padding:1px 1px; vertical-align:middle;">
+                                                                                        <input asp-for="WordFile" type="file" id="WordFileInput" accept=".docx" style="width:250px; vertical-align:middle;">
+                                                                                    </span>
+                                                                                    <button type="button" onclick="document.getElementById('WordFileInput').value='';" style="margin-left:5px; vertical-align:middle;">
+                                                                                        Clear File
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Electronic Invoice
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Sample Invoice XML:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="SampleInvoice" id="sampleInvoiceDropDownList"><option value="Invoice_MINIMUM.xml">MINIMUM (header data only)</option><option value="Invoice_BASIC_WL.xml">BASIC WL (header data, no invoice lines)</option><option value="Invoice_BASIC.xml">BASIC (invoice lines, core elements)</option><option value="Invoice_EN_16931.xml">EN 16931 (the full European standard)</option><option value="Invoice_EXTENDED.xml">EXTENDED (EN 16931 plus extensions)</option><option value="Invoice_XRECHNUNG.xml">XRECHNUNG (German public sector)</option></select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px" colspan="9"></td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Upload Invoice XML:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <span style="display:inline-block; border:1px solid #C0C0C0; padding:1px 1px; vertical-align:middle;"><input asp-for="InvoiceXmlFile" type="file" id="invoiceXmlFileInput" accept=".xml" style="width:250px; vertical-align:middle;"></span> <button type="button" onclick="document.getElementById('invoiceXmlFileInput').value='';" style="margin-left:5px; vertical-align:middle;">Clear File</button>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px" colspan="9"></td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Relationship to the page:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="Relationship" id="relationshipDropDownList"><option value="Alternative">Alternative (the XML and the page carry the same invoice)</option><option value="Data">Data (the page shows more than the XML)</option><option value="Source">Source (the page was generated from the XML)</option></select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    PDF Compliance
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Standard:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="PdfStandard" id="pdfStandardDropDownList">
+                                                                                                        <option value="PdfA3b">PDF/A-3b</option>
+                                                                                                        <option value="PdfA3u">PDF/A-3u</option>
+                                                                                                        <option value="PdfA3a">PDF/A-3a</option>
+                                                                                                        <option value="PdfUa1PdfA3a">PDF/UA-1 + PDF/A-3a</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <button type="submit" name="convertToPdfButton" id="convertToPdfButton">Convert Word to PDF</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 5px"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

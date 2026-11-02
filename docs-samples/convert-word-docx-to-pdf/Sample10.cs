@@ -1,1 +1,1 @@
-wordToPdfConverter.ConvertToPdfFile(wordFilePath, outputPdfFilePath);
+wordToPdfConverter.ConvertToPdfFile(wordBytes, outputPdfFilePath);

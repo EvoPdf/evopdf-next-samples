@@ -49,7 +49,7 @@
                                                                     to retrieve their position in the PDF by entering a CSS selector.
                                                                     You can either provide a page URL or paste HTML code, optionally with a base URL.
                                                                     The selected elements will be highlighted in the PDF using rectangle annotations in different colors, based on the tag type.
-                                                                    h1, h2, h3, and h4 tags have special colors assigned, while all other selected tags are highlighted in red by default.
+                                                                    h1, h2, h3 and h4 tags have special colors assigned, while all other selected tags are highlighted in red by default.
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -154,6 +154,14 @@
                                                                                                 <input asp-for="RetrieveElementsInfoSelector" id="retrieveElementsInfoSelectorTextBox" type="text" style="width:375px;">
                                                                                             </td>
                                                                                         </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px" colspan="3"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td colspan="3">
+                                                                                                    <input asp-for="HideElements" id="hideElementsCheckBox" type="checkbox"><label for="hideElementsCheckBox">Hide the Elements Matching:</label> <input asp-for="HiddenElementsSelector" type="text" id="hiddenElementsSelectorTextBox" style="width:100px;">
+                                                                                                </td>
+                                                                                            </tr>
                                                                                     </table>
                                                                                 </td>
                                                                             </tr>                                                                            

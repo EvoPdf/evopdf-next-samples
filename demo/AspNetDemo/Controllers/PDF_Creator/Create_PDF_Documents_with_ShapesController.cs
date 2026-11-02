@@ -130,7 +130,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             crtYPos = AddSectionLabel(pdfDocument, sectionFont,
                 "2. PdfRoundedRectangleElement (varying corner radius)", xLeft, crtYPos, ySeparator);
 
-            float[] radii = { 4f, 12f, 24f, 30f };
+            // The corner radius of the second box comes from the demo page
+            float[] radii = { 4f, model.CornerRadius, 24f, 30f };
             int section2MaxBottom = crtYPos;
             for (int i = 0; i < radii.Length; i++)
             {
@@ -183,6 +184,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             var dashLineInfo = pdfDocument.AddLine(new PdfLineElement(xLeft, crtYPos, xLeft + 380, crtYPos)
             {
                 LineColor = PdfColor.DarkRed,
+                // The opacity of the line, from 0 to 1
+                LineOpacity = model.LineOpacity,
                 LineStyle = new PdfLineStyle
                 {
                     LineWidth = 2f,
@@ -199,7 +202,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             crtYPos = AddSectionLabel(pdfDocument, sectionFont,
                 "4. PdfCircleElement (filled, stroked, opacity)", xLeft, crtYPos, ySeparator);
 
-            var circle1Info = pdfDocument.AddCircle(new PdfCircleElement(xLeft + 40, crtYPos + 40, 30)
+            // The circle is given by its center and its radius; the radius of the first circle comes from the demo page
+            var circle1Info = pdfDocument.AddCircle(new PdfCircleElement(xLeft + 40, crtYPos + 40, model.CircleRadius)
             {
                 FillColor = PdfColor.Tomato,
                 BorderColor = PdfColor.DarkRed,
@@ -280,15 +284,18 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             for (int i = 0; i < closures.Length; i++)
             {
                 int arcX = xLeft + i * 170;
+                // The arc is a part of the ellipse inscribed in the rectangle, from the start angle over the sweep angle,
+                // clockwise in degrees
                 var arcInfo = pdfDocument.AddArc(new PdfArcElement(arcX, crtYPos, 130, 90,
-                    startAngleDegrees: 20,
-                    sweepAngleDegrees: 200)
+                    startAngleDegrees: model.ArcStartAngle,
+                    sweepAngleDegrees: model.ArcSweepAngle)
                 {
                     Closure = closures[i],
                     FillColor = PdfColor.LightSkyBlue,
                     FillOpacity = 0.4f,
-                    LineColor = PdfColor.MediumBlue,
-                    LineStyle = new PdfLineStyle { LineWidth = 1.5f }
+                    BorderColor = PdfColor.MediumBlue,
+                    BorderOpacity = model.LineOpacity,
+                    Border = new PdfLineStyle { LineWidth = 1.5f }
                 });
                 int capBottom = AddCaption(pdfDocument, labelFont, closureLabels[i], arcX,
                     (int)arcInfo.LastPageRectangle.Bounds.Bottom + 5, 140);

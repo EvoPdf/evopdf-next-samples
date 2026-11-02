@@ -164,6 +164,57 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                     htmlToPdfConverter.PdfDocumentOptions.PdfHtmlFooter.ConversionDelay = model.FooterConversionDelay.Value;
             }
 
+            // The page numbering options apply to the header and to the footer
+            PdfHtmlTemplate[] templates = { htmlToPdfConverter.PdfDocumentOptions.PdfHtmlHeader, htmlToPdfConverter.PdfDocumentOptions.PdfHtmlFooter };
+            foreach (PdfHtmlTemplate template in templates)
+            {
+                // Offsets added to the page number and to the total number of pages written in place of the
+                // {page_number} and {total_pages} placeholders
+                template.PageNumberOffset = model.PageNumberOffset;
+                template.TotalPagesOffset = model.TotalPagesOffset;
+
+                // A zoom applied to the font of the page number placeholders, from 0.1 to 2
+                template.PageCounterFontScale = model.PageCounterFontScale;
+
+                if (model.UsePageNumbersFont)
+                {
+                    // The font of the text written in place of the placeholders; the bold, italic and bold italic
+                    // variants can be given separately and default to this font
+                    template.PageNumbersFont = PdfFontManager.CreateBaseFont(Path.Combine(m_hostingEnvironment.ContentRootPath,
+                        "wwwroot", "DemoAppFiles", "Input", "Font_Files", "DejaVuSerif.ttf"));
+                }
+
+                // The template is rendered only in the pages generated from HTML or in all the pages of the document,
+                // including the table of contents and the PDF documents inserted before and after the HTML content
+                template.ShowOnlyInHtmlToPdfPages = model.ShowOnlyInHtmlToPdfPages;
+
+                // The pages inserted before and after the HTML content are counted in the page numbers
+                template.CountStartPages = model.CountStartPages;
+                template.CountEndPages = model.CountEndPages;
+                template.CountTocPages = model.CountTocPages;
+
+                if (model.SkipPagesWithCallback)
+                {
+                    // The callback decides for each page if the template is rendered; it receives the placement of the
+                    // template in the page. The template is skipped in the third page here
+                    template.OnPageRendering = placement => placement.DocumentPageNumber != 3;
+                }
+            }
+
+            if (model.AddStartAndEndPdf)
+            {
+                // PDF documents inserted before and after the HTML content
+                string pdfFilesPath = Path.Combine(m_hostingEnvironment.ContentRootPath, "wwwroot", "DemoAppFiles", "Input", "PDF_Files");
+                htmlToPdfConverter.PdfDocumentOptions.AddStartPdf(Path.Combine(pdfFilesPath, "Letterhead.pdf"));
+                htmlToPdfConverter.PdfDocumentOptions.AddEndPdf(Path.Combine(pdfFilesPath, "Letterhead.pdf"));
+            }
+
+            if (model.AddTableOfContents)
+            {
+                // A table of contents inserted before the HTML content
+                htmlToPdfConverter.PdfDocumentOptions.GenerateTableOfContents = true;
+            }
+
             // Convert the HTML page to a PDF document in a memory buffer
             byte[] outPdfBuffer = htmlToPdfConverter.ConvertUrl(model.Url);
 

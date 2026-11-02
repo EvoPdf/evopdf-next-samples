@@ -14,9 +14,8 @@ namespace EvoPdf.Next.Samples
 
             var converter = new HtmlToPdfConverter();
             var o = converter.PdfDocumentOptions;
+            // the structure of the tagged document comes from the HTML: headings, lists, table header cells, image alternate text
             o.PdfStandard = PdfStandard.PdfUa1PdfA2b;       // PdfUa1, PdfA2b, PdfUa1PdfA2b, ...
-            o.AccessibilityOptions.AddMissingImageAlternateText = true;
-            o.AccessibilityOptions.InsertMissingTableHeaders = true;
             converter.PdfDocumentInfo.Language = "en-US";
             converter.PdfDocumentInfo.Title = "Accessible, archivable sample";
 

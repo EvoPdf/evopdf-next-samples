@@ -6,4 +6,4 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/html-to-image-
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | Code Sample - Convert HTML to Image | 96 |
+| `Sample1.cs` | Code Sample - Convert HTML to Image | 100 |

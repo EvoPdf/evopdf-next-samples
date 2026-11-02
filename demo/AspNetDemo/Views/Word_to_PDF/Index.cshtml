@@ -95,7 +95,11 @@
                                                                     The converter can also recognize page break marks in the Word document and translate them into corresponding
                                                                     PDF page breaks.<br /><br />
                                                                     You can either enter a Word file URL (which can also be a local URL using the file:// prefix when running the demo on your machine),
-                                                                    or upload a Word file directly from your computer.
+                                                                    or upload a Word file directly from your computer.<br /><br />
+                                                                    Images are reduced to the width of the page and long words are wrapped on their own. For a document with an element
+                                                                    that cannot be reduced, such as a table whose columns hold codes that cannot be broken, the Fit Wide Content to Page
+                                                                    option scales the whole content down to show that element entirely; to see the difference, replace Word_Document.docx
+                                                                    with Word_Document_Wide_Content.docx in the file URL below.
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -372,6 +376,37 @@
                                                                                         <tr>
                                                                                             <td>
                                                                                                 <input asp-for="GenerateToc" id="generateTocCheckBox" type="checkbox"><label for="generateTocCheckBox">Generate Table of Contents</label>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Content Wider than the Page
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <input asp-for="FitWideContentToPage" id="fitWideContentToPageCheckBox" type="checkbox"><label for="fitWideContentToPageCheckBox">Fit Wide Content to Page</label>
                                                                                             </td>
                                                                                         </tr>
                                                                                     </table>
@@ -847,6 +882,39 @@
                                                                             </tr>
                                                                         </table>
                                                                     </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Conversion Information
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="AddConversionInfoPage" id="addConversionInfoPageCheckBox" type="checkbox"><label for="addConversionInfoPageCheckBox">Add a Page with the Conversion Information at the End of the Document</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
                                                                 </td>
                                                             </tr>
                                                             <tr>

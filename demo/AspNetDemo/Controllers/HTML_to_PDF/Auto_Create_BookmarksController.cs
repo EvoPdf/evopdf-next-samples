@@ -51,6 +51,11 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 // Optionally, enable the outline mode to utilize browser capabilities. By default, a custom algorithm is used
                 htmlToPdfConverter.PdfDocumentOptions.UseBrowserOutlineMode = model.UseBrowserOutlineMode;
 
+                // Optionally select the elements of each bookmark level with CSS selectors, the first selector for the level 1
+                // bookmarks, the second one for the level 2 bookmarks and so on; when not set the H1 to H6 tags give the bookmarks
+                if (!string.IsNullOrWhiteSpace(model.OutlineSelectors))
+                    htmlToPdfConverter.PdfDocumentOptions.OutlineHeadingSelectors = model.OutlineSelectors.Replace("\r", "").Split('\n');
+
                 // Display the bookmarks panel in PDF viewer when the generated PDF is opened
                 htmlToPdfConverter.PdfViewerPreferences.PageMode = ViewerPageMode.UseOutlines;
             }

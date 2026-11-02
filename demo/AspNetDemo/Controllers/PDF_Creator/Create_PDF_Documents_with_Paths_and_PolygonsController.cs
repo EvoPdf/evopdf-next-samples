@@ -194,8 +194,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             {
                 FillColor = PdfColor.Crimson,
                 FillOpacity = 0.8f,
-                LineColor = PdfColor.DarkRed,
-                LineStyle = new PdfLineStyle { LineWidth = 1.5f, LineJoin = PdfLineJoinStyle.Round }};
+                BorderColor = PdfColor.DarkRed,
+                Border = new PdfLineStyle { LineWidth = 1.5f, LineJoin = PdfLineJoinStyle.Round }};
 
             heart
                 .MoveTo(cx, cy + s * 0.25f)
@@ -219,8 +219,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             // Wave
             PdfPathElement wave = new PdfPathElement
             {
-                LineColor = PdfColor.SteelBlue,
-                LineStyle = new PdfLineStyle { LineWidth = 2f, LineCap = PdfLineCapStyle.Round }};
+                BorderColor = PdfColor.SteelBlue,
+                Border = new PdfLineStyle { LineWidth = 2f, LineCap = PdfLineCapStyle.Round }};
 
             float waveStartX = xLeft + 200;
             float waveY = crtYPos + 70;
@@ -250,8 +250,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             {
                 FillColor = PdfColor.LightSeaGreen,
                 FillOpacity = 0.6f,
-                LineColor = PdfColor.Teal,
-                LineStyle = new PdfLineStyle { LineWidth = 1.2f }
+                BorderColor = PdfColor.Teal,
+                Border = new PdfLineStyle { LineWidth = 1.2f }
             };
             var triangleInfo3 = pdfDocument.AddPath(staticTriangle);
             int triangle3CapBottom = AddCaption(pdfDocument, labelFont,
@@ -277,8 +277,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
                 {
                     FillColor = PdfColor.MediumPurple,
                     FillOpacity = 0.7f,
-                    LineColor = PdfColor.Indigo,
-                    LineStyle = new PdfLineStyle { LineWidth = 1f },
+                    BorderColor = PdfColor.Indigo,
+                    Border = new PdfLineStyle { LineWidth = 1f },
                     RotationDegrees = angles[i],
                     RotationPivot = PdfRotationPivot.Center
                 };

@@ -1,1 +1,1 @@
-File.WriteAllBytes("output.pdf", outPdfBuffer);
+byte[] outPdfBuffer = markdownToPdfConverter.ConvertStringToPdf(markdownString, baseUrl);

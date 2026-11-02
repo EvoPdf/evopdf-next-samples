@@ -1,1 +1,1 @@
-await excelToPdfConverter.ConvertToPdfFileAsync(excelFilePath, outputPdfFilePath);
+await excelToPdfConverter.ConvertToPdfFileAsync(excelBytes, outputPdfFilePath);

@@ -39,5 +39,17 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public bool AutoResizeBottomMargin { get; set; } = true;
         public bool ReserveFooterSpace { get; set; } = true;
         public int? FooterConversionDelay { get; set; } = 0;
+
+        public int PageNumberOffset { get; set; } = 0;
+        public int TotalPagesOffset { get; set; } = 0;
+        public float PageCounterFontScale { get; set; } = 1;
+        public bool UsePageNumbersFont { get; set; } = false;
+        public bool ShowOnlyInHtmlToPdfPages { get; set; } = true;
+        public bool CountStartPages { get; set; } = true;
+        public bool CountEndPages { get; set; } = true;
+        public bool CountTocPages { get; set; } = true;
+        public bool AddStartAndEndPdf { get; set; } = false;
+        public bool AddTableOfContents { get; set; } = false;
+        public bool SkipPagesWithCallback { get; set; } = false;
     }
 }

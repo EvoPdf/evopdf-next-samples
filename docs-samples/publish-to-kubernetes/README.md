@@ -7,7 +7,7 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/publish-to-kub
 | File | Section | Lines |
 | --- | --- | --- |
 | `Sample1.sh` | Create the AKS Cluster | 4 |
-| `Sample2.yaml` | Deploy the Application | 37 |
+| `Sample2.yaml` | pdf-app.yaml | 37 |
 | `Sample3.sh` | Deploy the Application | 3 |
 | `Sample4.sh` | Amazon EKS | 4 |
 | `Sample5.sh` | Amazon EKS | 2 |

@@ -6,4 +6,5 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/html-to-pdf-co
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | Code Sample - HTML Content Destination and Scaling in PDF | 217 |
+| `Sample1.cs` | Set the Browser Window Growth, the Page Limit and the Allowed Sources | 6 |
+| `Sample2.cs` | Code Sample - HTML Content Destination and Scaling in PDF | 228 |

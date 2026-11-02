@@ -18,5 +18,5 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/publish-to-azu
 | `Sample10.cs` | Alternative: Deploy a Zip Archive Extracted in the Application Folder | 1 |
 | `Sample11.sh` | Alternative: Deploy a Zip Archive Extracted in the Application Folder | 2 |
 | `Sample12.sh` | Alternative: Deploy the Function App as a Container Image | 1 |
-| `Sample13.Dockerfile` | Alternative: Deploy the Function App as a Container Image | 20 |
+| `Sample13.Dockerfile` | Dockerfile | 20 |
 | `Sample14.sh` | Alternative: Deploy the Function App as a Container Image | 7 |

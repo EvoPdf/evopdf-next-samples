@@ -6,10 +6,10 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/publish-to-aws
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.xml` | Create the Lambda Function Project | 14 |
-| `Sample2.cs` | Create the Lambda Function Project | 30 |
+| `Sample1.xml` | Project file | 14 |
+| `Sample2.cs` | Function.cs | 30 |
 | `Sample3.sh` | Build the Container Image | 1 |
-| `Sample4.Dockerfile` | Build the Container Image | 18 |
+| `Sample4.Dockerfile` | Dockerfile | 18 |
 | `Sample5.sh` | Build the Container Image | 1 |
 | `Sample6.sh` | Build the Container Image | 2 |
 | `Sample7.sh` | Push the Image and Create the Function | 4 |

@@ -12,5 +12,10 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public bool HideWindowUI { get; set; } = false;
 
         public bool DisplayDocTitle { get; set; } = false;
+
+        public bool CenterWindow { get; set; } = false;
+        public bool FitWindow { get; set; } = false;
+        public string NonFullScreenPageMode { get; set; } = "UseNone";
+        public string Direction { get; set; } = "L2R";
     }
 }

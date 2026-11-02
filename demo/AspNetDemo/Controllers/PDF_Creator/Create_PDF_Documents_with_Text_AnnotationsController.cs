@@ -94,6 +94,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             // Four icons in a row, equally spaced across the content width.
             // Each icon is the default 24x24 sticky-note size; the caption
             // beneath identifies the PdfTextAnnotationIcon enum value.
+            m_openPopups = model.OpenPopups;
             const int iconSize = 24;
             int[] iconXs = { 30, 160, 290, 420 };
 
@@ -120,6 +121,25 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
                 icon: PdfTextAnnotationIcon.Insert,
                 caption: "Insert",
                 x: iconXs[3], y: crtYPos, pageNumber: pageNumber, iconSize: iconSize);
+
+            crtYPos += iconSize + 25 + ySeparator;
+
+            // The other icons: a paragraph mark, a new paragraph mark and a key
+            AddIconSample(pdfDocument, iconCaptionFont,
+                contents: "PdfTextAnnotationIcon.Paragraph marks a paragraph",
+                icon: PdfTextAnnotationIcon.Paragraph,
+                caption: "Paragraph",
+                x: iconXs[0], y: crtYPos, pageNumber: pageNumber, iconSize: iconSize);
+            AddIconSample(pdfDocument, iconCaptionFont,
+                contents: "PdfTextAnnotationIcon.NewParagraph marks the start of a new paragraph",
+                icon: PdfTextAnnotationIcon.NewParagraph,
+                caption: "NewParagraph",
+                x: iconXs[1], y: crtYPos, pageNumber: pageNumber, iconSize: iconSize);
+            AddIconSample(pdfDocument, iconCaptionFont,
+                contents: "PdfTextAnnotationIcon.Key marks a key point",
+                icon: PdfTextAnnotationIcon.Key,
+                caption: "Key",
+                x: iconXs[2], y: crtYPos, pageNumber: pageNumber, iconSize: iconSize);
 
             crtYPos += iconSize + 25 + ySeparator;
 
@@ -200,6 +220,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
         // plus a bold caption beneath it identifying the icon name.
         // Used by Section 1 to show all four PdfTextAnnotationIcon values
         // in a horizontal row
+        private bool m_openPopups;
+
         private void AddIconSample(
             PdfDocument doc, PdfFont captionFont,
             string contents, PdfTextAnnotationIcon icon, string caption,
@@ -209,6 +231,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             ann.Icon = icon;
             ann.Width = iconSize;
             ann.Height = iconSize;
+            // The popup of the annotation is open when the document is opened
+            ann.Open = m_openPopups;
             doc.AddTextAnnotation(ann);
 
             PdfTextElement label = new PdfTextElement(caption, captionFont)

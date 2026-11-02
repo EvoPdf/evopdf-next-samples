@@ -160,6 +160,31 @@
                                                                                                     <input asp-for="DisplayDocTitle" id="displayDocTitleCheckBox" type="checkbox"><label for="displayDocTitleCheckBox">Display Document Title</label>
                                                                                                 </td>
                                                                                             </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="CenterWindow" id="centerWindowCheckBox" type="checkbox"><label for="centerWindowCheckBox">Center the Viewer Window</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="FitWindow" id="fitWindowCheckBox" type="checkbox"><label for="fitWindowCheckBox">Fit the Viewer Window to the First Page</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Full Screen Exit Mode: <select asp-for="NonFullScreenPageMode" id="nonFullScreenPageModeDropDownList"><option value="UseNone">None</option><option value="UseOutlines">Bookmarks Panel</option><option value="UseThumbs">Thumbnails Panel</option><option value="UseOC">Optional Content Panel</option></select>
+                                                                                                    &nbsp;&nbsp;Reading Direction: <select asp-for="Direction" id="directionDropDownList"><option value="L2R">Left to Right</option><option value="R2L">Right to Left</option></select>
+                                                                                                </td>
+                                                                                            </tr>
                                                                                         </tbody>
                                                                                     </table>
                                                                                 </td>

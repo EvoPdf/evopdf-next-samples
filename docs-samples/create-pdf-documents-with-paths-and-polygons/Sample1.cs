@@ -2,8 +2,8 @@ PdfPathElement heart = new PdfPathElement
 {
     FillColor = PdfColor.Crimson,
     FillOpacity = 0.8f,
-    LineColor = PdfColor.DarkRed,
-    LineStyle = new PdfLineStyle { LineWidth = 1.5f, LineJoin = PdfLineJoinStyle.Round }
+    BorderColor = PdfColor.DarkRed,
+    Border = new PdfLineStyle { LineWidth = 1.5f, LineJoin = PdfLineJoinStyle.Round }
 };
 heart
     .MoveTo(cx, cy + s * 0.25f)

@@ -159,6 +159,180 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Field Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Field Names:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="FieldNamingMode" id="fieldNamingModeDropDownList"><option value="PreserveHtmlNamesWhenSafe">HTML Names when Unique</option><option value="PreserveHtmlNames">HTML Names</option><option value="FullyQualified">Fully Qualified Names</option></select>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    Validation:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="ValidationBehavior" id="validationBehaviorDropDownList"><option value="None">None</option><option value="AcrobatJavaScriptBasic">Basic Script Validation</option></select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px" colspan="9"></td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="ApplyRequiredAsPdfRequiredFlag" id="applyRequiredAsPdfRequiredFlagCheckBox" type="checkbox"><label for="applyRequiredAsPdfRequiredFlagCheckBox">Required Fields as Required</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="UseFormFieldFont" id="useFormFieldFontCheckBox" type="checkbox"><label for="useFormFieldFontCheckBox">DejaVu Serif Font for the Fields</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Button Actions
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="EnableButtonActions" id="enableButtonActionsCheckBox" type="checkbox"><label for="enableButtonActionsCheckBox">Button Actions</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="MapHtmlSubmitButtonsToPdfActions" id="mapHtmlSubmitButtonsToPdfActionsCheckBox" type="checkbox"><label for="mapHtmlSubmitButtonsToPdfActionsCheckBox">Submit Buttons</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="MapHtmlResetButtonsToPdfActions" id="mapHtmlResetButtonsToPdfActionsCheckBox" type="checkbox"><label for="mapHtmlResetButtonsToPdfActionsCheckBox">Reset Buttons</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    Submit:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="SubmitBehavior" id="submitBehaviorDropDownList"><option value="NativePdfAction">PDF Submit Action</option><option value="AcrobatJavaScriptHtmlSubmit">Script HTML Submit</option></select>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    Format:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="SubmitFormat" id="submitFormatDropDownList"><option value="Html">HTML</option><option value="Fdf">FDF</option><option value="Xfdf">XFDF</option><option value="Pdf">PDF</option></select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px" colspan="9"></td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="SubmitOnlyFieldsFromButtonForm" id="submitOnlyFieldsFromButtonFormCheckBox" type="checkbox"><label for="submitOnlyFieldsFromButtonFormCheckBox">Submit Only the Button Form</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="ResetOnlyFieldsFromButtonForm" id="resetOnlyFieldsFromButtonFormCheckBox" type="checkbox"><label for="resetOnlyFieldsFromButtonFormCheckBox">Reset Only the Button Form</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px" colspan="9"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="ExcludeDisabledFieldsFromSubmit" id="excludeDisabledFieldsFromSubmitCheckBox" type="checkbox"><label for="excludeDisabledFieldsFromSubmitCheckBox">Skip the Disabled Fields</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="IncludeReadOnlyFieldsInSubmit" id="includeReadOnlyFieldsInSubmitCheckBox" type="checkbox"><label for="includeReadOnlyFieldsInSubmitCheckBox">Include the Read-Only Fields</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
                                                                     <button type="submit" name="convertToPdfButton" id="convertToPdfButton">Convert HTML to PDF</button>
                                                                 </td>
                                                             </tr>

@@ -1,4 +1,4 @@
-// Create the PDF converter
-HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
-// Set the triggering mode
+            // Create the PDF converter
+            HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
+            // Set a conversion delay in seconds
 htmlToPdfConverter.ConversionDelay = 3;

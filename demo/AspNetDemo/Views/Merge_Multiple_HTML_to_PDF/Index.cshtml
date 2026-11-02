@@ -1,6 +1,6 @@
 @model EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF.Merge_Multiple_HTML_to_PDF_ViewModel
 @{
-    ViewBag.Title = "Merge Multiple HTML Pages to a Single PDF";
+    ViewBag.Title = "Convert Multiple HTML Pages to a Single PDF";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -56,38 +56,33 @@
         bit256RadioButton.checked = false;
     }
 
-    // Enables the viewer width and the zoom for the layouts that use them and selects the media type of the layout;
-    // the values the layout computes are left to the converter
+    // Enables the viewer width for the layout that uses it; the values the layout computes are left to the converter
     function applyPageLayout() {
         var viewerWidth = document.getElementById("htmlViewerWidthTextBox");
-        var zoom = document.getElementById("htmlViewerZoomTextBox");
         var info = document.getElementById("pageLayoutInfo");
         var layout = document.getElementById("pageLayoutDropDownList").value;
         var fitBrowserWindow = layout == "FitBrowserWindowToPage";
-        var layoutAtPageWidth = layout == "LayoutAtPageWidth";
 
         if (fitBrowserWindow) {
-            setField(zoom, "auto");
             setField(viewerWidth, null, 1024);
-        }
-        else if (layoutAtPageWidth) {
-            setField(zoom, "100");
-            setField(viewerWidth, "auto");
-        }
-        else {
-            setField(zoom, null, 100);
-            setField(viewerWidth, null, 1024);
-        }
-
-        if (fitBrowserWindow) {
             info.innerHTML = "The browser window is scaled to the page width; the zoom is set at conversion";
         }
-        else if (layoutAtPageWidth) {
+        else {
+            setField(viewerWidth, "auto");
             info.innerHTML = "The HTML is laid out at the page width, 1:1; the viewer width is set at conversion";
         }
-        else {
-            info.innerHTML = "The page width follows the browser window width, one pixel is 0.75 points";
-        }
+    }
+
+    // The table of contents of each document can be on separate pages only when the document starts on a new page
+    function applyTocOptions() {
+        var toc = document.getElementById("tableOfContentsDropDownList").value;
+        var placement = document.getElementById("tocPlacementDropDownList");
+        var newPage = document.getElementById("newPageRadioButton").checked;
+        placement.disabled = toc != "EachDocument";
+        var separate = placement.options[1];
+        separate.disabled = !newPage;
+        if (!newPage && placement.value == "SeparatePages")
+            placement.value = "Inline";
     }
 
     // A field the layout decides is disabled and shows the value or "auto"; an editable one gets its own value back
@@ -106,7 +101,7 @@
     }
 
     TreeView_SelectNode("demoTreeView_Merge_Multiple_HTML");
-    window.addEventListener("load", applyPageLayout);
+    window.addEventListener("load", function () { applyPageLayout(); applyTocOptions(); });
 </script>
 
 <form asp-action="MergePdf" asp-controller="Merge_Multiple_HTML_to_PDF" method="post">
@@ -118,7 +113,7 @@
                         <tbody>
                             <tr>
                                 <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 8px; padding-top: 5px">
-                                    Merge Multiple HTML Pages into a Single PDF
+                                    Convert Multiple HTML Pages into a Single PDF
                                 </td>
                             </tr>
                             <tr>
@@ -131,7 +126,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>
-                                                                    Convert multiple HTML documents to PDF using various options and merge the resulting PDFs into a single PDF document.
+                                                                    Render several HTML documents one after the other in the same PDF document: the second document can continue on the page where the first one ends or start on a new page; the bookmarks and the table of contents cover the whole document.
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -170,6 +165,15 @@
                                                                             <tr>
                                                                                 <td>
                                                                                     <input asp-for="SecondUrl" type="text" id="secondUrlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 8px"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <span style="font-weight:normal;"><input asp-for="SecondDocumentStart" type="radio" id="newPageRadioButton" value="NewPage" onclick="applyTocOptions()"><label for="newPageRadioButton">Start on a new page</label></span>
+                                                                                    <span style="font-weight:normal; margin-left: 15px"><input asp-for="SecondDocumentStart" type="radio" id="continueRadioButton" value="Continue" onclick="applyTocOptions()"><label for="continueRadioButton">Continue on the page where the first document ends</label></span>
                                                                                 </td>
                                                                             </tr>
                                                                         </tbody>
@@ -220,18 +224,6 @@
                                                                                                 <td>
                                                                                                     px
                                                                                                 </td>
-                                                                                                <td style="width: 10px"></td>
-                                                                                                <td>
-                                                                                                    Zoom:
-                                                                                                </td>
-                                                                                                <td style="width: 3px"></td>
-                                                                                                <td>
-                                                                                                    <input asp-for="HtmlViewerZoom" type="text" id="htmlViewerZoomTextBox" style="width:40px;">
-                                                                                                </td>
-                                                                                                <td style="width: 1px"></td>
-                                                                                                <td>
-                                                                                                    %
-                                                                                                </td>
                                                                                             </tr>
                                                                                         </tbody>
                                                                                     </table>
@@ -268,7 +260,6 @@
                                                                                                     <select asp-for="PageLayout" id="pageLayoutDropDownList" onchange="applyPageLayout()">
                                                                                                         <option value="FitBrowserWindowToPage">FitBrowserWindowToPage</option>
                                                                                                         <option value="LayoutAtPageWidth">LayoutAtPageWidth</option>
-                                                                                                        <option value="PageWidthFromBrowserWindow">PageWidthFromBrowserWindow</option>
                                                                                                     </select>
                                                                                                 </td>
                                                                                             </tr>
@@ -419,10 +410,29 @@
                                                                                         <tbody>
                                                                                             <tr>
                                                                                                 <td>
-                                                                                                    <input asp-for="GenerateToc" type="checkbox" id="generateTocCheckBox"><label for="generateTocCheckBox">Auto Create Table of Contents</label>
+                                                                                                    Table of Contents:
                                                                                                 </td>
-                                                                                                <td style="width: 20px"></td>
+                                                                                                <td style="width: 5px"></td>
                                                                                                 <td>
+                                                                                                    <select asp-for="TableOfContents" id="tableOfContentsDropDownList" onchange="applyTocOptions()">
+                                                                                                        <option value="None">None</option>
+                                                                                                        <option value="Document">One for the whole document</option>
+                                                                                                        <option value="EachDocument">One for each HTML document</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="TocPlacement" id="tocPlacementDropDownList">
+                                                                                                        <option value="Inline">Inline, at the start of the document</option>
+                                                                                                        <option value="SeparatePages">On separate pages before the document</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px" colspan="5"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td colspan="5">
                                                                                                     <span style="font-weight:normal;"><input asp-for="AutoBookmarks" type="checkbox" id="autoBookmarksCheckBox"><label for="autoBookmarksCheckBox">Auto Create Outline</label></span>
                                                                                                 </td>
                                                                                             </tr>

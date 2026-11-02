@@ -1,1 +1,1 @@
-byte[] outPdfBuffer = wordToPdfConverter.ConvertToPdf(wordBytes);
+wordToPdfConverter.ProcessPageBreakMarks = true;

@@ -1,1 +1,1 @@
-await rtfToPdfConverter.ConvertFileToPdfFileAsync(rtfFilePath, outputPdfFilePath);
+await rtfToPdfConverter.ConvertStringToPdfFileAsync(rtfString, outputPdfFilePath);

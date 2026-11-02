@@ -29,5 +29,11 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public bool AddSignatureText { get; set; } = true;
         public string SignatureText { get; set; } = "Signed by EVO PDF Software";
         public bool AddSignatureImage { get; set; } = true;
+
+        public PdfSignatureDigestAlgorithm DigestAlgorithm { get; set; } = PdfSignatureDigestAlgorithm.Sha256;
+        public bool KeepImageAspect { get; set; } = true;
+        public string TimestampServerUsername { get; set; } = string.Empty;
+        public string TimestampServerPassword { get; set; } = string.Empty;
+        public bool TrustPfxCertificate { get; set; } = false;
     }
 }

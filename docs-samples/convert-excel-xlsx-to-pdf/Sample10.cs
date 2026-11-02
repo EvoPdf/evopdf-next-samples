@@ -1,1 +1,1 @@
-File.WriteAllBytes("output.pdf", outPdfBuffer);
+byte[] outPdfBuffer = excelToPdfConverter.ConvertToPdf(excelFilePath);

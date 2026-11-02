@@ -8,6 +8,7 @@ namespace EvoPdf_Next_AspNetDemo.Models.Word_to_PDF
         public IFormFile WordFile { get; set; }
 
         public bool GenerateToc { get; set; } = false;
+        public bool FitWideContentToPage { get; set; } = false;
 
         public string PdfPageSettingsMode { get; set; } = "FromWordDocument";
         public bool ProcessWordPageBreakMarks { get; set; } = true;
@@ -56,5 +57,7 @@ namespace EvoPdf_Next_AspNetDemo.Models.Word_to_PDF
         public bool AutoResizeBottomMargin { get; set; } = true;
         public bool ReserveFooterSpace { get; set; } = true;
         public int? FooterConversionDelay { get; set; } = 0;
+
+        public bool AddConversionInfoPage { get; set; } = false;
     }
 }

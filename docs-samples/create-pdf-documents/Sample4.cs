@@ -1,8 +1,5 @@
-// Set the next page to landscape A4
-pdfDocument.SetPageSize(PdfPageSize.A4, PdfPageOrientation.Landscape);
-
-// Set the next page margins
+// The margins of the pages added next
 pdfDocument.Margins = new PdfMargins(100, 100, 100, 100);
 
-// Add a new PDF page with the modified page settings
-pdfDocument.AddPage();
+// A landscape A4 page; the pages added next keep this size
+pdfDocument.AddPage(PdfPageSize.A4, PdfPageOrientation.Landscape);

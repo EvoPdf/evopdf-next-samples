@@ -6,6 +6,8 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/html-header-an
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | Code Sample - Add HTML with Page Numbers in Header and Footer | 205 |
-| `Sample2.html` | Header HTML Template | 24 |
-| `Sample3.html` | Footer HTML Template | 24 |
+| `Sample1.cs` | Set the Page Numbering Options | 6 |
+| `Sample2.cs` | Skip Pages with the Callback | 2 |
+| `Sample3.cs` | Code Sample - Add HTML with Page Numbers in Header and Footer | 256 |
+| `Sample4.html` | Header HTML Template | 25 |
+| `Sample5.html` | Footer HTML Template | 25 |

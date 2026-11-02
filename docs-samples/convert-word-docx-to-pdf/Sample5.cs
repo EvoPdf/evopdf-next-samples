@@ -1,1 +1,1 @@
-wordToPdfConverter.ProcessPageBreakMarks = true;
+wordToPdfConverter.PdfDocumentOptions.FitWideContentToPage = true;

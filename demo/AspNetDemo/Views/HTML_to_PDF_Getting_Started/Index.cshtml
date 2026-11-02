@@ -511,6 +511,31 @@
                                                                                     </table>
                                                                                 </td>
                                                                             </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px" colspan="9"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="PreferCssPageSize" id="preferCssPageSizeCheckBox" type="checkbox"><label for="preferCssPageSizeCheckBox">Prefer the CSS Page Size</label>
+                                                                                                </td>
+                                                                                                <td style="width: 40px"></td>
+                                                                                                <td>
+                                                                                                    Maximum Number of Pages (0 for all):
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="PageNumberLimit" type="text" id="pageNumberLimitTextBox" style="width:30px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
                                                                         </tbody>
                                                                     </table>
                                                                 </td>
@@ -624,6 +649,47 @@
                                                                                                 <td style="width: 5px"></td>
                                                                                                 <td>
                                                                                                     sec
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Allowed Sources
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="LocalFilesEnabled" id="localFilesEnabledCheckBox" type="checkbox"><label for="localFilesEnabledCheckBox">Local Files</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="LocalhostEnabled" id="localhostEnabledCheckBox" type="checkbox"><label for="localhostEnabledCheckBox">Local Host Pages</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="UncPathEnabled" id="uncPathEnabledCheckBox" type="checkbox"><label for="uncPathEnabledCheckBox">Local Network Files</label>
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>

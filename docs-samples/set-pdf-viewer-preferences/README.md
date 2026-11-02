@@ -6,4 +6,5 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/set-pdf-viewer
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | Code Sample - Set PDF Viewer Preferences for the Generated PDF Document | 99 |
+| `Sample1.cs` | Set the Window and Reading Options | 5 |
+| `Sample2.cs` | Code Sample - Set PDF Viewer Preferences for the Generated PDF Document | 110 |

@@ -48,8 +48,9 @@
                                                                     of bookmarks in PDF document based on H1 to H6 head tags found in HTML document
                                                                     by simply turning on a flag. In addition, any HTML element can be marked as a
                                                                     bookmark using the data-heading attribute, its title can be set with data-heading-text.
-                                                                    A real heading can be excluded with data-heading="false". The data-heading attribute
-                                                                    is honored only when the custom bookmark mode is used.
+                                                                    A real heading can be excluded with data-heading="false". The elements of each bookmark
+                                                                    level can also be selected with CSS selectors. The data-heading attribute and the selectors
+                                                                    are honored only when the custom bookmark mode is used.
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -140,6 +141,27 @@
                                                             <tr>
                                                                 <td>
                                                                     <input asp-for="UseBrowserOutlineMode" id="useBrowserOutlineModeCheckBox" type="checkbox"><label for="useBrowserOutlineModeCheckBox">Use Browser Outline Mode</label>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 15px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    Bookmark Selectors (one CSS selector per line, the first line for level 1; empty to use the H1 to H6 tags)
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <textarea asp-for="OutlineSelectors" rows="2" cols="20" id="outlineSelectorsTextBox" style="height:60px;width:500px;"></textarea>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
                                                                 </td>
                                                             </tr>
                                                             <tr>

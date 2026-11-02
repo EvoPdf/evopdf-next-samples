@@ -7,5 +7,5 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/html-header-an
 | File | Section | Lines |
 | --- | --- | --- |
 | `Sample1.cs` | Code Sample - Add HTML in Header and Footer Using Browser Mode | 102 |
-| `Sample2.html` | Header HTML Template | 24 |
-| `Sample3.html` | Footer HTML Template | 24 |
+| `Sample2.html` | Header HTML Template | 25 |
+| `Sample3.html` | Footer HTML Template | 25 |

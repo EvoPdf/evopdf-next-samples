@@ -1,1 +1,1 @@
-markdownToPdfConverter.ConvertStringToPdfFile(markdownString, baseUrl, outputPdfFilePath);
+File.WriteAllBytes("output.pdf", outPdfBuffer);

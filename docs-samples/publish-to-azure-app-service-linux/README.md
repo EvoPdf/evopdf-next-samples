@@ -1,4 +1,4 @@
-# Using EvoPdf Next for .NET on Azure App Service for Linux
+# Using EvoPdf Next for .NET on  Azure App Service for Linux
 
 EvoPdf Next for .NET is a library that can be integrated into applications running on Azure App Service for Linux to create and process PDF documents.
 

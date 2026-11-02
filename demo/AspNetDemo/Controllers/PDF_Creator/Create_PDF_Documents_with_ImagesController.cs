@@ -67,6 +67,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             string imagesPath = GetDemoImagesPath();
             string transparentPngPath = Path.Combine(imagesPath, "transparent.png");
             string jpegPath = Path.Combine(imagesPath, "image.jpg");
+            string tallImagePath = Path.Combine(imagesPath, "Tall_Report.png");
 
             // ===== Title =====
             PdfTextElement titleElement = new PdfTextElement(
@@ -228,6 +229,49 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
                 { X = cellX + 4, Y = cellY + 2, Width = cellW - 14 };
                 pivotLabel.Accessibility.StructureType = PdfStructureType.Artifact;
                 pdfDocument.AddText(pivotLabel);
+            }
+
+            if (model.AddTallImage)
+            {
+                // ===== Section 5: Image taller than a page =====
+                pdfDocument.AddPage();
+                crtYPos = 0;
+                crtYPos = AddSectionLabel(pdfDocument, sectionFont,
+                    "5. Image taller than a page" + (model.ContinueOnNextPage ? ", continued on the next pages" : ", cut at the bottom margin"),
+                    xLeft, crtYPos, ySeparator);
+
+                // The image is scaled to the content width. The part that does not fit above the bottom margin
+                // continues on the next pages from the top margin, or it is cut when the image stays on one page
+                PdfImageElement tallImage = new PdfImageElement(tallImagePath)
+                {
+                    X = xLeft,
+                    Y = crtYPos,
+                    Width = pdfDocument.ContentWidth,
+                    ContinueOnNextPage = model.ContinueOnNextPage
+                };
+                tallImage.Accessibility.AlternateText = "Annual activity report table";
+
+                PdfImageRenderInfo tallInfo = pdfDocument.AddImage(tallImage);
+
+                // The rectangle of each part of the image, one per page; the content that follows the image is
+                // placed below the part drawn on its last page, or below the visible part when the image is cut
+                var partsText = new System.Text.StringBuilder(
+                    "The image was drawn on " + tallInfo.RenderedRectangles.Count + " page(s):");
+                foreach (PdfRenderedRectangle part in tallInfo.RenderedRectangles)
+                {
+                    partsText.AppendFormat(" page {0} ({1:F0}, {2:F0}, {3:F0}x{4:F0});", part.PageNumber,
+                        part.Bounds.X, part.Bounds.Y, part.Bounds.Width, part.Bounds.Height);
+                }
+
+                PdfRectangleF lastPart = tallInfo.LastPageRectangle.VisibleBounds ?? tallInfo.LastPageRectangle.Bounds;
+                PdfTextElement partsLabel = new PdfTextElement(partsText.ToString(), smallFont)
+                {
+                    X = xLeft,
+                    Y = (int)lastPart.Bottom + ySeparator,
+                    Width = pdfDocument.ContentWidth
+                };
+                partsLabel.Accessibility.StructureType = PdfStructureType.Artifact;
+                pdfDocument.AddText(partsLabel);
             }
 
             byte[] outPdfBuffer = pdfDocument.Save();

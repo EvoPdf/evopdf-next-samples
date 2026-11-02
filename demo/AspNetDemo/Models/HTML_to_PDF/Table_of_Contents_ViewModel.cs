@@ -16,6 +16,7 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public int PageNumbersOffset { get; set; } = 0;
 
         public string TocTitle { get; set; } = "Table of Contents";
+        public string TocSelectors { get; set; } = "";
         public string TocStyleTextBox { get; set; }
 
         public int HtmlViewerWidth { get; set; } = 1024;
@@ -33,5 +34,9 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
 
         public int NavigationTimeout { get; set; } = 120;
         public int? ConversionDelay { get; set; } = 0;
+
+        public bool CountStartPages { get; set; } = true;
+        public bool AddStartPdf { get; set; } = false;
+        public bool UsePageNumbersFont { get; set; } = false;
     }
 }

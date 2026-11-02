@@ -7,4 +7,4 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/publish-to-aws
 | File | Section | Lines |
 | --- | --- | --- |
 | `Sample1.sh` | Publish and Package the Application | 1 |
-| `Sample2.json` | Publish and Package the Application | 15 |
+| `Sample2.json` | aws-windows-deployment-manifest.json | 15 |

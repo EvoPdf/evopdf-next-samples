@@ -58,7 +58,26 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
 
             // Set if the TOC pages are included in the page numbers displayed in the TOC.
             // This option is not applicable to the inline table of contents
-            htmlToPdfConverter.PdfDocumentOptions.TableOfContents.CountTocAndStartPages = model.CountTocPages;
+            htmlToPdfConverter.PdfDocumentOptions.TableOfContents.CountTocPages = model.CountTocPages;
+
+            // Set if the pages of the PDF documents inserted before the HTML content are included in the page numbers
+            // displayed in the TOC. CountTocAndStartPages sets both flags at once
+            htmlToPdfConverter.PdfDocumentOptions.TableOfContents.CountStartPages = model.CountStartPages;
+
+            if (model.AddStartPdf)
+            {
+                // A PDF document inserted before the table of contents, to show the effect of the start pages counting
+                htmlToPdfConverter.PdfDocumentOptions.AddStartPdf(Path.Combine(m_hostingEnvironment.ContentRootPath,
+                    "wwwroot", "DemoAppFiles", "Input", "PDF_Files", "Letterhead.pdf"));
+            }
+
+            if (model.UsePageNumbersFont)
+            {
+                // The font of the page numbers written in the table of contents; the bold, italic and bold italic
+                // variants can be given separately and default to this font
+                htmlToPdfConverter.PdfDocumentOptions.TableOfContents.PageNumbersFont = PdfFontManager.CreateBaseFont(
+                    Path.Combine(m_hostingEnvironment.ContentRootPath, "wwwroot", "DemoAppFiles", "Input", "Font_Files", "DejaVuSerif.ttf"));
+            }
 
             // Set an offset to be applied to all page numbers in the table of contents.
             // It can be useful when merging a PDF with a table of contents with other PDF documents
@@ -66,6 +85,11 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
 
             // Set the table of contents title
             htmlToPdfConverter.PdfDocumentOptions.TableOfContents.Title = model.TocTitle;
+
+            // Optionally select the elements of each level of the table of contents with CSS selectors, the first selector
+            // for the level 1 entries, the second one for the level 2 entries and so on; when not set the H1 to H6 tags give the entries
+            if (!string.IsNullOrWhiteSpace(model.TocSelectors))
+                htmlToPdfConverter.PdfDocumentOptions.TableOfContents.HeadingSelectors = model.TocSelectors.Replace("\r", "").Split('\n');
 
             // Optionally set a custom CSS style for the table of contents
             // A default style is applied by the library if this property is not set

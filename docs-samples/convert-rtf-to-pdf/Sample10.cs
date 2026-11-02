@@ -1,1 +1,1 @@
-rtfToPdfConverter.ConvertStreamToPdfFile(rtfStream, outputPdfFilePath);
+rtfToPdfConverter.ConvertToPdfFile(rtfBytes, outputPdfFilePath);

@@ -1,0 +1,390 @@
+@model EvoPdf_Next_AspNetDemo.Models.PDF_Creator.Create_PDF_Documents_with_PDF_Pages_ViewModel
+@{
+    ViewBag.Title = "Create PDF Documents with Pages of Other PDF Documents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_SelectNode("demoTreeView_Create_PDF_Documents_with_PDF_Pages");
+</script>
+
+<form asp-action="CreatePdf" asp-controller="Create_PDF_Documents_with_PDF_Pages" method="post" enctype="multipart/form-data">
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 8px; padding-top: 5px">
+                                    Create PDF Documents with Pages of Other PDF Documents
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 967px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    Use this demo to draw the pages of existing PDF documents in a PDF document created with the PDF creator, with the
+                                                                    PdfPageElement object. The letterhead page is drawn under the content of each page and the pages of the source document
+                                                                    are drawn as scaled copies, with their links and form fields when the annotations are included. A drawn page can be rotated
+                                                                    around a pivot point and can have an opacity. The last page draws the first page of the source document at its own size.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    Enter Source PDF File URL
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input asp-for="PdfFileUrl" type="text" id="pdfFileUrlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    Upload Source PDF File
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <span style="display:inline-block; border:1px solid #C0C0C0; padding:1px 1px; vertical-align:middle;">
+                                                                                        <input asp-for="PdfFile" type="file" id="PdfFileInput" accept=".pdf" style="width:250px; vertical-align:middle;">
+                                                                                    </span>
+                                                                                    <button type="button" onclick="document.getElementById('PdfFileInput').value='';" style="margin-left:5px; vertical-align:middle;">
+                                                                                        Clear File
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Source Document
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Password:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="PdfPassword" type="text" id="pdfPasswordTextBox" style="width:100px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Letterhead
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="UseLetterhead" id="useLetterheadCheckBox" type="checkbox"><label for="useLetterheadCheckBox">Draw the Letterhead Page in Each Page</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="RenderUnderContent" id="renderUnderContentCheckBox" type="checkbox"><label for="renderUnderContentCheckBox">Under the Content</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    Opacity (0 to 1):
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="LetterheadOpacity" type="text" id="letterheadOpacityTextBox" style="width:30px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Drawn Pages
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="DrawPages" id="drawPagesCheckBox" type="checkbox"><label for="drawPagesCheckBox">Draw the Pages (comma separated):</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="DrawnPages" type="text" id="drawnPagesTextBox" style="width:100px;">
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    Width:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="PageWidth" type="text" id="pageWidthTextBox" style="width:40px;">
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    Height:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="PageHeight" type="text" id="pageHeightTextBox" style="width:40px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px" colspan="9"></td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Opacity (0 to 1):
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="PageOpacity" type="text" id="pageOpacityTextBox" style="width:30px;">
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    Rotation (degrees):
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="RotationDegrees" type="text" id="rotationDegreesTextBox" style="width:30px;">
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    Pivot:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="RotationPivot" id="rotationPivotDropDownList"><option value="TopLeft">TopLeft</option><option value="TopCenter">TopCenter</option><option value="TopRight">TopRight</option><option value="LeftCenter">LeftCenter</option><option value="Center">Center</option><option value="RightCenter">RightCenter</option><option value="BottomLeft">BottomLeft</option><option value="BottomCenter">BottomCenter</option><option value="BottomRight">BottomRight</option></select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px" colspan="9"></td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="IncludeAnnotations" id="includeAnnotationsCheckBox" type="checkbox"><label for="includeAnnotationsCheckBox">Include the Links and Fields of the Pages</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="DrawFullSizePage" id="drawFullSizePageCheckBox" type="checkbox"><label for="drawFullSizePageCheckBox">Draw the First Page at Its Own Size on a New Page</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    PDF Compliance
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Standard:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="PdfStandard" id="pdfStandardDropDownList">
+                                                                                                        <option value="None">None</option>
+
+                                                                                                        <optgroup label="PDF/UA">
+                                                                                                            <option value="PdfUa1">PDF/UA-1</option>
+                                                                                                            <option value="PdfUa2">PDF/UA-2</option>
+                                                                                                        </optgroup>
+
+                                                                                                        <optgroup label="PDF/A-2">
+                                                                                                            <option value="PdfA2b">PDF/A-2b</option>
+                                                                                                            <option value="PdfA2a">PDF/A-2a</option>
+                                                                                                            <option value="PdfUa1PdfA2b">PDF/UA-1 + PDF/A-2b</option>
+                                                                                                            <option value="PdfUa1PdfA2a">PDF/UA-1 + PDF/A-2a</option>
+                                                                                                            <option value="PdfUa2PdfA2b">PDF/UA-2 + PDF/A-2b</option>
+                                                                                                            <option value="PdfUa2PdfA2a">PDF/UA-2 + PDF/A-2a</option>
+                                                                                                        </optgroup>
+
+                                                                                                        <optgroup label="PDF/A-3">
+                                                                                                            <option value="PdfA3b">PDF/A-3b</option>
+                                                                                                            <option value="PdfA3u">PDF/A-3u</option>
+                                                                                                            <option value="PdfA3a">PDF/A-3a</option>
+                                                                                                            <option value="PdfUa1PdfA3a">PDF/UA-1 + PDF/A-3a</option>
+                                                                                                        </optgroup>
+
+                                                                                                        <optgroup label="PDF/A-4">
+                                                                                                            <option value="PdfA4">PDF/A-4</option>
+                                                                                                            <option value="PdfUa2PdfA4">PDF/UA-2 + PDF/A-4</option>
+                                                                                                        </optgroup>
+
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <button type="submit" name="createPdfButton" id="createPdfButton">Create PDF</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 5px"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

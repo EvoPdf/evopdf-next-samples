@@ -16,5 +16,8 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public bool EditAnnotationsEnabled { get; set; } = true;
         public bool CopyContentEnabled { get; set; } = true;
         public bool CopyAccessibilityContentEnabled { get; set; } = true;
+
+        public bool PrintHighResolutionEnabled { get; set; } = true;
+        public bool AssembleDocumentEnabled { get; set; } = true;
     }
 }

@@ -17,8 +17,9 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
     {
         private const int leftMargin = 36;
         private const int topMargin = 36;
-        private const int contentWidth = 595 - 72;
-        private const int contentHeight = 842 - 72;
+        // The content area of the pages inside the demo margins, from the size of the first page of the loaded document
+        private int contentWidth;
+        private int contentHeight;
 
         private readonly IWebHostEnvironment m_hostingEnvironment;
 
@@ -87,15 +88,15 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
                 }
             }
 
-            // Open the loaded PDF for editing.  PdfEditor inherits the
-            // standard (PDF/A, PDF/UA etc.) and Language from the source
-            // document, so no PdfDocumentCreateSettings is needed.  Page
-            // size and margins are also taken from the existing pages;
-            // we apply our own margins manually below via leftMargin /
-            // topMargin since PdfEditor draws at absolute page coordinates
+            // The pages of an edited document have no margins: the demo keeps its content inside its own margins
             string password = string.IsNullOrEmpty(model.OwnerPassword) ? model.UserPassword : model.OwnerPassword;
             using PdfEditor pdfEditor = new PdfEditor(inputPdfBytes, password);
-            pdfEditor.PdfDocumentInfo.Title = "PDF Geometric Shapes Demo";
+
+            PdfPageInfo firstPageInfo = pdfEditor.GetPdfPageInfo(1);
+            // A rotation of 90 or 270 degrees swaps the width and the height of the page as it is displayed
+            bool firstPageTurned = firstPageInfo.Rotation % 180 != 0;
+            contentWidth = (int)(firstPageTurned ? firstPageInfo.PageSize.Height : firstPageInfo.PageSize.Width) - 2 * leftMargin;
+            contentHeight = (int)(firstPageTurned ? firstPageInfo.PageSize.Width : firstPageInfo.PageSize.Height) - 2 * topMargin;
 
             string fontsPath = GetDemoFontsPath();
             string fontFilePath = Path.Combine(fontsPath, "DejaVuSerif.ttf");
@@ -337,8 +338,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
                     Closure = closures[i],
                     FillColor = PdfColor.LightSkyBlue,
                     FillOpacity = 0.4f,
-                    LineColor = PdfColor.MediumBlue,
-                    LineStyle = new PdfLineStyle { LineWidth = 1.5f }
+                    BorderColor = PdfColor.MediumBlue,
+                    Border = new PdfLineStyle { LineWidth = 1.5f }
                 });
                 int capBottom = AddCaption(pdfEditor, ref currentPage, labelFont, closureLabels[i], arcX,
                     (int)arcInfo.LastPageRectangle.Bounds.Bottom + 5, 140);
@@ -376,7 +377,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
         {
             if (crtYPos + requestedHeight > contentHeight + topMargin)
             {
-                currentPage = pdfEditor.AddPage();
+                // The content continues on the following page of the document, or on a new page after the last one
+                currentPage = currentPage < pdfEditor.PageCount ? currentPage + 1 : pdfEditor.AddPage();
                 crtYPos = topMargin;
             }
         }

@@ -1,1 +1,1 @@
-byte[] outPdfBuffer = await rtfToPdfConverter.ConvertStreamToPdfAsync(rtfStream);
+byte[] outPdfBuffer = await rtfToPdfConverter.ConvertToPdfAsync(rtfBytes);

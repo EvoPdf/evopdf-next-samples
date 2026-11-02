@@ -93,7 +93,11 @@
                                                                     Additionally, you can add HTML headers and footers with page numbering to the generated PDF file
                                                                     or generate a table of contents based on headings.<br /><br />
                                                                     You can either enter a RTF file URL (which can also be a local URL using the file:// prefix when running the demo on your machine),
-                                                                    or upload a RTF file directly from your computer.
+                                                                    or upload a RTF file directly from your computer.<br /><br />
+                                                                    Images are reduced to the width of the page and long words are wrapped on their own. For a document with an element
+                                                                    that cannot be reduced, such as a table whose columns hold codes that cannot be broken, the Fit Wide Content to Page
+                                                                    option scales the whole content down to show that element entirely; to see the difference, replace RTF_Document.rtf
+                                                                    with RTF_Document_Wide_Content.rtf in the file URL below.
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -163,7 +167,28 @@
                                                                             <tr>
                                                                                 <td style="width: 20px"></td>
                                                                                 <td>
-                                                                                    <div id="pdfPageSettingsModePanel">
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <span style="font-weight:normal;"><input asp-for="PdfPageSettingsMode" id="fromRtfDocumentRadioButton" type="radio" value="FromRtfDocument" checked="checked" onclick="javascript: togglePdfPageSettingsMode(false)"><label for="fromRtfDocumentRadioButton">Use PDF Page Settings from RTF</label></span>
+                                                                                                </td>
+                                                                                                <td style="width: 30px"></td>
+                                                                                                <td>
+                                                                                                    <span style="font-weight:normal;"><input asp-for="PdfPageSettingsMode" id="customPageSettingsRadioButton" type="radio" value="CustomPageSettings" onclick="javascript: togglePdfPageSettingsMode(true)"><label for="customPageSettingsRadioButton">Use Custom PDF Page Settings</label></span>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <div id="pdfPageSettingsModePanel" style="display:none">
                                                                                         <table>
                                                                                             <tr>
                                                                                                 <td>
@@ -333,6 +358,37 @@
                                                                                         <tr>
                                                                                             <td>
                                                                                                 <input asp-for="GenerateToc" id="generateTocCheckBox" type="checkbox"><label for="generateTocCheckBox">Generate Table of Contents</label>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Content Wider than the Page
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <input asp-for="FitWideContentToPage" id="fitWideContentToPageCheckBox" type="checkbox"><label for="fitWideContentToPageCheckBox">Fit Wide Content to Page</label>
                                                                                             </td>
                                                                                         </tr>
                                                                                     </table>
@@ -808,6 +864,39 @@
                                                                             </tr>
                                                                         </table>
                                                                     </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Conversion Information
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="AddConversionInfoPage" id="addConversionInfoPageCheckBox" type="checkbox"><label for="addConversionInfoPageCheckBox">Add a Page with the Conversion Information at the End of the Document</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
                                                                 </td>
                                                             </tr>
                                                             <tr>

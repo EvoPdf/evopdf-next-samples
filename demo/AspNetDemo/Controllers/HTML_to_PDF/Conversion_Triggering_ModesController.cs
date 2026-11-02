@@ -60,6 +60,17 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 htmlToPdfConverter.TriggeringMode = TriggeringMode.Manual;
             }
 
+            if (model.ExecuteScriptAfterLoad && !string.IsNullOrWhiteSpace(model.AfterLoadScript))
+            {
+                // A script executed in the page after it was loaded, before the conversion starts; it can fill fields,
+                // click buttons or add content. The conversion waits for the script to finish when the flag is set, so
+                // the script can await asynchronous operations; otherwise the conversion continues while the script runs
+                htmlToPdfConverter.ScriptToExecuteAfterLoad = model.WaitForAfterLoadScript
+                    ? model.AfterLoadScript
+                    : "(async () => { " + model.AfterLoadScript + " })();";
+                htmlToPdfConverter.WaitForAfterLoadScript = model.WaitForAfterLoadScript;
+            }
+
             byte[] outPdfBuffer = null;
 
             if (model.HtmlPageSource == "Html")

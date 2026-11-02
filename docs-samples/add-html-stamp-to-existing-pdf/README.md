@@ -6,10 +6,11 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/add-html-stamp
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.html` | Add HTML Stamp with Page Numbering to Existing PDF | 2 |
-| `Sample2.cs` | Save the Modified PDF Document | 4 |
-| `Sample3.cs` | Save the Modified PDF Document | 2 |
-| `Sample4.cs` | Save the Modified PDF Document | 1 |
-| `Sample5.cs` | Save the Modified PDF Document | 1 |
-| `Sample6.cs` | Code Sample - Add HTML Stamp with Page Numbers to an Existing PDF | 231 |
-| `Sample7.html` | Stamp HTML Template | 32 |
+| `Sample1.html` |  | 2 |
+| `Sample2.cs` | Save the PDF Document to a File | 4 |
+| `Sample3.cs` | Save the PDF Document to Memory | 2 |
+| `Sample4.cs` | Asynchronously Save the PDF Document to a File | 1 |
+| `Sample5.cs` | Asynchronously Save the PDF Document to Memory | 1 |
+| `Sample6.cs` | Draw the Stamp under the Content and Skip Pages | 4 |
+| `Sample7.cs` | Code Sample - Add HTML Stamp with Page Numbers to an Existing PDF | 240 |
+| `Sample8.html` | Stamp HTML Template | 33 |

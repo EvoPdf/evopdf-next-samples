@@ -1,0 +1,169 @@
+@model EvoPdf_Next_AspNetDemo.Models.PDF_Creator.Create_PDF_Documents_with_Gradients_ViewModel
+@{
+    ViewBag.Title = "Create PDF Documents with Gradient Fills";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_SelectNode("demoTreeView_Create_PDF_Documents_with_Gradients");
+</script>
+
+<form asp-action="CreatePdf" asp-controller="Create_PDF_Documents_with_Gradients" method="post">
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 8px; padding-top: 5px">
+                                    Create PDF Documents with Gradient Fills
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 967px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    Use this demo to fill the geometric shapes of a PDF document with linear gradients. A PdfGradientFill object set on a rectangle,
+                                                                    rounded rectangle, circle, ellipse, closed arc, polygon or path paints the shape from a start color to an end color along a
+                                                                    vertical, horizontal or diagonal direction, with the opacity of the shape. The last section of the generated document draws
+                                                                    badges whose width comes from the width of their text measured with PdfFont.GetTextWidth.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Gradient Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Fill Opacity (0 to 1):
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="FillOpacity" type="text" id="fillOpacityTextBox" style="width:40px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    PDF Compliance
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Standard:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="PdfStandard" id="pdfStandardDropDownList">
+                                                                                                        <option value="None">None</option>
+
+                                                                                                        <optgroup label="PDF/UA">
+                                                                                                            <option value="PdfUa1">PDF/UA-1</option>
+                                                                                                            <option value="PdfUa2">PDF/UA-2</option>
+                                                                                                        </optgroup>
+
+                                                                                                        <optgroup label="PDF/A-2">
+                                                                                                            <option value="PdfA2b">PDF/A-2b</option>
+                                                                                                            <option value="PdfA2a">PDF/A-2a</option>
+                                                                                                            <option value="PdfUa1PdfA2b">PDF/UA-1 + PDF/A-2b</option>
+                                                                                                            <option value="PdfUa1PdfA2a">PDF/UA-1 + PDF/A-2a</option>
+                                                                                                            <option value="PdfUa2PdfA2b">PDF/UA-2 + PDF/A-2b</option>
+                                                                                                            <option value="PdfUa2PdfA2a">PDF/UA-2 + PDF/A-2a</option>
+                                                                                                        </optgroup>
+
+                                                                                                        <optgroup label="PDF/A-3">
+                                                                                                            <option value="PdfA3b">PDF/A-3b</option>
+                                                                                                            <option value="PdfA3u">PDF/A-3u</option>
+                                                                                                            <option value="PdfA3a">PDF/A-3a</option>
+                                                                                                            <option value="PdfUa1PdfA3a">PDF/UA-1 + PDF/A-3a</option>
+                                                                                                        </optgroup>
+
+                                                                                                        <optgroup label="PDF/A-4">
+                                                                                                            <option value="PdfA4">PDF/A-4</option>
+                                                                                                            <option value="PdfUa2PdfA4">PDF/UA-2 + PDF/A-4</option>
+                                                                                                        </optgroup>
+
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <button type="submit" name="createPdfButton" id="createPdfButton">Create PDF</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 5px"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

@@ -1,0 +1,225 @@
+@model EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF.Retrieve_Conversion_Info_ViewModel
+@{
+    ViewBag.Title = "Retrieve HTML to PDF Conversion Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function toggleHtmlSource(convertUrl) {
+        var urlPanel = document.getElementById("urlPanel");
+        var htmlStringPanel = document.getElementById("htmlStringPanel");
+
+        if (convertUrl && urlPanel.style.display == "none") {
+            urlPanel.style.display = "block";
+            htmlStringPanel.style.display = "none";
+        }
+        else if (!convertUrl && htmlStringPanel.style.display == "none") {
+            urlPanel.style.display = "none";
+            htmlStringPanel.style.display = "block";
+        }
+    }
+
+    TreeView_SelectNode("demoTreeView_Retrieve_Conversion_Info");
+</script>
+
+<form asp-action="ConvertHtmlToPdf" asp-controller="Retrieve_Conversion_Info" method="post">
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 8px; padding-top: 5px">
+                                    Retrieve HTML to PDF Conversion Information
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 967px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    Use this demo to retrieve information about a HTML to PDF conversion after it completes: the number of pages generated
+                                                                    from the HTML content, the pages of the table of contents and of the external PDF documents inserted before and after
+                                                                    it, the total number of pages and the zoom at which the HTML content was drawn. The information is written in a page
+                                                                    added to the generated document with the PDF editor.<br /><br />
+                                                                    The zoom is lowered when the browser window grows to the width of the content or when the content is scaled to fit the
+                                                                    page width.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <span style="font-weight:normal;"><input asp-for="HtmlPageSource" id="convertUrlRadioButton" type="radio" value="Url" checked="checked" onclick="javascript: toggleHtmlSource(true)"><label for="convertUrlRadioButton">Convert URL or Local File</label></span>
+                                                                                </td>
+                                                                                <td style="width: 50px"></td>
+                                                                                <td>
+                                                                                    <span style="font-weight:normal;"><input asp-for="HtmlPageSource" id="convertHtmlRadioButton" type="radio" value="Html" onclick="javascript: toggleHtmlSource(false)"><label for="convertHtmlRadioButton">Convert HTML String</label></span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div id="urlPanel">
+                                                                        <table>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                        HTML Page URL or Local File to Convert
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <input asp-for="Url" type="text" id="urlTextBox" style="width:500px;">
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <div id="htmlStringPanel" style="display:none">
+                                                                        <table>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="font-weight: bold">
+                                                                                        HTML String to Convert
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <textarea asp-for="HtmlStringTextBox" rows="2" cols="20" id="htmlStringTextBox" style="height:200px;width:500px;"></textarea>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="height: 10px"></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="font-weight: bold">
+                                                                                        Base URL
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <input asp-for="BaseUrlTextBox" type="text" id="baseUrlTextBox" style="width:500px;">
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Conversion Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="GenerateTableOfContents" id="generateTableOfContentsCheckBox" type="checkbox"><label for="generateTableOfContentsCheckBox">Generate a Table of Contents</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="AddStartPdf" id="addStartPdfCheckBox" type="checkbox"><label for="addStartPdfCheckBox">Insert a PDF Document before the HTML Content</label>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="AddEndPdf" id="addEndPdfCheckBox" type="checkbox"><label for="addEndPdfCheckBox">Add a PDF Document after the HTML Content</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px" colspan="9"></td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Information Page:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="InfoPagePosition" id="infoPagePositionDropDownList"><option value="End">At the End of the Document</option><option value="Start">At the Start of the Document</option><option value="None">Not Added</option></select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <button type="submit" name="convertToPdfButton" id="convertToPdfButton">Convert HTML to PDF</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 5px"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

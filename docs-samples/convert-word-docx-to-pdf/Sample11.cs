@@ -1,1 +1,1 @@
-byte[] outPdfBuffer = await wordToPdfConverter.ConvertToPdfAsync(wordBytes);
+wordToPdfConverter.ConvertToPdfFile(wordFilePath, outputPdfFilePath);

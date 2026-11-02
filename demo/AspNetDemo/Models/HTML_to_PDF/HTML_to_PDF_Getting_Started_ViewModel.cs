@@ -39,5 +39,11 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public int? ConversionDelay { get; set; } = 2;
         
         public bool OpenInline { get; set; } = false;
+
+        public bool PreferCssPageSize { get; set; } = false;
+        public int PageNumberLimit { get; set; } = 0;
+        public bool LocalFilesEnabled { get; set; } = true;
+        public bool LocalhostEnabled { get; set; } = true;
+        public bool UncPathEnabled { get; set; } = true;
     }
 }

@@ -1,0 +1,8 @@
+%FDF-1.2
+%лмно
+1 0 obj
+<< /FDF << /Fields [<< /V (Jane Doe) /T (fullName) >> << /V (jane.doe@example.com) /T (email) >> << /V (AB12CD) /T (accessCode) >> << /V (DE) /T (country) >> << /V /premium /T (ticketType) >> << /V [(Keynote) (Panel discussion)] /T (sessions) >> << /V /Yes /T (newsletter) >> << /V /Yes /T (terms) >> << /V (Vegetarian menu, please.) /T (comments) >> << /V (450) /T (total) >>] >> >>
+endobj
+trailer
+<< /Root 1 0 R >>
+%%EOF

@@ -34,7 +34,6 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the library in licensed mode
             // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
             // Licensing.LicenseKey = "your-license-key";
 
@@ -172,8 +171,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             pdfDocument.AddText(pdfText1);
 
             // ===== Section 4: Same text on landscape pages, centered =====
-            pdfDocument.SetPageSize(PdfPageSize.A4, PdfPageOrientation.Landscape);
-            pdfDocument.AddPage();
+            pdfDocument.AddPage(PdfPageSize.A4, PdfPageOrientation.Landscape);
             crtYPos = 0;
 
             crtYPos = AddSectionLabel(pdfDocument, sectionFont,

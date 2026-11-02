@@ -14,6 +14,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
     public class Create_PDF_Documents_with_File_AttachmentsController : Controller
     {
         private readonly IWebHostEnvironment m_hostingEnvironment;
+        private PdfColor m_iconColor;
+        private bool m_addToAttachmentsPanel;
 
         public Create_PDF_Documents_with_File_AttachmentsController(IWebHostEnvironment hostingEnvironment)
         {
@@ -144,6 +146,15 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             const int iconSize = 24;
             int[] iconXs = { 30, 160, 290, 420 };
 
+            switch (model.IconColor)
+            {
+                case "Red": m_iconColor = PdfColor.Red; break;
+                case "Green": m_iconColor = PdfColor.Green; break;
+                case "Blue": m_iconColor = PdfColor.Blue; break;
+                default: m_iconColor = null; break;
+            }
+            m_addToAttachmentsPanel = model.AddToAttachmentsPanel;
+
             // Paperclip (default) -- attaches a CSV inventory snippet
             byte[] csvBytes = Encoding.UTF8.GetBytes(BuildSampleCsv());
             AddIconSample(pdfDocument, iconCaptionFont,
@@ -263,6 +274,10 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Creator
             ann.Description = description;
             ann.TooltipText = tooltip;
             ann.Icon = icon;
+            // The color of the icon, or null for the color of the viewer
+            ann.IconColor = m_iconColor;
+            // The file is also listed in the attachments panel of the viewer
+            ann.AddToAttachmentsPanel = m_addToAttachmentsPanel;
             doc.AddFileAttachmentAnnotation(ann);
 
             PdfTextElement label = new PdfTextElement(caption, captionFont)

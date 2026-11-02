@@ -34,7 +34,7 @@ namespace EvoPdf.Next.Samples
             // A visible signature at the bottom of the first A4 page (595 x 842 points)
             signature.AppearanceEnabled = true;
             signature.Appearance.PageNumber = 1;
-            signature.Appearance.BoundsRectangle = new PdfRectangle(20, 772, 220, 50);
+            signature.Appearance.BoundsRectangle = new PdfRectangleF(20, 772, 220, 50);
             signature.Appearance.Text = "Signed by EVO PDF Software";
 
             var converter = new HtmlToPdfConverter();

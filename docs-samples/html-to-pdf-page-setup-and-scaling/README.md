@@ -1,6 +1,6 @@
 # HTML to PDF Page Setup and Scaling
 
-The layout methods of the `HtmlToPdfConverter` class decide three things: the size of the PDF page, the width at which the HTML is laid out and the scale at which the layout is drawn on the page. Each method covers one kind of document; you call it, convert, and the converter computes the layout width and the scale from the page size, the orientation and the margins in use when the PDF is generated.
+The layout methods of the T:EvoPdf.Next.HtmlToPdfConverter class decide three things: the size of the PDF page, the width at which the HTML is laid out and the scale at which the layout is drawn on the page. Each method covers one kind of document; you call it, convert and the converter computes the layout width and the scale from the page size, the orientation and the margins in use when the PDF is generated.
 
 Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/html-to-pdf-page-setup-and-scaling.htm
 

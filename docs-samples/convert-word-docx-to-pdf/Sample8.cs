@@ -1,1 +1,1 @@
-File.WriteAllBytes("output.pdf", outPdfBuffer);
+byte[] outPdfBuffer = wordToPdfConverter.ConvertToPdf(wordFilePath);

@@ -1,0 +1,1 @@
+wordToPdfConverter.PdfDocumentOptions.UseHeaderFooterFromWord = true;

@@ -50,6 +50,10 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.Markdown_to_PDF
             // Set whether a table of contents is automatically generated from headings
             markdownToPdfConverter.PdfDocumentOptions.GenerateTableOfContents = model.GenerateToc;
 
+            // Set whether the whole content is scaled down to show entirely an element wider than the page that cannot be
+            // reduced on its own, such as a table whose columns cannot be wrapped; by default the content is not scaled down
+            markdownToPdfConverter.PdfDocumentOptions.FitWideContentToPage = model.FitWideContentToPage;
+
             // Set PDF page size which can be a predefined size like A4 or a custom size in points 
             // Leave it not set to have a default A4 PDF page
             markdownToPdfConverter.PdfDocumentOptions.PdfPageSize = SelectedPdfPageSize(model.PdfPageSize);
@@ -113,6 +117,28 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.Markdown_to_PDF
 
             // Convert the Markdown string to a PDF document in a memory buffer
             byte[] outPdfBuffer = markdownToPdfConverter.ConvertStringToPdf(markdownString, baseUrl);
+
+            if (model.AddConversionInfoPage)
+            {
+                // The information about the conversion is available after it completes: the pages generated from the
+                // document, the pages of the table of contents and of the external PDF documents inserted before and
+                // after it and the total number of pages. It is written in a page added at the end of the document
+                var conversionInfo = markdownToPdfConverter.ConversionInfo;
+                string infoText = "Pages generated from the Markdown document: " + conversionInfo.PagesFromDocument + "\n" +
+                    "Pages of the table of contents inserted before the content: " + conversionInfo.TocPagesInsertedBefore + "\n" +
+                    "Pages of external PDF documents inserted before the content: " + conversionInfo.ExternalPagesInsertedBefore + "\n" +
+                    "Total pages inserted before the content: " + conversionInfo.TotalPagesInsertedBefore + "\n" +
+                    "Pages inserted after the content: " + conversionInfo.ExternalPagesInsertedAfter + "\n" +
+                    "Total pages of the generated document: " + conversionInfo.TotalPages;
+
+                using PdfEditor pdfEditor = new PdfEditor(outPdfBuffer, null);
+                int infoPageNumber = pdfEditor.AddPage(PdfPageSize.A4, PdfPageOrientation.Portrait);
+                string fontFilePath = System.IO.Path.Combine(m_hostingEnvironment.ContentRootPath, "wwwroot", "DemoAppFiles", "Input", "Font_Files", "DejaVuSerif.ttf");
+                PdfFont infoFont = PdfFontManager.CreateFont(fontFilePath, 10f, PdfFontStyle.Normal, PdfColor.Black);
+                pdfEditor.AddText(infoPageNumber, new PdfTextElement("Conversion Information", PdfFontManager.CreateFont(fontFilePath, 14f, PdfFontStyle.Bold, PdfColor.DarkBlue)) { X = 40, Y = 40 });
+                pdfEditor.AddText(infoPageNumber, new PdfTextElement(infoText, infoFont) { X = 40, Y = 70, Width = 515 });
+                outPdfBuffer = pdfEditor.Save();
+            }
 
             // Send the PDF file to browser
             FileResult fileResult = new FileContentResult(outPdfBuffer, "application/pdf");

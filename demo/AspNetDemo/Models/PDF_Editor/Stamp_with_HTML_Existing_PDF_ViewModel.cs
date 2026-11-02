@@ -43,5 +43,8 @@ namespace EvoPdf_Next_AspNetDemo.Models.PDF_Editor
         public RotationDirection RotationDirection { get; set; } = RotationDirection.Clockwise;
         public int RotationDegrees { get; set; } = 0;
         public PdfRotationPivot RotationPivot { get; set; } = PdfRotationPivot.Center;
+
+        public bool RenderUnderContent { get; set; } = false;
+        public bool SkipPagesWithCallback { get; set; } = false;
     }
 }

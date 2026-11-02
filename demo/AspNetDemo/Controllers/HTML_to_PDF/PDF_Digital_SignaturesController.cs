@@ -83,9 +83,29 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             // changes the document accepts after signing: none, form filling and signing, or also annotations
             htmlToPdfConverter.DigitalSignature.CertificationLevel = model.CertificationLevel;
 
-            // The timestamp server, for example http://timestamp.digicert.com
+            // The digest algorithm of the signature
+            htmlToPdfConverter.DigitalSignature.DigestAlgorithm = model.DigestAlgorithm;
+
+            // The timestamp server, for example http://timestamp.digicert.com, with the credentials of a server
+            // that requires basic authentication
             if (!string.IsNullOrWhiteSpace(model.TimestampServerUrl))
+            {
                 htmlToPdfConverter.DigitalSignature.TimestampServerUrl = model.TimestampServerUrl.Trim();
+                if (!string.IsNullOrEmpty(model.TimestampServerUsername))
+                {
+                    htmlToPdfConverter.DigitalSignature.TimestampServerUsername = model.TimestampServerUsername;
+                    htmlToPdfConverter.DigitalSignature.TimestampServerPassword = model.TimestampServerPassword;
+                }
+            }
+
+            if (model.TrustPfxCertificate)
+            {
+                // Additional trusted certificate authority certificates complete the chain of a certificate whose
+                // issuers are not in the certificate stores and the chains embedded by the long term profiles.
+                // The self-signed sample certificate is given here as its own authority
+                X509Certificate2 trustedCertificate = LoadCertificate(certificateFilePath, "evopdf");
+                htmlToPdfConverter.DigitalSignature.TrustedCaCertificates = new[] { trustedCertificate.RawData };
+            }
 
             // enable signature appearance in PDF page
             htmlToPdfConverter.DigitalSignature.AppearanceEnabled = model.EnableAppearance;
@@ -98,7 +118,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                     // set the appearance to be displayed at the bottom of the last page
                     htmlToPdfConverter.DigitalSignature.Appearance.DisplayOnLastPage = true;
                     htmlToPdfConverter.DigitalSignature.Appearance.BoundsRectangle =
-                            new PdfRectangle(0, htmlToPdfConverter.PdfDocumentOptions.PdfPageSize.Height - 50, 200, 50);
+                            new PdfRectangleF(0, htmlToPdfConverter.PdfDocumentOptions.PdfPageSize.Height - 50, 200, 50);
 
                     // optionally reserve space for signature appearance at the bottom of the PDF page
                     htmlToPdfConverter.PdfDocumentOptions.BottomMargin = 50;
@@ -107,7 +127,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 {
                     // set the appearance to be displayed at the top of the first page
                     htmlToPdfConverter.DigitalSignature.Appearance.PageNumber = 1;
-                    htmlToPdfConverter.DigitalSignature.Appearance.BoundsRectangle = new PdfRectangle(0, 0, 200, 50);
+                    htmlToPdfConverter.DigitalSignature.Appearance.BoundsRectangle = new PdfRectangleF(0, 0, 200, 50);
 
                     // optionally reserve space for signature appearance at the top of the PDF page
                     htmlToPdfConverter.PdfDocumentOptions.TopMargin = 50;
@@ -121,7 +141,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 if (model.AddSignatureImage)
                 {
                     string imageFilePath = m_hostingEnvironment.ContentRootPath + "/wwwroot" + "/DemoAppFiles/Input/Images/evologo.png";
-                    htmlToPdfConverter.DigitalSignature.Appearance.SetImage(imageFilePath, true);
+                    // The image fills the appearance rectangle or keeps its aspect ratio inside it
+                    htmlToPdfConverter.DigitalSignature.Appearance.SetImage(imageFilePath, model.KeepImageAspect);
                 }
             }
 

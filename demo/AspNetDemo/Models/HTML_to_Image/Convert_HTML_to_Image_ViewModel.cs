@@ -15,6 +15,7 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_Image
         public string CaptureEntirePageMode { get; set; } = "Browser";
 
         public string ImageFormat { get; set; } = "Png";
+        public int Resolution { get; set; } = 96;
 
         public int NavigationTimeout { get; set; } = 120;
         public int? ConversionDelay { get; set; } = 2;

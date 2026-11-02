@@ -107,7 +107,11 @@
                                                                     Additionally, you can add HTML headers and footers with page numbering to the generated PDF file
                                                                     or generate a table of contents based on headings.<br /><br />
                                                                     You can either enter a Markdown file URL (which can also be a local URL using the file:// prefix when running the demo on your machine),
-                                                                    or enter a Markdown string.
+                                                                    or enter a Markdown string.<br /><br />
+                                                                    Images are reduced to the width of the page, long code lines are wrapped and Markdown tables take the width of the page.
+                                                                    For a document with an HTML block of a fixed width wider than the page, the Fit Wide Content to Page option scales
+                                                                    the whole content down to show that block entirely; to see the difference, replace Markdown_Document.md with
+                                                                    Markdown_Document_Wide_Content.md in the file URL below.
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -393,6 +397,37 @@
                                                                                         <tr>
                                                                                             <td>
                                                                                                 <input asp-for="GenerateToc" id="generateTocCheckBox" type="checkbox"><label for="generateTocCheckBox">Generate Table of Contents</label>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Content Wider than the Page
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <input asp-for="FitWideContentToPage" id="fitWideContentToPageCheckBox" type="checkbox"><label for="fitWideContentToPageCheckBox">Fit Wide Content to Page</label>
                                                                                             </td>
                                                                                         </tr>
                                                                                     </table>
@@ -868,6 +903,39 @@
                                                                             </tr>
                                                                         </table>
                                                                     </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Conversion Information
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="AddConversionInfoPage" id="addConversionInfoPageCheckBox" type="checkbox"><label for="addConversionInfoPageCheckBox">Add a Page with the Conversion Information at the End of the Document</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
                                                                 </td>
                                                             </tr>
                                                             <tr>

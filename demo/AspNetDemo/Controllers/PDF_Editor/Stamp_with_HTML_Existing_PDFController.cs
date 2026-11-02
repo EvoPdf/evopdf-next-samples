@@ -37,7 +37,6 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the library in licensed mode
             // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
             // Licensing.LicenseKey = "your-license-key";
 
@@ -172,10 +171,20 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
                 // The zoom at which the stamp HTML is laid out and drawn, at the same stamp width
                 stamp.Zoom = model.StampZoom;
 
-                // Set stamp visibility in PDF for the first page, odd pages, and even pages
+                // Set stamp visibility in PDF for the first page, odd pages and even pages
                 stamp.ShowInFirstPage = model.ShowStampInFirstPage;
                 stamp.ShowInOddPages = model.ShowStampInOddPages;
                 stamp.ShowInEvenPages = model.ShowStampInEvenPages;
+
+                // The stamp is drawn under the existing content of the page, as a watermark, or over it
+                stamp.RenderUnderContent = model.RenderUnderContent;
+
+                if (model.SkipPagesWithCallback)
+                {
+                    // The callback decides for each page if the stamp is rendered, after the first, odd and even page
+                    // conditions; it receives the placement of the stamp in the page. The second page is skipped here
+                    stamp.OnPageRendering = placement => placement.DocumentPageNumber != 2;
+                }
 
                 // Sets the opacity for the entire stamp content, including text.
                 // To apply opacity only to the background, use the alpha channel

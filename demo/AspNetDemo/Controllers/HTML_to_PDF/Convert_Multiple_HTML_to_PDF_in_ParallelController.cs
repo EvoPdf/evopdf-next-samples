@@ -42,6 +42,19 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 model.SecondUrl
             };
 
+            // One converter for each HTML document; the first one gives the size of the header and of the footer
+            List<HtmlToPdfConverter> converters = new List<HtmlToPdfConverter>();
+            foreach (string url in urlsToConvert)
+            {
+                // Create the HTML to PDF Converter
+                HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
+
+                // Set the HTML to PDF Converter options
+                SetHtmlToPdfConverterOptions(htmlToPdfConverter, model);
+
+                converters.Add(htmlToPdfConverter);
+            }
+
             if (model.AsyncParallelConversionEnabled)
             {
                 // Parallel conversion using asynchronous methods to convert HTML to PDF
@@ -49,16 +62,10 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 // List of tasks that will run in parallel
                 List<Task<byte[]>> conversionTasks = new List<Task<byte[]>>();
 
-                foreach (string url in urlsToConvert)
+                for (int i = 0; i < urlsToConvert.Count; i++)
                 {
-                    // Create the HTML to PDF Converter
-                    HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
-
-                    // Set the HTML to PDF Converter options
-                    SetHtmlToPdfConverterOptions(htmlToPdfConverter, model);
-
                     // Start async conversion
-                    Task<byte[]> convertTask = htmlToPdfConverter.ConvertUrlAsync(url);
+                    Task<byte[]> convertTask = converters[i].ConvertUrlAsync(urlsToConvert[i]);
                     conversionTasks.Add(convertTask);
                 }
 
@@ -73,28 +80,27 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             }
             else
             {
-                foreach (string url in urlsToConvert)
+                for (int i = 0; i < urlsToConvert.Count; i++)
                 {
-                    // Create the HTML to PDF Converter
-                    HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
-
-                    // Set the HTML to PDF Converter options
-                    SetHtmlToPdfConverterOptions(htmlToPdfConverter, model);
-
                     // Convert HTML to PDF
-                    byte[] pdfBytes = htmlToPdfConverter.ConvertUrl(url);
+                    byte[] pdfBytes = converters[i].ConvertUrl(urlsToConvert[i]);
 
                     // Add the PDF to the merger
                     int pdfPageCount = pdfMerge.AddPdf(pdfBytes);
                 }
             }
 
+            // The header and the footer of the merged document, rendered when it is saved with the page numbers
+            // of the whole document. The pages were converted with the space of the header and of the footer
+            // reserved, so the templates take their size from the first conversion
+            SetPdfMergeHeaderFooter(pdfMerge, converters[0], model);
+
             // Merge the PDF documents
             byte[] mergedPdf = pdfMerge.Save();
 
             // Send the merged PDF file to browser
             FileResult fileResult = new FileContentResult(mergedPdf, "application/pdf");
-            fileResult.FileDownloadName = "Convert_Multipe_HTML_in_Parallel.pdf";
+            fileResult.FileDownloadName = "Convert_Multiple_HTML_in_Parallel.pdf";
 
             return fileResult;
         }
@@ -142,6 +148,19 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             // Enable the creation of a hierarchy of bookmarks from H1 to H6 tags
             htmlToPdfConverter.PdfDocumentOptions.GenerateDocumentOutline = model.AutoBookmarks;
 
+            // The header and the footer reserve their space in the pages of each conversion; their rendering is
+            // delayed until the conversions are merged, so the page numbers are those of the merged document
+            if (model.HeaderEnabled)
+            {
+                htmlToPdfConverter.PdfDocumentOptions.PdfHtmlHeader.Html = model.HeaderHtml;
+                htmlToPdfConverter.PdfDocumentOptions.PdfHtmlHeader.DelayContentRendering = true;
+            }
+            if (model.FooterEnabled)
+            {
+                htmlToPdfConverter.PdfDocumentOptions.PdfHtmlFooter.Html = model.FooterHtml;
+                htmlToPdfConverter.PdfDocumentOptions.PdfHtmlFooter.DelayContentRendering = true;
+            }
+
             // Set the maximum time in seconds to wait for HTML page to be loaded 
             // Leave it not set for a default 120 seconds maximum wait time
             htmlToPdfConverter.NavigationTimeout = model.NavigationTimeout;
@@ -150,6 +169,27 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             // Set this property to 0 if you don't need to wait for such asynchcronous operations to finish
             if (model.ConversionDelay.HasValue)
                 htmlToPdfConverter.ConversionDelay = model.ConversionDelay.Value;
+        }
+
+        private void SetPdfMergeHeaderFooter(PdfMerge pdfMerge, HtmlToPdfConverter firstConverter, Convert_Multiple_HTML_to_PDF_in_Parallel_ViewModel model)
+        {
+            if (model.HeaderEnabled)
+            {
+                // The header template of the merged document has the size the header took in the converted pages
+                PdfSizeF headerSize = firstConverter.PdfDocumentOptions.PdfHtmlHeader.DestinationSize;
+                PdfHtmlTemplate headerTemplate = pdfMerge.AddHtmlTemplate(0, 0, (int)headerSize.Width, (int)headerSize.Height,
+                    PdfTemplateHorizontalAlign.Left, PdfTemplateVerticalAlign.Top, model.HeaderHtml, null);
+                // The template is drawn at the zoom of the merged pages, like the header of the conversions
+                headerTemplate.Zoom = firstConverter.HtmlViewerZoom;
+            }
+
+            if (model.FooterEnabled)
+            {
+                PdfSizeF footerSize = firstConverter.PdfDocumentOptions.PdfHtmlFooter.DestinationSize;
+                PdfHtmlTemplate footerTemplate = pdfMerge.AddHtmlTemplate(0, 0, (int)footerSize.Width, (int)footerSize.Height,
+                    PdfTemplateHorizontalAlign.Left, PdfTemplateVerticalAlign.Bottom, model.FooterHtml, null);
+                footerTemplate.Zoom = firstConverter.HtmlViewerZoom;
+            }
         }
 
         private void SetPdfMergeOptions(PdfMerge pdfMerge, Convert_Multiple_HTML_to_PDF_in_Parallel_ViewModel model)

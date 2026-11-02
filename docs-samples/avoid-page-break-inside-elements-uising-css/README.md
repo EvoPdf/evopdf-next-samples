@@ -7,4 +7,4 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/avoid-page-bre
 | File | Section | Lines |
 | --- | --- | --- |
 | `Sample1.cs` | Code Sample - Avoid Page Breaks Inside HTML Elements Using CSS | 96 |
-| `Sample2.html` | HTML with page-break-inside:avoid CSS Attribute | 663 |
+| `Sample2.html` | HTML with page-break-inside:avoid CSS Attribute | 664 |

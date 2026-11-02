@@ -1,1 +1,1 @@
-byte[] outPdfBuffer = rtfToPdfConverter.ConvertToPdf(rtfBytes);
+rtfToPdfConverter.PdfDocumentOptions.FitWideContentToPage = true;

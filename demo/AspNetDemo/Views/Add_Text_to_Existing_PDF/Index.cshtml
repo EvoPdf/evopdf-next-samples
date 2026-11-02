@@ -31,7 +31,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>
-                                                                    Edit an existing PDF document by adding text elements with custom fonts, backgrounds, rotations and multi-page continuation.  PdfEditor inherits the standard of the source PDF
+                                                                    Edit an existing PDF document by adding text elements with custom fonts, backgrounds, rotations and multi-page continuation. The edited document keeps the standard of the source PDF
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -117,6 +117,39 @@
                                                                                                 <td style="width: 5px"></td>
                                                                                                 <td>
                                                                                                     <input asp-for="OwnerPassword" id="ownerPasswordTextBox" type="text" style="width:100px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Text Continued on the Next Pages
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="InsertContinuationPages" id="insertContinuationPagesCheckBox" type="checkbox"><label for="insertContinuationPagesCheckBox">Insert the Continuation Pages (keep the pages that follow)</label>
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>

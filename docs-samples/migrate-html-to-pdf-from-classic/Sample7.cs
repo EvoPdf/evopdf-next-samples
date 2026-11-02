@@ -1,12 +1,6 @@
-using EvoPdf.Next;
+// Classic
+converter.PdfDocumentOptions.FitWidth = true;
+converter.PdfDocumentOptions.StretchToFit = true;
 
-PdfHtmlHeaderFooter header = converter.PdfDocumentOptions.PdfHtmlHeader;
-header.HtmlSourceUrl = headerHtmlUrl;
-header.Height = 60;
-header.FitHeight = true;
-
-PdfHtmlHeaderFooter footer = converter.PdfDocumentOptions.PdfHtmlFooter;
-footer.Html = "<div style=\"font-family: 'Times New Roman'; font-size: 10pt; text-align: right\">" +
-    "Page {page_number} of {total_pages}</div>";
-footer.HtmlBaseUrl = baseUrl;
-footer.Height = 40;
+// Next: a 600 pixel window enlarged to the A4 page, drawn at 132 percent
+converter.FitBrowserWindowToPage(PdfPageSize.A4, PdfPageOrientation.Portrait, 600);

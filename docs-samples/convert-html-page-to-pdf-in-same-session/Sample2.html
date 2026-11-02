@@ -1,3 +1,4 @@
+@model EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF.Convert_Page_in_Same_Session_ViewModel
 @{
     Layout = null;
 }
@@ -16,14 +17,14 @@
     <div>
         <b style="font-size: 16px">The session variables</b><br />
         <br />
-        <b>First Name:</b>&nbsp;<span id="firstNameLabel">@(ViewData["firstName"] != null ? ViewData["firstName"].ToString() : String.Empty)</span><br />
-        <b>Last Name:</b>&nbsp;<span id="lastNameLabel">@(ViewData["lastName"] != null ? ViewData["lastName"].ToString() : String.Empty)</span><br />
-        <b>Gender:</b>&nbsp;<span id="genderLabel">@(ViewData["gender"] != null && ViewData["gender"].ToString() == "maleRadioButton" ? "Male" : "Female")</span><br />
-        <b>I have a car:</b>&nbsp;<span id="haveCarLabel">@(ViewData["haveCar"] != null && ViewData["haveCar"].ToString() != "false" ? "Yes" : "No")</span><br />
-        <div id="carTypePanel" style="display : @(ViewData["haveCar"] != null && ViewData["haveCar"].ToString() == "false" ? "none" : "inline")">
-            <b>Car Type:</b>&nbsp;<span id="carTypeLabel">@(ViewData["carType"] != null ? ViewData["carType"].ToString() : String.Empty)</span><br />
+        <b>First Name:</b>&nbsp;<span id="firstNameLabel">@Model.FirstName</span><br />
+        <b>Last Name:</b>&nbsp;<span id="lastNameLabel">@Model.LastName</span><br />
+        <b>Gender:</b>&nbsp;<span id="genderLabel">@((Model.Gender == "Male") ? "Male" : "Female")</span><br />
+        <b>I have a car:</b>&nbsp;<span id="haveCarLabel">@(Model.HaveCar ? "Yes" : "No")</span><br />
+        <div id="carTypePanel" style="display : @(Model.HaveCar ? "inline" : "none")">
+            <b>Car Type:</b>&nbsp;<span id="carTypeLabel">@Model.CarType</span><br />
         </div>
-        <b>Comments:</b>&nbsp;<span id="commentsLabel">@(ViewData["comments"] != null ? ViewData["comments"].ToString() : String.Empty)</span><br />
+        <b>Comments:</b>&nbsp;<span id="commentsLabel">@Model.Comments</span><br />
     </div>
 </body>
 </html>

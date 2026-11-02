@@ -31,7 +31,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>
-                                                                    Edit an existing PDF document by drawing images at absolute coordinates with rotation, opacity and alignment options.  PdfEditor inherits the standard of the source PDF
+                                                                    Edit an existing PDF document by drawing images at absolute coordinates with rotation, opacity and alignment options. The edited document keeps the standard of the source PDF
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -117,6 +117,49 @@
                                                                                                 <td style="width: 5px"></td>
                                                                                                 <td>
                                                                                                     <input asp-for="OwnerPassword" id="ownerPasswordTextBox" type="text" style="width:100px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Image Taller than a Page
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="AddTallImage" id="addTallImageCheckBox" type="checkbox"><label for="addTallImageCheckBox">Add an Image Taller than a Page</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="ContinueOnNextPage" id="continueOnNextPageCheckBox" type="checkbox"><label for="continueOnNextPageCheckBox">Continue the Image on the Next Pages (instead of cutting it at the bottom of the page)</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="InsertContinuationPages" id="insertContinuationPagesCheckBox" type="checkbox"><label for="insertContinuationPagesCheckBox">Insert the Continuation Pages (keep the pages that follow)</label>
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>

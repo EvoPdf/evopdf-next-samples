@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -43,6 +44,41 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
 
             // Specifies whether HTML form controls are converted to interactive PDF form fields
             htmlToPdfConverter.PdfDocumentOptions.GeneratePdfFormFields = model.GeneratePdfFormFields;
+
+            PdfFormOptions formOptions = htmlToPdfConverter.PdfDocumentOptions.PdfFormOptions;
+
+            // The names of the PDF fields: the HTML names when they are unique, the HTML names as they are, or
+            // names qualified with the form and the position of the control
+            formOptions.FieldNamingMode = (PdfFieldNamingMode)Enum.Parse(typeof(PdfFieldNamingMode), model.FieldNamingMode);
+
+            // The actions of the generated buttons: the HTML submit and reset buttons submit and reset the PDF form
+            formOptions.EnableButtonActions = model.EnableButtonActions;
+            formOptions.MapHtmlSubmitButtonsToPdfActions = model.MapHtmlSubmitButtonsToPdfActions;
+            formOptions.MapHtmlResetButtonsToPdfActions = model.MapHtmlResetButtonsToPdfActions;
+
+            // The fields submitted or reset by a button: only the fields of its HTML form, or all the fields
+            formOptions.SubmitOnlyFieldsFromButtonForm = model.SubmitOnlyFieldsFromButtonForm;
+            formOptions.ResetOnlyFieldsFromButtonForm = model.ResetOnlyFieldsFromButtonForm;
+            formOptions.ExcludeDisabledFieldsFromSubmit = model.ExcludeDisabledFieldsFromSubmit;
+            formOptions.IncludeReadOnlyFieldsInSubmit = model.IncludeReadOnlyFieldsInSubmit;
+
+            // The HTML required attribute marks the PDF field as required
+            formOptions.ApplyRequiredAsPdfRequiredFlag = model.ApplyRequiredAsPdfRequiredFlag;
+
+            // The submit action is a native PDF action or a script that submits the form like a browser does;
+            // the format is the format of the submitted data
+            formOptions.SubmitBehavior = (PdfSubmitBehavior)Enum.Parse(typeof(PdfSubmitBehavior), model.SubmitBehavior);
+            formOptions.SubmitFormat = (PdfSubmitFormat)Enum.Parse(typeof(PdfSubmitFormat), model.SubmitFormat);
+
+            // A basic validation script can be generated from the HTML validation attributes
+            formOptions.ValidationBehavior = (PdfValidationBehavior)Enum.Parse(typeof(PdfValidationBehavior), model.ValidationBehavior);
+
+            if (model.UseFormFieldFont)
+            {
+                // The font of the text displayed in the fields; a standard font is used otherwise
+                string fontFilePath = Path.Combine(m_hostingEnvironment.ContentRootPath, "wwwroot", "DemoAppFiles", "Input", "Font_Files", "DejaVuSerif.ttf");
+                formOptions.FormFieldFont = PdfFontManager.CreateBaseFont(fontFilePath);
+            }
 
             // The buffer to receive the generated PDF document
             byte[] outPdfBuffer = null;

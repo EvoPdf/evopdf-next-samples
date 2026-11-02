@@ -6,4 +6,5 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/set-pdf-permis
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | Code Sample - Set Permissions and Password of the Generated PDF Document | 90 |
+| `Sample1.cs` | Deny High Resolution Printing and Document Assembly | 2 |
+| `Sample2.cs` | Code Sample - Set Permissions and Password of the Generated PDF Document | 95 |

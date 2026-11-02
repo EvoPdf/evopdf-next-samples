@@ -1,1 +1,1 @@
-byte[] outPdfBuffer = rtfToPdfConverter.ConvertFileToPdf(rtfFilePath);
+byte[] outPdfBuffer = rtfToPdfConverter.ConvertStringToPdf(rtfString);

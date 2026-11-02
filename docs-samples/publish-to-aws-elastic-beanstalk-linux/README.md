@@ -6,7 +6,7 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/publish-to-aws
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.yaml` | Install the Required Packages | 26 |
-| `Sample2.conf` | Raise the Proxy Limits | 2 |
+| `Sample1.yaml` | .ebextensions/evopdf.config | 26 |
+| `Sample2.conf` | .platform/nginx/conf.d/evopdf.conf | 2 |
 | `Sample3.xml` | Include the Files in the Publish Output | 4 |
 | `Sample4.sh` | Publish and Package the Application | 1 |

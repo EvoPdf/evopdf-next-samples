@@ -6,4 +6,5 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-doc
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | Code Sample - Create PDF Documents with Geometric Shapes | 339 |
+| `Sample1.cs` | Draw a Translucent Line | 7 |
+| `Sample2.cs` | Code Sample - Create PDF Documents with Geometric Shapes | 346 |

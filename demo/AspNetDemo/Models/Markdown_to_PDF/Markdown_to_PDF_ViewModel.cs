@@ -14,6 +14,7 @@ namespace EvoPdf_Next_AspNetDemo.Models.Markdown_to_PDF
         public string StyleSheet { get; set; } = string.Empty;
 
         public bool GenerateToc { get; set; } = false;
+        public bool FitWideContentToPage { get; set; } = false;
 
         public string PdfPageSize { get; set; } = "A4";
         public string PdfPageOrientation { get; set; } = "Portrait";
@@ -59,5 +60,7 @@ namespace EvoPdf_Next_AspNetDemo.Models.Markdown_to_PDF
         public bool AutoResizeBottomMargin { get; set; } = true;
         public bool ReserveFooterSpace { get; set; } = true;
         public int? FooterConversionDelay { get; set; } = 0;
+
+        public bool AddConversionInfoPage { get; set; } = false;
     }
 }

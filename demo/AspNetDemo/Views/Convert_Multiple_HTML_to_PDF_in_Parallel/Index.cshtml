@@ -131,9 +131,8 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>
-                                                                    Asynchronously convert multiple HTML documents to PDF in parallel using various options and 
-                                                                    merge the resulting PDFs into a single PDF document. 
-                                                                    The implementation uses the asynchronous conversion methods of the HTML to PDF converter.
+                                                                    Convert several HTML documents to PDF at the same time with the asynchronous conversion methods of the HTML to PDF converter and
+                                                                    merge the results into a single PDF document, with a header and a footer whose page numbers are those of the merged document.
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -201,6 +200,57 @@
                                                                                             <tr>
                                                                                                 <td>
                                                                                                     <input asp-for="AsyncParallelConversionEnabled" type="checkbox" id="asyncParallelConversionEnabledCheckBox"><label for="asyncParallelConversionEnabledCheckBox">Enable asynchronous parallel conversion</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Header and Footer of the Merged Document
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="HeaderEnabled" type="checkbox" id="headerEnabledCheckBox"><label for="headerEnabledCheckBox">Header HTML</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <textarea asp-for="HeaderHtml" rows="2" cols="20" id="headerHtmlTextBox" style="height:45px;width:500px;"></textarea>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 8px"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input asp-for="FooterEnabled" type="checkbox" id="footerEnabledCheckBox"><label for="footerEnabledCheckBox">Footer HTML</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <textarea asp-for="FooterHtml" rows="2" cols="20" id="footerHtmlTextBox" style="height:45px;width:500px;"></textarea>
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>

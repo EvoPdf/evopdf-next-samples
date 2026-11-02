@@ -1,6 +1,7 @@
-// Classic
-converter.PdfDocumentOptions.FitWidth = true;
-converter.PdfDocumentOptions.StretchToFit = true;
+HtmlToPdfConverter converter = new HtmlToPdfConverter();
 
-// Next: a 600 pixel window enlarged to the A4 page, drawn at 132 percent
-converter.FitBrowserWindowToPage(PdfPageSize.A4, PdfPageOrientation.Portrait, 600);
+// Same as Classic: A4 page, a 1600 pixel window scaled to it, drawn at 49.58 percent
+converter.FitBrowserWindowToPage(PdfPageSize.A4, PdfPageOrientation.Portrait, 1600);
+
+// Or a 1200 point wide page with the content at 1:1
+converter.PageWidthFromBrowserWindow(1600);

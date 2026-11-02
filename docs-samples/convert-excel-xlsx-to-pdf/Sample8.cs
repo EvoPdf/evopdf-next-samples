@@ -1,1 +1,1 @@
-byte[] outPdfBuffer = excelToPdfConverter.ConvertToPdf(excelBytes);
+excelToPdfConverter.PdfDocumentOptions.FitWideContentToPage = false;

@@ -14,5 +14,5 @@ converter.PdfDocumentOptions.TopMargin = 28;
 converter.PdfDocumentOptions.BottomMargin = 28;
 converter.MediaType = "print";
 converter.PdfDocumentOptions.PrintBackgrounds = false;
-// Viewer width equal to the content width: (595 - 56) * 4 / 3 = 719 pixels
-converter.HtmlViewerWidth = 719;
+// Viewer width equal to the content width: (595 - 56) * 4 / 3, rounded down = 718 pixels
+converter.HtmlViewerWidth = 718;

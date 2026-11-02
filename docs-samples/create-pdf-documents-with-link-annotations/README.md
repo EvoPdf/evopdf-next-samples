@@ -6,5 +6,6 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-doc
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | External URL Links | 12 |
-| `Sample2.cs` | Code Sample - Create PDF Documents with Link Annotations | 392 |
+| `Sample1.cs` | URL link over rendered text | 12 |
+| `Sample2.cs` | Set the Highlight Mode | 4 |
+| `Sample3.cs` | Code Sample - Create PDF Documents with Link Annotations | 398 |

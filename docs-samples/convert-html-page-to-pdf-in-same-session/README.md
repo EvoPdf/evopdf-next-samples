@@ -7,4 +7,4 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/convert-html-p
 | File | Section | Lines |
 | --- | --- | --- |
 | `Sample1.cs` | Code Sample - Convert a HTML Page to PDF in Same Session | 102 |
-| `Sample2.html` | Code Sample - Display Session Variables in Converted HTML Page | 29 |
+| `Sample2.html` | Code Sample - Display Session Variables in Converted HTML Page | 30 |

@@ -1,0 +1,1 @@
+rtfToPdfConverter.PdfDocumentOptions.UseHeaderFooterFromRtf = true;

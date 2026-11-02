@@ -106,6 +106,47 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Annotation Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Icon Color:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <select asp-for="IconColor" id="iconColorDropDownList"><option value="Default">Viewer Default</option><option value="Red">Red</option><option value="Green">Green</option><option value="Blue">Blue</option></select>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="AddToAttachmentsPanel" id="addToAttachmentsPanelCheckBox" type="checkbox"><label for="addToAttachmentsPanelCheckBox">List the Annotation Files in the Attachments Panel</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 12px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
                                                                     <button type="submit" name="createPdfButton" id="createPdfButton">Create PDF</button>
                                                                 </td>
                                                             </tr>

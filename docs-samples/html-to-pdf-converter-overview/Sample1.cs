@@ -103,6 +103,17 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             // Leave as None to generate a plain PDF without an accessibility structure tree or archival metadata
             htmlToPdfConverter.PdfDocumentOptions.PdfStandard = model.PdfStandard;
 
+            // The page size declared by the CSS @page rule of the document replaces the page size set above
+            htmlToPdfConverter.PdfDocumentOptions.PreferCssPageSize = model.PreferCssPageSize;
+
+            // The maximum number of pages generated from the HTML document, or 0 for all the pages
+            htmlToPdfConverter.PdfDocumentOptions.PageNumberLimit = model.PageNumberLimit;
+
+            // The sources the converter can load: files of the local disk, pages of the local host and files of the local network
+            htmlToPdfConverter.LocalFilesEnabled = model.LocalFilesEnabled;
+            htmlToPdfConverter.LocalhostEnabled = model.LocalhostEnabled;
+            htmlToPdfConverter.UncPathEnabled = model.UncPathEnabled;
+
             // Set the maximum time, in seconds, to wait for the HTML page to load
             // The default value is 120 seconds
             htmlToPdfConverter.NavigationTimeout = model.NavigationTimeout;

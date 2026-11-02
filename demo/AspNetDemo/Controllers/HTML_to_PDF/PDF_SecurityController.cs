@@ -60,6 +60,10 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             htmlToPdfConverter.PdfSecurityOptions.CanEditContent = model.EditContentEnabled;
             htmlToPdfConverter.PdfSecurityOptions.CanEditAnnotations = model.EditAnnotationsEnabled;
             htmlToPdfConverter.PdfSecurityOptions.CanFillFormFields = model.FillFormFieldsEnabled;
+            // Printing at high resolution can be denied while printing at low resolution stays allowed
+            htmlToPdfConverter.PdfSecurityOptions.CanPrintHighResolution = model.PrintHighResolutionEnabled;
+            // Inserting, rotating and deleting pages and creating bookmarks
+            htmlToPdfConverter.PdfSecurityOptions.CanAssembleDocument = model.AssembleDocumentEnabled;
 
             if ((PermissionsChanged(htmlToPdfConverter) || htmlToPdfConverter.PdfSecurityOptions.UserPassword.Length > 0) &&
                 htmlToPdfConverter.PdfSecurityOptions.OwnerPassword.Length == 0)
@@ -84,7 +88,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             return !htmlToPdfConverter.PdfSecurityOptions.CanPrint ||
                     !htmlToPdfConverter.PdfSecurityOptions.CanCopyContent || !htmlToPdfConverter.PdfSecurityOptions.CanCopyAccessibilityContent ||
                     !htmlToPdfConverter.PdfSecurityOptions.CanEditContent || !htmlToPdfConverter.PdfSecurityOptions.CanEditAnnotations ||
-                    !htmlToPdfConverter.PdfSecurityOptions.CanFillFormFields;
+                    !htmlToPdfConverter.PdfSecurityOptions.CanFillFormFields ||
+                    !htmlToPdfConverter.PdfSecurityOptions.CanPrintHighResolution || !htmlToPdfConverter.PdfSecurityOptions.CanAssembleDocument;
         }
     }
 }

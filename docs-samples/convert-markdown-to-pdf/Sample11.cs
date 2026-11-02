@@ -1,1 +1,1 @@
-await markdownToPdfConverter.ConvertStringToPdfFileAsync(markdownString, baseUrl, outputPdfFilePath);
+byte[] outPdfBuffer = await markdownToPdfConverter.ConvertStringToPdfAsync(markdownString, baseUrl);

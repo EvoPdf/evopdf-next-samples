@@ -8,6 +8,7 @@ namespace EvoPdf_Next_AspNetDemo.Models.RTF_to_PDF
         public IFormFile RtfFile { get; set; }
 
         public bool GenerateToc { get; set; } = false;
+        public bool FitWideContentToPage { get; set; } = false;
 
         public string PdfPageSize { get; set; } = "A4";
         public string PdfPageOrientation { get; set; } = "Portrait";
@@ -53,5 +54,9 @@ namespace EvoPdf_Next_AspNetDemo.Models.RTF_to_PDF
         public bool AutoResizeBottomMargin { get; set; } = true;
         public bool ReserveFooterSpace { get; set; } = true;
         public int? FooterConversionDelay { get; set; } = 0;
+
+        public string PdfPageSettingsMode { get; set; } = "FromRtfDocument";
+
+        public bool AddConversionInfoPage { get; set; } = false;
     }
 }

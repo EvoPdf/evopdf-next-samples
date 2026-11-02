@@ -18,8 +18,9 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
     {
         private const int leftMargin = 36;
         private const int topMargin = 36;
-        private const int contentWidth = 595 - 72;
-        private const int contentHeight = 842 - 72;
+        // The content area of the pages inside the demo margins, from the size of the first page of the loaded document
+        private int contentWidth;
+        private int contentHeight;
 
         private readonly IWebHostEnvironment m_hostingEnvironment;
 
@@ -43,7 +44,6 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
                 throw new ValidationException(errorMessage);
             }
 
-            // Set license key received after purchase to use the library in licensed mode
             // Set the license key received after purchase to use the library in licensed mode; leave it commented for demo mode
             // Licensing.LicenseKey = "your-license-key";
 
@@ -89,15 +89,15 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
                 }
             }
 
-            // Open the loaded PDF for editing.  PdfEditor inherits the
-            // standard (PDF/A, PDF/UA etc.) and Language from the source
-            // document, so no PdfDocumentCreateSettings is needed.  Page
-            // size and margins are also taken from the existing pages;
-            // we apply our own margins manually below via leftMargin /
-            // topMargin since PdfEditor draws at absolute page coordinates
+            // The pages of an edited document have no margins: the demo keeps its content inside its own margins
             string password = string.IsNullOrEmpty(model.OwnerPassword) ? model.UserPassword : model.OwnerPassword;
             using PdfEditor pdfEditor = new PdfEditor(inputPdfBytes, password);
-            pdfEditor.PdfDocumentInfo.Title = "PDF Text Demo";
+
+            PdfPageInfo firstPageInfo = pdfEditor.GetPdfPageInfo(1);
+            // A rotation of 90 or 270 degrees swaps the width and the height of the page as it is displayed
+            bool firstPageTurned = firstPageInfo.Rotation % 180 != 0;
+            contentWidth = (int)(firstPageTurned ? firstPageInfo.PageSize.Height : firstPageInfo.PageSize.Width) - 2 * leftMargin;
+            contentHeight = (int)(firstPageTurned ? firstPageInfo.PageSize.Width : firstPageInfo.PageSize.Height) - 2 * topMargin;
 
             string fontsPath = GetDemoFontsPath();
             string fontFilePath = Path.Combine(fontsPath, "DejaVuSerif.ttf");
@@ -141,9 +141,8 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
             crtYPos = (int)sectionLabel1Info.LastPageRectangle.Bounds.Bottom + ySeparator;
 
             PdfTextElement highlighted = new PdfTextElement(
-                "This paragraph has a yellow highlight background drawn behind the text as an " +
-                "Artifact (it does not appear in the structure tree). The background covers the " +
-                "full column width and the actual used height.",
+                "This paragraph has a yellow highlight background drawn behind the text. The background " +
+                "covers the full column width and the height used by the text.",
                 bodyFont)
             {
                 X = xLeft,
@@ -168,9 +167,9 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
             PdfTextElement decoratedText = new PdfTextElement(
                 "Below text is drawn an under-layer rectangle in the OnBeforePageRender callback, " +
                 "while the OnAfterPageRender callback adds a thin border around the rendered area. " +
-                "Both callbacks receive the same PdfTextPageRenderInfo type but the rectangle in " +
-                "OnBeforePageRender is the predicted column area while in OnAfterPageRender it is " +
-                "the actual rendered area.",
+                "Both callbacks receive the same PdfTextPageRenderInfo type: the rectangle in " +
+                "OnBeforePageRender is the area the text is about to use and in OnAfterPageRender " +
+                "it is the area the text used.",
                 bodyFont)
             {
                 X = xLeft,
@@ -252,7 +251,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
             // Advance Y past the rotated area's axis-aligned bounding box.
             crtYPos = (int)rotatedInfo.LastPageRectangle.Bounds.Bottom + ySeparator * 2;
 
-            // ===== Section 5: Multi-page continuation + per-page RenderedText =====
+            // ===== Section 4: Multi-page continuation + per-page RenderedText =====
             currentPage = pdfEditor.AddPage();
             crtYPos = topMargin;
 
@@ -264,12 +263,23 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
             currentPage = sectionLabel4Info.LastPageRectangle.PageNumber;
             crtYPos = (int)sectionLabel4Info.LastPageRectangle.Bounds.Bottom + ySeparator;
 
-            // Build a long text that will overflow several pages.
+            // A page added after the pages of the document: the text continues over it, or the pages where the
+            // text continues are inserted before it and it keeps its content, as the option asks
+            int pageAfterText = pdfEditor.AddPage();
+            pdfEditor.AddText(pageAfterText, new PdfTextElement("The page that followed the text", smallFont)
+            {
+                X = xLeft,
+                Y = topMargin
+            });
+
+            // A long text that takes several pages
             string longTextSource = LoadAlphabetText();
             StringBuilder longBuilder = new StringBuilder();
             for (int i = 0; i < 8; i++) longBuilder.AppendLine(longTextSource);
             string longText = longBuilder.ToString();
 
+            // The pages of an edited document have no margins, so the continuation margins give the area of the
+            // pages where the text continues
             PdfTextElement multipage = new PdfTextElement(longText, bodyFont)
             {
                 X = xLeft,
@@ -277,6 +287,9 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
                 Width = contentWidth,
                 Alignment = PdfTextAlignment.Left,
                 ContinueOnNextPage = true,
+                InsertContinuationPages = model.InsertContinuationPages,
+                ContinuationTopMargin = topMargin,
+                ContinuationBottomMargin = topMargin,
                 BackgroundColor = PdfColor.WhiteSmoke,
                 BackgroundOpacity = 1f
             };
@@ -303,7 +316,7 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
 
             currentPage = multipageInfo.LastPageRectangle.PageNumber;
 
-            // ===== Section 6: Summary of pages rendered =====
+            // ===== Section 5: Summary of pages rendered =====
             currentPage = pdfEditor.AddPage();
             crtYPos = topMargin;
 
@@ -355,21 +368,15 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
         {
             string textsPath = GetDemoTextsPath();
             string alphabetFilePath = Path.Combine(textsPath, "Alphabet.txt");
-            if (System.IO.File.Exists(alphabetFilePath))
-                return System.IO.File.ReadAllText(alphabetFilePath);
-
-            // Fallback so the demo runs even without the alphabet file.
-            return "The quick brown fox jumps over the lazy dog. " +
-                   "Pack my box with five dozen liquor jugs. " +
-                   "Sphinx of black quartz, judge my vow. " +
-                   "How vexingly quick daft zebras jump. ";
+            return System.IO.File.ReadAllText(alphabetFilePath);
         }
 
         private void EnsureSpaceOnPage(ref int crtYPos, ref int currentPage, int requestedHeight, PdfEditor pdfEditor, int contentHeight, int topMargin)
         {
             if (crtYPos + requestedHeight > contentHeight + topMargin)
             {
-                currentPage = pdfEditor.AddPage();
+                // The content continues on the following page of the document, or on a new page after the last one
+                currentPage = currentPage < pdfEditor.PageCount ? currentPage + 1 : pdfEditor.AddPage();
                 crtYPos = topMargin;
             }
         }

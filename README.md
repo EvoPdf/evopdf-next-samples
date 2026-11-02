@@ -11,19 +11,21 @@
   <a href="https://github.com/EvoPdf/evopdf-next-samples/actions/workflows/build.yml"><img src="https://github.com/EvoPdf/evopdf-next-samples/actions/workflows/build.yml/badge.svg" alt="build"></a>
   <a href="https://www.evopdf.com/help/evopdf-next-dotnet/"><img src="https://img.shields.io/badge/docs-evopdf.com-1E6FB8" alt="Documentation"></a>
   <img src="https://img.shields.io/badge/Windows%20%7C%20Linux%20%7C%20macOS-x64%20%7C%20ARM64-555" alt="Platforms">
+  <a href="https://deepwiki.com/EvoPdf/evopdf-next-samples"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
 </p>
 
 ---
 
-## Three kinds of samples
+## Four kinds of samples
 
 | Folder | What it is | How to use it |
 |---|---|---|
-| [`quickstarts/`](quickstarts) | 21 minimal samples, one feature each, shared by one .NET 10 console project per platform | `dotnet run --project Quickstarts_<Platform>.csproj -- <SampleName>`: the fastest way to see a feature work |
-| [`docs-samples/`](docs-samples) | The 451 code samples of 85 documentation topics, verbatim, each file in its own language (C#, shell, Dockerfile, HTML, XML, YAML, JSON) and linked to its topic | Copy into your project; read the topic for the explanation |
+| [`quickstarts/`](quickstarts) | 27 minimal samples, one feature each, shared by one .NET 10 console project per platform | `dotnet run --project Quickstarts_<Platform>.csproj -- <SampleName>`: the fastest way to see a feature work |
+| [`docs-samples/`](docs-samples) | The 569 code samples of 112 documentation topics, verbatim, each file in its own language (C#, shell, Dockerfile, HTML, XML, YAML, JSON) and linked to its topic | Copy into your project; read the topic for the explanation |
 | [`demo/`](demo) | The demo applications from the official download package: the ASP.NET Core demo that runs at [evopdf.com](https://www.evopdf.com/evopdf-next-aspnet-demo/) with the source of every demo page, plus the console demo; one source tree each, a project per platform | open the platform solution and run |
+| [`classic-demo/`](classic-demo) | The Classic demo application on the Next engine: the ASP.NET Core demo of EvoPdf Classic (`EvoPdf` namespace) on the `EvoPdf.HtmlToPdf.<Platform>` packages, the Classic API rendered by the Chromium engine of EvoPdf Next; a project per platform | open the platform solution and run; see [`classic-demo/README.md`](classic-demo/README.md) |
 
-All samples use the current API (`EvoPdf.Next` namespace, version 14.86) and read the license key from the `EVOPDF_LICENSE_KEY` environment variable; without it they run in demo mode (watermarked output).
+All samples use the current API (`EvoPdf.Next` namespace, version 15.0) and read the license key from the `EVOPDF_LICENSE_KEY` environment variable; without it they run in demo mode (watermarked output).
 
 ## Quickstarts
 
@@ -60,6 +62,12 @@ Every sample runs without arguments: the input documents (`Files/`: the Word, Ex
 | [`PdfProcessor.ExtractImages`](quickstarts/Samples/PdfProcessor.ExtractImages.cs) | Extract the images embedded in a PDF |
 | [`PdfEditor.Stamp`](quickstarts/Samples/PdfEditor.Stamp.cs) | Stamp an existing PDF with an HTML template |
 | [`PdfEditor.SignatureFields`](quickstarts/Samples/PdfEditor.SignatureFields.cs) | Signature fields where the HTML page marks each signer, then the first field signed |
+| [`PdfDocument.MultipleHtml`](quickstarts/Samples/PdfDocument.MultipleHtml.cs) | Several HTML documents rendered one after the other in one PDF with `PdfDocument.AddHtml` |
+| [`PdfEditor.EditPages`](quickstarts/Samples/PdfEditor.EditPages.cs) | Insert a cover page with HTML content, rotate a page and add a bookmark in an existing PDF |
+| [`PdfEditor.FillForm`](quickstarts/Samples/PdfEditor.FillForm.cs) | Create a PDF form from code, then fill it in an existing document; `flatten` as argument makes the fields static |
+| [`PdfMerge.PageRanges`](quickstarts/Samples/PdfMerge.PageRanges.cs) | Merge documents, a blank page and selected pages, with bookmarks for the parts |
+| [`PdfSplit`](quickstarts/Samples/PdfSplit.cs) | Extract pages by page ranges and split a PDF into single page documents |
+| [`PdfRedactor.Redact`](quickstarts/Samples/PdfRedactor.Redact.cs) | Permanently remove a name, email addresses, phone numbers and IBANs from a PDF |
 
 ## Running the demo applications
 
@@ -79,90 +87,130 @@ Every sample runs without arguments: the input documents (`Files/`: the Word, Ex
 | `EvoPdf.Next.Samples.MultiPlatform.sln` | `EvoPdf.Next` | Windows x64 + Linux x64 |
 | `EvoPdf.Next.Samples.MultiPlatform.Arm64.sln` | `EvoPdf.Next.Windows.Arm64` + `EvoPdf.Next.Linux.Arm64` | Windows ARM64 + Linux ARM64 |
 
-Each solution holds the quickstarts, the ASP.NET Core demo and the console demo of its platform. The CI builds all seven on Windows, Linux and macOS runners. On Linux install the [system packages](https://www.evopdf.com/help/evopdf-next-dotnet/html/getting-started-on-linux.htm) first.
+Each solution holds the quickstarts, the ASP.NET Core demo, the console demo and the Classic demo on the Next engine of its platform; the Classic demo references the `EvoPdf.HtmlToPdf.<Platform>` packages of the same platform. The CI builds all seven on Windows, Linux and macOS runners. On Linux install the [system packages](https://www.evopdf.com/help/evopdf-next-dotnet/html/getting-started-on-linux.htm) first.
 
 ## Documentation samples
 
 | Documentation topic | Samples |
 |---|---|
 | [Access a HTML Page Using GET and POST HTTP Methods](docs-samples/access-html-pages-with-get-and-post) | 1 |
-| [Add a Digital Signature to Generated PDF Document](docs-samples/digitally-sign-the-generated-pdf) | 1 |
+| [Add a Digital Signature to Generated PDF Document](docs-samples/digitally-sign-the-generated-pdf) | 2 |
 | [Add Attachments to Generated PDF](docs-samples/add-attachments-to-generated-pdf) | 3 |
+| [Add Bookmarks and Open Action to Generated PDF](docs-samples/add-bookmarks-and-open-action) | 3 |
 | [Add Cookies to HTML Page Request](docs-samples/add-cookies-to-html-page-request) | 1 |
+| [Add Excel Workbooks to PDF Documents](docs-samples/add-excel-workbooks-to-pdf-documents) | 2 |
 | [Add File Attachments to Existing PDF](docs-samples/add-file-attachments-to-existing-pdf) | 3 |
 | [Add Header and Footer to PDF from Multiple HTML](docs-samples/header-and-footer-on-pdf-from-multiple-html) | 3 |
+| [Add HTML as Image to Existing PDF](docs-samples/add-html-as-image-to-existing-pdf) | 2 |
 | [Add HTML in Header and Footer Using Browser Mode](docs-samples/html-header-and-footer-in-browser-mode) | 3 |
-| [Add HTML in Header and Footer with Page Numbers](docs-samples/html-header-and-footer-with-page-numbers) | 3 |
-| [Add HTML Stamp with Page Numbering to Existing PDF](docs-samples/add-html-stamp-to-existing-pdf) | 5 |
-| [Add HTML Stamp with Page Numbering to Generated PDF](docs-samples/add-html-stamp-to-generated-pdf) | 3 |
+| [Add HTML in Header and Footer with Page Numbers](docs-samples/html-header-and-footer-with-page-numbers) | 5 |
+| [Add HTML Stamp with Page Numbering to Existing PDF](docs-samples/add-html-stamp-to-existing-pdf) | 8 |
+| [Add HTML Stamp with Page Numbering to Generated PDF](docs-samples/add-html-stamp-to-generated-pdf) | 4 |
+| [Add HTML to Existing PDF](docs-samples/add-html-to-existing-pdf) | 3 |
 | [Add HTTP Headers to HTML Page Request](docs-samples/add-http-headers-to-html-page-request) | 1 |
 | [Add Images to Existing PDF](docs-samples/add-images-to-existing-pdf) | 1 |
 | [Add Link Annotations to Existing PDF](docs-samples/add-link-annotations-to-existing-pdf) | 2 |
+| [Add Markdown Content to PDF Documents](docs-samples/add-markdown-content-to-pdf-documents) | 3 |
+| [Add Pages of Other PDF Documents to Existing PDF](docs-samples/add-pdf-pages-to-existing-pdf) | 2 |
 | [Add Polylines, Polygons and Paths to Existing PDF](docs-samples/add-paths-and-polygons-to-existing-pdf) | 1 |
+| [Add RTF Documents to PDF Documents](docs-samples/add-rtf-documents-to-pdf-documents) | 3 |
 | [Add Shapes to Existing PDF](docs-samples/add-shapes-to-existing-pdf) | 1 |
+| [Add Signature Fields from HTML Elements](docs-samples/add-signature-fields-from-html-elements) | 1 |
 | [Add Text Annotations to Existing PDF](docs-samples/add-text-annotations-to-existing-pdf) | 2 |
-| [Add Text to Existing PDF](docs-samples/add-text-to-existing-pdf) | 3 |
-| [Auto Create Hierarchical Bookmarks](docs-samples/auto-create-hierarchical-bookmarks) | 2 |
-| [Auto Create Table of Contents](docs-samples/auto-create-table-of-contents) | 6 |
+| [Add Text to Existing PDF](docs-samples/add-text-to-existing-pdf) | 4 |
+| [Add Word Documents to PDF Documents](docs-samples/add-word-documents-to-pdf-documents) | 3 |
+| [Add, Insert, Move, Rotate and Remove PDF Pages](docs-samples/add-insert-move-rotate-and-remove-pdf-pages) | 5 |
+| [Apply Redaction Annotations in PDF](docs-samples/apply-redaction-annotations-in-pdf) | 3 |
+| [Auto Create Hierarchical Bookmarks](docs-samples/auto-create-hierarchical-bookmarks) | 3 |
+| [Auto Create Table of Contents](docs-samples/auto-create-table-of-contents) | 10 |
 | [Avoid Page Breaks Inside HTML Elements Using CSS](docs-samples/avoid-page-break-inside-elements-uising-css) | 2 |
-| [Build and Publish Demo Applications](docs-samples/build-and-publish-demo-applications) | 16 |
+| [Build and Publish Demo Applications](docs-samples/build-and-publish-demo-applications) | 33 |
 | [Convert a HTML Page to PDF in Same Session](docs-samples/convert-html-page-to-pdf-in-same-session) | 2 |
-| [Convert Excel XLSX to PDF](docs-samples/convert-excel-xlsx-to-pdf) | 5 |
+| [Convert Excel XLSX to PDF](docs-samples/convert-excel-xlsx-to-pdf) | 19 |
 | [Convert HTML Pages with Authentication](docs-samples/convert-html-pages-with-authentication) | 2 |
+| [Convert HTML through a Proxy Server](docs-samples/convert-html-through-proxy-server) | 1 |
 | [Convert HTML with SVG to PDF](docs-samples/convert-html-with-svg-to-pdf) | 1 |
 | [Convert HTML with Web Fonts to PDF](docs-samples/convert-html-with-web-fonts-to-pdf) | 1 |
 | [Convert Internal Links from HTML to PDF](docs-samples/convert-internal-links-from-html-to-pdf) | 1 |
-| [Convert Markdown to PDF](docs-samples/convert-markdown-to-pdf) | 6 |
+| [Convert Markdown to PDF](docs-samples/convert-markdown-to-pdf) | 14 |
 | [Convert Multiple HTML Pages to PDF in Parallel](docs-samples/convert-multiple-html-to-pdf-in-parallel) | 1 |
-| [Convert PDF Pages to Images](docs-samples/convert-pdf-pages-to-images) | 15 |
-| [Convert PDF to Text](docs-samples/convert-pdf-to-text) | 9 |
-| [Convert RTF to PDF](docs-samples/convert-rtf-to-pdf) | 3 |
+| [Convert Multiple HTML to a Single PDF](docs-samples/merge-multiple-html-to-pdf) | 1 |
+| [Convert PDF Pages to Images](docs-samples/convert-pdf-pages-to-images) | 27 |
+| [Convert PDF to Text](docs-samples/convert-pdf-to-text) | 20 |
+| [Convert RTF to PDF](docs-samples/convert-rtf-to-pdf) | 24 |
+| [Convert RTF to PDF with Document Headers and Footers](docs-samples/convert-rtf-to-pdf-with-document-headers-and-footers) | 3 |
 | [Convert the Current HTML Page to PDF](docs-samples/convert-current-html-page-to-pdf) | 1 |
-| [Convert Word DOCX to PDF](docs-samples/convert-word-docx-to-pdf) | 3 |
-| [Create PDF Documents](docs-samples/create-pdf-documents) | 9 |
-| [Create PDF Documents with File Attachments](docs-samples/create-pdf-documents-with-file-attachments) | 3 |
-| [Create PDF Documents with Images](docs-samples/create-pdf-documents-with-images) | 4 |
-| [Create PDF Documents with Link Annotations](docs-samples/create-pdf-documents-with-link-annotations) | 2 |
+| [Convert Word DOCX to PDF](docs-samples/convert-word-docx-to-pdf) | 17 |
+| [Convert Word to PDF with Document Fonts](docs-samples/convert-word-to-pdf-with-document-fonts) | 4 |
+| [Convert Word to PDF with Document Headers and Footers](docs-samples/convert-word-to-pdf-with-document-headers-and-footers) | 3 |
+| [Convert Word to PDF with Outline, Open Action and Attachments](docs-samples/convert-word-to-pdf-with-outline-open-action-and-attachments) | 5 |
+| [Create Electronic Invoices from Word](docs-samples/create-electronic-invoices-from-word) | 1 |
+| [Create Factur-X, ZUGFeRD and XRechnung Electronic Invoices](docs-samples/create-electronic-invoice-pdf) | 1 |
+| [Create PDF Documents](docs-samples/create-pdf-documents) | 11 |
+| [Create PDF Documents with File Attachments](docs-samples/create-pdf-documents-with-file-attachments) | 4 |
+| [Create PDF Documents with Gradient Fills](docs-samples/create-pdf-documents-with-gradient-fills) | 3 |
+| [Create PDF Documents with HTML as Image](docs-samples/create-pdf-documents-with-html-as-image) | 4 |
+| [Create PDF Documents with HTML Content](docs-samples/create-pdf-documents-with-html-content) | 5 |
+| [Create PDF Documents with Images](docs-samples/create-pdf-documents-with-images) | 5 |
+| [Create PDF Documents with Link Annotations](docs-samples/create-pdf-documents-with-link-annotations) | 3 |
+| [Create PDF Documents with Pages of Other PDF Documents](docs-samples/create-pdf-documents-with-pdf-pages) | 2 |
 | [Create PDF Documents with Polylines, Polygons and Paths](docs-samples/create-pdf-documents-with-paths-and-polygons) | 2 |
-| [Create PDF Documents with Shapes](docs-samples/create-pdf-documents-with-shapes) | 1 |
-| [Create PDF Documents with Text](docs-samples/create-pdf-documents-with-text) | 8 |
-| [Create PDF Documents with Text Annotations](docs-samples/create-pdf-documents-with-text-annotations) | 2 |
-| [Create PDF Forms from HTML Forms](docs-samples/create-pdf-forms-from-html-forms) | 1 |
+| [Create PDF Documents with Shapes](docs-samples/create-pdf-documents-with-shapes) | 2 |
+| [Create PDF Documents with Text](docs-samples/create-pdf-documents-with-text) | 10 |
+| [Create PDF Documents with Text Annotations](docs-samples/create-pdf-documents-with-text-annotations) | 3 |
+| [Create PDF Forms from Code](docs-samples/create-pdf-forms-from-code) | 3 |
+| [Create PDF Forms from HTML Forms](docs-samples/create-pdf-forms-from-html-forms) | 2 |
 | [Create PDF/UA and PDF/A Compliant Documents](docs-samples/create-pdfua-and-pdfa-documents) | 1 |
 | [Create PDF/UA and PDF/A Documents](docs-samples/create-pdf-documents-with-standards) | 2 |
+| [Digitally Sign Existing PDF](docs-samples/digitally-sign-existing-pdf) | 3 |
 | [EvoPdf Next for .NET Overview](docs-samples/evopdf-next-overview) | 3 |
 | [EvoPdf Next for .NET Overview](docs-samples/evopdf-next-user-guide) | 3 |
-| [Extract Images from PDF](docs-samples/extract-images-from-pdf) | 15 |
-| [Getting Started with EvoPdf Next for .NET on Linux](docs-samples/getting-started-on-linux) | 5 |
+| [Extract Images from PDF](docs-samples/extract-images-from-pdf) | 24 |
+| [Fill, Flatten and Edit PDF Forms](docs-samples/fill-flatten-and-edit-pdf-forms) | 4 |
+| [Getting Started with EvoPdf Next for .NET on Linux](docs-samples/getting-started-on-linux) | 9 |
 | [Getting Started with EvoPdf Next for .NET on macOS](docs-samples/getting-started-on-macos) | 5 |
 | [Getting Started with EvoPdf Next for .NET on Windows](docs-samples/getting-started-on-windows) | 5 |
 | [HTML to Image Converter Overview](docs-samples/html-to-image-converter-overview) | 1 |
-| [HTML To PDF Converter Options](docs-samples/html-to-pdf-converter-options) | 1 |
+| [HTML To PDF Converter Options](docs-samples/html-to-pdf-converter-options) | 2 |
 | [HTML to PDF Converter Overview](docs-samples/html-to-pdf-converter-overview) | 1 |
-| [HTML to PDF Page Setup and Scaling](docs-samples/html-to-pdf-page-setup-and-scaling) | 14 |
+| [HTML to PDF Page Setup and Scaling](docs-samples/html-to-pdf-page-setup-and-scaling) | 15 |
 | [HTML to PDF Rendering Modes and the Persistent Rendering Engine](docs-samples/html-to-pdf-rendering-modes) | 3 |
 | [Insert Page Breaks in PDF Using CSS in HTML](docs-samples/insert-page-breaks-in-pdf-using-css) | 2 |
 | [Licensing for EvoPdf Next](docs-samples/licensing-for-evopdf-next) | 1 |
-| [Merge Multiple HTML to PDF](docs-samples/merge-multiple-html-to-pdf) | 1 |
-| [Migrate HTML to PDF Page Setup and Headers from EvoPdf Classic](docs-samples/migrate-html-to-pdf-from-classic) | 13 |
-| [Publish EvoPdf Next ASP.NET Demo to Docker on Linux](docs-samples/publish-to-docker-on-linux) | 8 |
-| [Publish EvoPdf Next ASP.NET Demo to Docker on Windows](docs-samples/publish-to-docker-on-windows) | 6 |
+| [Merge PDF Documents](docs-samples/merge-pdf-documents) | 4 |
+| [Migrate HTML to PDF Page Setup and Headers from EvoPdf Classic](docs-samples/migrate-html-to-pdf-from-classic) | 15 |
+| [Publish EvoPdf Next ASP.NET Demo to Docker on Linux](docs-samples/publish-to-docker-on-linux) | 14 |
+| [Publish EvoPdf Next ASP.NET Demo to Docker on Windows](docs-samples/publish-to-docker-on-windows) | 9 |
+| [Redact Areas and Pages of PDF](docs-samples/redact-areas-and-pages-in-pdf) | 3 |
+| [Redact Text and Personal Data in PDF](docs-samples/redact-text-and-personal-data-in-pdf) | 4 |
 | [Repeat HTML Table Header and Footer in PDF Pages](docs-samples/repeat-html-table-header-and-footer-in-pdf) | 2 |
-| [Retrieve HTML Element Positions in PDF](docs-samples/retrieve-html-element-positions-in-pdf) | 1 |
-| [Search for Text in PDF](docs-samples/search-for-text-in-pdf) | 9 |
-| [Select Conversion Triggering Mode](docs-samples/select-conversion-triggering-mode) | 5 |
+| [Retrieve HTML Element Positions in PDF](docs-samples/retrieve-html-element-positions-in-pdf) | 2 |
+| [Retrieve HTML to PDF Conversion Information](docs-samples/retrieve-html-to-pdf-conversion-information) | 2 |
+| [Search for Text in PDF](docs-samples/search-for-text-in-pdf) | 18 |
+| [Select Conversion Triggering Mode](docs-samples/select-conversion-triggering-mode) | 6 |
 | [Select HTML Elements to Convert to Image](docs-samples/select-html-elements-to-convert-to-image) | 1 |
 | [Select HTML Elements to Convert to PDF](docs-samples/select-html-elements-to-convert-to-pdf) | 1 |
 | [Select HTML Elements to Exclude from Image](docs-samples/select-html-elements-to-exclude-from-image) | 1 |
 | [Select HTML Elements to Exclude from PDF](docs-samples/select-html-elements-to-exclude-from-pdf) | 1 |
 | [Select Media Type for Screen or Print](docs-samples/select-media-type-for-screen-or-print) | 2 |
-| [Set PDF Viewer Preferences for the Generated PDF Document](docs-samples/set-pdf-viewer-preferences) | 1 |
-| [Set Permissions and Password of the Generated PDF Document](docs-samples/set-pdf-permissions-and-password) | 1 |
+| [Set PDF Viewer Preferences for the Generated PDF Document](docs-samples/set-pdf-viewer-preferences) | 2 |
+| [Set Permissions and Password of the Generated PDF Document](docs-samples/set-pdf-permissions-and-password) | 2 |
+| [Split PDF Documents](docs-samples/split-pdf-documents) | 3 |
+| [Using EvoPdf Next for .NET in Amazon ECS on AWS Fargate](docs-samples/publish-to-amazon-ecs) | 9 |
+| [Using EvoPdf Next for .NET in AWS Elastic Beanstalk on Linux](docs-samples/publish-to-aws-elastic-beanstalk-linux) | 4 |
+| [Using EvoPdf Next for .NET in AWS Elastic Beanstalk on Windows](docs-samples/publish-to-aws-elastic-beanstalk-windows) | 2 |
+| [Using EvoPdf Next for .NET in AWS Lambda](docs-samples/publish-to-aws-lambda) | 7 |
+| [Using EvoPdf Next for .NET in Azure Container Apps](docs-samples/publish-to-azure-container-apps) | 7 |
+| [Using EvoPdf Next for .NET in Azure Functions on Linux](docs-samples/publish-to-azure-function-linux) | 14 |
+| [Using EvoPdf Next for .NET in Google Cloud Run](docs-samples/publish-to-google-cloud-run) | 7 |
+| [Using EvoPdf Next for .NET in Kubernetes](docs-samples/publish-to-kubernetes) | 7 |
+| [Using EvoPdf Next for .NET on  Azure App Service for Linux](docs-samples/publish-to-azure-app-service-linux) | 5 |
 
 ## Related
 - [EvoPdf Next documentation](https://www.evopdf.com/help/evopdf-next-dotnet/), [All components](https://www.evopdf.com/evopdf-next-dotnet), [NuGet packages](https://www.nuget.org/profiles/EvoPdf)
-- [Download the full demo package](https://www.evopdf.com/download) (Windows, Linux and macOS variants, .NET 8 and .NET 10)
+- [Download the full demo package](https://www.evopdf.com/download) (Windows, Linux and macOS variants, .NET 8 and .NET 10), [the Classic demo on the Next engine](https://www.evopdf.com/downloaded?prodCode=evoPdfClassicOnNext)
+- [Classic to Next migration guide](https://www.evopdf.com/evopdf-classic-to-next-migration)
 - [Pricing & licensing](https://www.evopdf.com/buy), [Support](https://www.evopdf.com/support)
 
 ## License
-The samples are MIT licensed. EvoPdf Next is commercial software with a free, time-unlimited evaluation. The demo application contains a public evaluation key intended only to run the demo without watermarks.
+The samples are MIT licensed. EvoPdf Next is commercial software with a free, time-unlimited evaluation. The demo applications contain public evaluation keys intended only to run the demos without watermarks.

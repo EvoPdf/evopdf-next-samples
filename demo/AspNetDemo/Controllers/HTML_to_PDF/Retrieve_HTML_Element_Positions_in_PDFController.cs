@@ -48,6 +48,13 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
                 // The retrieved information will be available in the HtmlElementsInfo object,
                 // which is exposed by htmlToPdfConverter after the conversion
                 htmlToPdfConverter.HtmlElementsInfoSelector = model.RetrieveElementsInfoSelector;
+
+                if (model.HideElements)
+                {
+                    // The collected elements matching this selector are hidden in the generated document; their
+                    // positions are still reported
+                    htmlToPdfConverter.HtmlElementsInfoHiddenElementsSelector = model.HiddenElementsSelector;
+                }
             }
 
             // Optionally generate a table of contents for the PDF document

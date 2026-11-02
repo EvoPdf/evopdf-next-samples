@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using EvoPdf_Next_AspNetDemo.Models;
@@ -47,6 +48,16 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
 
             // Display the document title in viewer title bar
             htmlToPdfConverter.PdfViewerPreferences.DisplayDocTitle = model.DisplayDocTitle;
+
+            // Center the viewer window on the screen and resize it to fit the first page
+            htmlToPdfConverter.PdfViewerPreferences.CenterWindow = model.CenterWindow;
+            htmlToPdfConverter.PdfViewerPreferences.FitWindow = model.FitWindow;
+
+            // The panels displayed when the viewer leaves the full screen mode
+            htmlToPdfConverter.PdfViewerPreferences.NonFullScreenPageMode = (ViewerFullScreenExitMode)Enum.Parse(typeof(ViewerFullScreenExitMode), model.NonFullScreenPageMode);
+
+            // The reading order of the pages, left to right or right to left
+            htmlToPdfConverter.PdfViewerPreferences.Direction = model.Direction == "R2L" ? ViewerTextOrder.R2L : ViewerTextOrder.L2R;
 
             // Convert the HTML page to a PDF document in a memory buffer
             byte[] outPdfBuffer = htmlToPdfConverter.ConvertUrl(model.Url);

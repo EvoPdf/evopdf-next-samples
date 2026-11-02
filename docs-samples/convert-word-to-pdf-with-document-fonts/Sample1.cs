@@ -1,0 +1,1 @@
+wordToPdfConverter.UseEmbeddedFonts = true;

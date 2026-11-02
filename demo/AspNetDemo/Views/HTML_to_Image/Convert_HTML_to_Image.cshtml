@@ -19,18 +19,6 @@
         }
     }
 
-    function togglePngPanel(selectedOption) {
-        var enablePanel = selectedOption == "Png";
-        var pngPanel = document.getElementById("pngPanel");
-
-        if (enablePanel) {
-            pngPanel.style.display = "block";
-        }
-        else {
-            pngPanel.style.display = "none";
-        }
-    }
-
     TreeView_SelectNode("demoTreeView_Convert_HTML_to_Image");
 </script>
 
@@ -245,11 +233,23 @@
                                                                                                 </td>
                                                                                                 <td style="width: 5px"></td>
                                                                                                 <td style="width: 110px">
-                                                                                                    <select asp-for="ImageFormat" onchange="javascript: togglePngPanel(this.value)" id="imageFormatComboBox">
+                                                                                                    <select asp-for="ImageFormat" id="imageFormatComboBox">
                                                                                                         <option selected="selected" value="Png">Png</option>
                                                                                                         <option value="Jpg">Jpg</option>
                                                                                                         <option value="Webp">Webp</option>
                                                                                                     </select>
+                                                                                                </td>
+                                                                                                <td style="width: 50px"></td>
+                                                                                                <td>
+                                                                                                    Resolution:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input asp-for="Resolution" type="text" id="resolutionTextBox" style="width:40px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    dpi
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>

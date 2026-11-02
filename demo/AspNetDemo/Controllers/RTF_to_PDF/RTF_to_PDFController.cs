@@ -47,22 +47,32 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.RTF_to_PDF
             // Set whether a table of contents is automatically generated from headings
             rtfToPdfConverter.PdfDocumentOptions.GenerateTableOfContents = model.GenerateToc;
 
-            // Set PDF page size which can be a predefined size like A4 or a custom size in points 
-            // Leave it not set to have a default A4 PDF page
-            rtfToPdfConverter.PdfDocumentOptions.PdfPageSize = SelectedPdfPageSize(model.PdfPageSize);
+            // Set whether the whole content is scaled down to show entirely an element wider than the page that cannot be
+            // reduced on its own, such as a table whose columns cannot be wrapped; by default the content is not scaled down
+            rtfToPdfConverter.PdfDocumentOptions.FitWideContentToPage = model.FitWideContentToPage;
 
-            // Set PDF page orientation to Portrait or Landscape
-            // Leave it not set to have a default Portrait orientation for PDF page
-            rtfToPdfConverter.PdfDocumentOptions.PdfPageOrientation = SelectedPdfPageOrientation(model.PdfPageOrientation);
+            // Set whether to use the page settings (size, orientation, margins) of the RTF document or the custom settings
+            rtfToPdfConverter.PdfDocumentOptions.UsePageSettingsFromRtf = model.PdfPageSettingsMode == "FromRtfDocument";
 
-            // Set PDF page margins in points or leave them not set to have a PDF page without margins
-            rtfToPdfConverter.PdfDocumentOptions.LeftMargin = model.LeftMargin;
-            rtfToPdfConverter.PdfDocumentOptions.RightMargin = model.RightMargin;
-            rtfToPdfConverter.PdfDocumentOptions.TopMargin = model.TopMargin;
-            rtfToPdfConverter.PdfDocumentOptions.BottomMargin = model.BottomMargin;
+            if (!rtfToPdfConverter.PdfDocumentOptions.UsePageSettingsFromRtf)
+            {
+                // Set PDF page size which can be a predefined size like A4 or a custom size in points 
+                // Leave it not set to have a default A4 PDF page
+                rtfToPdfConverter.PdfDocumentOptions.PdfPageSize = SelectedPdfPageSize(model.PdfPageSize);
 
-            // Set the RTF viewer zoom percentage
-            rtfToPdfConverter.PdfDocumentOptions.Zoom = model.RtfViewerZoom;
+                // Set PDF page orientation to Portrait or Landscape
+                // Leave it not set to have a default Portrait orientation for PDF page
+                rtfToPdfConverter.PdfDocumentOptions.PdfPageOrientation = SelectedPdfPageOrientation(model.PdfPageOrientation);
+
+                // Set PDF page margins in points or leave them not set to have a PDF page without margins
+                rtfToPdfConverter.PdfDocumentOptions.LeftMargin = model.LeftMargin;
+                rtfToPdfConverter.PdfDocumentOptions.RightMargin = model.RightMargin;
+                rtfToPdfConverter.PdfDocumentOptions.TopMargin = model.TopMargin;
+                rtfToPdfConverter.PdfDocumentOptions.BottomMargin = model.BottomMargin;
+
+                // Set the RTF viewer zoom percentage
+                rtfToPdfConverter.PdfDocumentOptions.Zoom = model.RtfViewerZoom;
+            }
 
             // Set PDF header and footer
             SetHeader(rtfToPdfConverter, model);
@@ -112,6 +122,28 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.RTF_to_PDF
 
             // The buffer to receive the generated PDF document
             byte[] outPdfBuffer = rtfToPdfConverter.ConvertToPdf(inputRtfBytes);
+
+            if (model.AddConversionInfoPage)
+            {
+                // The information about the conversion is available after it completes: the pages generated from the
+                // document, the pages of the table of contents and of the external PDF documents inserted before and
+                // after it and the total number of pages. It is written in a page added at the end of the document
+                var conversionInfo = rtfToPdfConverter.ConversionInfo;
+                string infoText = "Pages generated from the RTF document: " + conversionInfo.PagesFromDocument + "\n" +
+                    "Pages of the table of contents inserted before the content: " + conversionInfo.TocPagesInsertedBefore + "\n" +
+                    "Pages of external PDF documents inserted before the content: " + conversionInfo.ExternalPagesInsertedBefore + "\n" +
+                    "Total pages inserted before the content: " + conversionInfo.TotalPagesInsertedBefore + "\n" +
+                    "Pages inserted after the content: " + conversionInfo.ExternalPagesInsertedAfter + "\n" +
+                    "Total pages of the generated document: " + conversionInfo.TotalPages;
+
+                using PdfEditor pdfEditor = new PdfEditor(outPdfBuffer, null);
+                int infoPageNumber = pdfEditor.AddPage(PdfPageSize.A4, PdfPageOrientation.Portrait);
+                string fontFilePath = System.IO.Path.Combine(m_hostingEnvironment.ContentRootPath, "wwwroot", "DemoAppFiles", "Input", "Font_Files", "DejaVuSerif.ttf");
+                PdfFont infoFont = PdfFontManager.CreateFont(fontFilePath, 10f, PdfFontStyle.Normal, PdfColor.Black);
+                pdfEditor.AddText(infoPageNumber, new PdfTextElement("Conversion Information", PdfFontManager.CreateFont(fontFilePath, 14f, PdfFontStyle.Bold, PdfColor.DarkBlue)) { X = 40, Y = 40 });
+                pdfEditor.AddText(infoPageNumber, new PdfTextElement(infoText, infoFont) { X = 40, Y = 70, Width = 515 });
+                outPdfBuffer = pdfEditor.Save();
+            }
 
             // Send the PDF file to browser
             FileResult fileResult = new FileContentResult(outPdfBuffer, "application/pdf");

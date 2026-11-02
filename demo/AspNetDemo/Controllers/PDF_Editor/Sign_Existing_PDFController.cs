@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Hosting;
@@ -98,9 +99,27 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
             // applies to documents that are not signed yet
             digitalSignature.CertificationLevel = model.CertificationLevel;
 
-            // The timestamp server, for example http://timestamp.digicert.com
+            // The digest algorithm of the signature
+            digitalSignature.DigestAlgorithm = model.DigestAlgorithm;
+
+            // The timestamp server, for example http://timestamp.digicert.com, with the credentials of a server
+            // that requires basic authentication
             if (!string.IsNullOrWhiteSpace(model.TimestampServerUrl))
+            {
                 digitalSignature.TimestampServerUrl = model.TimestampServerUrl.Trim();
+                if (!string.IsNullOrEmpty(model.TimestampServerUsername))
+                {
+                    digitalSignature.TimestampServerUsername = model.TimestampServerUsername;
+                    digitalSignature.TimestampServerPassword = model.TimestampServerPassword;
+                }
+            }
+
+            if (model.TrustPfxCertificate)
+            {
+                // Additional trusted certificate authority certificates complete the chains embedded by the long term
+                // profiles. The self-signed sample certificate is given here as its own authority
+                digitalSignature.TrustedCaCertificates = new[] { LoadCertificate(certificateFilePath, "evopdf").RawData };
+            }
 
             // When the document already has an empty signature field with this name, for example a form
             // prepared with a field for each signer, the signature is placed in that field, on its page and
@@ -120,13 +139,20 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
                 if (!string.IsNullOrEmpty(model.SignatureText))
                     digitalSignature.Appearance.Text = model.SignatureText;
 
+                if (model.AddSignatureImage)
+                {
+                    // The image drawn in the appearance, filling its rectangle or keeping its aspect ratio inside it
+                    string imageFilePath = m_hostingEnvironment.ContentRootPath + "/wwwroot" + "/DemoAppFiles/Input/Images/evologo.png";
+                    digitalSignature.Appearance.SetImage(imageFilePath, model.KeepImageAspect);
+                }
+
                 // Position of a new signature field: the bottom of the first page, to the right of the
                 // signatures already there. An existing signature field keeps its own position
                 PdfPageInfo pageInfo = pdfEditor.GetPdfPageInfo(1);
-                int signatureCount = pdfEditor.PdfSignatureInfo.SignatureCount;
+                int signatureCount = pdfEditor.SignatureInfo.SignatureCount;
                 int x = 20 + 210 * (signatureCount % 2);
                 digitalSignature.Appearance.PageNumber = 1;
-                digitalSignature.Appearance.BoundsRectangle = new PdfRectangle(x, (int)pageInfo.MediaBox.Height - 70, 200, 50);
+                digitalSignature.Appearance.BoundsRectangle = new PdfRectangleF(x, pageInfo.MediaBox.Height - 70, 200, 50);
             }
 
             byte[] outPdfBuffer = pdfEditor.Save();
@@ -158,6 +184,20 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.PDF_Editor
             model.PdfFileUrl = rootUrl + "/DemoAppFiles/Input/PDF_Files/Signed_Document.pdf";
 
             return model;
+        }
+
+        // Loads the sample PFX as a certificate object. On Windows the private key goes to the machine key
+        // store, which needs no user profile, so the code runs in IIS application pools and in Azure App Service;
+        // macOS does not support in-memory keys and uses its default key storage
+        private static X509Certificate2 LoadCertificate(string certificateFilePath, string password)
+        {
+            X509KeyStorageFlags keyStorageFlags = OperatingSystem.IsWindows() ? X509KeyStorageFlags.MachineKeySet :
+                OperatingSystem.IsMacOS() ? X509KeyStorageFlags.DefaultKeySet : X509KeyStorageFlags.EphemeralKeySet;
+#if NET9_0_OR_GREATER
+            return X509CertificateLoader.LoadPkcs12FromFile(certificateFilePath, password, keyStorageFlags);
+#else
+            return new X509Certificate2(certificateFilePath, password, keyStorageFlags);
+#endif
         }
     }
 }

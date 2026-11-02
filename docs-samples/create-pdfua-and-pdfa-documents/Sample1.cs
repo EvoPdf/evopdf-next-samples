@@ -45,6 +45,11 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             // Leave as None to generate a plain PDF without an accessibility structure tree or archival metadata
             htmlToPdfConverter.PdfDocumentOptions.PdfStandard = model.PdfStandard;
 
+            // The language of the document, a BCP 47 tag; it replaces the language declared by the HTML page.
+            // Left empty, the language of the HTML page is used
+            if (!string.IsNullOrWhiteSpace(model.DocumentLanguage))
+                htmlToPdfConverter.PdfDocumentInfo.Language = model.DocumentLanguage;
+
             // PDF/A-4f is the PDF/A-4 variant for documents with embedded files and requires at least one
             if (model.PdfStandard == PdfStandard.PdfA4f || model.PdfStandard == PdfStandard.PdfUa2PdfA4f
                 || model.PdfStandard == PdfStandard.Wtpdf1PdfA4f)

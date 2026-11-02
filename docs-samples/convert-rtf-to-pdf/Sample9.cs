@@ -1,1 +1,1 @@
-rtfToPdfConverter.ConvertToPdfFile(rtfBytes, outputPdfFilePath);
+File.WriteAllBytes("output.pdf", outPdfBuffer);

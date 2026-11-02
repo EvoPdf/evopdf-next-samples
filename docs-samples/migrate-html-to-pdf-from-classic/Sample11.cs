@@ -1,4 +1,5 @@
-converter.PdfDocumentOptions.PdfHtmlHeader.OnPageRendering = (placement) =>
+converter.PrepareRenderPdfPageEvent += (eventParams) =>
 {
-    return placement.DocumentPageNumber >= 3 && placement.DocumentPageNumber <= 10;
+    if (eventParams.PageNumber == 1)
+        eventParams.Page.ShowHeader = false;
 };

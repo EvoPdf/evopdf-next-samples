@@ -6,5 +6,6 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-doc
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | Author Identification and Initial Popup State | 7 |
-| `Sample2.cs` | Code Sample - Create PDF Documents with Sticky Note Text Annotations | 268 |
+| `Sample1.cs` | Reviewer comment with open popup | 7 |
+| `Sample2.cs` | Add an Annotation with an Open Popup | 4 |
+| `Sample3.cs` | Code Sample - Create PDF Documents with Sticky Note Text Annotations | 292 |

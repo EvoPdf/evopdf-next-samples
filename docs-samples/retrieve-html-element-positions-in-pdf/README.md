@@ -6,4 +6,5 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/retrieve-html-
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | Code Sample - Retrieve HTML Element Positions in PDF | 169 |
+| `Sample1.cs` | Collect the Elements of IFrames and Hide Elements | 3 |
+| `Sample2.cs` | Code Sample - Retrieve HTML Element Positions in PDF | 176 |

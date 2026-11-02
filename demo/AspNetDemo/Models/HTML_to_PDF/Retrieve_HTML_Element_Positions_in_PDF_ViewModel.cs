@@ -11,5 +11,8 @@ namespace EvoPdf_Next_AspNetDemo.Models.HTML_to_PDF
         public bool EnableElementsInfoSelector { get; set; } = true;
         public bool GenerateToc { get; set; } = false;
         public int? ConversionDelay { get; set; } = 0;
+
+        public bool HideElements { get; set; } = false;
+        public string HiddenElementsSelector { get; set; } = "h4";
     }
 }

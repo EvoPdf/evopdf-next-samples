@@ -1,15 +1,8 @@
-using EvoPdf.Next;
+using EvoPdf;
 
-Licensing.LicenseKey = "...";
 HtmlToPdfConverter converter = new HtmlToPdfConverter();
+converter.LicenseKey = "...";
+converter.NextConverterCreated += next =>
+    next.PdfDocumentOptions.PdfStandard = EvoPdf.Next.PdfStandard.PdfUa1;
 
 byte[] pdf = converter.ConvertUrl(url);
-
-// The same settings made explicitly
-converter.FitBrowserWindowToPage(PdfPageSize.A4);
-
-// The same settings made one by one
-converter.PdfDocumentOptions.AutoResizePdfPageWidth = false;
-converter.PdfDocumentOptions.PdfPageSize = PdfPageSize.A4;
-converter.HtmlViewerZoom = 77.47;
-converter.HtmlViewerWidth = 1024;

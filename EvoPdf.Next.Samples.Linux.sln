@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvoPdf_Next_AspNetDemo_Linu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvoPdf_Next_ConsoleDemo_Linux", "demo\ConsoleDemo\EvoPdf_Next_ConsoleDemo_Linux.csproj", "{B38AE297-72EA-4718-9497-F408407DCB37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvoPdf_Classic_AspNetDemo_Linux", "classic-demo\AspNetDemo\EvoPdf_Classic_AspNetDemo_Linux.csproj", "{E4172822-1D40-5A3C-9461-B4F968A76148}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{B38AE297-72EA-4718-9497-F408407DCB37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B38AE297-72EA-4718-9497-F408407DCB37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B38AE297-72EA-4718-9497-F408407DCB37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4172822-1D40-5A3C-9461-B4F968A76148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4172822-1D40-5A3C-9461-B4F968A76148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4172822-1D40-5A3C-9461-B4F968A76148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4172822-1D40-5A3C-9461-B4F968A76148}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

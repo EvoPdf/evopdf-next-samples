@@ -96,9 +96,9 @@ namespace EvoPdf_Next_AspNetDemo.Controllers.HTML_to_PDF
             string currentPageUrl = uriBuilder.Uri.AbsoluteUri;
             string rootUrl = currentPageUrl.Substring(0, currentPageUrl.Length - "Select_HTML_Elements_to_Convert_to_PDF".Length);
 
-            model.HtmlString = System.IO.File.ReadAllText(Path.Combine(contentRootPath, "DemoAppFiles/Input/HTML_Files/Partially_Converterted.html"));
+            model.HtmlString = System.IO.File.ReadAllText(Path.Combine(contentRootPath, "DemoAppFiles/Input/HTML_Files/Partially_Converted.html"));
             model.BaseUrl = rootUrl + "DemoAppFiles/Input/HTML_Files/";
-            model.Url = rootUrl + "DemoAppFiles/Input/HTML_Files/Partially_Converterted.html";
+            model.Url = rootUrl + "DemoAppFiles/Input/HTML_Files/Partially_Converted.html";
 
             return model;
         }

@@ -6,4 +6,4 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/select-html-el
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | Code Sample - Select HTML Elements to Convert to PDF | 105 |
+| `Sample1.cs` | Code Sample - Select HTML Elements to Exclude from PDF | 105 |

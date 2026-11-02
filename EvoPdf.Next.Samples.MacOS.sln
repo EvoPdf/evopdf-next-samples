@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvoPdf_Next_AspNetDemo_MacO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvoPdf_Next_ConsoleDemo_MacOS", "demo\ConsoleDemo\EvoPdf_Next_ConsoleDemo_MacOS.csproj", "{FDC6FC42-4463-4E88-964B-604BD4970405}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvoPdf_Classic_AspNetDemo_MacOS", "classic-demo\AspNetDemo\EvoPdf_Classic_AspNetDemo_MacOS.csproj", "{A38DBD13-197E-53D9-B2D3-D52F581B52D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{FDC6FC42-4463-4E88-964B-604BD4970405}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDC6FC42-4463-4E88-964B-604BD4970405}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDC6FC42-4463-4E88-964B-604BD4970405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A38DBD13-197E-53D9-B2D3-D52F581B52D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A38DBD13-197E-53D9-B2D3-D52F581B52D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A38DBD13-197E-53D9-B2D3-D52F581B52D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A38DBD13-197E-53D9-B2D3-D52F581B52D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

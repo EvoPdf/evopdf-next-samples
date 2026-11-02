@@ -6,14 +6,14 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/create-pdf-doc
 
 | File | Section | Lines |
 | --- | --- | --- |
-| `Sample1.cs` | Create, Render Elements and Save PDF Documents | 2 |
-| `Sample2.cs` | Create, Render Elements and Save PDF Documents | 9 |
-| `Sample3.cs` | Add New PDF Pages | 2 |
-| `Sample4.cs` | Add New PDF Pages | 8 |
-| `Sample5.cs` | Save the PDF Document | 4 |
-| `Sample6.cs` | Save the PDF Document | 2 |
-| `Sample7.cs` | Save the PDF Document | 1 |
-| `Sample8.cs` | Save the PDF Document | 1 |
-| `Sample9.cs` | Dispose the PdfDocument | 2 |
-| `Sample10.cs` | Dispose the PdfDocument | 3 |
-| `Sample11.cs` | Code Sample - Create PDF Documents with Text and Images | 243 |
+| `Sample1.cs` | Create a PDF Document with Default Settings | 2 |
+| `Sample2.cs` | Create a PDF Document with Custom Settings | 9 |
+| `Sample3.cs` | Add a New PDF Page | 2 |
+| `Sample4.cs` | Add a New PDF Page with Updated Settings | 5 |
+| `Sample5.cs` | Save the PDF Document to a File | 4 |
+| `Sample6.cs` | Save the PDF Document to Memory | 2 |
+| `Sample7.cs` | Asynchronously Save the PDF Document to a File | 1 |
+| `Sample8.cs` | Asynchronously Save the PDF Document to Memory | 1 |
+| `Sample9.cs` | Save and Dispose Automatically | 2 |
+| `Sample10.cs` | Manual Dispose | 3 |
+| `Sample11.cs` | Code Sample - Create PDF Documents with Text and Images | 241 |

@@ -9,12 +9,12 @@ Source topic: https://www.evopdf.com/help/evopdf-next-dotnet/html/publish-to-doc
 | `Sample1.sh` | Publish the Demo Application to a Folder | 5 |
 | `Sample2.Dockerfile` | Dockerfile for Linux Ubuntu 24.04 with Preinstalled ASP.NET Core Runtime 10.0 | 31 |
 | `Sample3.Dockerfile` | Dockerfile for Linux Debian 12 with Preinstalled ASP.NET Core Runtime 8.0 | 31 |
-| `Sample4.Dockerfile` | Dockerfile for Linux Ubuntu 24.04 with Preinstalled ASP.NET Core Runtime 10.0 | 31 |
-| `Sample5.Dockerfile` | Dockerfile for Linux Ubuntu 22.04 with Preinstalled ASP.NET Core Runtime 8.0 | 31 |
+| `Sample4.Dockerfile` | Dockerfile for Linux Ubuntu 22.04 with Preinstalled ASP.NET Core Runtime 8.0 | 31 |
+| `Sample5.sh` | Build and Run the Container | 1 |
 | `Sample6.sh` | Build and Run the Container | 1 |
-| `Sample7.sh` | Build and Run the Container | 1 |
-| `Sample8.txt` | Build and Run the Container | 1 |
-| `Sample9.sh` | Building for Linux ARM64 | 5 |
+| `Sample7.txt` | Build and Run the Container | 1 |
+| `Sample8.sh` | Building for Linux ARM64 | 5 |
+| `Sample9.Dockerfile` | Dockerfile for Linux Ubuntu 24.04 with Preinstalled ASP.NET Core Runtime 10.0 | 31 |
 | `Sample10.Dockerfile` | Dockerfile for Linux Debian 12 with Preinstalled ASP.NET Core Runtime 8.0 | 31 |
 | `Sample11.Dockerfile` | Dockerfile for Linux Ubuntu 22.04 with Preinstalled ASP.NET Core Runtime 8.0 | 31 |
 | `Sample12.sh` | Build and Run the ARM64 Container | 1 |
