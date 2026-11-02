@@ -1,0 +1,327 @@
+﻿
+@{
+    ViewBag.Title = "Merge Multiple HTML Pages into a Single PDF";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_ToggleNode("demoTreeView_Headers_and_Footers");
+    TreeView_SelectNode("demoTreeView_Header_Footer_on_Merged_HTML");
+</script>
+
+@using (Html.BeginForm("ConvertHtmlToPdf", "Header_Footer_on_Merged_HTML", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; height: 776px; padding-top: 10px; padding-left: 10px;
+                padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Merge Multiple HTML Pages into a Single PDF
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you to merge multiple HTML document into a single
+                                                                    PDF document. The Full Description and a Code Sample can be accessed from the top
+                                                                    tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    First HTML Page URL
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="firstUrlTextBox" type="text" value="http://www.evopdf.com" id="firstUrlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    Second HTML Page URL
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="secondUrlTextBox" type="text" value="http://www.evopdf.com/html-to-pdf-converter.aspx" id="secondUrlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    HTML Merge Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <input id="startNewPageCheckBox" type="checkbox" name="startNewPageCheckBox"><label for="startNewPageCheckBox">Start the Second HTML on a New PDF Page</label>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Enable Header and Footer
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input id="addHeaderCheckBox" type="checkbox" name="addHeaderCheckBox" checked="checked"><label for="addHeaderCheckBox">Add Header</label>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <input id="addFooterCheckBox" type="checkbox" name="addFooterCheckBox" checked="checked"><label for="addFooterCheckBox">Add Footer</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Header Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input id="showHeaderInFirstPageCheckBox" type="checkbox" name="showHeaderInFirstPageCheckBox" checked="checked"><label for="showHeaderInFirstPageCheckBox">Show in First Page</label>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <input id="showHeaderInOddPagesCheckBox" type="checkbox" name="showHeaderInOddPagesCheckBox" checked="checked"><label for="showHeaderInOddPagesCheckBox">Show in Odd Pages</label>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <input id="showHeaderInEvenPagesCheckBox" type="checkbox" name="showHeaderInEvenPagesCheckBox" checked="checked"><label for="showHeaderInEvenPagesCheckBox">Show in Even Pages</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input id="drawHeaderLineCheckBox" type="checkbox" name="drawHeaderLineCheckBox" checked="checked"><label for="drawHeaderLineCheckBox">Draw Header Line</label>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    Spacing:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="headerSpacingTextBox" type="text" value="0" id="headerSpacingTextBox" style="width:35px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    First Page Spacing:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="firstPageSpacingTextBox" type="text" value="0" id="firstPageSpacingTextBox" style="width:35px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Footer Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input id="showFooterInFirstPageCheckBox" type="checkbox" name="showFooterInFirstPageCheckBox" checked="checked"><label for="showFooterInFirstPageCheckBox">Show in First Page</label>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <input id="showFooterInOddPagesCheckBox" type="checkbox" name="showFooterInOddPagesCheckBox" checked="checked"><label for="showFooterInOddPagesCheckBox">Show in Odd Pages</label>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <input id="showFooterInEvenPagesCheckBox" type="checkbox" name="showFooterInEvenPagesCheckBox" checked="checked"><label for="showFooterInEvenPagesCheckBox">Show in Even Pages</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input id="addPageNumbersInFooterCheckBox" type="checkbox" name="addPageNumbersInFooterCheckBox" checked="checked"><label for="addPageNumbersInFooterCheckBox">Add Page Numbers</label>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <input id="drawFooterLineCheckBox" type="checkbox" name="drawFooterLineCheckBox" checked="checked"><label for="drawFooterLineCheckBox">Draw Footer Line</label>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    Spacing:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="footerSpacingTextBox" type="text" value="0" id="footerSpacingTextBox" style="width:35px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="convertToPdfButton" value="Convert HTML to PDF" id="convertToPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

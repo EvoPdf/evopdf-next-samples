@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Split PDF Documents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    String currentPageUrl = ViewData["CurrentPageUrl"].ToString();
+    String rootUrl = currentPageUrl.Substring(0, currentPageUrl.Length - "PDF_Editor_Split_PDF".Length);
+    ViewData["BaseUrl"] = rootUrl + "DemoAppFiles/Input/HTML_Files/";
+    ViewData["PdfFileToSplitHyperLink"] = rootUrl + "DemoAppFiles/Input/PDF_Files/PDF_Document.pdf";
+}
+
+<script>
+    TreeView_ToggleNode("demoTreeView_HTML_To_PDF_Converter");
+    TreeView_ToggleNode("demoTreeView_PDF_Editor");
+    TreeView_SelectNode("demoTreeView_PDF_Editor_Split_PDF");
+</script>
+
+@using (Html.BeginForm("SplitPdf", "PDF_Editor_Split_PDF", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px;
+                padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Split PDF Documents
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you to split a PDF document into a set of smaller
+                                                                    PDF documents. The resulted PDF documents can be saved to files, streams or memory
+                                                                    buffers. In this demo the first PDF document resulted after split is sent to browser.
+                                                                    The Full Description and a Code Sample can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    The PDF Document to Split
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <a id="pdfFileToSplitHyperLink" href="@(ViewData["PdfFileToSplitHyperLink"].ToString())" target="_blank">View the PDF Document to Split</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="splitPdfButton" value="Split PDF" id="splitPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

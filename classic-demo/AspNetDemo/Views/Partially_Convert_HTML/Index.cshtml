@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Partially Convert a HTML Page to PDF";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_SelectNode("demoTreeView_Partially_Convert_HTML");
+</script>
+
+@using (Html.BeginForm("ConvertHtmlToPdf", "Partially_Convert_HTML", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px;
+                padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Partially Convert a HTML Page to PDF
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    Sometimes you might need to convert just a part of the HTML page containing a table
+                                                                    or a chart. EVO HTML to PDF Converter allows you to select the HTML element from
+                                                                    page to be converted to PDF. In the example below only the HTML element with 'banner-panel-container'
+                                                                    ID s converted to PDF. The Full Description and a Code Sample can be accessed from
+                                                                    the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <span style="font-weight:normal;"><input id="convertElementRadioButton" type="radio" name="ConvertElement" value="convertElementRadioButton" checked="checked"><label for="convertElementRadioButton">Convert Only the HTML Element</label></span>
+                                                                                </td>
+                                                                                <td style="width: 50px"></td>
+                                                                                <td>
+                                                                                    <span style="font-weight:normal;"><input id="convertEntirePageRadioButton" type="radio" name="ConvertElement" value="convertEntirePageRadioButton"><label for="convertEntirePageRadioButton">Convert the Entire HTML Page</label></span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Page URL or Local File to Convert
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="urlTextBox" type="text" value="http://www.evopdf.com" id="urlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Element to Convert CSS Selector
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="htmlElementSelectorTextBox" type="text" value="#banner-panel-container" id="htmlElementSelectorTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="convertToPdfButton" value="Convert HTML to PDF" id="convertToPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

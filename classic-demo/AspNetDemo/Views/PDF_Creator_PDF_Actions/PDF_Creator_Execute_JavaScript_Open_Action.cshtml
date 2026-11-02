@@ -1,0 +1,211 @@
+﻿
+@{
+    ViewBag.Title = "PDF_Creator_Execute_JavaScript_Open_Action";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function togglePanels(enableZoomPanel, enableAlertPanel) {
+        var zoomPanel = document.getElementById("zoomLevelPanel");
+        var alertPanel = document.getElementById("alertMessagePanel");
+
+        if (enableZoomPanel) {
+            zoomPanel.style.display = "block";
+        }
+        else {
+            zoomPanel.style.display = "none";
+        }
+
+        if (enableAlertPanel) {
+            alertPanel.style.display = "block";
+        }
+        else {
+            alertPanel.style.display = "none";
+        }
+    }
+
+    TreeView_ToggleNode("demoTreeView_HTML_To_PDF_Converter");
+    TreeView_ToggleNode("demoTreeView_PDF_Creator");
+    TreeView_ToggleNode("demoTreeView_PDF_Creator_PDF_Actions");
+    TreeView_SelectNode("demoTreeView_PDF_Creator_Execute_JavaScript_Open_Action");
+</script>
+
+@using (Html.BeginForm("CreatePdf", "PDF_Creator_Execute_JavaScript_Open_Action", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px;
+                padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Execute JavaScript Code when Document is Opened
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you to add an Acrobat JavaScript code in generated
+                                                                    PDF to be executed when the PDF document is opened in a PDF viewer. The Full Description
+                                                                    and a Code Sample can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Page URL or Local File to Convert
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="urlTextBox" type="text" value="http://www.evopdf.com" id="urlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Acrobat JavaScript Actions
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr style="height: 30px">
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <span style="font-weight:normal;"><input id="alertMessageRadioButton" type="radio" name="JavaScriptAction" value="alertMessageRadioButton" checked="checked" onclick="javascript: togglePanels(false, true)"><label for="alertMessageRadioButton">Display an Alert Message</label></span>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <div id="alertMessagePanel">
+
+                                                                                                        <table>
+                                                                                                            <tbody>
+                                                                                                                <tr>
+                                                                                                                    <td>
+                                                                                                                        <input name="alertMessageTextBox" type="text" value="PDF Action: Alert message from JavaScript !" id="alertMessageTextBox" style="width:290px;">
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            </tbody>
+                                                                                                        </table>
+
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <span style="font-weight:normal;"><input id="printDialogRadioButton" type="radio" name="JavaScriptAction" value="printDialogRadioButton" onclick="javascript: togglePanels(false, false)"><label for="printDialogRadioButton">Open Print Dialog</label></span>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr style="height: 30px">
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <span style="font-weight:normal;"><input id="zoomLevelRadioButton" type="radio" name="JavaScriptAction" value="zoomLevelRadioButton" onclick="javascript: togglePanels(true, false)"><label for="zoomLevelRadioButton">Set Zoom Level</label></span>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <div id="zoomLevelPanel" style="display:none">
+
+                                                                                                        <table>
+                                                                                                            <tbody>
+                                                                                                                <tr>
+                                                                                                                    <td>
+                                                                                                                        <input name="zoomLevelTextBox" type="text" value="150" id="zoomLevelTextBox" style="width:35px;">
+                                                                                                                    </td>
+                                                                                                                    <td style="width: 5px"></td>
+                                                                                                                    <td>
+                                                                                                                        %
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            </tbody>
+                                                                                                        </table>
+
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="convertToPdfButton" value="Convert HTML to PDF" id="convertToPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

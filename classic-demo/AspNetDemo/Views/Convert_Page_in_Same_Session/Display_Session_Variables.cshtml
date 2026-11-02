@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <base href="@Url.Content("~/")" />
+    <link href="img/evo.ico" rel="shortcut icon" />
+    <link href="styles/styles.css" type="text/css" rel="stylesheet">
+    <title>Display Session Variables</title>
+</head>
+<body>
+    <div>
+        <b style="font-size: 16px">The session variables</b><br />
+        <br />
+        <b>First Name:</b>&nbsp;<span id="firstNameLabel">@(ViewData["firstName"] != null ? ViewData["firstName"].ToString() : String.Empty)</span><br />
+        <b>Last Name:</b>&nbsp;<span id="lastNameLabel">@(ViewData["lastName"] != null ? ViewData["lastName"].ToString() : String.Empty)</span><br />
+        <b>Gender:</b>&nbsp;<span id="genderLabel">@(ViewData["gender"] != null && ViewData["gender"].ToString() == "maleRadioButton" ? "Male" : "Female")</span><br />
+        <b>I have a car:</b>&nbsp;<span id="haveCarLabel">@(ViewData["haveCar"] != null && ViewData["haveCar"].ToString() != "false" ? "Yes" : "No")</span><br />
+        <div id="carTypePanel" style="display : @(ViewData["haveCar"] != null && ViewData["haveCar"].ToString() == "false" ? "none" : "inline")">
+            <b>Car Type:</b>&nbsp;<span id="carTypeLabel">@(ViewData["carType"] != null ? ViewData["carType"].ToString() : String.Empty)</span><br />
+        </div>
+        <b>Comments:</b>&nbsp;<span id="commentsLabel">@(ViewData["comments"] != null ? ViewData["comments"].ToString() : String.Empty)</span><br />
+    </div>
+</body>
+</html>

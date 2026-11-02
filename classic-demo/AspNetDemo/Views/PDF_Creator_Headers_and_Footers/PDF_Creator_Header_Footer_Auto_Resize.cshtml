@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "PDF Creator - Automatically Resize the Header and Footer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function toggleHeaderHeightPanel(autoResize) {
+        var headerHeightPanel = document.getElementById("fixedHeightOptionsPanel");
+
+        if (!autoResize && headerHeightPanel.style.display == "none") {
+            headerHeightPanel.style.display = "block";
+        }
+        else if (autoResize) {
+            headerHeightPanel.style.display = "none";
+        }
+    }
+
+    TreeView_ToggleNode("demoTreeView_HTML_To_PDF_Converter");
+    TreeView_ToggleNode("demoTreeView_PDF_Creator");
+    TreeView_ToggleNode("demoTreeView_PDF_Creator_Headers_and_Footers");
+    TreeView_SelectNode("demoTreeView_PDF_Creator_Header_Footer_Auto_Resize");
+</script>
+
+@using (Html.BeginForm("CreatePdf", "PDF_Creator_Header_Footer_Auto_Resize", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px;
+                padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Automatically Resize the Header and Footer
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter offers a great control of headers and footers. This demo
+                                                                    shows how to automatically resize the header to adapt to HTML content being rendered.
+                                                                    The Full Description and a Code Sample can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Page URL or Local File to Convert
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="urlTextBox" type="text" value="http://www.evopdf.com/DemoAppFiles/HTML_Files/Structured_HTML.html" id="urlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr style="height: 30px">
+                                                                                <td>
+                                                                                    <span style="font-weight:normal;"><input id="autoResizeHeaderRadioButton" type="radio" name="AutoResize" value="autoResizeHeaderRadioButton" checked="checked" onclick="javascript:toggleHeaderHeightPanel(true)"><label for="autoResizeHeaderRadioButton">Auto Resize Header</label></span>
+                                                                                </td>
+                                                                                <td style="width: 30px"></td>
+                                                                                <td>
+                                                                                    <span style="font-weight:normal;"><input id="fitHeaderHeightRadioButton" type="radio" name="AutoResize" value="fitHeaderHeightRadioButton" onclick="javascript:toggleHeaderHeightPanel(false)"><label for="fitHeaderHeightRadioButton">Fit a Fixed Header Height</label></span>
+                                                                                </td>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <div id="fixedHeightOptionsPanel" style="display:none">
+                                                                                        <table>
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        Header Height:
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        <input name="headerHeightTextBox" type="text" value="40" id="headerHeightTextBox" style="width:35px;">
+                                                                                                    </td>
+                                                                                                    <td style="width: 5px"></td>
+                                                                                                    <td>
+                                                                                                        pt
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="createPdfButton" value="Create PDF Document" id="createPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

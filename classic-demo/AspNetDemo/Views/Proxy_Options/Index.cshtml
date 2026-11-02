@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "Access a HTML Page Through a Proxy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_ToggleNode("demoTreeView_HTTP_GET_and_POST");
+    TreeView_SelectNode("demoTreeView_Proxy_Options");
+</script>
+
+@using (Html.BeginForm("ConvertHtmlToPdf", "Proxy_Options", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>            
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px; padding-top: 5px">
+                                    Access a HTML Page Through a Proxy
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you set the proxy options like proxy type, address and port, username and password or
+                                                                    a list of hosts to be accessed directly without a proxy. The Full Description and a Code Sample can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Page URL or Local File to Convert
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="urlTextBox" type="text" value="http://www.evopdf.com" id="urlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Proxy Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Type:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <select name="proxyTypeDropDownList" id="proxyTypeDropDownList">
+                                                                                                        <option selected="selected" value="None">None</option>
+                                                                                                        <option value="Http">Http</option>
+                                                                                                        <option value="Socks5">Socks5</option>
+                                                                                                        <option value="HttpCaching">HttpCaching</option>
+
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    Host Name or IP:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="hostNameTextBox" type="text" id="hostNameTextBox" style="width:100px;">
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    Port Number:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="portNumberTextBox" type="text" value="0" id="portNumberTextBox" style="width:50px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Username:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="usernameTextBox" type="text" id="usernameTextBox" style="width:80px;">
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    Password:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="passwordTextBox" type="text" id="passwordTextBox" style="width:80px;">
+                                                                                                </td>
+                                                                                                <td style="width: 15px"></td>
+                                                                                                <td>
+                                                                                                    Bypass Host:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="bypassedHostTextBox" type="text" id="bypassedHostTextBox" style="width:80px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="convertToPdfButton" value="Convert HTML to PDF" id="convertToPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

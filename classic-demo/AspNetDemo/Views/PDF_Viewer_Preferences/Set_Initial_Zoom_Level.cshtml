@@ -1,0 +1,210 @@
+﻿
+@{
+    ViewBag.Title = "Set Initial Zoom Level of the Generated PDF Document";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function toggleZoomPanel(selectedAction) {
+        var enablePanel = selectedAction == "X, Y and Zoom";
+        var delayPanel = document.getElementById("zoomLevelPanel");
+
+        if (enablePanel) {
+            delayPanel.style.display = "block";
+        }
+        else {
+            delayPanel.style.display = "none";
+        }
+    }
+
+    TreeView_ToggleNode("demoTreeView_PDF_Viewer_Preferences");
+    TreeView_SelectNode("demoTreeView_Set_Initial_Zoom_Level");
+</script>
+
+@using (Html.BeginForm("ConvertHtmlToPdf", "Set_Initial_Zoom_Level", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px;
+                padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Set Initial Zoom Level of the Generated PDF Document
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you to set the initial zoom level and the fit mode
+                                                                    in PDF viewer window to be used when the generated PDF document is displayed. The
+                                                                    Full Description and a Code Sample can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Page URL or Local File to Convert
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="urlTextBox" type="text" value="http://www.evopdf.com/DemoAppFiles/HTML_Files/Structured_HTML.html" id="urlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr style="height: 30px">
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Initial Page Number:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="pageNumberTextBox" type="text" value="1" id="pageNumberTextBox" style="width:40px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Initial Location:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    X:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="xLocationTextBox" type="text" value="50" id="xLocationTextBox" style="width:35px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                                <td style="width: 22px"></td>
+                                                                                                <td>
+                                                                                                    Y:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="yLocationTextBox" type="text" value="50" id="yLocationTextBox" style="width:35px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px"></td>
+                                                                            </tr>
+                                                                            <tr style="height: 30px">
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    View Mode:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td style="width: 110px; margin-left: 40px;">
+                                                                                                    <select name="viewModeComboBox" onchange="javascript: toggleZoomPanel(this.value)" id="viewModeComboBox">
+                                                                                                        <option selected="selected" value="X, Y and Zoom">X, Y and Zoom</option>
+                                                                                                        <option value="Fit Window">Fit Window</option>
+                                                                                                        <option value="Fit Horizontally">Fit Horizontally</option>
+                                                                                                        <option value="Fit Vertically">Fit Vertically</option>
+
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <div id="zoomLevelPanel">
+
+                                                                                                        <table>
+                                                                                                            <tbody>
+                                                                                                                <tr>
+                                                                                                                    <td>
+                                                                                                                        <input name="zoomLevelTextBox" type="text" value="150" id="zoomLevelTextBox" style="width:35px;">
+                                                                                                                    </td>
+                                                                                                                    <td style="width: 5px"></td>
+                                                                                                                    <td>
+                                                                                                                        %
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            </tbody>
+                                                                                                        </table>
+
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="convertToPdfButton" value="Convert HTML to PDF" id="convertToPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

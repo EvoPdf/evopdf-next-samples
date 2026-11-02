@@ -1,0 +1,22 @@
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table style="width: 100%; height: 100%">
+    <tbody>
+        <tr>
+            <td style="border: solid 1px Black; padding: 10px">
+                <div style="font-size: 16px; font-weight: bold; padding-bottom: 8px; padding-top: 5px">
+                    The operation could not be completed
+                </div>
+                <div style="padding-bottom: 12px; color: #a00000">
+                    @ViewBag.ErrorMessage
+                </div>
+                <div style="padding-bottom: 10px">
+                    <a href="javascript:history.back()">Back to the demo page</a>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

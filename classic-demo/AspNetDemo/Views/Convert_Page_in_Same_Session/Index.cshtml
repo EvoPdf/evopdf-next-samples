@@ -1,0 +1,214 @@
+﻿@{
+    ViewBag.Title = "Convert a HTML Page to PDF in Same Session";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_SelectNode("demoTreeView_Convert_Page_in_Same_Session");
+</script>
+
+@using (Html.BeginForm("ConvertPageInSameSessionToPdf", "Convert_Page_in_Same_Session", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px;
+                padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Convert a HTML Page to PDF in Same Session
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    In this demo you can convert another HTML page of this application to PDF in same
+                                                                    ASP.NET session. The values you fill in HTML form will be saved in session object
+                                                                    and used in the HTML page converted to PDF. The Full Description and a Code Sample
+                                                                    can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td style="font-weight: bold" colspan="2">
+                                                                                Fill the HTML Form Values to Capture in PDF
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 20px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            First Name:
+                                                                                        </td>
+                                                                                        <td style="width: 5px"></td>
+                                                                                        <td>
+                                                                                            @Html.TextBox("firstNameTextBox", ViewData["firstName"] != null ? ViewData["firstName"].ToString() : String.Empty, new { style = "width: 70px;" })
+                                                                                        </td>
+                                                                                        <td style="width: 50px"></td>
+                                                                                        <td>
+                                                                                            Last Name:
+                                                                                        </td>
+                                                                                        <td style="width: 5px"></td>
+                                                                                        <td>
+                                                                                            @Html.TextBox("lastNameTextBox", ViewData["lastName"] != null ? ViewData["lastName"].ToString() : String.Empty, new { style = "width: 70px;" })
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 10px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            Gender:
+                                                                                        </td>
+                                                                                        <td style="width: 15px"></td>
+                                                                                        <td>
+                                                                                            @Html.RadioButton("gender", "maleRadioButton", ViewData["gender"] != null && ViewData["gender"].ToString() == "maleRadioButton")
+                                                                                            <label for="maleRadioButton">Male</label>
+                                                                                        </td>
+                                                                                        <td style="width: 10px"></td>
+                                                                                        <td>
+                                                                                            @Html.RadioButton("gender", "femaleRadioButton", ViewData["gender"] != null && ViewData["gender"].ToString() == "femaleRadioButton")
+                                                                                            <label for="femaleRadioButton">Female</label>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 10px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr style="height: 30px">
+                                                                                        <td>
+                                                                                            <script type="text/javascript">
+                                                                                                function setCarTypePanelVisible(visible) {
+                                                                                                    document.getElementById("selectCarTypePanel").style.visibility = visible ? "visible" : "hidden";
+                                                                                                }
+                                                                                            </script>
+                                                                                            @Html.CheckBox("haveCarCheckBox", ViewData["haveCar"] != null && ViewData["haveCar"].ToString() != "false", new { onclick = "setCarTypePanelVisible(this.checked);" })
+                                                                                            <label for="haveCarCheckBox">I have a car</label>
+                                                                                        </td>
+                                                                                        <td style="width: 15px"></td>
+                                                                                        <td>
+                                                                                            <div id="selectCarTypePanel" style="visibility : @(ViewData["haveCar"] != null && ViewData["haveCar"].ToString() == "false" ? "hidden" : "visible")">
+                                                                                                <table>
+                                                                                                    <tr>
+                                                                                                        <td>
+                                                                                                            Car Type:
+                                                                                                        </td>
+                                                                                                        <td style="width: 5px">
+                                                                                                            @{
+                                                                                                                List<SelectListItem> listItems = new List<SelectListItem>();
+                                                                                                                listItems.Add(new SelectListItem
+                                                                                                                {
+                                                                                                                    Text = "Volvo",
+                                                                                                                    Value = "Volvo",
+                                                                                                                    Selected = ViewData["carType"] != null && ViewData["carType"].ToString() == "Volvo"
+                                                                                                                });
+                                                                                                                listItems.Add(new SelectListItem
+                                                                                                                {
+                                                                                                                    Text = "Saab",
+                                                                                                                    Value = "Saab",
+                                                                                                                    Selected = ViewData["carType"] != null && ViewData["carType"].ToString() == "Saab"
+                                                                                                                });
+                                                                                                                listItems.Add(new SelectListItem
+                                                                                                                {
+                                                                                                                    Text = "Audi",
+                                                                                                                    Value = "Audi",
+                                                                                                                    Selected = ViewData["carType"] != null && ViewData["carType"].ToString() == "Audi"
+                                                                                                                });
+                                                                                                                listItems.Add(new SelectListItem
+                                                                                                                {
+                                                                                                                    Text = "Opel",
+                                                                                                                    Value = "Opel",
+                                                                                                                    Selected = ViewData["carType"] != null && ViewData["carType"].ToString() == "Opel"
+                                                                                                                });
+                                                                                                            }
+                                                                                                            @Html.DropDownList("carTypeDropDownList", listItems)
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="height: 10px" colspan="2"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 20px"></td>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            Comments:
+                                                                                        </td>
+                                                                                        <td style="width: 15px"></td>
+                                                                                        <td>
+                                                                                            @Html.TextArea("commentsTextBox", ViewData["comments"] != null ? ViewData["comments"].ToString() : String.Empty, new { style = "height: 75px; width: 253px;" })
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="convertToPdfButton" value="Convert a HTML Page to PDF in Same Session" />
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

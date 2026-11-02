@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewBag.Title = "Add Elements Over PDF Page Main Content";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function toggleHtmlSource(convertUrl) {
+        var urlPanel = document.getElementById("urlPanel");
+        var htmlStringPanel = document.getElementById("htmlStringPanel");
+
+        if (convertUrl && urlPanel.style.display == "none") {
+            urlPanel.style.display = "block";
+            htmlStringPanel.style.display = "none";
+        }
+        else if (!convertUrl && htmlStringPanel.style.display == "none") {
+            urlPanel.style.display = "none";
+            htmlStringPanel.style.display = "block";
+        }
+    }
+
+    TreeView_ToggleNode("demoTreeView_PDF_Pages_Background");
+    TreeView_SelectNode("demoTreeView_Add_Elements_Over_Main_Content");
+</script>
+
+@using (Html.BeginForm("ConvertHtmlToPdf", "Add_Elements_Over_Main_Content", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; height: 776px; padding-top: 10px; padding-left: 10px;
+                padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Add Elements Over PDF Page Main Content
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you add elements over the PDF pages main content
+                                                                    in AfterRenderPdfPage event handler. In this demo a stamp is added over each PDF
+                                                                    page. The Full Description and a Code Sample can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <span style="font-weight:normal;"><input id="convertUrlRadioButton" type="radio" name="HtmlPageSource" value="convertUrlRadioButton" checked="checked" onclick="javascript: toggleHtmlSource(true)"><label for="convertUrlRadioButton">Convert URL or Local File</label></span>
+                                                                                </td>
+                                                                                <td style="width: 50px"></td>
+                                                                                <td>
+                                                                                    <span style="font-weight:normal;"><input id="convertHtmlRadioButton" type="radio" name="HtmlPageSource" value="convertHtmlRadioButton" onclick="javascript: toggleHtmlSource(false)"><label for="convertHtmlRadioButton">Convert HTML String</label></span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div id="urlPanel">
+
+                                                                        <table>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                        HTML Page URL or Local File to Convert
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <input name="urlTextBox" type="text" value="http://www.evopdf.com/DemoAppFiles/HTML_Files/Structured_HTML.html" id="urlTextBox" style="width:500px;">
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+
+                                                                    <div id="htmlStringPanel" style="display:none">
+                                                                        <table>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="font-weight: bold">
+                                                                                        HTML String to Convert
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <textarea name="htmlStringTextBox" rows="2" cols="20" id="htmlStringTextBox" style="height:200px;width:500px;">Enter the &lt;b&gt;HTML String to Convert&lt;/b&gt; and optionally set a &lt;b&gt;Base URL&lt;/b&gt; if the HTML string references external resources by relative URLs</textarea>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="height: 10px"></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="font-weight: bold">
+                                                                                        Base URL
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <input name="baseUrlTextBox" type="text" id="baseUrlTextBox" style="width:500px;">
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <span style="font-weight:normal;"><input id="addStampCheckBox" type="checkbox" name="addStampCheckBox" checked="checked"><label for="addStampCheckBox">Add Stamp</label></span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="convertToPdfButton" value="Convert HTML to PDF" id="convertToPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

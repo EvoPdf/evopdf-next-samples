@@ -1,0 +1,226 @@
+﻿
+@{
+    ViewBag.Title = "PDF Creator - Add HTML to PDF Elements to a PDF Document";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_ToggleNode("demoTreeView_HTML_To_PDF_Converter");
+    TreeView_ToggleNode("demoTreeView_PDF_Creator");
+    TreeView_SelectNode("demoTreeView_PDF_Creator_HTML_to_PDF_Elements");
+</script>
+
+@using (Html.BeginForm("CreatePdf", "PDF_Creator_HTML_to_PDF_Elements", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px;
+                padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Add HTML to PDF Elements to a PDF Document
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you to convert a HTML page to PDF by adding a HTML
+                                                                    to PDF Element to that PDF document. The Full Description and a Code Sample can
+                                                                    be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Page URL or Local File to Convert
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="urlTextBox" type="text" value="http://www.evopdf.com" id="urlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    HTML Viewer Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Width:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="htmlViewerWidthTextBox" type="text" value="1024" id="htmlViewerWidthTextBox" style="width:40px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    px
+                                                                                                </td>
+                                                                                                <td style="width: 25px"></td>
+                                                                                                <td>
+                                                                                                    Height:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="htmlViewerHeightTextBox" type="text" id="htmlViewerHeightTextBox" style="width:40px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    px
+                                                                                                </td>
+                                                                                                <td style="width: 25px"></td>
+                                                                                                <td>
+                                                                                                    <input id="clipContentCheckBox" type="checkbox" name="clipContentCheckBox"><label for="clipContentCheckBox">Clip HTML Content Width</label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    HTML Content Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Destination:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    X:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="xLocationTextBox" type="text" value="50" id="xLocationTextBox" style="width:35px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                                <td style="width: 22px"></td>
+                                                                                                <td>
+                                                                                                    Y:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="yLocationTextBox" type="text" value="50" id="yLocationTextBox" style="width:35px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                                <td style="width: 25px"></td>
+                                                                                                <td>
+                                                                                                    Width:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="contentWidthTextBox" type="text" value="500" id="contentWidthTextBox" style="width:35px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                                <td style="width: 15px"></td>
+                                                                                                <td>
+                                                                                                    Height:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="contentHeightTextBox" type="text" id="contentHeightTextBox" style="width:35px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="convertToPdfButton" value="Convert HTML to PDF" id="convertToPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

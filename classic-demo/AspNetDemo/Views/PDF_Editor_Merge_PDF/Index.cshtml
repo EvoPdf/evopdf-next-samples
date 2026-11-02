@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "Merge PDF Documents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    String currentPageUrl = ViewData["CurrentPageUrl"].ToString();
+    String rootUrl = currentPageUrl.Substring(0, currentPageUrl.Length - "PDF_Editor_Merge_PDF".Length);
+    ViewData["BaseUrl"] = rootUrl + "DemoAppFiles/Input/HTML_Files/";
+    ViewData["FirstPdfFileHyperLink"] = rootUrl + "DemoAppFiles/Input/PDF_Files/Merge_Before_Conversion.pdf";
+    ViewData["SecondPdfFileHyperLink"] = rootUrl + "DemoAppFiles/Input/PDF_Files/Merge_After_Conversion.pdf";
+}
+
+<script>
+    TreeView_ToggleNode("demoTreeView_HTML_To_PDF_Converter");
+    TreeView_ToggleNode("demoTreeView_PDF_Editor");
+    TreeView_SelectNode("demoTreeView_PDF_Editor_Merge_PDF");
+</script>
+
+@using (Html.BeginForm("MergePdf", "PDF_Editor_Merge_PDF", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px;
+                padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Merge PDF Documents
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you to merge a set of PDF documents into another
+                                                                    PDF document. The resulted PDF document can be saved to a file, stream or memory
+                                                                    buffer. The Full Description and a Code Sample can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    First PDF Document to Merge
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <a id="firstPdfFileHyperLink" href="@(ViewData["FirstPdfFileHyperLink"].ToString())" target="_blank">View the First PDF Document to Merge</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    Second PDF Document to Merge
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <a id="secondPdfFileHyperLink" href="@(ViewData["SecondPdfFileHyperLink"].ToString())" target="_blank">View the Second PDF Document to Merge</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="mergePdfButton" value="Merge PDF" id="mergePdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

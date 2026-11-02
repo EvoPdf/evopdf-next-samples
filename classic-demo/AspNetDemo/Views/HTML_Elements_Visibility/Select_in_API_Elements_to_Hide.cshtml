@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Select in API the HTML Elements to Hide";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_ToggleNode("demoTreeView_HTML_Elements_Visibility");
+    TreeView_SelectNode("demoTreeView_Select_in_API_Elements_to_Hide");
+</script>
+
+@using (Html.BeginForm("ConvertHtmlToPdf", "Select_in_API_Elements_to_Hide", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>            
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px;
+                padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Select in API the HTML Elements to Hide
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter API allows you select the HTML elements to exclude from
+                                                                    rendering to PDF. The converter does not reflow the HTML content when you exclude
+                                                                    an element from rendering and the place where the element would be normally rendered
+                                                                    remains blank. If you want to reflow the HTML content when the HTML element is hidden,
+                                                                    you have to set 'display:none' style for HTML element, eventually creating two separate
+                                                                    stylesheets for screen and for print. The Full Description and a Code Sample can
+                                                                    be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Page URL or Local File to Convert
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="urlTextBox" type="text" value="http://www.evopdf.com" id="urlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Elements to Hide CSS Selector
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="htmlElementsSelectorTextBox" type="text" value="IMG" id="htmlElementsSelectorTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <span style="font-weight:normal;"><input id="hideSelectedElementsCheckBox" type="checkbox" name="hideSelectedElementsCheckBox" checked="checked"><label for="hideSelectedElementsCheckBox">Hide Selected Elements</label></span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="convertToPdfButton" value="Convert HTML to PDF" id="convertToPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewBag.Title = "Add Page Numbering in HTML";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewData["HtmlWithPageNumbers"] = System.IO.File.ReadAllText(ViewData["ContentRootPath"].ToString() + "/DemoAppFiles/Input/HTML_Files/Page_Numbers_in_HTML.html");
+    String currentPageUrl = ViewData["CurrentPageUrl"].ToString();
+    String rootUrl = currentPageUrl.Substring(0, currentPageUrl.Length - "Headers_and_Footers/Page_Numbers_in_HTML".Length);
+    ViewData["BaseUrl"] = rootUrl + "DemoAppFiles/Input/HTML_Files/";
+}
+
+<script>
+    TreeView_ToggleNode("demoTreeView_Headers_and_Footers");
+    TreeView_SelectNode("demoTreeView_Page_Numbers_in_HTML");
+</script>
+
+@using (Html.BeginForm("ConvertHtmlToPdf", "Page_Numbers_in_HTML", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>            
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px;
+                padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Add Page Numbering in HTML
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter offers a great control of headers and footers. You can
+                                                                    add in header and footer any PDF element that you can add in a PDF page : HTML,
+                                                                    text, image. Even more you can add page numbering in HTML elements from header and
+                                                                    footer. The Full Description and a Code Sample can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Page URL or Local File to Convert
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="urlTextBox" type="text" value="http://www.evopdf.com/DemoAppFiles/HTML_Files/Structured_HTML.html" id="urlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold">
+                                                                                    HTML String with Page Numbering to Add in Footer
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <textarea name="htmlWithPageNumbersTextBox" rows="2" cols="20" id="htmlWithPageNumbersTextBox" style="height:450px;width:500px;">@(ViewData["HtmlWithPageNumbers"].ToString())</textarea>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold">
+                                                                                    Base URL
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="baseUrlTextBox" type="text" value="@(ViewData["BaseUrl"].ToString())" id="baseUrlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input id="drawFooterLineCheckBox" type="checkbox" name="drawFooterLineCheckBox" checked="checked"><label for="drawFooterLineCheckBox">Draw Footer Line</label>
+                                                                                </td>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    Spacing:
+                                                                                </td>
+                                                                                <td style="width: 5px"></td>
+                                                                                <td>
+                                                                                    <input name="footerSpacingTextBox" type="text" value="0" id="footerSpacingTextBox" style="width:35px;">
+                                                                                </td>
+                                                                                <td style="width: 5px"></td>
+                                                                                <td>
+                                                                                    pt
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="convertToPdfButton" value="Convert HTML to PDF" id="convertToPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Convert HTML with Web Fonts to PDF";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_ToggleNode("demoTreeView_HTML5_Features");
+    TreeView_SelectNode("demoTreeView_Web_Fonts_to_PDF");
+</script>
+
+@using (Html.BeginForm("ConvertHtmlToPdf", "Web_Fonts_to_PDF", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px;
+                padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Convert HTML with Web Fonts to PDF
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter offers full support for Web Fonts. In this demo you can
+                                                                    convert a HTML page with web fonts to PDF. The web fonts are defined in a HTML page
+                                                                    using the @@font-face rules. The Full Description and a Code Sample can be accessed
+                                                                    from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold" colspan="3">
+                                                                                    HTML Page with Web Fonts to Convert to PDF
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="urlTextBox" type="text" value="http://www.evopdf.com/DemoAppFiles/HTML_Files/Web_Fonts.html" id="urlTextBox" style="width:435px;">
+                                                                                </td>
+                                                                                <td style="width: 5px"></td>
+                                                                                <td>
+                                                                                    <a id="viewHtmlLinkButton" href="http://www.evopdf.com/DemoAppFiles/HTML_Files/Web_Fonts.html" target="_blank">View HTML</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="convertToPdfButton" value="Convert HTML to PDF" id="convertToPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

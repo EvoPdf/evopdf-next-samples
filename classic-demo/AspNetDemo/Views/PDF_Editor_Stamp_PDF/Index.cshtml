@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "Stamp PDF Documents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewData["StampHtml"] = System.IO.File.ReadAllText(ViewData["ContentRootPath"].ToString() + "/DemoAppFiles/Input/HTML_Files/Watermark_Stamp.html");
+    String currentPageUrl = ViewData["CurrentPageUrl"].ToString();
+    String rootUrl = currentPageUrl.Substring(0, currentPageUrl.Length - "PDF_Editor_Stamp_PDF".Length);
+    ViewData["BaseUrl"] = rootUrl + "DemoAppFiles/Input/HTML_Files/";
+    ViewData["PdfFileToStampHyperLink"] = rootUrl + "DemoAppFiles/Input/PDF_Files/PDF_Document.pdf";
+}
+
+<script>
+    TreeView_ToggleNode("demoTreeView_HTML_To_PDF_Converter");
+    TreeView_ToggleNode("demoTreeView_PDF_Editor");
+    TreeView_SelectNode("demoTreeView_PDF_Editor_Stamp_PDF");
+</script>
+
+@using (Html.BeginForm("StampPdf", "PDF_Editor_Stamp_PDF", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px;
+                padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Stamp PDF Documents
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you to add watermarks and stamps to a PDF document.
+                                                                    The resulted PDF document can be saved to a file, stream or memory buffer. The Full
+                                                                    Description and a Code Sample can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    The PDF Document to Stamp
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <a id="pdfFileToStampHyperLink" href="@(ViewData["PdfFileToStampHyperLink"].ToString())" target="_blank">View the PDF Document to Stamp</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Stamp Size in PDF Page
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Width:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="stampWidthTextBox" type="text" value="400" id="stampWidthTextBox" style="width:40px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                                <td style="width: 25px"></td>
+                                                                                                <td>
+                                                                                                    Height:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="stampHeightTextBox" type="text" value="400" id="stampHeightTextBox" style="width:40px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold">
+                                                                                    Stamp HTML Code
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <textarea name="htmlStringTextBox" rows="2" cols="20" id="htmlStringTextBox" style="height:350px;width:500px;">@(ViewData["StampHtml"].ToString())</textarea>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold">
+                                                                                    Base URL
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="baseUrlTextBox" type="text" value="@(ViewData["BaseUrl"].ToString())" id="baseUrlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="stampPdfButton" value="Stamp PDF" id="stampPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

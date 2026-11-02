@@ -1,0 +1,321 @@
+﻿
+@{
+    ViewBag.Title = "Convert HTML to Raster Image";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function toggleHtmlSource(convertUrl) {
+        var urlPanel = document.getElementById("urlPanel");
+        var htmlStringPanel = document.getElementById("htmlStringPanel");
+
+        if (convertUrl && urlPanel.style.display == "none") {
+            urlPanel.style.display = "block";
+            htmlStringPanel.style.display = "none";
+        }
+        else if (!convertUrl && htmlStringPanel.style.display == "none") {
+            urlPanel.style.display = "none";
+            htmlStringPanel.style.display = "block";
+        }
+    }
+
+    function togglePngPanel(selectedOption) {
+        var enablePanel = selectedOption == "Png";
+        var pngPanel = document.getElementById("pngPanel");
+
+        if (enablePanel) {
+            pngPanel.style.display = "block";
+        }
+        else {
+            pngPanel.style.display = "none";
+        }
+    }
+
+    TreeView_ToggleNode("demoTreeView_HTML_To_PDF_Converter");
+    TreeView_ToggleNode("demoTreeView_HTML_to_Image");
+    TreeView_SelectNode("demoTreeView_Convert_HTML_to_Image");
+</script>
+
+@using (Html.BeginForm("ConvertHtmlToImage", "Convert_HTML_to_Image", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; height: 776px; padding-top: 10px; padding-left: 10px;
+                padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Convert HTML to Raster Image
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    Convert a HTML page from an URL or a HTML String to a raster image using the basic
+                                                                    options of converter. The Full Description and a Code Sample can be accessed from
+                                                                    the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <span style="font-weight:normal;"><input id="convertUrlRadioButton" type="radio" name="HtmlPageSource" value="convertUrlRadioButton" checked="checked" onclick="javascript: toggleHtmlSource(true)"><label for="convertUrlRadioButton">Convert URL or Local File</label></span>
+                                                                                </td>
+                                                                                <td style="width: 50px"></td>
+                                                                                <td>
+                                                                                    <span style="font-weight:normal;"><input id="convertHtmlRadioButton" type="radio" name="HtmlPageSource" value="convertHtmlRadioButton" onclick="javascript: toggleHtmlSource(false)"><label for="convertHtmlRadioButton">Convert HTML String</label></span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div id="urlPanel">
+                                                                        <table>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                        HTML Page URL or Local File to Convert
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <input name="urlTextBox" type="text" value="http://www.evopdf.com" id="urlTextBox" style="width:500px;">
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+
+                                                                    </div>
+                                                                    <div id="htmlStringPanel" style="display:none">
+                                                                        <table>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="font-weight: bold">
+                                                                                        HTML String to Convert
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <textarea name="htmlStringTextBox" rows="2" cols="20" id="htmlStringTextBox" style="height:200px;width:500px;">Enter the &lt;b&gt;HTML String to Convert&lt;/b&gt; and optionally set a &lt;b&gt;Base URL&lt;/b&gt; if the HTML string references external resources by relative URLs</textarea>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="height: 10px"></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="font-weight: bold">
+                                                                                        Base URL
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <input name="baseUrlTextBox" type="text" id="baseUrlTextBox" style="width:500px;">
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    HTML Viewer Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Width:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="htmlViewerWidthTextBox" type="text" value="1024" id="htmlViewerWidthTextBox" style="width:40px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    px
+                                                                                                </td>
+                                                                                                <td style="width: 50px"></td>
+                                                                                                <td>
+                                                                                                    Height:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="htmlViewerHeightTextBox" type="text" id="htmlViewerHeightTextBox" style="width:40px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    px
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Image Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Image Format:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td style="width: 110px">
+                                                                                                    <select name="imageFormatComboBox" onchange="javascript: togglePngPanel(this.value)" id="imageFormatComboBox">
+                                                                                                        <option selected="selected" value="Png">Png</option>
+                                                                                                        <option value="Jpg">Jpg</option>
+                                                                                                        <option value="Bmp">Bmp</option>
+
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                                <td style="width: 30px"></td>
+                                                                                                <td>
+                                                                                                    <div id="pngPanel">
+                                                                                                        <input id="transparentBackgroundCheckBox" type="checkbox" name="transparentBackgroundCheckBox"><label for="transparentBackgroundCheckBox">Transparent Background</label>
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Navigation Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Timeout:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="navigationTimeoutTextBox" type="text" value="60" id="navigationTimeoutTextBox" style="width:30px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    sec
+                                                                                                </td>
+                                                                                                <td style="width: 50px"></td>
+                                                                                                <td>
+                                                                                                    Delay Conversion :
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="conversionDelayTextBox" type="text" value="2" id="conversionDelayTextBox" style="width:30px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    sec
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="convertToImageButton" value="Convert HTML to Image" id="convertToImageButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

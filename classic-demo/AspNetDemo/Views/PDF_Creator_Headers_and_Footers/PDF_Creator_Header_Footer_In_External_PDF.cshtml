@@ -1,0 +1,173 @@
+﻿
+@{
+    ViewBag.Title = "PDF Creator - Add Header and Footer In External PDF Documents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    String currentPageUrl = ViewData["CurrentPageUrl"].ToString();
+    String rootUrl = currentPageUrl.Substring(0, currentPageUrl.Length - "PDF_Creator_Headers_and_Footers/PDF_Creator_Header_Footer_In_External_PDF".Length);
+    ViewData["PdfBeforeHyperLink"] = rootUrl + "DemoAppFiles/Input/PDF_Files/Merge_Before_Conversion.pdf";
+    ViewData["PdfAfterHyperLink"] = rootUrl + "DemoAppFiles/Input/PDF_Files/Merge_After_Conversion.pdf";
+}
+
+<script>
+    TreeView_ToggleNode("demoTreeView_HTML_To_PDF_Converter");
+    TreeView_ToggleNode("demoTreeView_PDF_Creator");
+    TreeView_ToggleNode("demoTreeView_PDF_Creator_Headers_and_Footers");
+    TreeView_SelectNode("demoTreeView_PDF_Creator_Header_Footer_In_External_PDF");
+</script>
+
+@using (Html.BeginForm("CreatePdf", "PDF_Creator_Header_Footer_In_External_PDF", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px;
+                padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 14px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Add Header and Footer In External PDF Documents
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you to apply headers and footers on the external
+                                                                    documents added before or after the conversion result. The Full Description and
+                                                                    a Code Sample can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Page to Convert URL
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="urlTextBox" type="text" value="http://www.evopdf.com/DemoAppFiles/HTML_Files/Structured_HTML.html" id="urlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    PDF File to Insert Before Conversion
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <a id="pdfBeforeHyperLink" href="@(ViewData["PdfBeforeHyperLink"].ToString())" target="_blank">View the PDF File to Insert Before Conversion</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 10px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input id="addHeaderFooterInInsertedPdfCheckBox" type="checkbox" name="addHeaderFooterInInsertedPdfCheckBox" checked="checked"><label for="addHeaderFooterInInsertedPdfCheckBox">Add Header and Footer in Inserted PDF Document</label>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 10px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input id="showHeaderInFirstPageCheckBox" type="checkbox" name="showHeaderInFirstPageCheckBox" checked="checked"><label for="showHeaderInFirstPageCheckBox">Show Header in First Page</label>
+                                                                                </td>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <input id="showFooterInFirstPageCheckBox" type="checkbox" name="showFooterInFirstPageCheckBox" checked="checked"><label for="showFooterInFirstPageCheckBox">Show Footer in First Page</label>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    PDF File to Add After Conversion
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <a id="pdfAfterHyperLink" href="@(ViewData["PdfAfterHyperLink"].ToString())" target="_blank">View the PDF File to Add After Conversion</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 10px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input id="addHeaderFooterInAppendedPdfCheckBox" type="checkbox" name="addHeaderFooterInAppendedPdfCheckBox" checked="checked"><label for="addHeaderFooterInAppendedPdfCheckBox">Add Header and Footer in Appended PDF Document</label>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="createPdfButton" value="Create PDF Document" id="createPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

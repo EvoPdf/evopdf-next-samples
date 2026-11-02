@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewBag.Title = "Add HTTP Headers to HTML Page Request";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_ToggleNode("demoTreeView_HTTP_Headers_and_Cookies");
+    TreeView_SelectNode("demoTreeView_Add_HTTP_Headers_to_Request");
+</script>
+
+@using (Html.BeginForm("ConvertHtmlToPdf", "Add_HTTP_Headers_to_Request", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>            
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px;
+                padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Add HTTP Headers to HTML Page Request
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you to add HTTP headers when you request the HTML
+                                                                    page. There are various standard HTTP headers offering important information to
+                                                                    web server about the capabilities of the browser like the accepted content type,
+                                                                    accepted encoding, accepted language, connection mode, user agent. The Full Description
+                                                                    and a Code Sample can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="padding-bottom: 5px; font-weight: bold">
+                                                                                    HTML Page to Convert URL
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input name="urlTextBox" type="text" value="http://www.evopdf.com/HTTP_Headers/" id="urlTextBox" style="width:500px;">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    HTTP Headers
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Name:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="header1NameTextBox" type="text" value="Accept" id="header1NameTextBox" style="width:145px;">
+                                                                                                </td>
+                                                                                                <td style="width: 50px"></td>
+                                                                                                <td>
+                                                                                                    Value:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="header1ValueTextBox" type="text" value="text/html,application/xhtml+xml,application/xml" id="header1ValueTextBox" style="width:165px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 10px" colspan="7"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Name:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="header2NameTextBox" type="text" value="Accept-Language" id="header2NameTextBox" style="width:145px;">
+                                                                                                </td>
+                                                                                                <td style="width: 50px"></td>
+                                                                                                <td>
+                                                                                                    Value:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="header2ValueTextBox" type="text" value="en-US,*" id="header2ValueTextBox" style="width:165px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 10px" colspan="7"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Name:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="header3NameTextBox" type="text" value="Connection" id="header3NameTextBox" style="width:145px;">
+                                                                                                </td>
+                                                                                                <td style="width: 50px"></td>
+                                                                                                <td>
+                                                                                                    Value:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="header3ValueTextBox" type="text" value="Keep-Alive" id="header3ValueTextBox" style="width:165px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 10px" colspan="7"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Name:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="header4NameTextBox" type="text" value="User-Agent" id="header4NameTextBox" style="width:145px;">
+                                                                                                </td>
+                                                                                                <td style="width: 50px"></td>
+                                                                                                <td>
+                                                                                                    Value:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="header4ValueTextBox" type="text" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36" id="header4ValueTextBox" style="width:165px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="height: 10px" colspan="7"></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Name:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="header5NameTextBox" type="text" id="header5NameTextBox" style="width:145px;">
+                                                                                                </td>
+                                                                                                <td style="width: 50px"></td>
+                                                                                                <td>
+                                                                                                    Value:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="header5ValueTextBox" type="text" id="header5ValueTextBox" style="width:165px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="convertToPdfButton" value="Convert HTML to PDF" id="convertToPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

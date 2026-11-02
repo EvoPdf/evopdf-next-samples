@@ -1,0 +1,251 @@
+﻿
+@{
+    ViewBag.Title = "Create PDF Documents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    TreeView_ToggleNode("demoTreeView_HTML_To_PDF_Converter");
+    TreeView_ToggleNode("demoTreeView_PDF_Creator");
+    TreeView_SelectNode("demoTreeView_PDF_Creator_Create_PDF_Documents");
+</script>
+
+@using (Html.BeginForm("CreatePdf", "PDF_Creator_Create_PDF_Documents", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px; padding-right: 10px;
+                padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Create PDF Documents
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you to create empty PDF documents to which you
+                                                                    can add various types elements: HTML, text, images, graphics. You can save the created
+                                                                    PDF document to a file, a stream or in a memory buffer. The Full Description and
+                                                                    a Code Sample can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    PDF Standard
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr style="height: 30px">
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <span style="font-weight:normal;"><input id="fullPdfRadioButton" type="radio" name="PdfStandard" value="fullPdfRadioButton" checked="checked"><label for="fullPdfRadioButton">Full PDF</label></span>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <span style="font-weight:normal;"><input id="pdfARadioButton" type="radio" name="PdfStandard" value="pdfARadioButton"><label for="pdfARadioButton">PDF/A-1b</label></span>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    PDF Page Options
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Size:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td style="width: 110px">
+                                                                                                    <select name="pdfPageSizeDropDownList" id="pdfPageSizeDropDownList">
+                                                                                                        <option value="A0">A0</option>
+                                                                                                        <option value="A1">A1</option>
+                                                                                                        <option value="A2">A2</option>
+                                                                                                        <option value="A3">A3</option>
+                                                                                                        <option selected="selected" value="A4">A4</option>
+                                                                                                        <option value="A5">A5</option>
+                                                                                                        <option value="A6">A6</option>
+                                                                                                        <option value="A7">A7</option>
+                                                                                                        <option value="A8">A8</option>
+                                                                                                        <option value="A9">A9</option>
+                                                                                                        <option value="A10">A10</option>
+                                                                                                        <option value="B0">B0</option>
+                                                                                                        <option value="B1">B1</option>
+                                                                                                        <option value="B2">B2</option>
+                                                                                                        <option value="B3">B3</option>
+                                                                                                        <option value="B4">B4</option>
+                                                                                                        <option value="B5">B5</option>
+                                                                                                        <option value="ArchA">ArchA</option>
+                                                                                                        <option value="ArchB">ArchB</option>
+                                                                                                        <option value="ArchC">ArchC</option>
+                                                                                                        <option value="ArchD">ArchD</option>
+                                                                                                        <option value="ArchE">ArchE</option>
+                                                                                                        <option value="Flsa">Flsa</option>
+                                                                                                        <option value="HalfLetter">HalfLetter</option>
+                                                                                                        <option value="Ledger">Ledger</option>
+                                                                                                        <option value="Legal">Legal</option>
+                                                                                                        <option value="Letter">Letter</option>
+                                                                                                        <option value="Letter11x17">Letter11x17</option>
+                                                                                                        <option value="Note">Note</option>
+
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    Orientation:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <select name="pdfPageOrientationDropDownList" id="pdfPageOrientationDropDownList">
+                                                                                                        <option selected="selected" value="Portrait">Portrait</option>
+                                                                                                        <option value="Landscape">Landscape</option>
+
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Margins:
+                                                                                                </td>
+                                                                                                <td style="width: 10px"></td>
+                                                                                                <td>
+                                                                                                    Left:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="leftMarginTextBox" type="text" value="0" id="leftMarginTextBox" style="width:35px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                                <td style="width: 22px"></td>
+                                                                                                <td>
+                                                                                                    Right:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="rightMarginTextBox" type="text" value="0" id="rightMarginTextBox" style="width:35px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                                <td style="width: 25px"></td>
+                                                                                                <td>
+                                                                                                    Top:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="topMarginTextBox" type="text" value="0" id="topMarginTextBox" style="width:35px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                                <td style="width: 15px"></td>
+                                                                                                <td>
+                                                                                                    Bottom:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="bottomMarginTextBox" type="text" value="0" id="bottomMarginTextBox" style="width:35px;">
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    pt
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="submit" name="createPdfButton" value="Create PDF Document" id="createPdfButton">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

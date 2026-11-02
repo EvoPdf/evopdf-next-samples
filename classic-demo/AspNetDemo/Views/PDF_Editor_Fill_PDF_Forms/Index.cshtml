@@ -1,0 +1,237 @@
+﻿
+@{
+    ViewBag.Title = "Fill PDF Forms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    String currentPageUrl = ViewData["CurrentPageUrl"].ToString();
+    String rootUrl = currentPageUrl.Substring(0, currentPageUrl.Length - "PDF_Editor_Fill_PDF_Forms".Length);
+    ViewData["BaseUrl"] = rootUrl + "DemoAppFiles/Input/HTML_Files/";
+    ViewData["PdfFileToFillHyperLink"] = rootUrl + "DemoAppFiles/Input/PDF_Files/Fill_PDF_Forms.pdf";
+}
+
+<script>
+    TreeView_ToggleNode("demoTreeView_HTML_To_PDF_Converter");
+    TreeView_ToggleNode("demoTreeView_PDF_Editor");
+    TreeView_SelectNode("demoTreeView_PDF_Editor_Fill_PDF_Forms");
+</script>
+
+@using (Html.BeginForm("FillPdf", "PDF_Editor_Fill_PDF_Forms", FormMethod.Post))
+{
+    <table style="width: 100%; height: 100%">
+        <tbody>
+            <tr>
+                <td style="border: solid 1px Black; padding-top: 10px; padding-left: 10px;
+                padding-right: 10px; padding-bottom: 0px">
+                    <table style="width: 100%; height: 100%">
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 16px; font-weight: bold; height: 20px; padding-bottom: 15px;
+                            padding-top: 5px">
+                                    Fill PDF Forms
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+
+                                    <table style="width: 535px; height: 927px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    EVO HTML to PDF Converter allows you to fill the PDF form of a PDF document. The
+                                                                    resulted PDF document can be saved to a file, stream or memory buffer. The Full
+                                                                    Description and a Code Sample can be accessed from the top tabs.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    PDF File with Form to Fill
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <a id="pdfFileToFillHyperLink" href="@(ViewData["PdfFileToFillHyperLink"].ToString())" target="_blank">Open Initial PDF with an Empty Form</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold" colspan="2">
+                                                                                    Form Fields Values
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    First Name:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="firstNameTextBox" type="text" value="John" id="firstNameTextBox" style="width:60px;">
+                                                                                                </td>
+                                                                                                <td style="width: 25px"></td>
+                                                                                                <td>
+                                                                                                    Last Name:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="lastNameTextBox" type="text" value="Smith" id="lastNameTextBox" style="width:60px;">
+                                                                                                </td>
+                                                                                                <td style="width: 25px"></td>
+                                                                                                <td>
+                                                                                                    Password:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <input name="passwordTextBox" type="text" value="secret" id="passwordTextBox" style="width:60px;">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    Gender:
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    <span style="font-weight:normal;"><input id="maleRadioButton" type="radio" name="Gender" value="maleRadioButton" checked="checked"><label for="maleRadioButton">Male</label></span>
+                                                                                                </td>
+                                                                                                <td style="width: 30px"></td>
+                                                                                                <td>
+                                                                                                    <span style="font-weight:normal;"><input id="femaleRadioButton" type="radio" name="Gender" value="femaleRadioButton"><label for="femaleRadioButton">Female</label></span>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <input id="haveCarCheckBox" type="checkbox" name="haveCarCheckBox" checked="checked"><label for="haveCarCheckBox">I have a car</label>
+                                                                                                </td>
+                                                                                                <td style="width: 20px"></td>
+                                                                                                <td>
+                                                                                                    Car Type:
+                                                                                                </td>
+                                                                                                <td style="width: 5px"></td>
+                                                                                                <td>
+                                                                                                    <select name="carTypeComboBox" id="carTypeComboBox">
+                                                                                                        <option selected="selected" value="Volvo">Volvo</option>
+                                                                                                        <option value="Saab">Saab</option>
+                                                                                                        <option value="Audi">Audi</option>
+                                                                                                        <option value="Opel">Opel</option>
+
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="height: 10px" colspan="2"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    Comments:
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="width: 20px"></td>
+                                                                                <td>
+                                                                                    <textarea name="commentsTextBox" rows="2" cols="20" id="commentsTextBox" style="height:109px;width:400px;">My comments
+Line 1
+Line 2
+                                                                        </textarea>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="height: 20px"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input type="submit" name="fillPdfButton" value="Fill PDF Form" id="fillPdfButton">
+                                                                                </td>
+                                                                                <td style="width: 50px"></td>
+                                                                                <td>
+                                                                                    <input id="flattenPdfFormCheckBox" type="checkbox" name="flattenPdfFormCheckBox"><label for="flattenPdfFormCheckBox">Flatten PDF Form Fields</label>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
