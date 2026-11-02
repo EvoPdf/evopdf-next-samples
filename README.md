@@ -2,7 +2,7 @@
   <a href="https://www.evopdf.com/evopdf-next-dotnet"><img src="https://raw.githubusercontent.com/EvoPdf/evopdf-files/main/next/evopdf-next-pdf-library-logo.png" alt="EvoPdf Next" height="72"></a>
 </p>
 
-<h1 align="center">EvoPdf Next; Samples</h1>
+<h1 align="center">EvoPdf Next Samples</h1>
 
 <p align="center">Runnable C# samples and the complete demo application for <b>EvoPdf Next</b>, the .NET PDF library: HTML, Word, Excel, RTF and Markdown to PDF, PDF to text, search, images, PDF creation and editing, PDF/UA and PDF/A.</p>
 
@@ -11,7 +11,7 @@
   <a href="https://github.com/EvoPdf/evopdf-next-samples/actions/workflows/build.yml"><img src="https://github.com/EvoPdf/evopdf-next-samples/actions/workflows/build.yml/badge.svg" alt="build"></a>
   <a href="https://www.evopdf.com/help/evopdf-next-dotnet/"><img src="https://img.shields.io/badge/docs-evopdf.com-1E6FB8" alt="Documentation"></a>
   <img src="https://img.shields.io/badge/Windows%20%7C%20Linux%20%7C%20macOS-x64%20%7C%20ARM64-555" alt="Platforms">
-  <a href="https://deepwiki.com/EvoPdf/evopdf-next-samples"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
+  <a href="https://deepwiki.com/EvoPdf/evopdf-next-samples"><img src="https://img.shields.io/badge/Ask-DeepWiki-blue" alt="Ask DeepWiki"></a>
 </p>
 
 ---
